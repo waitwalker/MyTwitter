@@ -7,29 +7,134 @@
 //
 
 import UIKit
+import Masonry
 
-class RegisterStartViewController: MTTViewController {
-
-    override func viewDidLoad() {
+class RegisterStartViewController: MTTViewController
+{
+    var logoImageView:UIImageView?
+    var checkLabel:UILabel?
+    var startButton:UIButton?
+    var haveAccountLabel:UILabel?
+    var loginButton:UIButton?
+    
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor.white
+        self.setupSubview()
+        self.layoutSubview()
+        
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - 初始化控件
+    func setupSubview() -> Void
+    {
+        //logo
+        logoImageView = UIImageView.init(image: UIImage.init(named: "twitter_logo"))
+        self.view.addSubview(logoImageView!)
+        
+        //check
+        checkLabel = UILabel()
+        checkLabel?.font = UIFont.systemFont(ofSize: 30)
+        checkLabel?.textAlignment = NSTextAlignment.left
+        checkLabel?.text = "查看世界当前正在发生的事情."
+        checkLabel?.numberOfLines = 2
+        checkLabel?.sizeToFit()
+        self.view.addSubview(checkLabel!)
+        
+        //start
+        startButton = UIButton()
+        startButton?.setTitle("现在开始", for: UIControlState.normal)
+        startButton?.layer.cornerRadius = 20
+        startButton?.clipsToBounds = true
+        startButton?.setTitleColor(UIColor.white, for: UIControlState.normal)
+        startButton?.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
+        startButton?.setTitleColor(kRGBColor(r: 102, g: 102, b: 153), for: UIControlState.highlighted)
+        startButton?.backgroundColor = kMainBlueColor()
+        startButton?.addTarget(self, action: #selector(startButtonAction(startButton:)), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(startButton!)
+        
+        //haveAccount
+        haveAccountLabel = UILabel()
+        haveAccountLabel?.text = "已有账号?"
+        haveAccountLabel?.textAlignment = NSTextAlignment.right
+        haveAccountLabel?.textColor = kRGBColor(r: 102, g: 102, b: 153)
+        haveAccountLabel?.font = UIFont.systemFont(ofSize: 15)
+        self.view.addSubview(haveAccountLabel!)
+        
+        //loginButton
+        loginButton = UIButton()
+        loginButton?.setTitle("登录", for: UIControlState.normal)
+        loginButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
+        loginButton?.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
+        loginButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        loginButton?.addTarget(self, action: #selector(loginButtonAction(loginButton:)), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(loginButton!)
     }
-    */
+    
+    // MARK: - startButton Action
+    @objc func startButtonAction(startButton:UIButton) -> Void
+    {
+        
+    }
+    
+    // MARK: - loginButtion Action
+    @objc func loginButtonAction(loginButton:UIButton) -> Void
+    {
+        
+    }
+    
+    // MARK: - 布局控件
+    func layoutSubview() -> Void
+    {
+        //logo
+        let _ = logoImageView?.mas_makeConstraints({ (make) in
+            
+            make?.left.equalTo()(self.view)?.offset()(40)
+            make?.top.equalTo()(self.view)?.offset()(80)
+            make?.width.height().equalTo()(30)
+        })
+        
+        //check
+        let _ = checkLabel?.mas_makeConstraints({ (make) in
+            make?.left.equalTo()(self.view)?.offset()(40)
+            make?.right.equalTo()(self.view)?.offset()(-40)
+            make?.center.equalTo()(self.view)
+        })
+        
+        //start
+        let _ = startButton?.mas_makeConstraints({ (make) in
+            make?.left.equalTo()(self.view)?.offset()(40)
+            make?.right.equalTo()(self.view)?.offset()(-40)
+            make?.height.equalTo()(40)
+            make?.top.equalTo()(self.checkLabel?.mas_bottom)?.offset()(20)
+        })
+        
+        //haveAccount
+        let _ = haveAccountLabel?.mas_makeConstraints({ (make) in
+            make?.left.equalTo()(self.view)?.offset()(40)
+            make?.bottom.equalTo()(self.view)?.offset()(-50)
+            make?.width.equalTo()(70)
+            make?.height.equalTo()(25)
+        })
+        
+        //loginButton
+        let _ = loginButton?.mas_makeConstraints({ (make) in
+            make?.left.equalTo()(self.haveAccountLabel?.mas_right)?.offset()(2)
+            make?.height.equalTo()(25)
+            make?.width.equalTo()(35)
+            make?.bottom.equalTo()(self.view)?.offset()(-50)
+        })
+        
+        
+    }
+    
 
 }

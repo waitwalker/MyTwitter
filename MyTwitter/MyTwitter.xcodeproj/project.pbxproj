@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1236A11D37906FE9351A32A7 /* Pods_MyTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE036FF637CEB31DCC649811 /* Pods_MyTwitter.framework */; };
+		1A5829D71F5D817100E732DE /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5829D61F5D817100E732DE /* Macro.swift */; };
 		25895C513C5B4C981C3CBB34 /* Pods_MyTwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BF0F6CC1A62E6EA78A8F347 /* Pods_MyTwitterUITests.framework */; };
 		CA9522DA1F5D535600AB1183 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9522D91F5D535600AB1183 /* AppDelegate.swift */; };
 		CA9522DC1F5D535600AB1183 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9522DB1F5D535600AB1183 /* ViewController.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		0BF0F6CC1A62E6EA78A8F347 /* Pods_MyTwitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A5829D61F5D817100E732DE /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 		68D17614F1EC8D4EAD2273B7 /* Pods-MyTwitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterUITests/Pods-MyTwitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6E8ACCEB41AD4EB8BC3E5288 /* Pods-MyTwitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitter/Pods-MyTwitter.release.xcconfig"; sourceTree = "<group>"; };
 		7A3934C48576DFC869BDE54A /* Pods-MyTwitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterUITests/Pods-MyTwitterUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -83,6 +85,14 @@
 				7A3934C48576DFC869BDE54A /* Pods-MyTwitterUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		1A5829D41F5D802B00E732DE /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				1A5829D61F5D817100E732DE /* Macro.swift */,
+			);
+			path = Macro;
 			sourceTree = "<group>";
 		};
 		357E75F9D63EBEE6591F795E /* Frameworks */ = {
@@ -136,6 +146,7 @@
 		CA9522F91F5D53F600AB1183 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1A5829D41F5D802B00E732DE /* Macro */,
 				CA9522FD1F5D59B200AB1183 /* Base */,
 			);
 			path = Common;
@@ -383,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA9522DC1F5D535600AB1183 /* ViewController.swift in Sources */,
+				1A5829D71F5D817100E732DE /* Macro.swift in Sources */,
 				CA9522FF1F5D59DD00AB1183 /* MTTViewController.swift in Sources */,
 				CA9523031F5D5A5400AB1183 /* MTTNavigationController.swift in Sources */,
 				CA9523011F5D5A2F00AB1183 /* RegisterStartViewController.swift in Sources */,

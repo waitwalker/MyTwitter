@@ -15,6 +15,10 @@
 		CA9522E11F5D535600AB1183 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA9522E01F5D535600AB1183 /* Assets.xcassets */; };
 		CA9522E41F5D535600AB1183 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA9522E21F5D535600AB1183 /* LaunchScreen.storyboard */; };
 		CA9522EF1F5D535600AB1183 /* MyTwitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9522EE1F5D535600AB1183 /* MyTwitterUITests.swift */; };
+		CA9522FF1F5D59DD00AB1183 /* MTTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9522FE1F5D59DD00AB1183 /* MTTViewController.swift */; };
+		CA9523011F5D5A2F00AB1183 /* RegisterStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9523001F5D5A2F00AB1183 /* RegisterStartViewController.swift */; };
+		CA9523031F5D5A5400AB1183 /* MTTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9523021F5D5A5400AB1183 /* MTTNavigationController.swift */; };
+		CA9523051F5D5A6C00AB1183 /* MTTTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9523041F5D5A6C00AB1183 /* MTTTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +46,10 @@
 		CA9522EA1F5D535600AB1183 /* MyTwitterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyTwitterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA9522EE1F5D535600AB1183 /* MyTwitterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTwitterUITests.swift; sourceTree = "<group>"; };
 		CA9522F01F5D535600AB1183 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA9522FE1F5D59DD00AB1183 /* MTTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTViewController.swift; sourceTree = "<group>"; };
+		CA9523001F5D5A2F00AB1183 /* RegisterStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStartViewController.swift; sourceTree = "<group>"; };
+		CA9523021F5D5A5400AB1183 /* MTTNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTNavigationController.swift; sourceTree = "<group>"; };
+		CA9523041F5D5A6C00AB1183 /* MTTTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTabBarController.swift; sourceTree = "<group>"; };
 		CE036FF637CEB31DCC649811 /* Pods_MyTwitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26E0E702DC21DAD7B6DA9D0 /* Pods-MyTwitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitter/Pods-MyTwitter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,13 +117,9 @@
 		CA9522D81F5D535600AB1183 /* MyTwitter */ = {
 			isa = PBXGroup;
 			children = (
+				CA9522FC1F5D572700AB1183 /* Main */,
+				CA9522FA1F5D566400AB1183 /* Modules */,
 				CA9522F91F5D53F600AB1183 /* Common */,
-				CA9522D91F5D535600AB1183 /* AppDelegate.swift */,
-				CA9522DB1F5D535600AB1183 /* ViewController.swift */,
-				CA9522DD1F5D535600AB1183 /* Main.storyboard */,
-				CA9522E01F5D535600AB1183 /* Assets.xcassets */,
-				CA9522E21F5D535600AB1183 /* LaunchScreen.storyboard */,
-				CA9522E51F5D535600AB1183 /* Info.plist */,
 			);
 			path = MyTwitter;
 			sourceTree = "<group>";
@@ -132,8 +136,48 @@
 		CA9522F91F5D53F600AB1183 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CA9522FD1F5D59B200AB1183 /* Base */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		CA9522FA1F5D566400AB1183 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				CA9522FB1F5D569E00AB1183 /* Register&Login(登录注册) */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		CA9522FB1F5D569E00AB1183 /* Register&Login(登录注册) */ = {
+			isa = PBXGroup;
+			children = (
+				CA9523001F5D5A2F00AB1183 /* RegisterStartViewController.swift */,
+			);
+			path = "Register&Login(登录注册)";
+			sourceTree = "<group>";
+		};
+		CA9522FC1F5D572700AB1183 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				CA9522E51F5D535600AB1183 /* Info.plist */,
+				CA9522D91F5D535600AB1183 /* AppDelegate.swift */,
+				CA9522DB1F5D535600AB1183 /* ViewController.swift */,
+				CA9522DD1F5D535600AB1183 /* Main.storyboard */,
+				CA9522E01F5D535600AB1183 /* Assets.xcassets */,
+				CA9522E21F5D535600AB1183 /* LaunchScreen.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		CA9522FD1F5D59B200AB1183 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				CA9522FE1F5D59DD00AB1183 /* MTTViewController.swift */,
+				CA9523021F5D5A5400AB1183 /* MTTNavigationController.swift */,
+				CA9523041F5D5A6C00AB1183 /* MTTTabBarController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,7 +383,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA9522DC1F5D535600AB1183 /* ViewController.swift in Sources */,
+				CA9522FF1F5D59DD00AB1183 /* MTTViewController.swift in Sources */,
+				CA9523031F5D5A5400AB1183 /* MTTNavigationController.swift in Sources */,
+				CA9523011F5D5A2F00AB1183 /* RegisterStartViewController.swift in Sources */,
 				CA9522DA1F5D535600AB1183 /* AppDelegate.swift in Sources */,
+				CA9523051F5D5A6C00AB1183 /* MTTTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,7 +543,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N5ZJ5W7ZL3;
-				INFOPLIST_FILE = MyTwitter/Info.plist;
+				INFOPLIST_FILE = MyTwitter/Main/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.etiantian.MyTwitter;
@@ -512,7 +560,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N5ZJ5W7ZL3;
-				INFOPLIST_FILE = MyTwitter/Info.plist;
+				INFOPLIST_FILE = MyTwitter/Main/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.etiantian.MyTwitter;

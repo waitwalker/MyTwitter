@@ -4,10 +4,19 @@ platform :ios, '9.0'
 target 'MyTwitter' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-  
-  pod 'Masonry', '~> 1.0.2'
 
   # Pods for MyTwitter
+  pod 'SnapKit', '~> 3.2.0'
+  #pod 'ReactiveCocoa', '~> 6.0.0-alpha.1'
+  pod 'Alamofire', '~> 4.4.0'
+  pod 'RxSwift', '~> 3.5.0'
+  pod 'RxCocoa', '~> 3.5.0'
+
+
+  target 'MyTwitterTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
 
   target 'MyTwitterUITests' do
     inherit! :search_paths

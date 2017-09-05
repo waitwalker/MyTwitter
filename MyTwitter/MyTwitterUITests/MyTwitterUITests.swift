@@ -2,7 +2,7 @@
 //  MyTwitterUITests.swift
 //  MyTwitterUITests
 //
-//  Created by LiuChuanan on 2017/9/4.
+//  Created by LiuChuanan on 2017/9/5.
 //  Copyright © 2017年 waitWalker. All rights reserved.
 //
 

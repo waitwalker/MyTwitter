@@ -2,7 +2,7 @@
 //  MTTViewController.swift
 //  MyTwitter
 //
-//  Created by LiuChuanan on 2017/9/4.
+//  Created by LiuChuanan on 2017/9/5.
 //  Copyright © 2017年 waitWalker. All rights reserved.
 //
 
@@ -12,8 +12,7 @@ class MTTViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = kMainWhiteColor()
     }
 
     override func didReceiveMemoryWarning() {

@@ -2,11 +2,15 @@
 //  Macro.swift
 //  MyTwitter
 //
-//  Created by WangJunZi on 2017/9/4.
+//  Created by LiuChuanan on 2017/9/5.
 //  Copyright © 2017年 waitWalker. All rights reserved.
 //
+
+import RxSwift
+import RxCocoa
 import UIKit
-import Masonry
+
+var disposeBag = DisposeBag()
 
 // MARK: - 屏幕宽高
 let kScreenWidth = UIScreen.main.bounds.size.width
@@ -29,4 +33,10 @@ func kMainBlueColor() -> UIColor
 func kMainGrayColor() -> UIColor
 {
     return UIColor.init(red: (102) / 255.0, green: (102) / 255.0, blue: (153) / 255.0, alpha: 1.0)
+}
+
+// MARK: - 主白色
+func kMainWhiteColor() -> UIColor
+{
+    return UIColor.white
 }

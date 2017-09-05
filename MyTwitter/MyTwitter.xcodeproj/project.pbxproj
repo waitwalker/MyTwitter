@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AFC059A1F5ECF6F006EAC9F /* MTTExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC05991F5ECF6F006EAC9F /* MTTExtension.swift */; };
+		1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC059C1F5ED2B7006EAC9F /* Service.swift */; };
+		1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */; };
+		1AFC05A81F5EE3B2006EAC9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A11F5EE3B2006EAC9F /* Assets.xcassets */; };
+		1AFC05A91F5EE3B2006EAC9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A21F5EE3B2006EAC9F /* LaunchScreen.storyboard */; };
+		1AFC05AA1F5EE3B2006EAC9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A41F5EE3B2006EAC9F /* Main.storyboard */; };
+		1AFC05AB1F5EE3B2006EAC9F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A61F5EE3B2006EAC9F /* Info.plist */; };
 		44E9E8C13750B588F23552C8 /* Pods_MyTwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */; };
-		CADECB981F5E4E3A0027E15F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECB971F5E4E3A0027E15F /* AppDelegate.swift */; };
-		CADECB9D1F5E4E3A0027E15F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CADECB9B1F5E4E3A0027E15F /* Main.storyboard */; };
-		CADECB9F1F5E4E3A0027E15F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CADECB9E1F5E4E3A0027E15F /* Assets.xcassets */; };
-		CADECBA21F5E4E3A0027E15F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CADECBA01F5E4E3A0027E15F /* LaunchScreen.storyboard */; };
 		CADECBAD1F5E4E3A0027E15F /* MyTwitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBAC1F5E4E3A0027E15F /* MyTwitterTests.swift */; };
 		CADECBB81F5E4E3A0027E15F /* MyTwitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBB71F5E4E3A0027E15F /* MyTwitterUITests.swift */; };
 		CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBC81F5E4F0A0027E15F /* Macro.swift */; };
@@ -43,6 +46,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1AFC05991F5ECF6F006EAC9F /* MTTExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTExtension.swift; path = MyTwitter/Common/Macro/MTTExtension.swift; sourceTree = SOURCE_ROOT; };
+		1AFC059C1F5ED2B7006EAC9F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1AFC05A11F5EE3B2006EAC9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1AFC05A31F5EE3B2006EAC9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1AFC05A51F5EE3B2006EAC9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1AFC05A61F5EE3B2006EAC9F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B8705A97836EFD837D5D0CA /* Pods-MyTwitterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterTests/Pods-MyTwitterTests.release.xcconfig"; sourceTree = "<group>"; };
 		3BC01DD32B63AD348DFCD919 /* Pods_MyTwitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F24A29CF39DDC29B1234D51 /* Pods-MyTwitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitter/Pods-MyTwitter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -51,11 +61,6 @@
 		BDE3DAC010179F784B5E286A /* Pods-MyTwitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterUITests/Pods-MyTwitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C8B46619503CC4D8F2F2F494 /* Pods_MyTwitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADECB941F5E4E3A0027E15F /* MyTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CADECB971F5E4E3A0027E15F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
-		CADECB9C1F5E4E3A0027E15F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CADECB9E1F5E4E3A0027E15F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
-		CADECBA11F5E4E3A0027E15F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CADECBA31F5E4E3A0027E15F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		CADECBA81F5E4E3A0027E15F /* MyTwitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyTwitterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADECBAC1F5E4E3A0027E15F /* MyTwitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTwitterTests.swift; sourceTree = "<group>"; };
 		CADECBAE1F5E4E3A0027E15F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,6 +106,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1AFC059B1F5ECF90006EAC9F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1AFC059C1F5ED2B7006EAC9F /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		1AFC059F1F5EE3B2006EAC9F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */,
+				1AFC05A11F5EE3B2006EAC9F /* Assets.xcassets */,
+				1AFC05A21F5EE3B2006EAC9F /* LaunchScreen.storyboard */,
+				1AFC05A41F5EE3B2006EAC9F /* Main.storyboard */,
+				1AFC05A61F5EE3B2006EAC9F /* Info.plist */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		B5F2CF796C26C761BC553566 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,9 +174,9 @@
 		CADECB961F5E4E3A0027E15F /* MyTwitter */ = {
 			isa = PBXGroup;
 			children = (
+				1AFC059F1F5EE3B2006EAC9F /* Main */,
 				CADECBCA1F5E4F270027E15F /* Modules */,
 				CADECBC61F5E4EA30027E15F /* Common */,
-				CADECBC51F5E4E440027E15F /* Main */,
 			);
 			path = MyTwitter;
 			sourceTree = "<group>";
@@ -174,21 +199,10 @@
 			path = MyTwitterUITests;
 			sourceTree = "<group>";
 		};
-		CADECBC51F5E4E440027E15F /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				CADECB971F5E4E3A0027E15F /* AppDelegate.swift */,
-				CADECB9B1F5E4E3A0027E15F /* Main.storyboard */,
-				CADECB9E1F5E4E3A0027E15F /* Assets.xcassets */,
-				CADECBA01F5E4E3A0027E15F /* LaunchScreen.storyboard */,
-				CADECBA31F5E4E3A0027E15F /* Info.plist */,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
 		CADECBC61F5E4EA30027E15F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1AFC059B1F5ECF90006EAC9F /* Service */,
 				CADECBE21F5E82240027E15F /* Extensions */,
 				CADECBDF1F5E7D6C0027E15F /* NetworkManager */,
 				CADECBCB1F5E4F670027E15F /* Base */,
@@ -275,6 +289,7 @@
 		CADECBE21F5E82240027E15F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1AFC05991F5ECF6F006EAC9F /* MTTExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -398,9 +413,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CADECBA21F5E4E3A0027E15F /* LaunchScreen.storyboard in Resources */,
-				CADECB9F1F5E4E3A0027E15F /* Assets.xcassets in Resources */,
-				CADECB9D1F5E4E3A0027E15F /* Main.storyboard in Resources */,
+				1AFC05AB1F5EE3B2006EAC9F /* Info.plist in Resources */,
+				1AFC05AA1F5EE3B2006EAC9F /* Main.storyboard in Resources */,
+				1AFC05A81F5EE3B2006EAC9F /* Assets.xcassets in Resources */,
+				1AFC05A91F5EE3B2006EAC9F /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,10 +582,12 @@
 				CADECBDE1F5E7BFE0027E15F /* RegisterStartViewController.swift in Sources */,
 				CADECBCD1F5E4FE30027E15F /* MTTNavigationController.swift in Sources */,
 				CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */,
+				1AFC059A1F5ECF6F006EAC9F /* MTTExtension.swift in Sources */,
 				CADECBCF1F5E4FFD0027E15F /* MTTTabBarController.swift in Sources */,
 				CADECBE11F5E821B0027E15F /* MTTNetworkManager.swift in Sources */,
 				CADECBD11F5E500D0027E15F /* MTTViewController.swift in Sources */,
-				CADECB981F5E4E3A0027E15F /* AppDelegate.swift in Sources */,
+				1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */,
+				1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */,
 				CADECBDD1F5E7BFE0027E15F /* RegisterAccountViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -606,22 +624,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CADECB9B1F5E4E3A0027E15F /* Main.storyboard */ = {
+		1AFC05A21F5EE3B2006EAC9F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CADECB9C1F5E4E3A0027E15F /* Base */,
-			);
-			name = Main.storyboard;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		CADECBA01F5E4E3A0027E15F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CADECBA11F5E4E3A0027E15F /* Base */,
+				1AFC05A31F5EE3B2006EAC9F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			path = ..;
+			sourceTree = "<group>";
+		};
+		1AFC05A41F5EE3B2006EAC9F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1AFC05A51F5EE3B2006EAC9F /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -726,7 +742,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = N5ZJ5W7ZL3;
-				INFOPLIST_FILE = MyTwitter/Info.plist;
+				INFOPLIST_FILE = MyTwitter/Main/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.etiantian.MyTwitter;
@@ -741,7 +757,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = N5ZJ5W7ZL3;
-				INFOPLIST_FILE = MyTwitter/Info.plist;
+				INFOPLIST_FILE = MyTwitter/Main/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.etiantian.MyTwitter;

@@ -1,18 +1,16 @@
 //
-//  RegisterStartViewController.swift
+//  MTTRegisterStartViewController.swift
 //  MyTwitter
 //
-//  Created by LiuChuanan on 2017/9/5.
+//  Created by LiuChuanan on 2017/9/6.
 //  Copyright © 2017年 waitWalker. All rights reserved.
 //
 
 import UIKit
 import SnapKit
-import RxCocoa
-import RxSwift
 
-class RegisterStartViewController: MTTViewController
-{
+class MTTRegisterStartViewController: MTTViewController {
+
     var logoImageView:UIImageView?
     var checkLabel:UILabel?
     var startButton:UIButton?
@@ -28,7 +26,7 @@ class RegisterStartViewController: MTTViewController
         self.setupEvent()
         
     }
-
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
@@ -60,7 +58,7 @@ class RegisterStartViewController: MTTViewController
         startButton?.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
         startButton?.setTitleColor(kRGBColor(r: 102, g: 102, b: 153), for: UIControlState.highlighted)
         startButton?.backgroundColor = kMainBlueColor()
-//        startButton?.addTarget(self, action: #selector(startButtonAction(startButton:)), for: UIControlEvents.touchUpInside)
+        //        startButton?.addTarget(self, action: #selector(startButtonAction(startButton:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(startButton!)
         
         //haveAccount
@@ -77,7 +75,7 @@ class RegisterStartViewController: MTTViewController
         loginButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
         loginButton?.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
         loginButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-//        loginButton?.addTarget(self, action: #selector(loginButtonAction(loginButton:)), for: UIControlEvents.touchUpInside)
+        //        loginButton?.addTarget(self, action: #selector(loginButtonAction(loginButton:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(loginButton!)
     }
     
@@ -140,13 +138,11 @@ class RegisterStartViewController: MTTViewController
     {
         startButton?.rx.tap
             .subscribe(onNext: { [unowned self] in
-                let registAccountVC = RegisterAccountViewController()
+                let registAccountVC = MTTRegisterNameViewController()
                 self.present(registAccountVC, animated: true, completion: { 
                     
                 })
             })
             .disposed(by: disposeBag)
     } 
-    
-
 }

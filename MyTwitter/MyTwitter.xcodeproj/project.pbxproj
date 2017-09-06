@@ -21,9 +21,11 @@
 		CADECBCD1F5E4FE30027E15F /* MTTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBCC1F5E4FE30027E15F /* MTTNavigationController.swift */; };
 		CADECBCF1F5E4FFD0027E15F /* MTTTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBCE1F5E4FFD0027E15F /* MTTTabBarController.swift */; };
 		CADECBD11F5E500D0027E15F /* MTTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBD01F5E500D0027E15F /* MTTViewController.swift */; };
-		CADECBDD1F5E7BFE0027E15F /* RegisterAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBDB1F5E7BFE0027E15F /* RegisterAccountViewController.swift */; };
-		CADECBDE1F5E7BFE0027E15F /* RegisterStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBDC1F5E7BFE0027E15F /* RegisterStartViewController.swift */; };
 		CADECBE11F5E821B0027E15F /* MTTNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBE01F5E821B0027E15F /* MTTNetworkManager.swift */; };
+		CADECBF61F5F83450027E15F /* MTTRegitserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBF51F5F83450027E15F /* MTTRegitserViewModel.swift */; };
+		CADECBF81F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBF71F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift */; };
+		CADECBFA1F5FC9030027E15F /* MTTRegisterStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBF91F5FC9030027E15F /* MTTRegisterStartViewController.swift */; };
+		CADECBFC1F5FC9280027E15F /* MTTRegisterNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBFB1F5FC9280027E15F /* MTTRegisterNameViewController.swift */; };
 		EAD8B5A43F0DB555EE943A6A /* Pods_MyTwitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC01DD32B63AD348DFCD919 /* Pods_MyTwitterTests.framework */; };
 		EEFDC107967D1277283D2F5C /* Pods_MyTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B46619503CC4D8F2F2F494 /* Pods_MyTwitter.framework */; };
 /* End PBXBuildFile section */
@@ -71,9 +73,11 @@
 		CADECBCC1F5E4FE30027E15F /* MTTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTNavigationController.swift; sourceTree = "<group>"; };
 		CADECBCE1F5E4FFD0027E15F /* MTTTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTTabBarController.swift; sourceTree = "<group>"; };
 		CADECBD01F5E500D0027E15F /* MTTViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTViewController.swift; sourceTree = "<group>"; };
-		CADECBDB1F5E7BFE0027E15F /* RegisterAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterAccountViewController.swift; sourceTree = "<group>"; };
-		CADECBDC1F5E7BFE0027E15F /* RegisterStartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterStartViewController.swift; sourceTree = "<group>"; };
 		CADECBE01F5E821B0027E15F /* MTTNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTNetworkManager.swift; sourceTree = "<group>"; };
+		CADECBF51F5F83450027E15F /* MTTRegitserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegitserViewModel.swift; sourceTree = "<group>"; };
+		CADECBF71F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterAccountViewController.swift; sourceTree = "<group>"; };
+		CADECBF91F5FC9030027E15F /* MTTRegisterStartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterStartViewController.swift; sourceTree = "<group>"; };
+		CADECBFB1F5FC9280027E15F /* MTTRegisterNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterNameViewController.swift; sourceTree = "<group>"; };
 		CBA7748F1AC20EEBF3ADAF60 /* Pods-MyTwitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitter/Pods-MyTwitter.release.xcconfig"; sourceTree = "<group>"; };
 		F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -251,8 +255,9 @@
 		CADECBD71F5E7BA50027E15F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CADECBDB1F5E7BFE0027E15F /* RegisterAccountViewController.swift */,
-				CADECBDC1F5E7BFE0027E15F /* RegisterStartViewController.swift */,
+				CADECBF71F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift */,
+				CADECBF91F5FC9030027E15F /* MTTRegisterStartViewController.swift */,
+				CADECBFB1F5FC9280027E15F /* MTTRegisterNameViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 		CADECBDA1F5E7BB90027E15F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CADECBF51F5F83450027E15F /* MTTRegitserViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -579,16 +585,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CADECBDE1F5E7BFE0027E15F /* RegisterStartViewController.swift in Sources */,
 				CADECBCD1F5E4FE30027E15F /* MTTNavigationController.swift in Sources */,
 				CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */,
 				1AFC059A1F5ECF6F006EAC9F /* MTTExtension.swift in Sources */,
 				CADECBCF1F5E4FFD0027E15F /* MTTTabBarController.swift in Sources */,
 				CADECBE11F5E821B0027E15F /* MTTNetworkManager.swift in Sources */,
+				CADECBF61F5F83450027E15F /* MTTRegitserViewModel.swift in Sources */,
+				CADECBFA1F5FC9030027E15F /* MTTRegisterStartViewController.swift in Sources */,
+				CADECBF81F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift in Sources */,
 				CADECBD11F5E500D0027E15F /* MTTViewController.swift in Sources */,
+				CADECBFC1F5FC9280027E15F /* MTTRegisterNameViewController.swift in Sources */,
 				1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */,
 				1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */,
-				CADECBDD1F5E7BFE0027E15F /* RegisterAccountViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

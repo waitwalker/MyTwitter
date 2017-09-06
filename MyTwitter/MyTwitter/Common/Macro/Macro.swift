@@ -35,6 +35,18 @@ func kMainGrayColor() -> UIColor
     return UIColor.init(red: (102) / 255.0, green: (102) / 255.0, blue: (153) / 255.0, alpha: 1.0)
 }
 
+// MARK: - 主红色
+func kMainRedColor() -> UIColor
+{
+    return UIColor.init(red: (221) / 255.0, green: (41) / 255.0, blue: (96) / 255.0, alpha: 1.0)
+}
+
+// MARK: - 主绿色
+func kMainGreenColor() -> UIColor
+{
+    return UIColor.init(red: (0) / 255.0, green: (183) / 255.0, blue: (83) / 255.0, alpha: 1.0)
+}
+
 // MARK: - 主白色
 func kMainWhiteColor() -> UIColor
 {

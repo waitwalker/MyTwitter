@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    
-        let registerLoginVC = RegisterStartViewController()
+        //IQKeyboardManager.sharedManager().enable = true
+        let registerLoginVC = MTTRegisterStartViewController()
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.rootViewController = registerLoginVC
         self.window?.makeKeyAndVisible()

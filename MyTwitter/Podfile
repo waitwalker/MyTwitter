@@ -11,6 +11,7 @@ target 'MyTwitter' do
   pod 'Alamofire', '~> 4.4.0'
   pod 'RxSwift', '~> 3.5.0'
   pod 'RxCocoa', '~> 3.5.0'
+  pod 'IQKeyboardManagerSwift', '~> 4.0.10'
 
 
   target 'MyTwitterTests' do

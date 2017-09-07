@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MTTPhoneAreaCode: NSObject 
+class MTTPhoneAreaCodeModel: NSObject
 {
     var areaName:String?
     var areaAlphaName:String?
@@ -17,14 +17,19 @@ class MTTPhoneAreaCode: NSObject
     
 }
 
-class MTTSearchViewController: MTTViewController 
+class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableViewDataSource
 {
-    
     var originalTabelView:UITableView?
     var sectionTitlesSet:NSMutableSet?
     var sectionTitlesArray:[String] = []
-    var allCodes:[MTTPhoneAreaCode] = []
-    var codesArray:[MTTPhoneAreaCode] = []
+    var allCodes:[MTTPhoneAreaCodeModel] = []
+    var codesArray:[MTTPhoneAreaCodeModel] = []
+    var tableView:UITableView?
+    var codeModelsArray:[[MTTPhoneAreaCodeModel]] = []
+    
+    let reusedCellId:String = "reusedCellId"
+    
+    
     
     func setupDataSource() -> Void 
     {
@@ -47,7 +52,7 @@ class MTTSearchViewController: MTTViewController
         for line in linesArray
         {
             let parts =  line.components(separatedBy: "=")
-            let code = MTTPhoneAreaCode()
+            let code = MTTPhoneAreaCodeModel()
             if parts.count == 3
             {
                 code.areaName = parts[0]
@@ -82,19 +87,73 @@ class MTTSearchViewController: MTTViewController
             obj1 < obj2
         }
         print(sectionTitlesArray)
+        
+        for char in sectionTitlesArray
+        {
+            var tempArray:[MTTPhoneAreaCodeModel] = []
+            
+            for codeModel in codesArray
+            {
+                if codeModel.areaFirstChar == char
+                {
+                    tempArray.append(codeModel)
+                }
+            }
+            codeModelsArray.append(tempArray)
+        }
+        
+        print(codeModelsArray.count)
+        print(sectionTitlesArray.count)
+        
+        self.tableView?.reloadData()
     }
     
     override func viewDidLoad() 
     {
         super.viewDidLoad()
+        self.setupSubview()
+        self.layoutSubview()
+        
         self.setupDataSource()
     }
     
     func setupSubview() -> Void 
     {
-        
+        tableView = UITableView.init()
+        tableView?.delegate = self
+        tableView?.dataSource = self
+        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: reusedCellId)
+        self.view.addSubview(tableView!)
+    }
+    
+    func layoutSubview() -> Void
+    {
+        tableView?.snp.makeConstraints({ (make) in
+            make.left.right.equalTo(self.view).offset(0)
+            make.top.bottom.equalTo(self.view).offset(0)
+        })
     }
 
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return sectionTitlesArray.count
+    }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return codeModelsArray[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        var cell = tableView.dequeueReusableCell(withIdentifier: reusedCellId)
+        if cell == nil
+        {
+            cell = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedCellId)
+        }
+        let codeModel:MTTPhoneAreaCodeModel = codeModelsArray[indexPath.section][indexPath.item]
+        cell?.textLabel?.text = String.init(format: "%@ +%@", codeModel.areaName!,codeModel.areaCodeName!)
+        return cell!
+    }
 
 }

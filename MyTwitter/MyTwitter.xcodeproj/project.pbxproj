@@ -26,6 +26,9 @@
 		CADECBF81F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBF71F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift */; };
 		CADECBFA1F5FC9030027E15F /* MTTRegisterStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBF91F5FC9030027E15F /* MTTRegisterStartViewController.swift */; };
 		CADECBFC1F5FC9280027E15F /* MTTRegisterNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBFB1F5FC9280027E15F /* MTTRegisterNameViewController.swift */; };
+		CADECC021F60DB420027E15F /* MTTSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECC011F60DB420027E15F /* MTTSearchViewController.swift */; };
+		CADECC071F60E1BE0027E15F /* evt_phone_area_code_en.txt in Resources */ = {isa = PBXBuildFile; fileRef = CADECC051F60E1BE0027E15F /* evt_phone_area_code_en.txt */; };
+		CADECC081F60E1BE0027E15F /* evt_phone_area_code_zh.txt in Resources */ = {isa = PBXBuildFile; fileRef = CADECC061F60E1BE0027E15F /* evt_phone_area_code_zh.txt */; };
 		EAD8B5A43F0DB555EE943A6A /* Pods_MyTwitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC01DD32B63AD348DFCD919 /* Pods_MyTwitterTests.framework */; };
 		EEFDC107967D1277283D2F5C /* Pods_MyTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B46619503CC4D8F2F2F494 /* Pods_MyTwitter.framework */; };
 /* End PBXBuildFile section */
@@ -78,6 +81,9 @@
 		CADECBF71F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterAccountViewController.swift; sourceTree = "<group>"; };
 		CADECBF91F5FC9030027E15F /* MTTRegisterStartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterStartViewController.swift; sourceTree = "<group>"; };
 		CADECBFB1F5FC9280027E15F /* MTTRegisterNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterNameViewController.swift; sourceTree = "<group>"; };
+		CADECC011F60DB420027E15F /* MTTSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSearchViewController.swift; sourceTree = "<group>"; };
+		CADECC051F60E1BE0027E15F /* evt_phone_area_code_en.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = evt_phone_area_code_en.txt; sourceTree = "<group>"; };
+		CADECC061F60E1BE0027E15F /* evt_phone_area_code_zh.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = evt_phone_area_code_zh.txt; sourceTree = "<group>"; };
 		CBA7748F1AC20EEBF3ADAF60 /* Pods-MyTwitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitter/Pods-MyTwitter.release.xcconfig"; sourceTree = "<group>"; };
 		F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -178,6 +184,7 @@
 		CADECB961F5E4E3A0027E15F /* MyTwitter */ = {
 			isa = PBXGroup;
 			children = (
+				CADECC031F60E17A0027E15F /* Resource(资源) */,
 				1AFC059F1F5EE3B2006EAC9F /* Main */,
 				CADECBCA1F5E4F270027E15F /* Modules */,
 				CADECBC61F5E4EA30027E15F /* Common */,
@@ -226,6 +233,7 @@
 		CADECBCA1F5E4F270027E15F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				CADECC001F60DAE10027E15F /* Search(搜索) */,
 				CADECBD21F5E50410027E15F /* Register&Login(登录注册) */,
 			);
 			path = Modules;
@@ -298,6 +306,33 @@
 				1AFC05991F5ECF6F006EAC9F /* MTTExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CADECC001F60DAE10027E15F /* Search(搜索) */ = {
+			isa = PBXGroup;
+			children = (
+				CADECC011F60DB420027E15F /* MTTSearchViewController.swift */,
+			);
+			name = "Search(搜索)";
+			path = Search;
+			sourceTree = "<group>";
+		};
+		CADECC031F60E17A0027E15F /* Resource(资源) */ = {
+			isa = PBXGroup;
+			children = (
+				CADECC041F60E1A30027E15F /* AreaCode */,
+			);
+			name = "Resource(资源)";
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CADECC041F60E1A30027E15F /* AreaCode */ = {
+			isa = PBXGroup;
+			children = (
+				CADECC051F60E1BE0027E15F /* evt_phone_area_code_en.txt */,
+				CADECC061F60E1BE0027E15F /* evt_phone_area_code_zh.txt */,
+			);
+			path = AreaCode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,7 +455,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AFC05AB1F5EE3B2006EAC9F /* Info.plist in Resources */,
+				CADECC071F60E1BE0027E15F /* evt_phone_area_code_en.txt in Resources */,
 				1AFC05AA1F5EE3B2006EAC9F /* Main.storyboard in Resources */,
+				CADECC081F60E1BE0027E15F /* evt_phone_area_code_zh.txt in Resources */,
 				1AFC05A81F5EE3B2006EAC9F /* Assets.xcassets in Resources */,
 				1AFC05A91F5EE3B2006EAC9F /* LaunchScreen.storyboard in Resources */,
 			);
@@ -587,6 +624,7 @@
 			files = (
 				CADECBCD1F5E4FE30027E15F /* MTTNavigationController.swift in Sources */,
 				CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */,
+				CADECC021F60DB420027E15F /* MTTSearchViewController.swift in Sources */,
 				1AFC059A1F5ECF6F006EAC9F /* MTTExtension.swift in Sources */,
 				CADECBCF1F5E4FFD0027E15F /* MTTTabBarController.swift in Sources */,
 				CADECBE11F5E821B0027E15F /* MTTNetworkManager.swift in Sources */,

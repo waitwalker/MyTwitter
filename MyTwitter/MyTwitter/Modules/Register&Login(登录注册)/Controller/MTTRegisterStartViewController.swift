@@ -77,6 +77,8 @@ class MTTRegisterStartViewController: MTTViewController {
         loginButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         //        loginButton?.addTarget(self, action: #selector(loginButtonAction(loginButton:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(loginButton!)
+        
+        
     }
     
     // MARK: - startButton Action
@@ -138,8 +140,11 @@ class MTTRegisterStartViewController: MTTViewController {
     {
         startButton?.rx.tap
             .subscribe(onNext: { [unowned self] in
-                let registAccountVC = MTTRegisterNameViewController()
-                self.present(registAccountVC, animated: true, completion: { 
+                
+                let registNameVC = MTTRegisterNameViewController()
+                
+                let nav = MTTNavigationController(rootViewController: registNameVC)
+                self.present(nav, animated: true, completion: { 
                     
                 })
             })

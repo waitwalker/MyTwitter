@@ -13,6 +13,7 @@ class MTTSearchSectionHeaderView: MTTView
 
     var titleLabel:UILabel?
     
+    
     override init(frame: CGRect) 
     {
         super.init(frame: frame)
@@ -37,7 +38,6 @@ class MTTSearchSectionHeaderView: MTTView
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel?.textAlignment = NSTextAlignment.left
         self.addSubview(titleLabel!)
-        
     }
     
     override func layoutSubview() -> Void 
@@ -47,5 +47,6 @@ class MTTSearchSectionHeaderView: MTTView
             make.right.equalTo(self).offset(0)
             make.bottom.top.equalTo(self).offset(0)
         })
+        
     }
 }

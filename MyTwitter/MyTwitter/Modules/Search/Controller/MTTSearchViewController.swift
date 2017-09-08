@@ -26,8 +26,13 @@ class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableView
     var codesArray:[MTTPhoneAreaCodeModel] = []
     var tableView:UITableView?
     var codeModelsArray:[[MTTPhoneAreaCodeModel]] = []
+    var cancelButton:UIButton?
+    var logoImageView:UIImageView?
+    typealias completion = (_ areaName:String,_ areaCodeName:String) -> Void
     
     let reusedCellId:String = "reusedCellId"
+    var searchCompletion:completion?
+    
     
     
     // MARK: - 初始化数据
@@ -72,7 +77,6 @@ class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableView
         
         for code in codesArray
         {
-            print(code.areaFirstChar as Any)
             sectionTitlesSet?.add(code.areaFirstChar as Any)
         }
         
@@ -86,7 +90,6 @@ class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableView
         sectionTitlesArray = strings.sorted { (obj1, obj2) -> Bool in
             obj1 < obj2
         }
-        print(sectionTitlesArray)
         
         for char in sectionTitlesArray
         {
@@ -102,9 +105,6 @@ class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableView
             codeModelsArray.append(tempArray)
         }
         
-        print(codeModelsArray.count)
-        print(sectionTitlesArray.count)
-        
         self.tableView?.reloadData()
     }
     
@@ -113,13 +113,26 @@ class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableView
         super.viewDidLoad()
         self.setupSubview()
         self.layoutSubview()
-        
+        self.setupEvent()
         self.setupDataSource()
     }
     
     // MARK: - 初始化控件
     func setupSubview() -> Void 
     {
+        //cancelButton
+        cancelButton = UIButton()
+        cancelButton?.setTitle("取消", for: UIControlState.normal)
+        cancelButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
+        cancelButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15.0)
+        self.view.addSubview(cancelButton!)
+        
+        //logo
+        logoImageView = UIImageView()
+        logoImageView?.image = UIImage.init(named: "twitter_logo")
+        logoImageView?.isUserInteractionEnabled = true
+        self.view.addSubview(logoImageView!)
+        
         tableView = UITableView.init()
         tableView?.delegate = self
         tableView?.dataSource = self
@@ -136,6 +149,35 @@ class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableView
             make.top.equalTo(self.view).offset(64)
             make.bottom.equalTo(self.view).offset(0)
         })
+        
+        //cancel
+        cancelButton?.snp.makeConstraints({ (make) in
+            make.left.equalTo(self.view).offset(20)
+            make.top.equalTo(self.view).offset(30)
+            make.height.equalTo(25)
+            make.width.equalTo(35)
+        })
+        
+        //logo
+        logoImageView?.snp.makeConstraints({ (make) in
+            make.height.width.equalTo(30)
+            make.centerX.equalTo(self.view)
+            make.centerY.equalTo(self.cancelButton!)
+        })
+        
+    }
+    
+    // MARK: - 设置事件
+    func setupEvent() -> Void 
+    {
+        //cancel
+        cancelButton?.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                self.dismiss(animated: true, completion: { 
+                    
+                })
+            })
+            .disposed(by: disposeBag)
     }
 
     // MARK: - dataSource method 
@@ -188,6 +230,14 @@ class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) 
     {
         tableView.deselectRow(at: indexPath, animated: false)
+        
+        let codeModel = codeModelsArray[indexPath.section][indexPath.item]
+        
+        searchCompletion!(codeModel.areaName!,codeModel.areaCodeName!)
+        
+        self.dismiss(animated: true) { 
+            
+        }
     }
 
 }

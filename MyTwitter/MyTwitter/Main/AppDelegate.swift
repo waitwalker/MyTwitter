@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         //IQKeyboardManager.sharedManager().enable = true
-        let registerLoginVC = MTTSearchViewController()
+        let registerLoginVC = MTTRegisterStartViewController()
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.rootViewController = registerLoginVC
         self.window?.makeKeyAndVisible()

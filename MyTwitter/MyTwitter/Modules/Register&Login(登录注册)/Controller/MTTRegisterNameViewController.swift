@@ -22,8 +22,14 @@ class MTTRegisterNameViewController: MTTViewController {
     var contentView:UIView?
     var nextButton:UIButton?
     var secondLine:UIView?
+    var leftButton:UIButton?
     
-    
+    override func viewWillAppear(_ animated: Bool) 
+    {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
     
     override func viewDidLoad() 
     {
@@ -44,6 +50,7 @@ class MTTRegisterNameViewController: MTTViewController {
         cancelButton?.setTitle("取消", for: UIControlState.normal)
         cancelButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
         cancelButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15.0)
+        cancelButton?.isHidden = true
         self.view.addSubview(cancelButton!)
         
         //logo
@@ -113,6 +120,15 @@ class MTTRegisterNameViewController: MTTViewController {
         nextButton?.layer.cornerRadius = 17.5
         nextButton?.clipsToBounds = true
         contentView?.addSubview(nextButton!)
+        
+        //左边返回
+        leftButton = UIButton()
+        leftButton?.frame = CGRect(x: -20, y: 0, width: 50, height: 44)
+        leftButton?.titleEdgeInsets = UIEdgeInsetsMake(10, 0, 10, 15)
+        leftButton?.setTitle("取消", for: UIControlState.normal)
+        leftButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
+        leftButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15.0)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftButton!)
     }
     
     // MARK: - 布局控件
@@ -137,7 +153,7 @@ class MTTRegisterNameViewController: MTTViewController {
         nameLabel?.snp.makeConstraints({ (make) in
             make.left.equalTo(self.view).offset(kRegisterNameMargin)
             make.right.equalTo(self.view).offset(-kRegisterNameMargin)
-            make.top.equalTo(self.view).offset(80)
+            make.top.equalTo(self.view).offset(80 + 64)
             make.height.equalTo(40)
         })
         
@@ -246,25 +262,31 @@ class MTTRegisterNameViewController: MTTViewController {
         nextButton?.rx.tap.subscribe(onNext:({[unowned self] in 
             
             let registerAccountVC = MTTRegisterAccountViewController()
-            let nav = MTTNavigationController(rootViewController: registerAccountVC)
-            self.present(nav, animated: true, completion: { 
+            self.navigationController?.pushViewController(registerAccountVC, animated: true)
+            
+        })).addDisposableTo(disposeBag)
+        
+        //leftButton
+        leftButton?.rx.tap.subscribe(onNext:({[unowned self] in 
+            
+            self.view.endEditing(true)
+            
+            self.dismiss(animated: true, completion: { 
                 
             })
             
         })).addDisposableTo(disposeBag)
-        
     }
     
     // MARK: - 键盘通知回调
     @objc func handlerKeyBoardFrame(notification:NSNotification) -> Void
     {
-        print("开始监听")
         let beginValue = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as! NSValue!
         let beginFrame = beginValue?.cgRectValue
         
         let endValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue!
         let endFrame = endValue?.cgRectValue
-        print("结束监听")
+        
         let deltaY = (endFrame?.origin.y)! - (beginFrame?.origin.y)!
         
         UIView.animate(withDuration: 0.25) { 
@@ -281,7 +303,6 @@ class MTTRegisterNameViewController: MTTViewController {
     
     deinit 
     {
-        print("dealloc")
         NotificationCenter.default.removeObserver(self)
     }
 

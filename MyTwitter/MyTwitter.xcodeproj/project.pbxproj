@@ -26,9 +26,11 @@
 		CADECBF81F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBF71F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift */; };
 		CADECBFA1F5FC9030027E15F /* MTTRegisterStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBF91F5FC9030027E15F /* MTTRegisterStartViewController.swift */; };
 		CADECBFC1F5FC9280027E15F /* MTTRegisterNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBFB1F5FC9280027E15F /* MTTRegisterNameViewController.swift */; };
-		CADECC021F60DB420027E15F /* MTTSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECC011F60DB420027E15F /* MTTSearchViewController.swift */; };
 		CADECC071F60E1BE0027E15F /* evt_phone_area_code_en.txt in Resources */ = {isa = PBXBuildFile; fileRef = CADECC051F60E1BE0027E15F /* evt_phone_area_code_en.txt */; };
 		CADECC081F60E1BE0027E15F /* evt_phone_area_code_zh.txt in Resources */ = {isa = PBXBuildFile; fileRef = CADECC061F60E1BE0027E15F /* evt_phone_area_code_zh.txt */; };
+		CADECC4B1F6221EC0027E15F /* MTTSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECC4A1F6221EC0027E15F /* MTTSearchViewController.swift */; };
+		CADECC4D1F6222D10027E15F /* MTTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECC4C1F6222D10027E15F /* MTTView.swift */; };
+		CADECC4F1F6228A00027E15F /* MTTSearchSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECC4E1F62289F0027E15F /* MTTSearchSectionHeaderView.swift */; };
 		EAD8B5A43F0DB555EE943A6A /* Pods_MyTwitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC01DD32B63AD348DFCD919 /* Pods_MyTwitterTests.framework */; };
 		EEFDC107967D1277283D2F5C /* Pods_MyTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B46619503CC4D8F2F2F494 /* Pods_MyTwitter.framework */; };
 /* End PBXBuildFile section */
@@ -81,9 +83,11 @@
 		CADECBF71F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterAccountViewController.swift; sourceTree = "<group>"; };
 		CADECBF91F5FC9030027E15F /* MTTRegisterStartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterStartViewController.swift; sourceTree = "<group>"; };
 		CADECBFB1F5FC9280027E15F /* MTTRegisterNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterNameViewController.swift; sourceTree = "<group>"; };
-		CADECC011F60DB420027E15F /* MTTSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSearchViewController.swift; sourceTree = "<group>"; };
 		CADECC051F60E1BE0027E15F /* evt_phone_area_code_en.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = evt_phone_area_code_en.txt; sourceTree = "<group>"; };
 		CADECC061F60E1BE0027E15F /* evt_phone_area_code_zh.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = evt_phone_area_code_zh.txt; sourceTree = "<group>"; };
+		CADECC4A1F6221EC0027E15F /* MTTSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSearchViewController.swift; sourceTree = "<group>"; };
+		CADECC4C1F6222D10027E15F /* MTTView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTView.swift; sourceTree = "<group>"; };
+		CADECC4E1F62289F0027E15F /* MTTSearchSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSearchSectionHeaderView.swift; sourceTree = "<group>"; };
 		CBA7748F1AC20EEBF3ADAF60 /* Pods-MyTwitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitter/Pods-MyTwitter.release.xcconfig"; sourceTree = "<group>"; };
 		F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -245,6 +249,7 @@
 				CADECBCC1F5E4FE30027E15F /* MTTNavigationController.swift */,
 				CADECBCE1F5E4FFD0027E15F /* MTTTabBarController.swift */,
 				CADECBD01F5E500D0027E15F /* MTTViewController.swift */,
+				CADECC4C1F6222D10027E15F /* MTTView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -311,7 +316,8 @@
 		CADECC001F60DAE10027E15F /* Search(搜索) */ = {
 			isa = PBXGroup;
 			children = (
-				CADECC011F60DB420027E15F /* MTTSearchViewController.swift */,
+				CADECC491F6221C10027E15F /* View */,
+				CADECC481F6221BB0027E15F /* Controller */,
 			);
 			name = "Search(搜索)";
 			path = Search;
@@ -333,6 +339,22 @@
 				CADECC061F60E1BE0027E15F /* evt_phone_area_code_zh.txt */,
 			);
 			path = AreaCode;
+			sourceTree = "<group>";
+		};
+		CADECC481F6221BB0027E15F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CADECC4A1F6221EC0027E15F /* MTTSearchViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CADECC491F6221C10027E15F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CADECC4E1F62289F0027E15F /* MTTSearchSectionHeaderView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -624,12 +646,14 @@
 			files = (
 				CADECBCD1F5E4FE30027E15F /* MTTNavigationController.swift in Sources */,
 				CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */,
-				CADECC021F60DB420027E15F /* MTTSearchViewController.swift in Sources */,
+				CADECC4B1F6221EC0027E15F /* MTTSearchViewController.swift in Sources */,
 				1AFC059A1F5ECF6F006EAC9F /* MTTExtension.swift in Sources */,
 				CADECBCF1F5E4FFD0027E15F /* MTTTabBarController.swift in Sources */,
+				CADECC4F1F6228A00027E15F /* MTTSearchSectionHeaderView.swift in Sources */,
 				CADECBE11F5E821B0027E15F /* MTTNetworkManager.swift in Sources */,
 				CADECBF61F5F83450027E15F /* MTTRegitserViewModel.swift in Sources */,
 				CADECBFA1F5FC9030027E15F /* MTTRegisterStartViewController.swift in Sources */,
+				CADECC4D1F6222D10027E15F /* MTTView.swift in Sources */,
 				CADECBF81F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift in Sources */,
 				CADECBD11F5E500D0027E15F /* MTTViewController.swift in Sources */,
 				CADECBFC1F5FC9280027E15F /* MTTRegisterNameViewController.swift in Sources */,

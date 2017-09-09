@@ -140,6 +140,13 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		1AFE6FDB1F6376F000006381 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		B5F2CF796C26C761BC553566 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +224,7 @@
 		CADECBC61F5E4EA30027E15F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1AFE6FDB1F6376F000006381 /* Tools */,
 				1AFC059B1F5ECF90006EAC9F /* Service */,
 				CADECBE21F5E82240027E15F /* Extensions */,
 				CADECBDF1F5E7D6C0027E15F /* NetworkManager */,
@@ -813,7 +821,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = N5ZJ5W7ZL3;
 				INFOPLIST_FILE = MyTwitter/Main/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.etiantian.MyTwitter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -828,7 +836,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = N5ZJ5W7ZL3;
 				INFOPLIST_FILE = MyTwitter/Main/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.etiantian.MyTwitter;
 				PRODUCT_NAME = "$(TARGET_NAME)";

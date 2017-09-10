@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class TestViewController: MTTViewController
 {
     var firstView:UIView?
@@ -59,40 +58,52 @@ class TestViewController: MTTViewController
     
     func layoutSubview() -> Void
     {
-        firstView?.snp.makeConstraints({ (make) in
-            make.left.equalTo(self.view).offset(0)
-            make.right.equalTo(self.view).offset(0)
-            make.top.equalTo(100)
-            make.height.equalTo(100)
-        })
+//        let _ = firstView?.mas_makeConstraints({ (make) in
+//            make?.left.equalTo()(self.view)?.offset()(0)
+//            make?.right.equalTo()(self.view)?.offset()(0)
+//            make?.top.equalTo()(100)
+//            make?.height.equalTo()(100)
+//        })
+//        
+//        let _ = secondView?.mas_makeConstraints({ (make) in
+//            make?.left.equalTo()(self.view)?.offset()(0)
+//            make?.width.equalTo()(self.view)
+//            make?.top.equalTo()(self.firstView?.mas_bottom)?.offset()(5)
+//            make?.height.equalTo()(100)
+//        })
+//        
+//        let _ = thirdView?.mas_makeConstraints({ (make) in
+//            make?.left.equalTo()(self.view)?.offset()(0)
+//            make?.width.equalTo()(self.view)
+//            make?.top.equalTo()(self.firstView?.mas_bottom)?.offset()(5)
+//            make?.height.equalTo()(150)
+//        })
+//        
+//        let _ = fourthView?.mas_makeConstraints({ (make) in
+//            make?.left.equalTo()(self.view)?.offset()(0)
+//            make?.width.equalTo()(self.view)
+//            make?.top.equalTo()(self.secondView?.mas_bottom)?.offset()(5)
+//            make?.height.equalTo()(180)
+//        })
+//        
+//        let _ = changeButton?.mas_makeConstraints({ (make) in
+//            make?.left.equalTo()(self.view)?.offset()(0)
+//            make?.width.equalTo()(self.view)
+//            make?.top.equalTo()(self.fourthView)?.offset()(20)
+//            make?.height.equalTo()(100)
+//        })
         
-        secondView?.snp.makeConstraints({ (make) in
-            make.left.equalTo(self.view).offset(0)
-            make.width.equalTo(self.view)
-            make.height.equalTo(100)
-            make.top.equalTo((self.firstView?.snp.bottom)!).offset(5)
-        })
+//        firstView?.frame = CGRect(x: 0, y: 100, width: kScreenWidth, height: 100)
+//        
+//        secondView?.frame = CGRect(x: 0, y: 205, width: kScreenWidth, height: 100)
+//        
+//        thirdView?.frame = CGRect(x: 0, y: 205, width: kScreenWidth, height: 150)
+//        
+//        fourthView?.frame = CGRect(x: 0, y: 310, width: kScreenWidth, height: 180)
+//        
+//        changeButton?.frame = CGRect(x: 50, y: 50, width: 100, height: 50)
+//        
         
-        thirdView?.snp.makeConstraints({ (make) in
-            make.left.equalTo(self.view).offset(0)
-            make.width.equalTo(self.view)
-            make.height.equalTo(150)
-            make.top.equalTo((self.firstView?.snp.bottom)!).offset(5)
-        })
-        
-        fourthView?.snp.makeConstraints({ (make) in
-            make.left.equalTo(self.view).offset(0)
-            make.width.equalTo(self.view)
-            make.height.equalTo(180)
-            make.top.equalTo((self.secondView?.snp.bottom)!).offset(5)
-        })
-        
-        changeButton?.snp.makeConstraints({ (make) in
-            make.left.equalTo(self.view).offset(0)
-            make.width.equalTo(self.view)
-            make.height.equalTo(100)
-            make.top.equalTo(self.fourthView!).offset(20)
-        })
     }
     
     func setupEvent() -> Void
@@ -104,23 +115,14 @@ class TestViewController: MTTViewController
             {
                 self.secondView?.isHidden = false
                 self.thirdView?.isHidden = true
-                self.fourthView?.snp.makeConstraints({ (make) in
-                    make.left.equalTo(self.view).offset(0)
-                    make.width.equalTo(self.view)
-                    make.height.equalTo(180)
-                    make.top.equalTo((self.secondView?.snp.bottom)!).offset(5)
-                })
+                self.fourthView?.frame = CGRect(x: 0, y: 310, width: kScreenWidth, height: 180)
+                
                 
             } else
             {
                 self.secondView?.isHidden = true
                 self.thirdView?.isHidden = false
-                self.fourthView?.snp.makeConstraints({ (make) in
-                    make.left.equalTo(self.view).offset(0)
-                    make.width.equalTo(self.view)
-                    make.height.equalTo(180)
-                    make.top.equalTo((self.thirdView?.snp.bottom)!).offset(5)
-                })
+                self.fourthView?.frame = CGRect(x: 0, y: 360, width: kScreenWidth, height: 180)
             }
             
         }).addDisposableTo(disposeBag)
@@ -128,5 +130,17 @@ class TestViewController: MTTViewController
     
     
     
+    /**
+     firstView?.frame = CGRect(x: 0, y: 100, width: kScreenWidth, height: 100)
+     
+     secondView?.frame = CGRect(x: 0, y: 205, width: kScreenWidth, height: 100)
+     
+     thirdView?.frame = CGRect(x: 0, y: 205, width: kScreenWidth, height: 150)
+     
+     fourthView?.frame = CGRect(x: 0, y: 310, width: kScreenWidth, height: 180)
+     
+     changeButton?.frame = CGRect(x: 50, y: 50, width: 100, height: 50)
+     
+     */
     
 }

@@ -107,7 +107,6 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         //phoneContentView
         phoneContentView = UIView()
         phoneContentView?.isHidden = false
-        phoneContentView?.backgroundColor = UIColor.blue
         self.view.addSubview(phoneContentView!)
         
         //phoneAreaCodeButton
@@ -155,7 +154,6 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         //emailContentView
         emailContentView = UIView()
         emailContentView?.isHidden = true
-        emailContentView?.backgroundColor = UIColor.orange
         self.view.addSubview(emailContentView!)
         
         //emailTextField
@@ -192,7 +190,6 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         
         //serviceContentView
         serviceContentView = UIView()
-        serviceContentView?.backgroundColor = UIColor.orange
         self.view.addSubview(serviceContentView!)
         
         //serviceTextView
@@ -203,7 +200,6 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         serviceTextView?.delegate = self
         serviceTextView?.isSelectable = true
         serviceTextView?.isEditable = false
-        serviceTextView?.backgroundColor = UIColor.brown
         serviceTextView?.font = UIFont.systemFont(ofSize: 15)
         serviceContentView?.addSubview(serviceTextView!)
         
@@ -368,12 +364,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
             make.top.equalTo((self.phoneContentView?.snp.bottom)!).offset(5)
         })
         
-        //serviceContentView
-        serviceContentView?.snp.makeConstraints({ (make) in
-            make.left.right.equalTo(self.view).offset(0)
-            make.top.equalTo((self.phoneContentView?.snp.bottom)!).offset(10)
-            make.height.equalTo(100)
-        })
+        serviceContentView?.frame = CGRect(x: 0, y: 271, width: kScreenWidth, height: 100)
         
         //serviceTextView
         serviceTextView?.snp.makeConstraints({ (make) in
@@ -455,7 +446,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
             
         }).addDisposableTo(disposeBag)
         
-        //
+        //changeButton
         changeButton?.rx.tap.subscribe(onNext:{ [unowned self] in
             
             self.changeButton?.isSelected = !(self.changeButton?.isSelected)!
@@ -468,14 +459,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
                 self.phoneContentView?.isHidden = false
                 self.emailContentView?.isHidden = true
                 
-                self.serviceContentView?.backgroundColor = UIColor.green
-                print("手机容器前frame:",self.phoneContentView?.frame as Any)
-                self.serviceContentView?.snp.makeConstraints({ (make) in
-                    make.left.right.equalTo(self.view).offset(0)
-                    make.top.equalTo((self.phoneContentView?.snp.bottom)!).offset(10)
-                    make.height.equalTo(100)
-                })
-                print("手机容器后frame:",self.phoneContentView?.frame as Any)
+                self.serviceContentView?.frame = CGRect(x: 0, y: 271, width: kScreenWidth, height: 100)
                 
             } else
             {
@@ -483,15 +467,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
                 
                 self.emailContentView?.isHidden = false
                 self.phoneContentView?.isHidden = true
-                self.serviceContentView?.backgroundColor = UIColor.red
-                print("邮件容器前frame:",self.emailContentView?.frame as Any)
-                self.serviceContentView?.snp.makeConstraints({ (make) in
-                    make.left.right.equalTo(self.view).offset(0)
-                    make.top.equalTo((self.emailContentView?.snp.bottom)!).offset(10)
-                    make.height.equalTo(100)
-                })
-                
-                print("邮件容器后frame:",self.emailContentView?.frame as Any)
+                self.serviceContentView?.frame = CGRect(x: 0, y: 226, width: kScreenWidth, height: 100)
             }
             
         }).addDisposableTo(disposeBag)

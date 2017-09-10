@@ -106,7 +106,8 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         
         //phoneContentView
         phoneContentView = UIView()
-        phoneContentView?.isHidden = true
+        phoneContentView?.isHidden = false
+        phoneContentView?.backgroundColor = UIColor.blue
         self.view.addSubview(phoneContentView!)
         
         //phoneAreaCodeButton
@@ -153,13 +154,13 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         
         //emailContentView
         emailContentView = UIView()
-        emailContentView?.isHidden = false
-        emailLineView?.backgroundColor = UIColor.orange
+        emailContentView?.isHidden = true
+        emailContentView?.backgroundColor = UIColor.orange
         self.view.addSubview(emailContentView!)
         
         //emailTextField
         emailTextField = UITextField()
-        emailTextField?.placeholder = "电子邮箱"
+        emailTextField?.placeholder = "邮件地址"
         emailTextField?.keyboardType = UIKeyboardType.emailAddress
         emailTextField?.font = UIFont.systemFont(ofSize: 15)
         emailTextField?.textColor = kMainBlueColor()
@@ -191,6 +192,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         
         //serviceContentView
         serviceContentView = UIView()
+        serviceContentView?.backgroundColor = UIColor.orange
         self.view.addSubview(serviceContentView!)
         
         //serviceTextView
@@ -201,6 +203,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         serviceTextView?.delegate = self
         serviceTextView?.isSelectable = true
         serviceTextView?.isEditable = false
+        serviceTextView?.backgroundColor = UIColor.brown
         serviceTextView?.font = UIFont.systemFont(ofSize: 15)
         serviceContentView?.addSubview(serviceTextView!)
         
@@ -225,6 +228,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         changeButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
         changeButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         changeButton?.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
+        changeButton?.isSelected = true
         serviceContentView?.addSubview(changeButton!)
         
         //contentView
@@ -282,7 +286,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         
         //phoneAreaCodeButton
         phoneAreaCodeButton?.snp.makeConstraints({ (make) in
-            make.width.equalTo(self.view)
+            make.width.equalTo(self.phoneContentView!)
             make.height.equalTo(40)
             make.top.equalTo(0)
         })
@@ -313,7 +317,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         //verifyImageView
         verifyImageView?.snp.makeConstraints({ (make) in
             make.left.equalTo((self.phoneTextField?.snp.right)!).offset(5)
-            make.right.equalTo(self.view).offset(-20)
+            make.right.equalTo(self.phoneContentView!).offset(-20)
             make.height.width.equalTo(25)
             make.centerY.equalTo(self.phoneTextField!)
         })
@@ -448,6 +452,47 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
             self.present(searchVC, animated: true, completion: { 
                 
             })
+            
+        }).addDisposableTo(disposeBag)
+        
+        //
+        changeButton?.rx.tap.subscribe(onNext:{ [unowned self] in
+            
+            self.changeButton?.isSelected = !(self.changeButton?.isSelected)!
+            print(self.changeButton?.isSelected as Any)
+            
+            if (self.changeButton?.isSelected)!
+            {
+                self.changeButton?.setTitle("改为使用邮件", for: UIControlState.normal)
+                
+                self.phoneContentView?.isHidden = false
+                self.emailContentView?.isHidden = true
+                
+                self.serviceContentView?.backgroundColor = UIColor.green
+                print("手机容器前frame:",self.phoneContentView?.frame as Any)
+                self.serviceContentView?.snp.makeConstraints({ (make) in
+                    make.left.right.equalTo(self.view).offset(0)
+                    make.top.equalTo((self.phoneContentView?.snp.bottom)!).offset(10)
+                    make.height.equalTo(100)
+                })
+                print("手机容器后frame:",self.phoneContentView?.frame as Any)
+                
+            } else
+            {
+                self.changeButton?.setTitle("改为使用手机", for: UIControlState.normal)
+                
+                self.emailContentView?.isHidden = false
+                self.phoneContentView?.isHidden = true
+                self.serviceContentView?.backgroundColor = UIColor.red
+                print("邮件容器前frame:",self.emailContentView?.frame as Any)
+                self.serviceContentView?.snp.makeConstraints({ (make) in
+                    make.left.right.equalTo(self.view).offset(0)
+                    make.top.equalTo((self.emailContentView?.snp.bottom)!).offset(10)
+                    make.height.equalTo(100)
+                })
+                
+                print("邮件容器后frame:",self.emailContentView?.frame as Any)
+            }
             
         }).addDisposableTo(disposeBag)
     }

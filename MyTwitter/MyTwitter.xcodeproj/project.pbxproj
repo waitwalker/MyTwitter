@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A3511AC1F64F01600B72A23 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3511AB1F64F01600B72A23 /* TestViewController.swift */; };
 		1AFC059A1F5ECF6F006EAC9F /* MTTExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC05991F5ECF6F006EAC9F /* MTTExtension.swift */; };
 		1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC059C1F5ED2B7006EAC9F /* Service.swift */; };
 		1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A3511AB1F64F01600B72A23 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		1AFC05991F5ECF6F006EAC9F /* MTTExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTExtension.swift; path = MyTwitter/Common/Macro/MTTExtension.swift; sourceTree = SOURCE_ROOT; };
 		1AFC059C1F5ED2B7006EAC9F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				CADECBF71F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift */,
 				CADECBF91F5FC9030027E15F /* MTTRegisterStartViewController.swift */,
 				CADECBFB1F5FC9280027E15F /* MTTRegisterNameViewController.swift */,
+				1A3511AB1F64F01600B72A23 /* TestViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 			files = (
 				CADECBCD1F5E4FE30027E15F /* MTTNavigationController.swift in Sources */,
 				CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */,
+				1A3511AC1F64F01600B72A23 /* TestViewController.swift in Sources */,
 				CADECC4B1F6221EC0027E15F /* MTTSearchViewController.swift in Sources */,
 				1AFC059A1F5ECF6F006EAC9F /* MTTExtension.swift in Sources */,
 				CADECBCF1F5E4FFD0027E15F /* MTTTabBarController.swift in Sources */,

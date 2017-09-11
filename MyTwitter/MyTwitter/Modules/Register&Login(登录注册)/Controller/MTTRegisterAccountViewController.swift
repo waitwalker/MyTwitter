@@ -142,6 +142,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         verifyImageView?.isUserInteractionEnabled = true
         verifyImageView?.layer.borderWidth = 2
         verifyImageView?.layer.cornerRadius = 12.5
+        verifyImageView?.layer.borderColor = kMainRedColor().cgColor
         verifyImageView?.clipsToBounds = true
         verifyImageView?.isHidden = true
         phoneContentView?.addSubview(verifyImageView!)
@@ -358,11 +359,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         })
         
         //errorHintLabel
-        errorHintLabel?.snp.makeConstraints({ (make) in
-            make.left.right.equalTo(self.view).offset(0)
-            make.height.equalTo(50)
-            make.top.equalTo((self.phoneContentView?.snp.bottom)!).offset(5)
-        })
+        errorHintLabel?.frame = CGRect(x: 0, y: 266, width: kScreenWidth, height: 50)
         
         serviceContentView?.frame = CGRect(x: 0, y: 271, width: kScreenWidth, height: 100)
         
@@ -450,11 +447,14 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         changeButton?.rx.tap.subscribe(onNext:{ [unowned self] in
             
             self.changeButton?.isSelected = !(self.changeButton?.isSelected)!
-            print(self.changeButton?.isSelected as Any)
+            self.errorHintLabel?.isHidden = true
+            self.verifyImageView?.isHidden = true
             
             if (self.changeButton?.isSelected)!
             {
                 self.changeButton?.setTitle("改为使用邮件", for: UIControlState.normal)
+                self.phoneOrEmailLabel?.text = "你的电话号码是什么?"
+                self.phoneOrEmailHintLabel?.text = "不用担心,我们不会公开显示."
                 
                 self.phoneContentView?.isHidden = false
                 self.emailContentView?.isHidden = true
@@ -464,6 +464,8 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
             } else
             {
                 self.changeButton?.setTitle("改为使用手机", for: UIControlState.normal)
+                self.phoneOrEmailLabel?.text = "你的邮箱地址是什么?"
+                self.phoneOrEmailHintLabel?.text = "我们不会给你发送垃圾邮件."
                 
                 self.emailContentView?.isHidden = false
                 self.phoneContentView?.isHidden = true
@@ -472,14 +474,43 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
             
         }).addDisposableTo(disposeBag)
         
+        //phoneTextField
         phoneTextField?.rx.text
             .map{_ in (
                     MTTRegularMatchManager.validateMobile(phone: (self.phoneTextField?.text)!)
                 )}
             .subscribe(onNext:
-                {
-                    print($0 as Any)
+                { element in
+                    print(element as Any)
+                    self.verifyImageView?.isHidden = false
                     
+                    if (self.phoneContentView?.isHidden)!
+                    {
+                        
+                    } else
+                    {
+                        if element
+                        {
+                            self.errorHintLabel?.isHidden = true
+                            self.verifyImageView?.image = UIImage(named: "name_valid")
+                            self.verifyImageView?.layer.borderColor = kMainGreenColor().cgColor
+                            self.serviceContentView?.frame = CGRect(x: 0, y: 271, width: kScreenWidth, height: 100)
+                            
+                            self.nextButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
+                            self.nextButton?.isEnabled = true
+                            
+                        } else
+                        {
+                            self.errorHintLabel?.isHidden = false
+                            self.verifyImageView?.image = UIImage(named: "name_invalid")
+                            self.verifyImageView?.layer.borderColor = kMainRedColor().cgColor
+                            self.errorHintLabel?.frame = CGRect(x: 0, y: 266, width: kScreenWidth, height: 50)
+                            self.serviceContentView?.frame = CGRect(x: 0, y: 321, width: kScreenWidth, height: 100)
+                            
+                            self.nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
+                            self.nextButton?.isEnabled = false
+                        }
+                    }
                 })
             .addDisposableTo(disposeBag)
     }

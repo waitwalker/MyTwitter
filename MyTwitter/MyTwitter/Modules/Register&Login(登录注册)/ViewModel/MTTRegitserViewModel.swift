@@ -16,7 +16,10 @@ class MTTRegitserViewModel: NSObject
     //input
     let accountName = Variable<String>("")
     
-    
+    override init()
+    {
+        
+    }
     
     
     

@@ -471,6 +471,17 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
             }
             
         }).addDisposableTo(disposeBag)
+        
+        phoneTextField?.rx.text
+            .map{_ in (
+                    MTTRegularMatchManager.validateMobile(phone: (self.phoneTextField?.text)!)
+                )}
+            .subscribe(onNext:
+                {
+                    print($0 as Any)
+                    
+                })
+            .addDisposableTo(disposeBag)
     }
     
     

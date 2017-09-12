@@ -443,6 +443,78 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
             
         }).addDisposableTo(disposeBag)
         
+        //phoneTextField
+        phoneTextField?.rx.text
+            .map{_ in (
+                    MTTRegularMatchManager.validateMobile(phone: (self.phoneTextField?.text)!)
+                )}
+            .subscribe(onNext:
+                { element in
+                    self.verifyImageView?.isHidden = false
+                    
+                    if !(self.phoneContentView?.isHidden)!
+                    {
+                        if element
+                        {
+                            self.errorHintLabel?.isHidden = true
+                            self.verifyImageView?.image = UIImage(named: "name_valid")
+                            self.verifyImageView?.layer.borderColor = kMainGreenColor().cgColor
+                            self.serviceContentView?.frame = CGRect(x: 0, y: 271, width: kScreenWidth, height: 100)
+                            
+                            self.nextButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
+                            self.nextButton?.isEnabled = true
+                            self.view.endEditing(true)
+                            
+                        } else
+                        {
+                            self.errorHintLabel?.isHidden = false
+                            self.errorHintLabel?.text = "    请输入有效的手机号码."
+                            self.verifyImageView?.image = UIImage(named: "name_invalid")
+                            self.verifyImageView?.layer.borderColor = kMainRedColor().cgColor
+                            self.errorHintLabel?.frame = CGRect(x: 0, y: 266, width: kScreenWidth, height: 50)
+                            self.serviceContentView?.frame = CGRect(x: 0, y: 321, width: kScreenWidth, height: 100)
+                            
+                            self.nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
+                            self.nextButton?.isEnabled = false
+                        }
+                    } 
+                })
+            .addDisposableTo(disposeBag)
+        
+        //emailTextField            
+        emailTextField?.rx.text.map{_ in (
+            MTTRegularMatchManager.validateEmail(email: (self.emailTextField?.text)!))}
+            .subscribe(onNext:{ element in
+                self.emailVerifyImageView?.isHidden = false
+                
+                if !(self.emailContentView?.isHidden)!
+                {
+                    if element 
+                    {
+                        self.errorHintLabel?.isHidden = true
+                        self.emailVerifyImageView?.image = UIImage(named: "name_valid")
+                        self.emailVerifyImageView?.layer.borderColor = kMainGreenColor().cgColor
+                        self.serviceContentView?.frame = CGRect(x: 0, y: 226, width: kScreenWidth, height: 100)
+                        
+                        self.nextButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
+                        self.nextButton?.isEnabled = true
+                        self.view.endEditing(true)
+                    } else
+                    {
+                        self.errorHintLabel?.isHidden = false
+                        self.errorHintLabel?.text = "    邮件地址无效."
+                        self.emailVerifyImageView?.image = UIImage(named: "name_invalid")
+                        self.emailVerifyImageView?.layer.borderColor = kMainRedColor().cgColor
+                        self.errorHintLabel?.frame = CGRect(x: 0, y: 221, width: kScreenWidth, height: 50)
+                        self.serviceContentView?.frame = CGRect(x: 0, y: 276, width: kScreenWidth, height: 100)
+                        
+                        self.nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
+                        self.nextButton?.isEnabled = false
+                    }
+                } 
+                
+            }).addDisposableTo(disposeBag)
+            
         //changeButton
         changeButton?.rx.tap.subscribe(onNext:{ [unowned self] in
             
@@ -474,47 +546,48 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
             
         }).addDisposableTo(disposeBag)
         
-        //phoneTextField
-        phoneTextField?.rx.text
-            .map{_ in (
-                    MTTRegularMatchManager.validateMobile(phone: (self.phoneTextField?.text)!)
-                )}
-            .subscribe(onNext:
-                { element in
-                    print(element as Any)
-                    self.verifyImageView?.isHidden = false
-                    
-                    if (self.phoneContentView?.isHidden)!
-                    {
-                        
-                    } else
-                    {
-                        if element
-                        {
-                            self.errorHintLabel?.isHidden = true
-                            self.verifyImageView?.image = UIImage(named: "name_valid")
-                            self.verifyImageView?.layer.borderColor = kMainGreenColor().cgColor
-                            self.serviceContentView?.frame = CGRect(x: 0, y: 271, width: kScreenWidth, height: 100)
-                            
-                            self.nextButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
-                            self.nextButton?.isEnabled = true
-                            
-                        } else
-                        {
-                            self.errorHintLabel?.isHidden = false
-                            self.verifyImageView?.image = UIImage(named: "name_invalid")
-                            self.verifyImageView?.layer.borderColor = kMainRedColor().cgColor
-                            self.errorHintLabel?.frame = CGRect(x: 0, y: 266, width: kScreenWidth, height: 50)
-                            self.serviceContentView?.frame = CGRect(x: 0, y: 321, width: kScreenWidth, height: 100)
-                            
-                            self.nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
-                            self.nextButton?.isEnabled = false
-                        }
-                    }
-                })
-            .addDisposableTo(disposeBag)
+        //nextButton
+        (nextButton?.rx.tap)?.subscribe(onNext:({[unowned self] in
+            
+            if (self.phoneContentView?.isHidden)!
+            {
+                print(self.emailTextField?.text as Any)
+                
+                
+                
+            } else
+            {
+                print(self.phoneTextField?.text as Any)
+                
+                //显示alert
+                self.showAlertController(message: (self.phoneTextField?.text)!)
+                                
+            }
+            
+        })).addDisposableTo(disposeBag)
+            
     }
     
+    // MARK: - 显示alertController
+    func showAlertController(message:String) -> Void 
+    {
+        let alertController = UIAlertController(title: String.init(format: "我们会发送一个验证码到+86%@", message), message: "可能收取短信费", preferredStyle: UIAlertControllerStyle.alert)
+        let actionEdit = UIAlertAction(title: "编辑", style: UIAlertActionStyle.default, handler: { (action) in
+            
+        })
+        
+        let actionOK = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            
+        })
+        
+        alertController.addAction(actionEdit)
+        alertController.addAction(actionOK)
+        
+        self.present(alertController, animated: true, completion: { 
+            
+        })
+
+    }
     
     // MARK: - private
     func imageWithColor(color:UIColor) -> UIImage 
@@ -526,6 +599,11 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         context?.fill(rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         return image!
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) 
+    {
+        self.view.endEditing(true)
     }
     
     deinit

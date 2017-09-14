@@ -13,10 +13,13 @@ class MTTRegisterPasswordViewController: MTTViewController
     var logoImageView:UIImageView?
     var passwordLabel:UILabel?
     var passwordHintLabel:UILabel?
-    var passwordTextField:UITextField?
-    var passwordBottomLineView:UIView?
-    var passwordVerifyImageView:UIImageView?
     var showPasswordButton:UIButton?
+    
+    var passwordContentView:UIView?
+    var passwordTextField:UITextField?
+    var passwordLineView:UIView?
+    var passwordVerifyImageView:UIImageView?
+    
     
     
     var contentView:UIView?
@@ -28,6 +31,7 @@ class MTTRegisterPasswordViewController: MTTViewController
         self.setupSubview()
         self.layoutSubview()
         self.setupEvent()
+        self.view.backgroundColor = UIColor.white
     }
     
     // MARK: - 初始化子控件
@@ -57,6 +61,42 @@ class MTTRegisterPasswordViewController: MTTViewController
         passwordHintLabel?.numberOfLines = 1
         passwordHintLabel?.sizeToFit()
         self.view.addSubview(passwordHintLabel!)
+        
+        //passwordContentView
+        passwordContentView = UIView()
+        self.view.addSubview(passwordContentView!)
+        
+        //passwordTextField
+        passwordTextField = UITextField()
+        passwordTextField?.placeholder = "密码"
+        passwordTextField?.isSecureTextEntry = true
+        passwordTextField?.font = UIFont.systemFont(ofSize: 15)
+        passwordTextField?.textColor = kMainBlueColor()
+        passwordContentView?.addSubview(passwordTextField!)
+        
+        //passwordVerifyImageView
+        passwordVerifyImageView = UIImageView()
+        passwordVerifyImageView?.isUserInteractionEnabled = true
+        passwordVerifyImageView?.layer.borderWidth = 2
+        passwordVerifyImageView?.layer.cornerRadius = 12.5
+        passwordVerifyImageView?.clipsToBounds = true
+        passwordVerifyImageView?.isHidden = true
+        passwordContentView?.addSubview(passwordVerifyImageView!)
+        
+        //passwordLineView
+        passwordLineView = UIView()
+        passwordLineView?.backgroundColor = kMainGrayColor()
+        passwordContentView?.addSubview(passwordLineView!)
+        
+        //showPasswordButton
+        showPasswordButton = UIButton()
+        showPasswordButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
+        showPasswordButton?.setTitle("显示密码", for: UIControlState.normal)
+        showPasswordButton?.titleEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 10)
+        showPasswordButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        showPasswordButton?.isHidden = true
+        self.view.addSubview(showPasswordButton!)
+        
         
         //contentView
         contentView = UIView()
@@ -104,6 +144,46 @@ class MTTRegisterPasswordViewController: MTTViewController
             make.top.equalTo((self.passwordLabel?.snp.bottom)!).offset(5)
         })
         
+        //passwordContentView
+        passwordContentView?.snp.makeConstraints({ (make) in
+            make.left.right.equalTo(self.view).offset(0)
+            make.top.equalTo((self.passwordHintLabel?.snp.bottom)!).offset(5)
+            make.height.equalTo(41)
+        })
+        
+        //passwordTextField
+        passwordTextField?.snp.makeConstraints({ (make) in
+            make.left.equalTo(self.passwordContentView!).offset(20)
+            make.right.equalTo(self.passwordContentView!).offset(-50)
+            make.top.equalTo(self.passwordContentView!).offset(0)
+            make.height.equalTo(40)
+        })
+        
+        //passwordVerifyImageView
+        passwordVerifyImageView?.snp.makeConstraints({ (make) in
+            make.left.equalTo((self.passwordTextField?.snp.right)!).offset(5)
+            make.right.equalTo(self.view).offset(-20)
+            make.height.width.equalTo(25)
+            make.centerY.equalTo(self.passwordTextField!)
+        })
+        
+        //passwordLineView
+        passwordLineView?.snp.makeConstraints({ (make) in
+            make.left.equalTo(20)
+            make.right.equalTo(0)
+            make.bottom.equalTo(self.passwordTextField!).offset(-0.3)
+            make.height.equalTo(0.3)
+        })
+        
+        //showPasswordButton
+        showPasswordButton?.snp.makeConstraints({ (make) in
+            make.left.equalTo(15)
+            make.width.equalTo(80)
+            make.top.equalTo((self.passwordContentView?.snp.bottom)!).offset(5)
+            make.height.equalTo(30)
+        })
+
+        
         //contentView
         contentView?.snp.makeConstraints({ (make) in
             make.left.right.equalTo(self.view).offset(0)
@@ -133,7 +213,49 @@ class MTTRegisterPasswordViewController: MTTViewController
     // MARK: - 初始化事件
     func setupEvent() -> Void 
     {
+        passwordTextField?.rx.text.map({($0?.characters.count)! >= 6})
+            .subscribe(onNext:{ isTrue in
+                
+                if isTrue
+                {
+                    self.passwordVerifyImageView?.layer.borderColor = kMainGreenColor().cgColor
+                    self.passwordVerifyImageView?.isHidden = false
+                    self.passwordVerifyImageView?.image = UIImage(named: "name_valid")
+                    self.showPasswordButton?.isHidden = false
+                    self.nextButton?.isEnabled = true
+                    self.nextButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
+                } else
+                {
+                    self.passwordVerifyImageView?.isHidden = true
+                    self.showPasswordButton?.isHidden = true
+                    self.nextButton?.isEnabled = false
+                    self.nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
+                }
+                
+        }).addDisposableTo(disposeBag)
         
+        showPasswordButton?.rx.tap.subscribe(onNext:{[unowned self] in
+            
+            self.showPasswordButton?.isSelected = !(self.showPasswordButton?.isSelected)!;
+            
+            if (self.showPasswordButton?.isSelected)!
+            {
+                self.passwordTextField?.isSecureTextEntry = false
+                self.showPasswordButton?.setTitle("隐藏密码", for: UIControlState.normal)
+            } else
+            {
+                self.passwordTextField?.isSecureTextEntry = true
+                self.showPasswordButton?.setTitle("显示密码", for: UIControlState.normal)
+            }
+            
+        }).addDisposableTo(disposeBag)
+        
+        nextButton?.rx.tap.subscribe(onNext:{[unowned self] in
+            
+            self.showPasswordButton?.isSelected = !(self.showPasswordButton?.isSelected)!;
+            
+            
+        }).addDisposableTo(disposeBag)
     }
     
 }

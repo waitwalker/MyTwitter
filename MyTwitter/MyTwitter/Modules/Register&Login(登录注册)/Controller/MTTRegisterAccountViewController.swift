@@ -552,17 +552,14 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
             if (self.phoneContentView?.isHidden)!
             {
                 print(self.emailTextField?.text as Any)
-                
-                
-                
             } else
             {
-                print(self.phoneTextField?.text as Any)
-                
                 //显示alert
                 self.showAlertController(message: (self.phoneTextField?.text)!)
-                                
             }
+            
+            let registerPasswordVC = MTTRegisterPasswordViewController()
+            self.navigationController?.pushViewController(registerPasswordVC, animated: true)
             
         })).addDisposableTo(disposeBag)
             

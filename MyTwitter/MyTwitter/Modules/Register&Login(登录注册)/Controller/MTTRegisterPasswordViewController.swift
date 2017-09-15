@@ -28,15 +28,20 @@ class MTTRegisterPasswordViewController: MTTViewController
     
     override func viewDidLoad() 
     {
+        super.viewDidLoad()
         self.setupSubview()
         self.layoutSubview()
         self.setupEvent()
-        self.view.backgroundColor = UIColor.white
     }
     
     // MARK: - 初始化子控件
     func setupSubview() -> Void 
     {
+        //back
+        let leftBackButton = UIButton()
+        leftBackButton.frame = CGRect(x: -20, y: 0, width: 0, height: 0)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftBackButton)
+        
         //logo
         logoImageView = UIImageView()
         logoImageView?.image = UIImage.init(named: "twitter_logo")
@@ -252,7 +257,6 @@ class MTTRegisterPasswordViewController: MTTViewController
         
         nextButton?.rx.tap.subscribe(onNext:{[unowned self] in
             
-            self.showPasswordButton?.isSelected = !(self.showPasswordButton?.isSelected)!;
             
             
         }).addDisposableTo(disposeBag)

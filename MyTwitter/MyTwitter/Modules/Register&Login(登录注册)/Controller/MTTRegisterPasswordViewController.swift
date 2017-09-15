@@ -48,7 +48,6 @@ class MTTRegisterPasswordViewController: MTTViewController
         logoImageView?.isUserInteractionEnabled = true
         self.view.addSubview(logoImageView!)
         
-        
         //passwordLabel
         passwordLabel = UILabel()
         passwordLabel?.font = UIFont.boldSystemFont(ofSize: 25)
@@ -256,8 +255,11 @@ class MTTRegisterPasswordViewController: MTTViewController
         }).addDisposableTo(disposeBag)
         
         nextButton?.rx.tap.subscribe(onNext:{[unowned self] in
+        
+            let para = ["name":self.passwordLabel?.text]
             
-            
+            let resultString = MTTRegitserViewModel.requestRegister(parameters: para as NSDictionary)
+            print("注册结果:",resultString)
             
         }).addDisposableTo(disposeBag)
     }

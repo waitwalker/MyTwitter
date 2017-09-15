@@ -46,14 +46,11 @@ class ValidationService
     
     func accountValid(account:String) -> Bool
     {
-        let getAccountString = ""
+        _ = ""
         let parameters =
         NSDictionary.init()
         parameters.setValue(account, forKey: "account")
         
-        MTTNetworkManager.requestHandler(methods: .GET, urlString: getAccountString, parameters: parameters) { (response, error) in
-            
-        }
         return true
     }
     

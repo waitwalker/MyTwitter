@@ -17,6 +17,7 @@
 		1AFC05AB1F5EE3B2006EAC9F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A61F5EE3B2006EAC9F /* Info.plist */; };
 		44E9E8C13750B588F23552C8 /* Pods_MyTwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */; };
 		CAC990651F690E67002255FA /* MTTRegisterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */; };
+		CAC990A71F6BB62F002255FA /* MTTConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC990A61F6BB62F002255FA /* MTTConst.swift */; };
 		CADECBAD1F5E4E3A0027E15F /* MyTwitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBAC1F5E4E3A0027E15F /* MyTwitterTests.swift */; };
 		CADECBB81F5E4E3A0027E15F /* MyTwitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBB71F5E4E3A0027E15F /* MyTwitterUITests.swift */; };
 		CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBC81F5E4F0A0027E15F /* Macro.swift */; };
@@ -71,6 +72,7 @@
 		BDE3DAC010179F784B5E286A /* Pods-MyTwitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterUITests/Pods-MyTwitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C8B46619503CC4D8F2F2F494 /* Pods_MyTwitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterPasswordViewController.swift; sourceTree = "<group>"; };
+		CAC990A61F6BB62F002255FA /* MTTConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTConst.swift; sourceTree = "<group>"; };
 		CADECB941F5E4E3A0027E15F /* MyTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADECBA81F5E4E3A0027E15F /* MyTwitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyTwitterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADECBAC1F5E4E3A0027E15F /* MyTwitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTwitterTests.swift; sourceTree = "<group>"; };
@@ -175,6 +177,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CAC990A51F6BB604002255FA /* Const */ = {
+			isa = PBXGroup;
+			children = (
+				CAC990A61F6BB62F002255FA /* MTTConst.swift */,
+			);
+			path = Const;
+			sourceTree = "<group>";
+		};
 		CADECB8B1F5E4E3A0027E15F = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +239,7 @@
 		CADECBC61F5E4EA30027E15F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CAC990A51F6BB604002255FA /* Const */,
 				1AFE6FDB1F6376F000006381 /* Tools */,
 				1AFC059B1F5ECF90006EAC9F /* Service */,
 				CADECBE21F5E82240027E15F /* Extensions */,
@@ -283,8 +294,8 @@
 			children = (
 				CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */,
 				CADECBF71F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift */,
-				CADECBF91F5FC9030027E15F /* MTTRegisterStartViewController.swift */,
 				CADECBFB1F5FC9280027E15F /* MTTRegisterNameViewController.swift */,
+				CADECBF91F5FC9030027E15F /* MTTRegisterStartViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -671,6 +682,7 @@
 				CADECBFA1F5FC9030027E15F /* MTTRegisterStartViewController.swift in Sources */,
 				CADECC4D1F6222D10027E15F /* MTTView.swift in Sources */,
 				CADECBF81F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift in Sources */,
+				CAC990A71F6BB62F002255FA /* MTTConst.swift in Sources */,
 				CADECBD11F5E500D0027E15F /* MTTViewController.swift in Sources */,
 				CADECBFC1F5FC9280027E15F /* MTTRegisterNameViewController.swift in Sources */,
 				1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */,

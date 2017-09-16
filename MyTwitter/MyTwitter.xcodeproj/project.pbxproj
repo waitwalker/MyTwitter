@@ -11,10 +11,10 @@
 		1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C071F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift */; };
 		1A304C101F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C0F1F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift */; };
 		1A304C121F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C111F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift */; };
-		1A304C181F6D67C200F366B9 /* MTTHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C171F6D67C200F366B9 /* MTTHomeViewController.swift */; };
-		1A304C1A1F6D67CE00F366B9 /* MTTSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C191F6D67CE00F366B9 /* MTTSearchViewController.swift */; };
-		1A304C1C1F6D67DF00F366B9 /* MTTNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C1B1F6D67DF00F366B9 /* MTTNotificationViewController.swift */; };
-		1A304C1E1F6D67F300F366B9 /* MTTPrivateMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C1D1F6D67F300F366B9 /* MTTPrivateMessageViewController.swift */; };
+		1A304C501F6D6B4800F366B9 /* MTTHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C4F1F6D6B4800F366B9 /* MTTHomeViewController.swift */; };
+		1A304C521F6D6B5700F366B9 /* MTTNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C511F6D6B5700F366B9 /* MTTNotificationViewController.swift */; };
+		1A304C541F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C531F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift */; };
+		1A304C561F6D6B7400F366B9 /* MTTSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C551F6D6B7400F366B9 /* MTTSearchViewController.swift */; };
 		1AFC059A1F5ECF6F006EAC9F /* MTTExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC05991F5ECF6F006EAC9F /* MTTExtension.swift */; };
 		1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC059C1F5ED2B7006EAC9F /* Service.swift */; };
 		1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */; };
@@ -65,10 +65,10 @@
 		1A304C071F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterViewModelDelegate.swift; sourceTree = "<group>"; };
 		1A304C0F1F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTPhoneAreaCodeSectionHeaderView.swift; sourceTree = "<group>"; };
 		1A304C111F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTPhoneAreaCodeViewController.swift; sourceTree = "<group>"; };
-		1A304C171F6D67C200F366B9 /* MTTHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTHomeViewController.swift; sourceTree = "<group>"; };
-		1A304C191F6D67CE00F366B9 /* MTTSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSearchViewController.swift; sourceTree = "<group>"; };
-		1A304C1B1F6D67DF00F366B9 /* MTTNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTNotificationViewController.swift; sourceTree = "<group>"; };
-		1A304C1D1F6D67F300F366B9 /* MTTPrivateMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTPrivateMessageViewController.swift; sourceTree = "<group>"; };
+		1A304C4F1F6D6B4800F366B9 /* MTTHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTHomeViewController.swift; sourceTree = "<group>"; };
+		1A304C511F6D6B5700F366B9 /* MTTNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTNotificationViewController.swift; sourceTree = "<group>"; };
+		1A304C531F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTPrivateMessageViewController.swift; sourceTree = "<group>"; };
+		1A304C551F6D6B7400F366B9 /* MTTSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSearchViewController.swift; sourceTree = "<group>"; };
 		1AFC05991F5ECF6F006EAC9F /* MTTExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTExtension.swift; path = MyTwitter/Common/Macro/MTTExtension.swift; sourceTree = SOURCE_ROOT; };
 		1AFC059C1F5ED2B7006EAC9F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,39 +144,164 @@
 			path = Delegate;
 			sourceTree = "<group>";
 		};
-		1A304C131F6D672F00F366B9 /* Home(首页) */ = {
+		1A304C3B1F6D6B2400F366B9 /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
-				1A304C171F6D67C200F366B9 /* MTTHomeViewController.swift */,
+				1A304C3C1F6D6B2400F366B9 /* Controller */,
+				1A304C3D1F6D6B2400F366B9 /* Model */,
+				1A304C3E1F6D6B2400F366B9 /* View */,
+				1A304C3F1F6D6B2400F366B9 /* ViewModel */,
 			);
-			name = "Home(首页)";
-			path = Home;
+			path = "Home(首页)";
 			sourceTree = "<group>";
 		};
-		1A304C141F6D674600F366B9 /* Search(搜索) */ = {
+		1A304C3C1F6D6B2400F366B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1A304C191F6D67CE00F366B9 /* MTTSearchViewController.swift */,
+				1A304C4F1F6D6B4800F366B9 /* MTTHomeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1A304C3D1F6D6B2400F366B9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1A304C3E1F6D6B2400F366B9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1A304C3F1F6D6B2400F366B9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1A304C401F6D6B2400F366B9 /* Notification(通知) */ = {
+			isa = PBXGroup;
+			children = (
+				1A304C411F6D6B2400F366B9 /* Controller */,
+				1A304C421F6D6B2400F366B9 /* Model */,
+				1A304C431F6D6B2400F366B9 /* View */,
+				1A304C441F6D6B2400F366B9 /* ViewModel */,
+			);
+			path = "Notification(通知)";
+			sourceTree = "<group>";
+		};
+		1A304C411F6D6B2400F366B9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1A304C511F6D6B5700F366B9 /* MTTNotificationViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1A304C421F6D6B2400F366B9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1A304C431F6D6B2400F366B9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1A304C441F6D6B2400F366B9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1A304C451F6D6B2400F366B9 /* PrivateMessage(私信) */ = {
+			isa = PBXGroup;
+			children = (
+				1A304C461F6D6B2400F366B9 /* Controller */,
+				1A304C471F6D6B2400F366B9 /* Model */,
+				1A304C481F6D6B2400F366B9 /* View */,
+				1A304C491F6D6B2400F366B9 /* ViewModel */,
+			);
+			path = "PrivateMessage(私信)";
+			sourceTree = "<group>";
+		};
+		1A304C461F6D6B2400F366B9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1A304C531F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1A304C471F6D6B2400F366B9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1A304C481F6D6B2400F366B9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1A304C491F6D6B2400F366B9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1A304C4A1F6D6B2400F366B9 /* Search(搜索) */ = {
+			isa = PBXGroup;
+			children = (
+				1A304C4B1F6D6B2400F366B9 /* Controller */,
+				1A304C4C1F6D6B2400F366B9 /* Model */,
+				1A304C4D1F6D6B2400F366B9 /* View */,
+				1A304C4E1F6D6B2400F366B9 /* ViewModel */,
 			);
 			path = "Search(搜索)";
 			sourceTree = "<group>";
 		};
-		1A304C151F6D676800F366B9 /* Notification(通知) */ = {
+		1A304C4B1F6D6B2400F366B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1A304C1B1F6D67DF00F366B9 /* MTTNotificationViewController.swift */,
+				1A304C551F6D6B7400F366B9 /* MTTSearchViewController.swift */,
 			);
-			name = "Notification(通知)";
-			path = Notification;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		1A304C161F6D678600F366B9 /* PrivateMessage(私信) */ = {
+		1A304C4C1F6D6B2400F366B9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1A304C1D1F6D67F300F366B9 /* MTTPrivateMessageViewController.swift */,
 			);
-			name = "PrivateMessage(私信)";
-			path = PrivateMessage;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1A304C4D1F6D6B2400F366B9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1A304C4E1F6D6B2400F366B9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		1AFC059B1F5ECF90006EAC9F /* Service */ = {
@@ -314,10 +439,10 @@
 		CADECBCA1F5E4F270027E15F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				1A304C161F6D678600F366B9 /* PrivateMessage(私信) */,
-				1A304C151F6D676800F366B9 /* Notification(通知) */,
-				1A304C141F6D674600F366B9 /* Search(搜索) */,
-				1A304C131F6D672F00F366B9 /* Home(首页) */,
+				1A304C3B1F6D6B2400F366B9 /* Home(首页) */,
+				1A304C401F6D6B2400F366B9 /* Notification(通知) */,
+				1A304C451F6D6B2400F366B9 /* PrivateMessage(私信) */,
+				1A304C4A1F6D6B2400F366B9 /* Search(搜索) */,
 				CADECC001F60DAE10027E15F /* PhoneAreaCode(手机区号) */,
 				CADECBD21F5E50410027E15F /* Register&Login(登录注册) */,
 			);
@@ -732,24 +857,24 @@
 				1A304C101F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift in Sources */,
 				CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */,
 				CAC990651F690E67002255FA /* MTTRegisterPasswordViewController.swift in Sources */,
+				1A304C521F6D6B5700F366B9 /* MTTNotificationViewController.swift in Sources */,
+				1A304C541F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift in Sources */,
 				1AFC059A1F5ECF6F006EAC9F /* MTTExtension.swift in Sources */,
 				CADECBCF1F5E4FFD0027E15F /* MTTTabBarController.swift in Sources */,
 				1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */,
 				CADECBE11F5E821B0027E15F /* MTTNetworkManager.swift in Sources */,
 				1A304C121F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift in Sources */,
 				CADECBF61F5F83450027E15F /* MTTRegitserViewModel.swift in Sources */,
-				1A304C1C1F6D67DF00F366B9 /* MTTNotificationViewController.swift in Sources */,
 				CADECBFA1F5FC9030027E15F /* MTTRegisterStartViewController.swift in Sources */,
 				CADECC4D1F6222D10027E15F /* MTTView.swift in Sources */,
 				CADECBF81F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift in Sources */,
 				CAC990A71F6BB62F002255FA /* MTTConst.swift in Sources */,
-				1A304C1E1F6D67F300F366B9 /* MTTPrivateMessageViewController.swift in Sources */,
-				1A304C181F6D67C200F366B9 /* MTTHomeViewController.swift in Sources */,
+				1A304C561F6D6B7400F366B9 /* MTTSearchViewController.swift in Sources */,
+				1A304C501F6D6B4800F366B9 /* MTTHomeViewController.swift in Sources */,
 				CADECBD11F5E500D0027E15F /* MTTViewController.swift in Sources */,
 				CADECBFC1F5FC9280027E15F /* MTTRegisterNameViewController.swift in Sources */,
 				1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */,
 				1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */,
-				1A304C1A1F6D67CE00F366B9 /* MTTSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

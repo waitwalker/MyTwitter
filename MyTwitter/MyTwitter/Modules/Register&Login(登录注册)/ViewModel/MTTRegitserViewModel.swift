@@ -12,35 +12,23 @@ import RxSwift
 import Alamofire
 
 
-class MTTRegitserViewModel: NSObject 
+class MTTRegitserViewModel: NSObject
 {
     
+    var delegate:MTTRegitserViewModelDelegate?
     
-    class func requestRegister(parameters:NSDictionary) -> String 
+    func requestRegister(parameters:NSDictionary) -> Void
     {
-        var resultString:String = ""
-        
         let urlString = kServer + kRegisterAPI
-        
-//        Alamofire.request(URL.init(string: urlString)!, method: HTTPMethod.post, parameters: parameters as? Parameters, encoding:URLEncoding.default, headers: nil).responseJSON { (reponse) in
-//        
-//            resultString = "2"
-//            return resultString
-//        }
         
         MTTNetworkManager.requestHandler(methods: kMethodType.POST, urlString: urlString, parameters: parameters, successCallBack: { (responseObject) in
             
+            self.delegate?.successCallBack(data: responseObject as! NSDictionary)
             print("返回的结果",responseObject)
-            resultString = "1"
-            print("successResultString:",resultString)
             
         }) { (error) in
+            self.delegate?.failureCallBack(error: error)
             print(error)
-            resultString = "0"
-            print("failureResultString:",resultString)
         }
-        print("resultString",resultString)
-        
-        return resultString
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MTTRegisterPasswordViewController: MTTViewController 
+class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModelDelegate
 {
     var logoImageView:UIImageView?
     var passwordLabel:UILabel?
@@ -114,6 +114,7 @@ class MTTRegisterPasswordViewController: MTTViewController
         //nextButton
         nextButton = UIButton()
         nextButton?.setTitle("下一步", for: UIControlState.normal)
+        nextButton?.setTitleColor(kMainRedColor(), for: UIControlState.highlighted)
         nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
         nextButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         nextButton?.backgroundColor = kMainBlueColor()
@@ -258,10 +259,23 @@ class MTTRegisterPasswordViewController: MTTViewController
         
             let para = ["name":self.passwordLabel?.text]
             
-            let resultString = MTTRegitserViewModel.requestRegister(parameters: para as NSDictionary)
-            print("注册结果:",resultString)
+            let viewModel = MTTRegitserViewModel()
+            
+            viewModel.delegate = self
+            
+            viewModel.requestRegister(parameters: para as NSDictionary)
             
         }).addDisposableTo(disposeBag)
+    }
+    
+    func successCallBack(data: NSDictionary)
+    {
+        print(data)
+    }
+    
+    func failureCallBack(error: NSError)
+    {
+        print(error)
     }
     
 }

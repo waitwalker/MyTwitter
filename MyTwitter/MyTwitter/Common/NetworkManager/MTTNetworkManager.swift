@@ -45,7 +45,7 @@ class MTTNetworkManager: NSObject
                 break
                 
                 case .failure:
-                    failureCallBack(response.error as! NSError)
+                    failureCallBack(response.error! as NSError)
                 break
             }
             

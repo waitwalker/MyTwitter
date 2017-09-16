@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A0C10F41F66C44C00B6AD18 /* MTTRegularMatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0C10F31F66C44C00B6AD18 /* MTTRegularMatchManager.swift */; };
+		1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C071F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift */; };
 		1AFC059A1F5ECF6F006EAC9F /* MTTExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC05991F5ECF6F006EAC9F /* MTTExtension.swift */; };
 		1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC059C1F5ED2B7006EAC9F /* Service.swift */; };
 		1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */; };
@@ -57,6 +58,7 @@
 
 /* Begin PBXFileReference section */
 		1A0C10F31F66C44C00B6AD18 /* MTTRegularMatchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegularMatchManager.swift; sourceTree = "<group>"; };
+		1A304C071F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterViewModelDelegate.swift; sourceTree = "<group>"; };
 		1AFC05991F5ECF6F006EAC9F /* MTTExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTExtension.swift; path = MyTwitter/Common/Macro/MTTExtension.swift; sourceTree = SOURCE_ROOT; };
 		1AFC059C1F5ED2B7006EAC9F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A304C061F6D535A00F366B9 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				1A304C071F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		1AFC059B1F5ECF90006EAC9F /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +291,7 @@
 		CADECBD21F5E50410027E15F /* Register&Login(登录注册) */ = {
 			isa = PBXGroup;
 			children = (
+				1A304C061F6D535A00F366B9 /* Delegate */,
 				CADECBDA1F5E7BB90027E15F /* ViewModel */,
 				CADECBD91F5E7BB40027E15F /* Model */,
 				CADECBD81F5E7BAD0027E15F /* View */,
@@ -677,6 +688,7 @@
 				1AFC059A1F5ECF6F006EAC9F /* MTTExtension.swift in Sources */,
 				CADECBCF1F5E4FFD0027E15F /* MTTTabBarController.swift in Sources */,
 				CADECC4F1F6228A00027E15F /* MTTSearchSectionHeaderView.swift in Sources */,
+				1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */,
 				CADECBE11F5E821B0027E15F /* MTTNetworkManager.swift in Sources */,
 				CADECBF61F5F83450027E15F /* MTTRegitserViewModel.swift in Sources */,
 				CADECBFA1F5FC9030027E15F /* MTTRegisterStartViewController.swift in Sources */,

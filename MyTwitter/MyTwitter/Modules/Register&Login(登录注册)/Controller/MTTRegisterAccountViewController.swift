@@ -431,13 +431,13 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         //phoneAreaCodeButton
         phoneAreaCodeButton?.rx.tap.subscribe(onNext:{[unowned self] in
             
-            let searchVC = MTTSearchViewController()
-            searchVC.searchCompletion = {(areaName:String,areaCodeName:String) in
+            let phoneAreaCodeVC = MTTPhoneAreaCodeViewController()
+            phoneAreaCodeVC.searchCompletion = {(areaName:String,areaCodeName:String) in
                 self.phoneAreaCodeButton?.titleEdgeInsets = UIEdgeInsetsMake(10, 20, 10, kScreenWidth - 80)
                 self.phoneAreaCodeButton?.setTitle(String.init(format: "+%@", areaCodeName), for: UIControlState.normal)
             }               
             
-            self.present(searchVC, animated: true, completion: { 
+            self.present(phoneAreaCodeVC, animated: true, completion: {
                 
             })
             

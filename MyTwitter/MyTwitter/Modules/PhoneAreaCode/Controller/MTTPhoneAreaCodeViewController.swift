@@ -1,12 +1,13 @@
 //
-//  MTTSearchViewController.swift
+//  MTTPhoneAreaCodeViewController.swift
 //  MyTwitter
 //
-//  Created by LiuChuanan on 2017/9/7.
+//  Created by WangJunZi on 2017/9/16.
 //  Copyright © 2017年 waitWalker. All rights reserved.
 //
 
 import UIKit
+
 
 class MTTPhoneAreaCodeModel: NSObject
 {
@@ -17,7 +18,7 @@ class MTTPhoneAreaCodeModel: NSObject
     
 }
 
-class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableViewDataSource
+class MTTPhoneAreaCodeViewController : MTTViewController,UITableViewDelegate,UITableViewDataSource
 {
     var originalTabelView:UITableView?
     var sectionTitlesSet:NSMutableSet?
@@ -36,7 +37,7 @@ class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableView
     
     
     // MARK: - 初始化数据
-    func setupDataSource() -> Void 
+    func setupDataSource() -> Void
     {
         sectionTitlesSet = NSMutableSet()
         
@@ -108,7 +109,7 @@ class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableView
         self.tableView?.reloadData()
     }
     
-    override func viewDidLoad() 
+    override func viewDidLoad()
     {
         super.viewDidLoad()
         self.setupSubview()
@@ -118,7 +119,7 @@ class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableView
     }
     
     // MARK: - 初始化控件
-    func setupSubview() -> Void 
+    func setupSubview() -> Void
     {
         //cancelButton
         cancelButton = UIButton()
@@ -168,19 +169,19 @@ class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableView
     }
     
     // MARK: - 设置事件
-    func setupEvent() -> Void 
+    func setupEvent() -> Void
     {
         //cancel
         cancelButton?.rx.tap
             .subscribe(onNext: { [unowned self] in
-                self.dismiss(animated: true, completion: { 
+                self.dismiss(animated: true, completion: {
                     
                 })
             })
             .disposed(by: disposeBag)
     }
-
-    // MARK: - dataSource method 
+    
+    // MARK: - dataSource method
     func numberOfSections(in tableView: UITableView) -> Int
     {
         return sectionTitlesArray.count
@@ -204,30 +205,30 @@ class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableView
         return cell!
     }
     
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? 
+    func sectionIndexTitles(for tableView: UITableView) -> [String]?
     {
         return sectionTitlesArray
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? 
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         return sectionTitlesArray[section]
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? 
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
-        let searchSectionHeaderView = MTTSearchSectionHeaderView()
+        let searchSectionHeaderView = MTTPhoneAreaCodeSectionHeaderView()
         searchSectionHeaderView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 50)
         searchSectionHeaderView.titleLabel?.text = sectionTitlesArray[section]
         return searchSectionHeaderView
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
         return 50
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         tableView.deselectRow(at: indexPath, animated: false)
         
@@ -235,9 +236,9 @@ class MTTSearchViewController: MTTViewController,UITableViewDelegate,UITableView
         
         searchCompletion!(codeModel.areaName!,codeModel.areaCodeName!)
         
-        self.dismiss(animated: true) { 
+        self.dismiss(animated: true) {
             
         }
     }
-
+    
 }

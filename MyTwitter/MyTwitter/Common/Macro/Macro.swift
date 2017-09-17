@@ -52,3 +52,9 @@ func kMainWhiteColor() -> UIColor
 {
     return UIColor.white
 }
+
+// MARK: - 随机色
+func kMainRandomColor() -> UIColor
+{
+    return UIColor.init(red: CGFloat((arc4random() % 256) / 255), green: CGFloat((arc4random() % 256) / 255), blue: CGFloat((arc4random() % 256) / 255), alpha: 1.0)
+}

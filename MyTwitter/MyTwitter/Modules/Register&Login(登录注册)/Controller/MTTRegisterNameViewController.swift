@@ -23,6 +23,8 @@ class MTTRegisterNameViewController: MTTViewController {
     var nextButton:UIButton?
     var secondLine:UIView?
     var leftButton:UIButton?
+    var nameUserInfo:[String:String]?
+    
     
     override func viewWillAppear(_ animated: Bool) 
     {
@@ -261,6 +263,8 @@ class MTTRegisterNameViewController: MTTViewController {
         //nextButton
         nextButton?.rx.tap.subscribe(onNext:({[unowned self] in 
             
+            self.sharedInstance.user_name = (self.nameTextField?.text)!
+            
             let registerAccountVC = MTTRegisterAccountViewController()
             self.navigationController?.pushViewController(registerAccountVC, animated: true)
             
@@ -292,6 +296,11 @@ class MTTRegisterNameViewController: MTTViewController {
         UIView.animate(withDuration: 0.25) { 
             self.contentView?.frame = CGRect(x: (self.contentView?.frame.origin.x)!, y: (self.contentView?.frame.origin.y)! + deltaY, width: (self.contentView?.frame.origin.x)!, height: (self.contentView?.frame.size.height)!)
         }
+        
+    }
+    
+    override func addKeyValue() 
+    {
         
     }
     

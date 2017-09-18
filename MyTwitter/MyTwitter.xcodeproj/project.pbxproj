@@ -23,6 +23,7 @@
 		1AFC05AA1F5EE3B2006EAC9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A41F5EE3B2006EAC9F /* Main.storyboard */; };
 		1AFC05AB1F5EE3B2006EAC9F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A61F5EE3B2006EAC9F /* Info.plist */; };
 		44E9E8C13750B588F23552C8 /* Pods_MyTwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */; };
+		CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */; };
 		CAC990651F690E67002255FA /* MTTRegisterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */; };
 		CAC990A71F6BB62F002255FA /* MTTConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC990A61F6BB62F002255FA /* MTTConst.swift */; };
 		CADECBAD1F5E4E3A0027E15F /* MyTwitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBAC1F5E4E3A0027E15F /* MyTwitterTests.swift */; };
@@ -83,6 +84,7 @@
 		BBD28B095E0F89AA1960F0FC /* Pods-MyTwitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterTests/Pods-MyTwitterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BDE3DAC010179F784B5E286A /* Pods-MyTwitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterUITests/Pods-MyTwitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C8B46619503CC4D8F2F2F494 /* Pods_MyTwitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSingletonManager.swift; sourceTree = "<group>"; };
 		CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterPasswordViewController.swift; sourceTree = "<group>"; };
 		CAC990A61F6BB62F002255FA /* MTTConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTConst.swift; sourceTree = "<group>"; };
 		CADECB941F5E4E3A0027E15F /* MyTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -355,6 +357,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CAB5EF0D1F6F6F3B0003049B /* Singleton(单例) */ = {
+			isa = PBXGroup;
+			children = (
+				CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */,
+			);
+			name = "Singleton(单例)";
+			path = Singleton;
+			sourceTree = "<group>";
+		};
 		CAC990A51F6BB604002255FA /* Const */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +428,7 @@
 		CADECBC61F5E4EA30027E15F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CAB5EF0D1F6F6F3B0003049B /* Singleton(单例) */,
 				CAC990A51F6BB604002255FA /* Const */,
 				1AFE6FDB1F6376F000006381 /* Tools */,
 				1AFC059B1F5ECF90006EAC9F /* Service */,
@@ -859,6 +871,7 @@
 				CAC990651F690E67002255FA /* MTTRegisterPasswordViewController.swift in Sources */,
 				1A304C521F6D6B5700F366B9 /* MTTNotificationViewController.swift in Sources */,
 				1A304C541F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift in Sources */,
+				CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */,
 				1AFC059A1F5ECF6F006EAC9F /* MTTExtension.swift in Sources */,
 				CADECBCF1F5E4FFD0027E15F /* MTTTabBarController.swift in Sources */,
 				1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */,

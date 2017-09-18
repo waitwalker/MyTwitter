@@ -41,6 +41,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
     var nextButton:UIButton?
     var secondLine:UIView?
     
+    var accountUserInfo:[String:String]?
     
     
     override func viewDidLoad() 
@@ -558,6 +559,8 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
                 self.showAlertController(message: (self.phoneTextField?.text)!)
             }
             
+            self.sharedInstance.email = (self.emailTextField?.text)!
+            
             let registerPasswordVC = MTTRegisterPasswordViewController()
             self.navigationController?.pushViewController(registerPasswordVC, animated: true)
             
@@ -596,6 +599,11 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
         context?.fill(rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         return image!
+    }
+    
+    override func addKeyValue() 
+    {
+        self.userInfo = ["email":(self.emailTextField?.text)!]
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) 

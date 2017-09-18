@@ -26,6 +26,8 @@ class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModel
     var nextButton:UIButton?
     var secondLine:UIView?
     
+    var passwordUserInfo:[String:String]?
+    
     override func viewDidLoad() 
     {
         super.viewDidLoad()
@@ -256,9 +258,22 @@ class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModel
         }).addDisposableTo(disposeBag)
         
         nextButton?.rx.tap.subscribe(onNext:{[unowned self] in
-        
-            let para = ["name":self.passwordLabel?.text]
             
+            let registerView = UIView()
+            registerView.tag = 918
+            registerView.frame = CGRect(x: 100, y: 200, width: 200, height: 200)
+            registerView.backgroundColor = kMainBlueColor()
+            let appDelegate = UIApplication.shared.delegate! as UIApplicationDelegate
+            appDelegate.window??.addSubview(registerView)
+            
+            self.sharedInstance.password = (self.passwordTextField?.text)!
+        
+            let para = ["user_name":self.sharedInstance.user_name,
+                 "email":self.sharedInstance.email,
+                 "password":self.sharedInstance.password
+                ]
+            
+            print("参数:",para)
             let viewModel = MTTRegitserViewModel()
             
             viewModel.delegate = self
@@ -268,14 +283,38 @@ class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModel
         }).addDisposableTo(disposeBag)
     }
     
+    override func addKeyValue() 
+    {
+        self.userInfo = ["password":(self.passwordTextField?.text)!]
+        
+        print(self.userInfo as Any)
+    }
+    
+    // MARK: - 注册成功的回调
     func successCallBack(data: NSDictionary)
     {
         print(data)
+        
+        let tabBarVC = MTTTabBarController()
+        let appDelegate = UIApplication.shared.delegate! as UIApplicationDelegate
+        appDelegate.window??.rootViewController = tabBarVC
+        appDelegate.window??.makeKeyAndVisible()
+        
     }
     
+    // MARK: - 注册失败的回调
     func failureCallBack(error: NSError)
     {
         print(error)
+        
+        let tabBarVC = MTTTabBarController()
+        let appDelegate = UIApplication.shared.delegate! as UIApplicationDelegate
+        appDelegate.window??.rootViewController = tabBarVC
+        appDelegate.window??.makeKeyAndVisible()
+        
+        let registerView = appDelegate.window??.viewWithTag(918)
+        registerView?.removeFromSuperview()
+        
     }
     
 }

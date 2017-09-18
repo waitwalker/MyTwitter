@@ -312,8 +312,15 @@ class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModel
         appDelegate.window??.rootViewController = tabBarVC
         appDelegate.window??.makeKeyAndVisible()
         
+        //移除的时候添加动画
         let registerView = appDelegate.window??.viewWithTag(918)
-        registerView?.removeFromSuperview()
+        
+        UIView.animate(withDuration: 0.5, animations: { 
+            registerView?.alpha = 0
+        }) { (completed) in
+            
+            registerView?.removeFromSuperview()
+        }
         
     }
     

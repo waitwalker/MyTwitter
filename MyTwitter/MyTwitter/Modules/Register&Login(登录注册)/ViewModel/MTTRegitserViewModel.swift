@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import Alamofire
+import SwiftyJSON
 
 
 class MTTRegitserViewModel: NSObject
@@ -23,8 +24,11 @@ class MTTRegitserViewModel: NSObject
         
         MTTNetworkManager.requestHandler(methods: kMethodType.POST, urlString: urlString, parameters: parameters, successCallBack: { (responseObject) in
             
-            self.delegate?.successCallBack(data: responseObject as! NSDictionary)
-            print("返回的结果",responseObject)
+            let json = JSON(responseObject)
+            
+            print("json:",json)
+            
+            self.delegate?.successCallBack(data: json)
             
         }) { (error) in
             self.delegate?.failureCallBack(error: error)

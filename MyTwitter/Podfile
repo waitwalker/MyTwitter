@@ -12,6 +12,7 @@ target 'MyTwitter' do
   pod 'RxSwift', '~> 3.5.0'
   pod 'RxCocoa', '~> 3.5.0'
   pod 'IQKeyboardManagerSwift', '~> 4.0.10'
+  pod 'SwiftyJSON', '~> 3.1.4'
 
 
   target 'MyTwitterTests' do

@@ -15,7 +15,7 @@ class MTTLoginViewController: MTTViewController {
     var rightButton:UIButton?
     var loginLabel:UILabel?
     var accountTextField:UITextField?
-    var deleteAllButton:UIButton?
+    var clearAllButton:UIButton?
     
     
     var firstLineView:UIView?
@@ -97,10 +97,10 @@ class MTTLoginViewController: MTTViewController {
         accountTextField?.font = UIFont.systemFont(ofSize: 18)
         self.view.addSubview(accountTextField!)
         
-        //deleteAllButton
-        deleteAllButton = UIButton()
-        deleteAllButton?.setImage(UIImage.init(named: "delete_all"), for: UIControlState.normal)
-        self.view.addSubview(deleteAllButton!)
+        //clearAllButton
+        clearAllButton = UIButton()
+        clearAllButton?.setImage(UIImage.init(named: "delete_all"), for: UIControlState.normal)
+        self.view.addSubview(clearAllButton!)
         
         //firstLineView
         firstLineView = UIView()
@@ -197,8 +197,8 @@ class MTTLoginViewController: MTTViewController {
             make.height.equalTo(40)
         })
         
-        //deleteAllButton
-        deleteAllButton?.snp.makeConstraints({ (make) in
+        //clearAllButton
+        clearAllButton?.snp.makeConstraints({ (make) in
             make.width.height.equalTo(15)
             make.centerY.equalTo(self.accountTextField!)
             make.right.equalTo(self.view.snp.right).offset(-20)
@@ -270,7 +270,10 @@ class MTTLoginViewController: MTTViewController {
     
     func setupEvent() -> Void
     {
-        
+        //clearAllButton
+        clearAllButton?.rx.tap.subscribe(onNext:{
+            self.accountTextField?.text = ""
+        }).addDisposableTo(disposeBag)
     }
 
     override func didReceiveMemoryWarning() {

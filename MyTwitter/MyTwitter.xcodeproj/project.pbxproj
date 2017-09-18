@@ -15,6 +15,7 @@
 		1A304C521F6D6B5700F366B9 /* MTTNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C511F6D6B5700F366B9 /* MTTNotificationViewController.swift */; };
 		1A304C541F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C531F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift */; };
 		1A304C561F6D6B7400F366B9 /* MTTSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C551F6D6B7400F366B9 /* MTTSearchViewController.swift */; };
+		1A561D7A1F6FF58F001C82FA /* MTTLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A561D791F6FF58F001C82FA /* MTTLoginViewController.swift */; };
 		1AFC059A1F5ECF6F006EAC9F /* MTTExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC05991F5ECF6F006EAC9F /* MTTExtension.swift */; };
 		1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC059C1F5ED2B7006EAC9F /* Service.swift */; };
 		1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */; };
@@ -70,6 +71,7 @@
 		1A304C511F6D6B5700F366B9 /* MTTNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTNotificationViewController.swift; sourceTree = "<group>"; };
 		1A304C531F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTPrivateMessageViewController.swift; sourceTree = "<group>"; };
 		1A304C551F6D6B7400F366B9 /* MTTSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSearchViewController.swift; sourceTree = "<group>"; };
+		1A561D791F6FF58F001C82FA /* MTTLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTLoginViewController.swift; sourceTree = "<group>"; };
 		1AFC05991F5ECF6F006EAC9F /* MTTExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTExtension.swift; path = MyTwitter/Common/Macro/MTTExtension.swift; sourceTree = SOURCE_ROOT; };
 		1AFC059C1F5ED2B7006EAC9F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 				CADECBF71F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift */,
 				CADECBFB1F5FC9280027E15F /* MTTRegisterNameViewController.swift */,
 				CADECBF91F5FC9030027E15F /* MTTRegisterStartViewController.swift */,
+				1A561D791F6FF58F001C82FA /* MTTLoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -883,6 +886,7 @@
 				CADECBF81F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift in Sources */,
 				CAC990A71F6BB62F002255FA /* MTTConst.swift in Sources */,
 				1A304C561F6D6B7400F366B9 /* MTTSearchViewController.swift in Sources */,
+				1A561D7A1F6FF58F001C82FA /* MTTLoginViewController.swift in Sources */,
 				1A304C501F6D6B4800F366B9 /* MTTHomeViewController.swift in Sources */,
 				CADECBD11F5E500D0027E15F /* MTTViewController.swift in Sources */,
 				CADECBFC1F5FC9280027E15F /* MTTRegisterNameViewController.swift in Sources */,

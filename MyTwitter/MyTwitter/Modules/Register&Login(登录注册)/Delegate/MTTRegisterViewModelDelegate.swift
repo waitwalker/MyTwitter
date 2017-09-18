@@ -12,7 +12,7 @@ import SwiftyJSON
 protocol MTTRegitserViewModelDelegate
 {
     //请求成功的回调
-    func successCallBack(data:JSON) -> Void
+    func successCallBack(data:NSDictionary) -> Void
     
     //请求失败的回调
     func failureCallBack(error:NSError) -> Void

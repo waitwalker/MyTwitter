@@ -28,7 +28,7 @@ class MTTRegitserViewModel: NSObject
             
             print("json:",json)
             
-            self.delegate?.successCallBack(data: json)
+            self.delegate?.successCallBack(data: responseObject as! NSDictionary)
             
         }) { (error) in
             self.delegate?.failureCallBack(error: error)

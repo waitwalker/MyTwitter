@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MTTLoginViewController: MTTViewController {
     
@@ -125,6 +127,7 @@ class MTTLoginViewController: MTTViewController {
         showOrHiddenButton = UIButton()
         showOrHiddenButton?.setTitle("显示密码", for: UIControlState.normal)
         showOrHiddenButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
+        showOrHiddenButton?.isHidden = true
         showOrHiddenButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         self.view.addSubview(showOrHiddenButton!)
         
@@ -270,10 +273,47 @@ class MTTLoginViewController: MTTViewController {
     
     func setupEvent() -> Void
     {
+    
+        //accountTextField
+        let accountTextFieldObserable = accountTextField?.rx.text.map({($0?.characters.count)! > 0})
+        
+        accountTextFieldObserable?.subscribe(onNext:{valid in
+            
+            self.clearAllButton?.isHidden = valid ? false : true
+            
+        }).addDisposableTo(disposeBag)
+        
+        //passwordTextField
+        let passwordTextFieldObserable = passwordTextField?.rx.text.map({($0?.characters.count)! > 0})
+        passwordTextFieldObserable?.subscribe(onNext:{valid in
+            self.showOrHiddenButton?.isHidden = valid ? false : true
+        }).addDisposableTo(disposeBag)
+        
+        //showOrHiddenButton
+        showOrHiddenButton?.rx.tap.subscribe(onNext:{ 
+            self.showOrHiddenButton?.isSelected = !(self.showOrHiddenButton?.isSelected)!
+            
+            if (self.showOrHiddenButton?.isSelected)!
+            {
+                self.showOrHiddenButton?.setTitle("显示密码", for: UIControlState.normal)
+                self.passwordTextField?.isSecureTextEntry = true
+            } else
+            {
+                self.showOrHiddenButton?.setTitle("隐藏密码", for: UIControlState.normal)
+                self.passwordTextField?.isSecureTextEntry = false
+            }
+            
+        }).addDisposableTo(disposeBag)
+        
+        
         //clearAllButton
         clearAllButton?.rx.tap.subscribe(onNext:{
             self.accountTextField?.text = ""
         }).addDisposableTo(disposeBag)
+        
+        //loginButton
+//        Observable.combineLatest(accountTextFieldObserable, passwordTextFieldObserable) { $0 && $1 }
+//            .shareReplay(1)
     }
 
     override func didReceiveMemoryWarning() {

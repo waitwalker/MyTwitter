@@ -2,7 +2,7 @@
 //  MTTExtension.swift
 //  MyTwitter
 //
-//  Created by WangJunZi on 2017/9/5.
+//  Created by WangJunZi on 2017/9/20.
 //  Copyright © 2017年 waitWalker. All rights reserved.
 //
 
@@ -65,7 +65,7 @@ extension UITextView
             mutableAttrStr.addAttribute(NSForegroundColorAttributeName, value: changedStringColor, range: range)
             mutableAttrStr.addAttribute(NSUnderlineStyleAttributeName, value: stringStyle, range: range)
             
-        }        
+        }
         mutableAttrStr.endEditing()
         return mutableAttrStr
     }
@@ -279,4 +279,5 @@ extension UIView
         }
     }
 }
+
 

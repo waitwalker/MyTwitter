@@ -35,11 +35,6 @@ class ValidationService
             return Observable.just(Result.failed(messsage: "你的全名不能多于20个字符"))
         }
         
-//        if self.accountValid(account: account)
-//        {
-//            
-//        }
-        
         
         return .just(.ok(message:""))
     }

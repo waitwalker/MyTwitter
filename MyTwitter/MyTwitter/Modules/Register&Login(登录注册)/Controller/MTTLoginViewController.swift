@@ -43,6 +43,8 @@ class MTTLoginViewController: MTTViewController {
         self.layoutSubview()
         self.setupEvent()
         NotificationCenter.default.addObserver(self, selector: #selector(handlerKeyBoardFrame(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        
+        print(kScreenWidth,kScreenHeight)
     }
     
     // MARK: - 键盘通知回调
@@ -302,6 +304,17 @@ class MTTLoginViewController: MTTViewController {
                 self.showOrHiddenButton?.setTitle("隐藏密码", for: UIControlState.normal)
                 self.passwordTextField?.isSecureTextEntry = false
             }
+            
+        }).addDisposableTo(disposeBag)
+        
+        //rightButton
+        rightButton?.rx.tap.subscribe(onNext:{
+            
+            let aboutVC = MTTAboutTwitterViewController()
+            let nav = MTTNavigationController.init(rootViewController: aboutVC)
+            self.present(nav, animated: true, completion: {
+                
+            })
             
         }).addDisposableTo(disposeBag)
         

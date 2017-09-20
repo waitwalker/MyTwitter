@@ -58,7 +58,6 @@ class MTTRegisterStartViewController: MTTViewController {
         startButton?.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
         startButton?.setTitleColor(kRGBColor(r: 102, g: 102, b: 153), for: UIControlState.highlighted)
         startButton?.backgroundColor = kMainBlueColor()
-        //        startButton?.addTarget(self, action: #selector(startButtonAction(startButton:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(startButton!)
         
         //haveAccount
@@ -75,21 +74,8 @@ class MTTRegisterStartViewController: MTTViewController {
         loginButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
         loginButton?.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
         loginButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        //        loginButton?.addTarget(self, action: #selector(loginButtonAction(loginButton:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(loginButton!)
         
-        
-    }
-    
-    // MARK: - startButton Action
-    @objc func startButtonAction(startButton:UIButton) -> Void
-    {
-        
-    }
-    
-    // MARK: - loginButtion Action
-    @objc func loginButtonAction(loginButton:UIButton) -> Void
-    {
         
     }
     

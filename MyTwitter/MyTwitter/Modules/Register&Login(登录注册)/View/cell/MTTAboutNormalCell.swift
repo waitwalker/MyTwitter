@@ -16,6 +16,13 @@ class MTTAboutNormalCell: MTTTableViewCell {
     var arrowImageView:UIImageView?
     
     
+    var aboutModel:MTTAboutModel?
+    {
+        didSet
+        {
+            titleLable?.text = aboutModel?.title
+        }
+    }
     
     
     override func awakeFromNib()
@@ -45,14 +52,14 @@ class MTTAboutNormalCell: MTTTableViewCell {
         
         //titleLable
         titleLable = UILabel()
-        titleLable?.font = UIFont.boldSystemFont(ofSize: 18)
+        titleLable?.font = UIFont.boldSystemFont(ofSize: 15)
         titleLable?.textColor = UIColor.black
         titleLable?.textAlignment = NSTextAlignment.left
         self.contentView.addSubview(titleLable!)
         
         //versionLabel
         versionLabel = UILabel()
-        versionLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        versionLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         versionLabel?.textColor = kMainGrayColor()
         versionLabel?.text = "7.6"
         versionLabel?.textAlignment = NSTextAlignment.right
@@ -71,7 +78,7 @@ class MTTAboutNormalCell: MTTTableViewCell {
         lineView?.snp.makeConstraints({ (make) in
             make.left.equalTo(20)
             make.top.equalTo(0)
-            make.height.equalTo(0.3)
+            make.height.equalTo(0.2)
             make.right.equalTo(self.contentView).offset(0)
         })
         

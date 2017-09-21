@@ -1,0 +1,48 @@
+{
+    "result": "1",
+    "status_code":"200",
+    "data": [
+             {
+             "title":"版本",
+             "urlString":"http://www.baidu.com",
+             "type":"0",
+             "subType":"0"
+             },
+             {
+             "title":"发送崩溃报告",
+             "urlString":"http://www.baidu.com",
+             "type":"1",
+             "subType":"0"
+             },
+             {
+             "title":"帮助中心",
+             "urlString":"http://www.baidu.com",
+             "type":"1",
+             "subType":"1"
+             },
+             {
+             "title":"服务条款",
+             "urlString":"http://www.baidu.com",
+             "type":"2",
+             "subType":"0"
+             },
+             {
+             "title":"隐私政策",
+             "urlString":"http://www.baidu.com",
+             "type":"2",
+             "subType":"1"
+             },
+             {
+             "title":"Cookie 使用政策",
+             "urlString":"http://www.baidu.com",
+             "type":"2",
+             "subType":"2"
+             },
+             {
+             "title":"法律声明",
+             "urlString":"http://www.baidu.com",
+             "type":"2",
+             "subType":"3"
+             }
+    ]
+}

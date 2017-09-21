@@ -135,5 +135,15 @@ class MTTRegisterStartViewController: MTTViewController {
                 })
             })
             .disposed(by: disposeBag)
+        
+        //loginButton
+        loginButton?.rx.tap.subscribe(onNext:{ [unowned self] in
+            
+            let loginVC = MTTLoginViewController()
+            self.present(loginVC, animated: true, completion: {
+                
+            })
+            
+        }).addDisposableTo(disposeBag)
     } 
 }

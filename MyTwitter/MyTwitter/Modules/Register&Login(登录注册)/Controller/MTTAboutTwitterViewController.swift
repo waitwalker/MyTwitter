@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MTTAboutTwitterViewController: MTTViewController,UITableViewDelegate,UITableViewDataSource {
+class MTTAboutTwitterViewController: MTTViewController,UITableViewDelegate,UITableViewDataSource,MTTAboutSendErrorDelegate {
     
     let reusedAbortNormalCellId = "reusedAbortNormalCellId"
     let reusedAbortSwitchCellId = "reusedAbortSwitchCellId"
@@ -129,6 +129,7 @@ class MTTAboutTwitterViewController: MTTViewController,UITableViewDelegate,UITab
                     switchCell = MTTAboutSwitchCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedAbortSwitchCellId)
                 }
                 switchCell?.aboutModel = self.dataSource[indexPath.section][indexPath.item]
+                switchCell?.delegate = self
                 return switchCell!
                 
             } else
@@ -235,6 +236,11 @@ class MTTAboutTwitterViewController: MTTViewController,UITableViewDelegate,UITab
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    // MARK: - 发送崩溃报告开关
+    func sendErrorSwitchValueChange(errorSwitch: UISwitch)
+    {
+        print(errorSwitch.isOn)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

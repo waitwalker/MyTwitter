@@ -324,6 +324,13 @@ class MTTLoginViewController: MTTViewController {
             self.accountTextField?.text = ""
         }).addDisposableTo(disposeBag)
         
+        //cancelButton
+        (cancelButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
+            self.dismiss(animated: true, completion: {
+                
+            })
+        }).addDisposableTo(disposeBag)
+        
         //loginButton
 //        Observable.combineLatest(accountTextFieldObserable, passwordTextFieldObserable) { $0 && $1 }
 //            .shareReplay(1)

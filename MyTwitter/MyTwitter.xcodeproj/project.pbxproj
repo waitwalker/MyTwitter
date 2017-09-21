@@ -33,6 +33,7 @@
 		CA36DE2C1F7368090077B44F /* MTTAboutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE2B1F7368090077B44F /* MTTAboutModel.swift */; };
 		CA36DE2E1F736C9F0077B44F /* AboutTwitterData.json in Resources */ = {isa = PBXBuildFile; fileRef = CA36DE2D1F736C9F0077B44F /* AboutTwitterData.json */; };
 		CA36DE321F7391830077B44F /* MTTAboutHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE311F7391830077B44F /* MTTAboutHeaderView.swift */; };
+		CA36DE341F7396D10077B44F /* MTTAboutFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE331F7396D10077B44F /* MTTAboutFooterView.swift */; };
 		CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */; };
 		CAC990651F690E67002255FA /* MTTRegisterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */; };
 		CAC990A71F6BB62F002255FA /* MTTConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC990A61F6BB62F002255FA /* MTTConst.swift */; };
@@ -104,6 +105,7 @@
 		CA36DE2B1F7368090077B44F /* MTTAboutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutModel.swift; sourceTree = "<group>"; };
 		CA36DE2D1F736C9F0077B44F /* AboutTwitterData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AboutTwitterData.json; sourceTree = "<group>"; };
 		CA36DE311F7391830077B44F /* MTTAboutHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutHeaderView.swift; sourceTree = "<group>"; };
+		CA36DE331F7396D10077B44F /* MTTAboutFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutFooterView.swift; sourceTree = "<group>"; };
 		CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSingletonManager.swift; sourceTree = "<group>"; };
 		CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterPasswordViewController.swift; sourceTree = "<group>"; };
 		CAC990A61F6BB62F002255FA /* MTTConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTConst.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				CA36DE311F7391830077B44F /* MTTAboutHeaderView.swift */,
+				CA36DE331F7396D10077B44F /* MTTAboutFooterView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -960,6 +963,7 @@
 				1A8F5BD21F729EB1006D6CA0 /* MTTAboutTwitterViewController.swift in Sources */,
 				1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */,
 				1A8F5BD51F72A915006D6CA0 /* MTTTableViewCell.swift in Sources */,
+				CA36DE341F7396D10077B44F /* MTTAboutFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -182,6 +182,17 @@ class MTTAboutTwitterViewController: MTTViewController,UITableViewDelegate,UITab
         }
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? 
+    {
+        switch section {
+        case 2:
+            let footerView = MTTAboutFooterView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: 40))
+            return footerView
+        default:
+            return UIView()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat 
     {
         switch indexPath.section 
@@ -206,6 +217,16 @@ class MTTAboutTwitterViewController: MTTViewController,UITableViewDelegate,UITab
             return 0
         default:
             return 60
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat 
+    {
+        switch section {
+        case 2:
+            return 40
+        default:
+            return 0
         }
     }
     

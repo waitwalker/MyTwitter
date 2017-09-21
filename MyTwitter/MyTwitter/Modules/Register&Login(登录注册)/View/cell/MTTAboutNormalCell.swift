@@ -100,7 +100,7 @@ class MTTAboutNormalCell: MTTTableViewCell {
         
         //arrowImageView
         arrowImageView?.snp.makeConstraints({ (make) in
-            make.right.equalTo(self.contentView.snp.right).offset(-20)
+            make.right.equalTo(self.contentView.snp.right).offset(-15)
             make.height.width.equalTo(15)
             make.centerY.equalTo(self.titleLable!)
         })

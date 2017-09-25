@@ -8,28 +8,81 @@
 
 import UIKit
 
-class MTTHomeViewController: MTTViewController {
-
-    override func viewDidLoad() {
+class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableViewDelegate
+{
+    let reusedHomeCellId = "reusedHomeCellId"
+    
+    var homeTableView:UITableView?
+    
+    
+    override func viewDidLoad() 
+    {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.setupSubview()
+        
+        self.layoutSubview()
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    private func setupSubview() -> Void 
+    {
+        homeTableView = UITableView()
+        homeTableView?.delegate = self
+        homeTableView?.dataSource = self
+        homeTableView?.register(MTTHomeCell.self, forCellReuseIdentifier: reusedHomeCellId)
+        homeTableView?.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.view.addSubview(homeTableView!)
+    }
+    
+    private func layoutSubview() -> Void 
+    {
+        homeTableView?.snp.makeConstraints({ (make) in
+            make.left.right.top.bottom.equalTo(self.view)
+        })
+    }
+    
+    // MARK: - tableView dataSource 数据源回调
+    func numberOfSections(in tableView: UITableView) -> Int 
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int 
+    {
+        return 200
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell 
+    {
+        var homeCell = tableView.dequeueReusableCell(withIdentifier: reusedHomeCellId, for: indexPath) as? MTTHomeCell
+        if homeCell == nil 
+        {
+            homeCell = MTTHomeCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedHomeCellId)
+        }
+        return homeCell!
+        
+    }
+    
+    // MARK: - tableView delegate 代理回调
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat 
+    {
+        return 255
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) 
+    {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func didReceiveMemoryWarning() 
+    {
+        super.didReceiveMemoryWarning()
     }
-    */
+    
+
+    
 
 }

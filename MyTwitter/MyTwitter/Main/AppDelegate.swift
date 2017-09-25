@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = registerLoginVC
         self.window?.makeKeyAndVisible()
         
+        let _ = MTTFPSDisplay.shareInstance
+        
         return true
     }
 

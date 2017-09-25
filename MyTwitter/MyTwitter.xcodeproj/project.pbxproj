@@ -27,6 +27,10 @@
 		1AFC05AA1F5EE3B2006EAC9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A41F5EE3B2006EAC9F /* Main.storyboard */; };
 		1AFC05AB1F5EE3B2006EAC9F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A61F5EE3B2006EAC9F /* Info.plist */; };
 		44E9E8C13750B588F23552C8 /* Pods_MyTwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */; };
+		CA3058C21F78B6B300742237 /* MTTFPSDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3058C11F78B6B300742237 /* MTTFPSDisplay.swift */; };
+		CA3058C41F78CAE500742237 /* MTTHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3058C31F78CAE500742237 /* MTTHomeViewModel.swift */; };
+		CA3058C61F78CAF100742237 /* MTTHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3058C51F78CAF100742237 /* MTTHomeModel.swift */; };
+		CA3058C91F78D2AA00742237 /* MTTHeaderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3058C81F78D2AA00742237 /* MTTHeaderHelper.swift */; };
 		CA36DE261F73612D0077B44F /* MTTAboutSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE251F73612D0077B44F /* MTTAboutSwitchCell.swift */; };
 		CA36DE281F73631B0077B44F /* MTTAboutSendErrorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE271F73631B0077B44F /* MTTAboutSendErrorDelegate.swift */; };
 		CA36DE2A1F7367E20077B44F /* MTTAboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE291F7367E20077B44F /* MTTAboutViewModel.swift */; };
@@ -100,6 +104,10 @@
 		BBD28B095E0F89AA1960F0FC /* Pods-MyTwitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterTests/Pods-MyTwitterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BDE3DAC010179F784B5E286A /* Pods-MyTwitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterUITests/Pods-MyTwitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C8B46619503CC4D8F2F2F494 /* Pods_MyTwitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA3058C11F78B6B300742237 /* MTTFPSDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTFPSDisplay.swift; sourceTree = "<group>"; };
+		CA3058C31F78CAE500742237 /* MTTHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeViewModel.swift; sourceTree = "<group>"; };
+		CA3058C51F78CAF100742237 /* MTTHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeModel.swift; sourceTree = "<group>"; };
+		CA3058C81F78D2AA00742237 /* MTTHeaderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHeaderHelper.swift; sourceTree = "<group>"; };
 		CA36DE251F73612D0077B44F /* MTTAboutSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutSwitchCell.swift; sourceTree = "<group>"; };
 		CA36DE271F73631B0077B44F /* MTTAboutSendErrorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutSendErrorDelegate.swift; sourceTree = "<group>"; };
 		CA36DE291F7367E20077B44F /* MTTAboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutViewModel.swift; sourceTree = "<group>"; };
@@ -174,6 +182,7 @@
 		1A304C3B1F6D6B2400F366B9 /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				CA3058C71F78D29300742237 /* HeaderHelper */,
 				CAE3F0DF1F7494CA00788455 /* ViewModel */,
 				CAE3F0DE1F7494AD00788455 /* Model */,
 				CAE3F0DD1F74948D00788455 /* View */,
@@ -343,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				1A0C10F31F66C44C00B6AD18 /* MTTRegularMatchManager.swift */,
+				CA3058C11F78B6B300742237 /* MTTFPSDisplay.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -368,6 +378,14 @@
 				98509265A2B073ADF5AA88F8 /* Pods-MyTwitterUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		CA3058C71F78D29300742237 /* HeaderHelper */ = {
+			isa = PBXGroup;
+			children = (
+				CA3058C81F78D2AA00742237 /* MTTHeaderHelper.swift */,
+			);
+			path = HeaderHelper;
 			sourceTree = "<group>";
 		};
 		CA36DE301F73914E0077B44F /* view */ = {
@@ -619,6 +637,7 @@
 		CAE3F0DE1F7494AD00788455 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA3058C51F78CAF100742237 /* MTTHomeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -626,6 +645,7 @@
 		CAE3F0DF1F7494CA00788455 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CA3058C31F78CAE500742237 /* MTTHomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -940,12 +960,14 @@
 				CA36DE321F7391830077B44F /* MTTAboutHeaderView.swift in Sources */,
 				1A8F5BD01F729A27006D6CA0 /* MTTExtension.swift in Sources */,
 				CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */,
+				CA3058C41F78CAE500742237 /* MTTHomeViewModel.swift in Sources */,
 				CAC990651F690E67002255FA /* MTTRegisterPasswordViewController.swift in Sources */,
 				1A304C521F6D6B5700F366B9 /* MTTNotificationViewController.swift in Sources */,
 				1A304C541F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift in Sources */,
 				CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */,
 				CADECBCF1F5E4FFD0027E15F /* MTTTabBarController.swift in Sources */,
 				1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */,
+				CA3058C61F78CAF100742237 /* MTTHomeModel.swift in Sources */,
 				CADECBE11F5E821B0027E15F /* MTTNetworkManager.swift in Sources */,
 				1A304C121F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift in Sources */,
 				CADECBF61F5F83450027E15F /* MTTRegitserViewModel.swift in Sources */,
@@ -955,6 +977,7 @@
 				CA36DE281F73631B0077B44F /* MTTAboutSendErrorDelegate.swift in Sources */,
 				CADECBF81F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift in Sources */,
 				CAC990A71F6BB62F002255FA /* MTTConst.swift in Sources */,
+				CA3058C21F78B6B300742237 /* MTTFPSDisplay.swift in Sources */,
 				1A304C561F6D6B7400F366B9 /* MTTSearchViewController.swift in Sources */,
 				1A561D7A1F6FF58F001C82FA /* MTTLoginViewController.swift in Sources */,
 				1A304C501F6D6B4800F366B9 /* MTTHomeViewController.swift in Sources */,
@@ -965,6 +988,7 @@
 				1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */,
 				1A8F5BD21F729EB1006D6CA0 /* MTTAboutTwitterViewController.swift in Sources */,
 				1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */,
+				CA3058C91F78D2AA00742237 /* MTTHeaderHelper.swift in Sources */,
 				1A8F5BD51F72A915006D6CA0 /* MTTTableViewCell.swift in Sources */,
 				CAE3F0E31F7498B700788455 /* MTTHomeCell.swift in Sources */,
 				CA36DE341F7396D10077B44F /* MTTAboutFooterView.swift in Sources */,

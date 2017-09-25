@@ -31,6 +31,7 @@
 		CA3058C41F78CAE500742237 /* MTTHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3058C31F78CAE500742237 /* MTTHomeViewModel.swift */; };
 		CA3058C61F78CAF100742237 /* MTTHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3058C51F78CAF100742237 /* MTTHomeModel.swift */; };
 		CA3058C91F78D2AA00742237 /* MTTHeaderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3058C81F78D2AA00742237 /* MTTHeaderHelper.swift */; };
+		CA3058CD1F78FE2500742237 /* MTTHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3058CC1F78FE2500742237 /* MTTHeader.swift */; };
 		CA36DE261F73612D0077B44F /* MTTAboutSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE251F73612D0077B44F /* MTTAboutSwitchCell.swift */; };
 		CA36DE281F73631B0077B44F /* MTTAboutSendErrorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE271F73631B0077B44F /* MTTAboutSendErrorDelegate.swift */; };
 		CA36DE2A1F7367E20077B44F /* MTTAboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE291F7367E20077B44F /* MTTAboutViewModel.swift */; };
@@ -108,6 +109,7 @@
 		CA3058C31F78CAE500742237 /* MTTHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeViewModel.swift; sourceTree = "<group>"; };
 		CA3058C51F78CAF100742237 /* MTTHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeModel.swift; sourceTree = "<group>"; };
 		CA3058C81F78D2AA00742237 /* MTTHeaderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHeaderHelper.swift; sourceTree = "<group>"; };
+		CA3058CC1F78FE2500742237 /* MTTHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHeader.swift; sourceTree = "<group>"; };
 		CA36DE251F73612D0077B44F /* MTTAboutSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutSwitchCell.swift; sourceTree = "<group>"; };
 		CA36DE271F73631B0077B44F /* MTTAboutSendErrorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutSendErrorDelegate.swift; sourceTree = "<group>"; };
 		CA36DE291F7367E20077B44F /* MTTAboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutViewModel.swift; sourceTree = "<group>"; };
@@ -388,6 +390,14 @@
 			path = HeaderHelper;
 			sourceTree = "<group>";
 		};
+		CA3058CB1F78FE0000742237 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				CA3058CC1F78FE2500742237 /* MTTHeader.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 		CA36DE301F73914E0077B44F /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,6 +478,7 @@
 		CADECBC61F5E4EA30027E15F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CA3058CB1F78FE0000742237 /* Header */,
 				CAB5EF0D1F6F6F3B0003049B /* Singleton(单例) */,
 				CAC990A51F6BB604002255FA /* Const */,
 				1AFE6FDB1F6376F000006381 /* Tools */,
@@ -977,6 +988,7 @@
 				CA36DE281F73631B0077B44F /* MTTAboutSendErrorDelegate.swift in Sources */,
 				CADECBF81F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift in Sources */,
 				CAC990A71F6BB62F002255FA /* MTTConst.swift in Sources */,
+				CA3058CD1F78FE2500742237 /* MTTHeader.swift in Sources */,
 				CA3058C21F78B6B300742237 /* MTTFPSDisplay.swift in Sources */,
 				1A304C561F6D6B7400F366B9 /* MTTSearchViewController.swift in Sources */,
 				1A561D7A1F6FF58F001C82FA /* MTTLoginViewController.swift in Sources */,

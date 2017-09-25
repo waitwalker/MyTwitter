@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "retweet.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "twitter_private_message@2x.png",
       "scale" : "2x"
     },
     {

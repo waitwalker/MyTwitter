@@ -21,7 +21,7 @@ class MTTTabBarController: UITabBarController {
     {
         
         childViewController.tabBarItem.title = tabBarTitle
-        childViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
+        childViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 2, -6, -2)
         childViewController.tabBarItem.image = image
         childViewController.tabBarItem.selectedImage = selectedImage
         childViewController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:kMainGrayColor()], for: UIControlState.normal)

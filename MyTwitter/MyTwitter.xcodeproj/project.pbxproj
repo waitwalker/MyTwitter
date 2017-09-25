@@ -51,6 +51,7 @@
 		CADECC071F60E1BE0027E15F /* evt_phone_area_code_en.txt in Resources */ = {isa = PBXBuildFile; fileRef = CADECC051F60E1BE0027E15F /* evt_phone_area_code_en.txt */; };
 		CADECC081F60E1BE0027E15F /* evt_phone_area_code_zh.txt in Resources */ = {isa = PBXBuildFile; fileRef = CADECC061F60E1BE0027E15F /* evt_phone_area_code_zh.txt */; };
 		CADECC4D1F6222D10027E15F /* MTTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECC4C1F6222D10027E15F /* MTTView.swift */; };
+		CAE3F0E31F7498B700788455 /* MTTHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3F0E21F7498B700788455 /* MTTHomeCell.swift */; };
 		EAD8B5A43F0DB555EE943A6A /* Pods_MyTwitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC01DD32B63AD348DFCD919 /* Pods_MyTwitterTests.framework */; };
 		EEFDC107967D1277283D2F5C /* Pods_MyTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B46619503CC4D8F2F2F494 /* Pods_MyTwitter.framework */; };
 /* End PBXBuildFile section */
@@ -128,6 +129,7 @@
 		CADECC051F60E1BE0027E15F /* evt_phone_area_code_en.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = evt_phone_area_code_en.txt; sourceTree = "<group>"; };
 		CADECC061F60E1BE0027E15F /* evt_phone_area_code_zh.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = evt_phone_area_code_zh.txt; sourceTree = "<group>"; };
 		CADECC4C1F6222D10027E15F /* MTTView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTView.swift; sourceTree = "<group>"; };
+		CAE3F0E21F7498B700788455 /* MTTHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeCell.swift; sourceTree = "<group>"; };
 		CBA7748F1AC20EEBF3ADAF60 /* Pods-MyTwitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitter/Pods-MyTwitter.release.xcconfig"; sourceTree = "<group>"; };
 		F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -172,10 +174,10 @@
 		1A304C3B1F6D6B2400F366B9 /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				CAE3F0DF1F7494CA00788455 /* ViewModel */,
+				CAE3F0DE1F7494AD00788455 /* Model */,
+				CAE3F0DD1F74948D00788455 /* View */,
 				1A304C3C1F6D6B2400F366B9 /* Controller */,
-				1A304C3D1F6D6B2400F366B9 /* Model */,
-				1A304C3E1F6D6B2400F366B9 /* View */,
-				1A304C3F1F6D6B2400F366B9 /* ViewModel */,
 			);
 			path = "Home(首页)";
 			sourceTree = "<group>";
@@ -186,29 +188,6 @@
 				1A304C4F1F6D6B4800F366B9 /* MTTHomeViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		1A304C3D1F6D6B2400F366B9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1A304C3E1F6D6B2400F366B9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1A8F5BCE1F729901006D6CA0 /* view */,
-				1A8F5BCD1F7298FA006D6CA0 /* cell */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1A304C3F1F6D6B2400F366B9 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		1A304C401F6D6B2400F366B9 /* Notification(通知) */ = {
@@ -329,20 +308,6 @@
 			children = (
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		1A8F5BCD1F7298FA006D6CA0 /* cell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = cell;
-			sourceTree = "<group>";
-		};
-		1A8F5BCE1F729901006D6CA0 /* view */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = view;
 			sourceTree = "<group>";
 		};
 		1A8F5BD31F72A7CD006D6CA0 /* cell */ = {
@@ -640,6 +605,44 @@
 				1A304C0F1F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CAE3F0DD1F74948D00788455 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CAE3F0E11F7494DF00788455 /* view */,
+				CAE3F0E01F7494D500788455 /* cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAE3F0DE1F7494AD00788455 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CAE3F0DF1F7494CA00788455 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CAE3F0E01F7494D500788455 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				CAE3F0E21F7498B700788455 /* MTTHomeCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		CAE3F0E11F7494DF00788455 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -963,6 +966,7 @@
 				1A8F5BD21F729EB1006D6CA0 /* MTTAboutTwitterViewController.swift in Sources */,
 				1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */,
 				1A8F5BD51F72A915006D6CA0 /* MTTTableViewCell.swift in Sources */,
+				CAE3F0E31F7498B700788455 /* MTTHomeCell.swift in Sources */,
 				CA36DE341F7396D10077B44F /* MTTAboutFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

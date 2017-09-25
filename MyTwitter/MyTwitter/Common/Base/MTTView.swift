@@ -8,12 +8,14 @@
 
 import UIKit
 
-class MTTView: UIView 
+class MTTView: UIView
 {
+    
     override init(frame: CGRect) 
     {
         super.init(frame: frame)
         self.setupSubview()
+        self.layoutSubview()
     }
     
     required init?(coder aDecoder: NSCoder) {

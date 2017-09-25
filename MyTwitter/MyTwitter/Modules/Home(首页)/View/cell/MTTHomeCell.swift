@@ -32,7 +32,7 @@ class MTTHomeCell: MTTTableViewCell {
     
     var contentContainerView:UIView?  //内容容器
     var contentLabel:UILabel?  //文本内容
-    var contentImageView:UIImageView?  //图片内容:这种情况只有一张图片的情况
+    var contentImageContainerView:MTTHomeImageContainerView?  //图片内容:这种情况只有一张图片的情况
     var contentVideoView:UIView?  //视频内容 封装视频容器 继承自这个播放器
     
     var toolBarContainerView:UIView?  //下面tool bar 容器
@@ -141,6 +141,12 @@ class MTTHomeCell: MTTTableViewCell {
         contentContainerView = UIView()
         contentContainerView?.backgroundColor = kMainGrayColor()
         originalContainerView?.addSubview(contentContainerView!)
+        
+        //图片容器
+        contentImageContainerView = MTTHomeImageContainerView()
+        contentImageContainerView?.backgroundColor = kMainRandomColor()
+        contentImageContainerView?.homeImagesArray = ["image1","image1"]
+        contentContainerView?.addSubview(contentImageContainerView!)
         
         //tool bar 容器
         toolBarContainerView = UIView()
@@ -264,6 +270,13 @@ class MTTHomeCell: MTTTableViewCell {
             make.right.equalTo(-10)
             make.top.equalTo((self.accountContainerView?.snp.bottom)!).offset(5)
             make.height.equalTo(140)
+        })
+        
+        contentImageContainerView?.snp.makeConstraints({ (make) in
+            make.left.equalTo(0)
+            make.right.equalTo(0)
+            make.height.equalTo(150)
+            make.top.equalTo(0)
         })
         
         toolBarContainerView?.snp.makeConstraints({ (make) in

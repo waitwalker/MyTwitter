@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A0C10F41F66C44C00B6AD18 /* MTTRegularMatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0C10F31F66C44C00B6AD18 /* MTTRegularMatchManager.swift */; };
+		1A16F59E1F792F1000E09ECB /* MTTHomeImageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A16F59D1F792F1000E09ECB /* MTTHomeImageContainerView.swift */; };
 		1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C071F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift */; };
 		1A304C101F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C0F1F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift */; };
 		1A304C121F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C111F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift */; };
@@ -80,6 +81,7 @@
 
 /* Begin PBXFileReference section */
 		1A0C10F31F66C44C00B6AD18 /* MTTRegularMatchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegularMatchManager.swift; sourceTree = "<group>"; };
+		1A16F59D1F792F1000E09ECB /* MTTHomeImageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeImageContainerView.swift; sourceTree = "<group>"; };
 		1A304C071F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterViewModelDelegate.swift; sourceTree = "<group>"; };
 		1A304C0F1F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTPhoneAreaCodeSectionHeaderView.swift; sourceTree = "<group>"; };
 		1A304C111F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTPhoneAreaCodeViewController.swift; sourceTree = "<group>"; };
@@ -672,6 +674,7 @@
 		CAE3F0E11F7494DF00788455 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				1A16F59D1F792F1000E09ECB /* MTTHomeImageContainerView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -754,6 +757,7 @@
 					CADECB931F5E4E3A0027E15F = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = N5ZJ5W7ZL3;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					CADECBA71F5E4E3A0027E15F = {
@@ -978,6 +982,7 @@
 				CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */,
 				CADECBCF1F5E4FFD0027E15F /* MTTTabBarController.swift in Sources */,
 				1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */,
+				1A16F59E1F792F1000E09ECB /* MTTHomeImageContainerView.swift in Sources */,
 				CA3058C61F78CAF100742237 /* MTTHomeModel.swift in Sources */,
 				CADECBE11F5E821B0027E15F /* MTTNetworkManager.swift in Sources */,
 				1A304C121F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift in Sources */,
@@ -1156,12 +1161,15 @@
 			baseConfigurationReference = 5F24A29CF39DDC29B1234D51 /* Pods-MyTwitter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = N5ZJ5W7ZL3;
 				INFOPLIST_FILE = MyTwitter/Main/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.etiantian.MyTwitter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1171,12 +1179,14 @@
 			baseConfigurationReference = CBA7748F1AC20EEBF3ADAF60 /* Pods-MyTwitter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = N5ZJ5W7ZL3;
 				INFOPLIST_FILE = MyTwitter/Main/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.etiantian.MyTwitter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

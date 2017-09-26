@@ -145,7 +145,7 @@ class MTTHomeCell: MTTTableViewCell {
         //图片容器
         contentImageContainerView = MTTHomeImageContainerView()
         contentImageContainerView?.backgroundColor = kMainRandomColor()
-        contentImageContainerView?.homeImagesArray = ["image1","image1"]
+        contentImageContainerView?.homeImagesArray = ["image1","image1","image2","image3"]
         contentContainerView?.addSubview(contentImageContainerView!)
         
         //tool bar 容器

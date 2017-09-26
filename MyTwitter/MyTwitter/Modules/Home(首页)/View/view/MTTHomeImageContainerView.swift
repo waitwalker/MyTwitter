@@ -8,9 +8,14 @@
 
 import UIKit
 
-class MTTHomeImageContainerView: MTTView
+class MTTHomeImageContainerView: MTTView,UIScrollViewDelegate
 {
     var delegate:MTTHomeImageCellImageViewDelegate?
+    
+    var imageBackgroundView:UIView?
+    var imageScrollView:UIScrollView?
+    var imagePreview:UIImageView?
+    
     
     var homeImagesArray: [String]?
     {
@@ -124,16 +129,80 @@ class MTTHomeImageContainerView: MTTView
         
     }
     
+    // MARK: - 缩略图的单击
     @objc func imageViewTapAction(tap:UITapGestureRecognizer) -> Void 
     {
         let imageView = tap.view as! UIImageView
-        let sharedInstance = MTTSingletonManager.sharedInstance
-        sharedInstance.tappedImageIndex = imageView.tag
-        print(sharedInstance.tappedImageIndex)
-        let largeImageManager = MTTLargeImagePreviewManager()
-        largeImageManager.imageArray = homeImagesArray
+        
+        self.addPreview(imageViewPara: imageView)
     }
     
+    private func addPreview(imageViewPara:UIImageView) -> Void
+    {
+        let appDelegate = UIApplication.shared.delegate
+        appDelegate?.window??.isUserInteractionEnabled = true
+        imageBackgroundView = UIView()
+        imageBackgroundView?.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
+        appDelegate?.window??.addSubview(imageBackgroundView!)
+        
+        imageScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
+        imageScrollView?.maximumZoomScale = 2
+        imageScrollView?.delegate = self
+        imageScrollView?.isUserInteractionEnabled = true
+        imageScrollView?.contentSize = CGSize(width: kScreenWidth * CGFloat((homeImagesArray?.count)!), height: 0)
+        imageScrollView?.isPagingEnabled = true
+        imageBackgroundView?.addSubview(imageScrollView!)
+        
+        for i in 0...(homeImagesArray?.count)!
+        {
+            let imageView = UIImageView()
+            imageView.isUserInteractionEnabled = true
+            imageView.frame = CGRect(x: CGFloat(i) * kScreenWidth, y: 0, width: kScreenWidth, height: kScreenHeight)
+            imageView.tag = i
+            imageView.backgroundColor = kMainRandomColor()
+            imageScrollView?.addSubview(imageView)
+            let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapGesAction(tap:)))
+            tap.numberOfTapsRequired = 1
+            imageView.addGestureRecognizer(tap)
+            
+            let doubleTap = UITapGestureRecognizer.init(target: self, action: #selector(doubleTapAction(doubleTap:)))
+            doubleTap.numberOfTapsRequired = 2
+            imageView.addGestureRecognizer(doubleTap)
+            
+            tap.require(toFail: doubleTap)
+        }
+        
+        imageScrollView?.contentOffset = CGPoint(x: kScreenWidth * CGFloat(imageViewPara.tag), y: (imageScrollView?.frame.origin.y)!)
+    }
     
-
+    // MARK: - 预览图的单击
+    @objc func tapGesAction(tap:UITapGestureRecognizer) -> Void
+    {
+        print("点击了")
+        imageBackgroundView?.removeFromSuperview()
+    }
+    
+    // MARK: - 预览图的双击
+    func doubleTapAction(doubleTap:UITapGestureRecognizer) -> Void
+    {
+        imagePreview = (doubleTap.view as! UIImageView)
+        
+        if (imageScrollView?.zoomScale)! >= CGFloat(2.0)
+        {
+            imageScrollView?.setZoomScale(1.0, animated: true)
+        }else
+        {
+            let touchPoint = doubleTap.location(in: imagePreview)
+            let newZoomScale = imageScrollView?.maximumZoomScale
+            let xsize = kScreenWidth / newZoomScale!
+            let ysize = kScreenHeight / newZoomScale!
+            imageScrollView?.zoom(to: CGRect.init(x:touchPoint.x - xsize / 2, y:touchPoint.y - ysize / 2, width:xsize, height:ysize), animated: true)
+        }
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView?
+    {
+        return imagePreview
+    }
+    
 }

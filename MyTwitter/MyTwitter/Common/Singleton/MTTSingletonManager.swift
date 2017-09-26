@@ -15,6 +15,8 @@ class MTTSingletonManager: NSObject
     var email:String = ""
     var phone_num:String = ""
     var password:String = ""
+    var tappedImageIndex:Int = 0
+    
     
     static let sharedInstance = MTTSingletonManager()
     

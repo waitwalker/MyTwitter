@@ -10,23 +10,15 @@ import UIKit
 
 class MTTHomeImageContainerView: MTTView
 {
+    var delegate:MTTHomeImageCellImageViewDelegate?
     
     var homeImagesArray: [String]?
     {
         didSet
         {
-            print(homeImagesArray?.first as Any)
-            
             self.setupSubview()
-            
-            for string in homeImagesArray!
-            {
-                print(string)
-            }
-            
         }
     }
-    
     
     override init(frame: CGRect)
     {
@@ -53,6 +45,10 @@ class MTTHomeImageContainerView: MTTView
             imageView.image = UIImage.init(named: (self.homeImagesArray?.first)!)
             self.addSubview(imageView)
             imageView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: 150)
+            
+            let tap = UITapGestureRecognizer.init(target: self, action: #selector(imageViewTapAction(tap:)))
+            imageView.addGestureRecognizer(tap)
+            
             break
         case 2?:
             
@@ -61,10 +57,13 @@ class MTTHomeImageContainerView: MTTView
                 let imageView = UIImageView()
                 imageView.isUserInteractionEnabled = true
                 imageView.backgroundColor = kMainRandomColor()
+                imageView.tag = i
                 imageView.image = UIImage.init(named: self.homeImagesArray![i])
                 self.addSubview(imageView)
                 
                 imageView.frame = CGRect(x: (margin + imageViewWidth) * CGFloat(i), y: 0, width: imageViewWidth, height: 150)
+                let tap = UITapGestureRecognizer.init(target: self, action: #selector(imageViewTapAction(tap:)))
+                imageView.addGestureRecognizer(tap)
             }
             
             break
@@ -74,6 +73,7 @@ class MTTHomeImageContainerView: MTTView
                 let imageView = UIImageView()
                 imageView.isUserInteractionEnabled = true
                 imageView.backgroundColor = kMainRandomColor()
+                imageView.tag = i
                 imageView.image = UIImage.init(named: self.homeImagesArray![i])
                 self.addSubview(imageView)
                 
@@ -87,6 +87,8 @@ class MTTHomeImageContainerView: MTTView
                 {
                     imageView.frame = CGRect(x: (margin + imageViewWidth) * CGFloat(i - 1), y: (margin + imageViewHeight) * CGFloat(i - 1), width: imageViewWidth, height: imageViewHeight)
                 }
+                let tap = UITapGestureRecognizer.init(target: self, action: #selector(imageViewTapAction(tap:)))
+                imageView.addGestureRecognizer(tap)
                 
             }
             break
@@ -96,6 +98,7 @@ class MTTHomeImageContainerView: MTTView
                 let imageView = UIImageView()
                 imageView.isUserInteractionEnabled = true
                 imageView.backgroundColor = kMainRandomColor()
+                imageView.tag = i
                 imageView.image = UIImage.init(named: self.homeImagesArray![i])
                 self.addSubview(imageView)
                 
@@ -106,6 +109,8 @@ class MTTHomeImageContainerView: MTTView
                 {
                     imageView.frame = CGRect(x: (margin + imageViewWidth) * CGFloat(i - 2), y: (margin + imageViewHeight), width: imageViewWidth, height: imageViewHeight)
                 }
+                let tap = UITapGestureRecognizer.init(target: self, action: #selector(imageViewTapAction(tap:)))
+                imageView.addGestureRecognizer(tap)
             }
             
             break
@@ -117,6 +122,16 @@ class MTTHomeImageContainerView: MTTView
     override func layoutSubview()
     {
         
+    }
+    
+    @objc func imageViewTapAction(tap:UITapGestureRecognizer) -> Void 
+    {
+        let imageView = tap.view as! UIImageView
+        let sharedInstance = MTTSingletonManager.sharedInstance
+        sharedInstance.tappedImageIndex = imageView.tag
+        print(sharedInstance.tappedImageIndex)
+        let largeImageManager = MTTLargeImagePreviewManager()
+        largeImageManager.imageArray = homeImagesArray
     }
     
     

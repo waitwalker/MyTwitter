@@ -21,6 +21,7 @@
 		1A8F5BD21F729EB1006D6CA0 /* MTTAboutTwitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F5BD11F729EB1006D6CA0 /* MTTAboutTwitterViewController.swift */; };
 		1A8F5BD51F72A915006D6CA0 /* MTTTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F5BD41F72A915006D6CA0 /* MTTTableViewCell.swift */; };
 		1A8F5BD71F72A98F006D6CA0 /* MTTAboutNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F5BD61F72A98F006D6CA0 /* MTTAboutNormalCell.swift */; };
+		1AF53C6A1F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF53C691F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift */; };
 		1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC059C1F5ED2B7006EAC9F /* Service.swift */; };
 		1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */; };
 		1AFC05A81F5EE3B2006EAC9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A11F5EE3B2006EAC9F /* Assets.xcassets */; };
@@ -96,6 +97,7 @@
 		1A8F5BD11F729EB1006D6CA0 /* MTTAboutTwitterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutTwitterViewController.swift; sourceTree = "<group>"; };
 		1A8F5BD41F72A915006D6CA0 /* MTTTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTableViewCell.swift; sourceTree = "<group>"; };
 		1A8F5BD61F72A98F006D6CA0 /* MTTAboutNormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutNormalCell.swift; sourceTree = "<group>"; };
+		1AF53C691F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPushTwitterViewController.swift; sourceTree = "<group>"; };
 		1AFC059C1F5ED2B7006EAC9F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AFC05A11F5EE3B2006EAC9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				1A304C4F1F6D6B4800F366B9 /* MTTHomeViewController.swift */,
+				1AF53C691F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1002,6 +1005,7 @@
 				1A304C121F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift in Sources */,
 				CADECBF61F5F83450027E15F /* MTTRegitserViewModel.swift in Sources */,
 				CA36DE2C1F7368090077B44F /* MTTAboutModel.swift in Sources */,
+				1AF53C6A1F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift in Sources */,
 				CADECBFA1F5FC9030027E15F /* MTTRegisterStartViewController.swift in Sources */,
 				CADECC4D1F6222D10027E15F /* MTTView.swift in Sources */,
 				CA36DE281F73631B0077B44F /* MTTAboutSendErrorDelegate.swift in Sources */,

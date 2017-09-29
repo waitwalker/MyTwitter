@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class MTTAboutTwitterViewController: MTTViewController,UITableViewDelegate,UITableViewDataSource,MTTAboutSendErrorDelegate {
     
@@ -36,6 +37,7 @@ class MTTAboutTwitterViewController: MTTViewController,UITableViewDelegate,UITab
     {
         MTTAboutViewModel.getAboutTwitterData { (dataArray) in
             self.dataSource = dataArray
+            
             self.aboutTableView?.reloadData()
         }
     }
@@ -117,51 +119,57 @@ class MTTAboutTwitterViewController: MTTViewController,UITableViewDelegate,UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell 
     {
-        switch indexPath.section 
+        if dataSource.count < 2
         {
-        case 1: 
-            
-            if indexPath.item == 0
+            return UITableViewCell();
+        } else
+        {
+            switch indexPath.section 
             {
-                var switchCell = tableView.dequeueReusableCell(withIdentifier: reusedAbortSwitchCellId, for: indexPath) as? MTTAboutSwitchCell
-                if switchCell == nil
-                {
-                    switchCell = MTTAboutSwitchCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedAbortSwitchCellId)
-                }
-                switchCell?.aboutModel = self.dataSource[indexPath.section][indexPath.item]
-                switchCell?.delegate = self
-                return switchCell!
+            case 1: 
                 
-            } else
-            {
+                if indexPath.item == 0
+                {
+                    var switchCell = tableView.dequeueReusableCell(withIdentifier: reusedAbortSwitchCellId, for: indexPath) as? MTTAboutSwitchCell
+                    if switchCell == nil
+                    {
+                        switchCell = MTTAboutSwitchCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedAbortSwitchCellId)
+                    }
+                    switchCell?.aboutModel = self.dataSource[indexPath.section][indexPath.item]
+                    switchCell?.delegate = self
+                    return switchCell!
+                    
+                } else
+                {
+                    var normalCell = tableView.dequeueReusableCell(withIdentifier: reusedAbortNormalCellId, for: indexPath) as? MTTAboutNormalCell
+                    if normalCell == nil
+                    {
+                        normalCell = MTTAboutNormalCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedAbortNormalCellId)
+                    }
+                    normalCell?.aboutModel = self.dataSource[indexPath.section][indexPath.item]
+                    normalCell?.versionLabel?.isHidden = true
+                    normalCell?.arrowImageView?.isHidden = false
+                    return normalCell!
+                }
+                
+            default:
                 var normalCell = tableView.dequeueReusableCell(withIdentifier: reusedAbortNormalCellId, for: indexPath) as? MTTAboutNormalCell
-                if normalCell == nil
+                if (normalCell == nil) 
                 {
                     normalCell = MTTAboutNormalCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedAbortNormalCellId)
                 }
                 normalCell?.aboutModel = self.dataSource[indexPath.section][indexPath.item]
                 normalCell?.versionLabel?.isHidden = true
                 normalCell?.arrowImageView?.isHidden = false
+                
+                if indexPath.section == 0
+                {
+                    normalCell?.versionLabel?.isHidden = false
+                    normalCell?.arrowImageView?.isHidden = true
+                }
+                
                 return normalCell!
             }
-            
-        default:
-            var normalCell = tableView.dequeueReusableCell(withIdentifier: reusedAbortNormalCellId, for: indexPath) as? MTTAboutNormalCell
-            if (normalCell == nil) 
-            {
-                normalCell = MTTAboutNormalCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedAbortNormalCellId)
-            }
-            normalCell?.aboutModel = self.dataSource[indexPath.section][indexPath.item]
-            normalCell?.versionLabel?.isHidden = true
-            normalCell?.arrowImageView?.isHidden = false
-            
-            if indexPath.section == 0
-            {
-                normalCell?.versionLabel?.isHidden = false
-                normalCell?.arrowImageView?.isHidden = true
-            }
-            
-            return normalCell!
         }
     }
     

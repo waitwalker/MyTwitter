@@ -65,6 +65,11 @@
 		CADECC081F60E1BE0027E15F /* evt_phone_area_code_zh.txt in Resources */ = {isa = PBXBuildFile; fileRef = CADECC061F60E1BE0027E15F /* evt_phone_area_code_zh.txt */; };
 		CADECC4D1F6222D10027E15F /* MTTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECC4C1F6222D10027E15F /* MTTView.swift */; };
 		CAE3F0E31F7498B700788455 /* MTTHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3F0E21F7498B700788455 /* MTTHomeCell.swift */; };
+		CAE674251F7F848200C1093E /* MTTRollingFileLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE674241F7F848200C1093E /* MTTRollingFileLogger.swift */; };
+		CAE674271F7F8F0A00C1093E /* MTTFileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE674261F7F8F0A00C1093E /* MTTFileManagerExtension.swift */; };
+		CAE674291F7F904400C1093E /* MTTURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE674281F7F904400C1093E /* MTTURLExtension.swift */; };
+		CAE6742B1F7F926900C1093E /* MTTArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE6742A1F7F926900C1093E /* MTTArrayExtension.swift */; };
+		CAE6742D1F7F932000C1093E /* MTTFountions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE6742C1F7F932000C1093E /* MTTFountions.swift */; };
 		EAD8B5A43F0DB555EE943A6A /* Pods_MyTwitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC01DD32B63AD348DFCD919 /* Pods_MyTwitterTests.framework */; };
 		EEFDC107967D1277283D2F5C /* Pods_MyTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B46619503CC4D8F2F2F494 /* Pods_MyTwitter.framework */; };
 /* End PBXBuildFile section */
@@ -156,6 +161,11 @@
 		CADECC061F60E1BE0027E15F /* evt_phone_area_code_zh.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = evt_phone_area_code_zh.txt; sourceTree = "<group>"; };
 		CADECC4C1F6222D10027E15F /* MTTView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTView.swift; sourceTree = "<group>"; };
 		CAE3F0E21F7498B700788455 /* MTTHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeCell.swift; sourceTree = "<group>"; };
+		CAE674241F7F848200C1093E /* MTTRollingFileLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTRollingFileLogger.swift; sourceTree = "<group>"; };
+		CAE674261F7F8F0A00C1093E /* MTTFileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTFileManagerExtension.swift; sourceTree = "<group>"; };
+		CAE674281F7F904400C1093E /* MTTURLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTURLExtension.swift; sourceTree = "<group>"; };
+		CAE6742A1F7F926900C1093E /* MTTArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTArrayExtension.swift; sourceTree = "<group>"; };
+		CAE6742C1F7F932000C1093E /* MTTFountions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTFountions.swift; sourceTree = "<group>"; };
 		CBA7748F1AC20EEBF3ADAF60 /* Pods-MyTwitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitter/Pods-MyTwitter.release.xcconfig"; sourceTree = "<group>"; };
 		F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -371,9 +381,11 @@
 		1AFE6FDB1F6376F000006381 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				CAE674231F7F83E400C1093E /* Logger */,
 				1A0C10F31F66C44C00B6AD18 /* MTTRegularMatchManager.swift */,
 				CA3058C11F78B6B300742237 /* MTTFPSDisplay.swift */,
 				CA3058E31F7A156900742237 /* MTTLargeImagePreviewManager.swift */,
+				CAE6742C1F7F932000C1093E /* MTTFountions.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -619,6 +631,9 @@
 				CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */,
 				CAC5AE8A1F7F4BC400B50C98 /* MTTStringExtension.swift */,
 				CAC5AE8C1F7F4BE500B50C98 /* MTTViewExtension.swift */,
+				CAE674261F7F8F0A00C1093E /* MTTFileManagerExtension.swift */,
+				CAE674281F7F904400C1093E /* MTTURLExtension.swift */,
+				CAE6742A1F7F926900C1093E /* MTTArrayExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -706,6 +721,14 @@
 				1A16F59D1F792F1000E09ECB /* MTTHomeImageContainerView.swift */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		CAE674231F7F83E400C1093E /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				CAE674241F7F848200C1093E /* MTTRollingFileLogger.swift */,
+			);
+			path = Logger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1001,6 +1024,7 @@
 				1A0C10F41F66C44C00B6AD18 /* MTTRegularMatchManager.swift in Sources */,
 				CADECBCD1F5E4FE30027E15F /* MTTNavigationController.swift in Sources */,
 				1A304C101F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift in Sources */,
+				CAE674251F7F848200C1093E /* MTTRollingFileLogger.swift in Sources */,
 				CA36DE321F7391830077B44F /* MTTAboutHeaderView.swift in Sources */,
 				1A8F5BD01F729A27006D6CA0 /* MTTExtension.swift in Sources */,
 				CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */,
@@ -1015,10 +1039,13 @@
 				1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */,
 				1A16F59E1F792F1000E09ECB /* MTTHomeImageContainerView.swift in Sources */,
 				CA3058C61F78CAF100742237 /* MTTHomeModel.swift in Sources */,
+				CAE6742B1F7F926900C1093E /* MTTArrayExtension.swift in Sources */,
 				CADECBE11F5E821B0027E15F /* MTTNetworkManager.swift in Sources */,
 				1A304C121F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift in Sources */,
+				CAE674271F7F8F0A00C1093E /* MTTFileManagerExtension.swift in Sources */,
 				CADECBF61F5F83450027E15F /* MTTRegitserViewModel.swift in Sources */,
 				CA36DE2C1F7368090077B44F /* MTTAboutModel.swift in Sources */,
+				CAE6742D1F7F932000C1093E /* MTTFountions.swift in Sources */,
 				1AF53C6A1F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift in Sources */,
 				CADECBFA1F5FC9030027E15F /* MTTRegisterStartViewController.swift in Sources */,
 				CADECC4D1F6222D10027E15F /* MTTView.swift in Sources */,
@@ -1035,6 +1062,7 @@
 				CA36DE261F73612D0077B44F /* MTTAboutSwitchCell.swift in Sources */,
 				CADECBD11F5E500D0027E15F /* MTTViewController.swift in Sources */,
 				CADECBFC1F5FC9280027E15F /* MTTRegisterNameViewController.swift in Sources */,
+				CAE674291F7F904400C1093E /* MTTURLExtension.swift in Sources */,
 				1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */,
 				1A8F5BD21F729EB1006D6CA0 /* MTTAboutTwitterViewController.swift in Sources */,
 				CAC5AE8B1F7F4BC400B50C98 /* MTTStringExtension.swift in Sources */,

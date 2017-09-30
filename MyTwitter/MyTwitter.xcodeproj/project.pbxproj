@@ -70,6 +70,7 @@
 		CAE674291F7F904400C1093E /* MTTURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE674281F7F904400C1093E /* MTTURLExtension.swift */; };
 		CAE6742B1F7F926900C1093E /* MTTArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE6742A1F7F926900C1093E /* MTTArrayExtension.swift */; };
 		CAE6742D1F7F932000C1093E /* MTTFountions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE6742C1F7F932000C1093E /* MTTFountions.swift */; };
+		CAE6742F1F7F98D100C1093E /* MTTLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE6742E1F7F98D100C1093E /* MTTLogger.swift */; };
 		EAD8B5A43F0DB555EE943A6A /* Pods_MyTwitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC01DD32B63AD348DFCD919 /* Pods_MyTwitterTests.framework */; };
 		EEFDC107967D1277283D2F5C /* Pods_MyTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B46619503CC4D8F2F2F494 /* Pods_MyTwitter.framework */; };
 /* End PBXBuildFile section */
@@ -166,6 +167,7 @@
 		CAE674281F7F904400C1093E /* MTTURLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTURLExtension.swift; sourceTree = "<group>"; };
 		CAE6742A1F7F926900C1093E /* MTTArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTArrayExtension.swift; sourceTree = "<group>"; };
 		CAE6742C1F7F932000C1093E /* MTTFountions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTFountions.swift; sourceTree = "<group>"; };
+		CAE6742E1F7F98D100C1093E /* MTTLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLogger.swift; sourceTree = "<group>"; };
 		CBA7748F1AC20EEBF3ADAF60 /* Pods-MyTwitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitter/Pods-MyTwitter.release.xcconfig"; sourceTree = "<group>"; };
 		F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -727,6 +729,7 @@
 			isa = PBXGroup;
 			children = (
 				CAE674241F7F848200C1093E /* MTTRollingFileLogger.swift */,
+				CAE6742E1F7F98D100C1093E /* MTTLogger.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -1061,6 +1064,7 @@
 				CA36DE2A1F7367E20077B44F /* MTTAboutViewModel.swift in Sources */,
 				CA36DE261F73612D0077B44F /* MTTAboutSwitchCell.swift in Sources */,
 				CADECBD11F5E500D0027E15F /* MTTViewController.swift in Sources */,
+				CAE6742F1F7F98D100C1093E /* MTTLogger.swift in Sources */,
 				CADECBFC1F5FC9280027E15F /* MTTRegisterNameViewController.swift in Sources */,
 				CAE674291F7F904400C1093E /* MTTURLExtension.swift in Sources */,
 				1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */,

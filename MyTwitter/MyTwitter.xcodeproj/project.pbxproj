@@ -44,6 +44,10 @@
 		CA36DE321F7391830077B44F /* MTTAboutHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE311F7391830077B44F /* MTTAboutHeaderView.swift */; };
 		CA36DE341F7396D10077B44F /* MTTAboutFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE331F7396D10077B44F /* MTTAboutFooterView.swift */; };
 		CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */; };
+		CAC5AE871F7F4B3500B50C98 /* MTTButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE861F7F4B3500B50C98 /* MTTButtonExtension.swift */; };
+		CAC5AE891F7F4B9400B50C98 /* MTTTextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */; };
+		CAC5AE8B1F7F4BC400B50C98 /* MTTStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE8A1F7F4BC400B50C98 /* MTTStringExtension.swift */; };
+		CAC5AE8D1F7F4BE500B50C98 /* MTTViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE8C1F7F4BE500B50C98 /* MTTViewExtension.swift */; };
 		CAC990651F690E67002255FA /* MTTRegisterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */; };
 		CAC990A71F6BB62F002255FA /* MTTConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC990A61F6BB62F002255FA /* MTTConst.swift */; };
 		CADECBAD1F5E4E3A0027E15F /* MyTwitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBAC1F5E4E3A0027E15F /* MyTwitterTests.swift */; };
@@ -126,6 +130,10 @@
 		CA36DE311F7391830077B44F /* MTTAboutHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutHeaderView.swift; sourceTree = "<group>"; };
 		CA36DE331F7396D10077B44F /* MTTAboutFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutFooterView.swift; sourceTree = "<group>"; };
 		CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSingletonManager.swift; sourceTree = "<group>"; };
+		CAC5AE861F7F4B3500B50C98 /* MTTButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTButtonExtension.swift; sourceTree = "<group>"; };
+		CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTextViewExtension.swift; sourceTree = "<group>"; };
+		CAC5AE8A1F7F4BC400B50C98 /* MTTStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTStringExtension.swift; sourceTree = "<group>"; };
+		CAC5AE8C1F7F4BE500B50C98 /* MTTViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTViewExtension.swift; sourceTree = "<group>"; };
 		CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterPasswordViewController.swift; sourceTree = "<group>"; };
 		CAC990A61F6BB62F002255FA /* MTTConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTConst.swift; sourceTree = "<group>"; };
 		CADECB941F5E4E3A0027E15F /* MyTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -607,6 +615,10 @@
 			isa = PBXGroup;
 			children = (
 				1A8F5BCF1F729A27006D6CA0 /* MTTExtension.swift */,
+				CAC5AE861F7F4B3500B50C98 /* MTTButtonExtension.swift */,
+				CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */,
+				CAC5AE8A1F7F4BC400B50C98 /* MTTStringExtension.swift */,
+				CAC5AE8C1F7F4BE500B50C98 /* MTTViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -992,12 +1004,14 @@
 				CA36DE321F7391830077B44F /* MTTAboutHeaderView.swift in Sources */,
 				1A8F5BD01F729A27006D6CA0 /* MTTExtension.swift in Sources */,
 				CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */,
+				CAC5AE871F7F4B3500B50C98 /* MTTButtonExtension.swift in Sources */,
 				CA3058C41F78CAE500742237 /* MTTHomeViewModel.swift in Sources */,
 				CAC990651F690E67002255FA /* MTTRegisterPasswordViewController.swift in Sources */,
 				1A304C521F6D6B5700F366B9 /* MTTNotificationViewController.swift in Sources */,
 				1A304C541F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift in Sources */,
 				CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */,
 				CADECBCF1F5E4FFD0027E15F /* MTTTabBarController.swift in Sources */,
+				CAC5AE8D1F7F4BE500B50C98 /* MTTViewExtension.swift in Sources */,
 				1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */,
 				1A16F59E1F792F1000E09ECB /* MTTHomeImageContainerView.swift in Sources */,
 				CA3058C61F78CAF100742237 /* MTTHomeModel.swift in Sources */,
@@ -1011,6 +1025,7 @@
 				CA36DE281F73631B0077B44F /* MTTAboutSendErrorDelegate.swift in Sources */,
 				CADECBF81F5FC8EF0027E15F /* MTTRegisterAccountViewController.swift in Sources */,
 				CAC990A71F6BB62F002255FA /* MTTConst.swift in Sources */,
+				CAC5AE891F7F4B9400B50C98 /* MTTTextViewExtension.swift in Sources */,
 				CA3058CD1F78FE2500742237 /* MTTHeader.swift in Sources */,
 				CA3058C21F78B6B300742237 /* MTTFPSDisplay.swift in Sources */,
 				1A304C561F6D6B7400F366B9 /* MTTSearchViewController.swift in Sources */,
@@ -1022,6 +1037,7 @@
 				CADECBFC1F5FC9280027E15F /* MTTRegisterNameViewController.swift in Sources */,
 				1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */,
 				1A8F5BD21F729EB1006D6CA0 /* MTTAboutTwitterViewController.swift in Sources */,
+				CAC5AE8B1F7F4BC400B50C98 /* MTTStringExtension.swift in Sources */,
 				1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */,
 				CA3058C91F78D2AA00742237 /* MTTHeaderHelper.swift in Sources */,
 				CA3058E41F7A156900742237 /* MTTLargeImagePreviewManager.swift in Sources */,

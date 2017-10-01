@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let homeLogger = MTTLogger.homeLogger
+
 class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableViewDelegate
 {
     let reusedHomeCellId = "reusedHomeCellId"
@@ -30,6 +32,23 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
         
         setupEvent()
         
+        log()
+    }
+    
+    private func log() -> Void
+    {
+        
+        let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
+        homeLogger.debug(path)
+        print("路径:",path as Any)
+        
+        
+        homeLogger.verbose("一条verbose级别消息：程序执行时最详细的信息。")
+        homeLogger.debug("一条debug级别消息：用于代码调试。")
+        homeLogger.info("一条info级别消息：常用与用户在console.app中查看。")
+        homeLogger.warning("一条warning级别消息：警告消息，表示一个可能的错误。")
+        homeLogger.error("一条error级别消息：表示产生了一个可恢复的错误，用于告知发生了什么事情。")
+        homeLogger.severe("一条severe error级别消息：表示产生了一个严重错误。程序可能很快会奔溃。")
     }
     
     private func setupSubview() -> Void 

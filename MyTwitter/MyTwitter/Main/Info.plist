@@ -22,11 +22,29 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSExceptionDomains</key>
-		<dict/>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+		<key>NSExceptionDomains</key>
+		<dict/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>twitter想访问您的相册</string>
+	<key>NSCameraUsageDescription</key>
+	<string>twitter想访问您的相机</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>twitter想访问您所在的地区</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>twitter想访问您所在的地区</string>
+	<key>NSLocationUsageDescription</key>
+	<string>twitter想访问您所在的地区</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>twitter想访问您所在的地区</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>twitter想访问您的录音</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>twitter想访问您的相册</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>twitter想访问您的相册</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

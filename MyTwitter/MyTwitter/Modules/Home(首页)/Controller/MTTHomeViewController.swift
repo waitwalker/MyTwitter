@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 private let homeLogger = MTTLogger.homeLogger
 
@@ -93,8 +94,10 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     {
         (rightButton?.rx.tap)?.subscribe(onNext:{
             print("发推按钮被点击了")
+            
             let pushVC = MTTPushTwitterViewController()
             let nav = MTTNavigationController.init(rootViewController: pushVC)
+            
             self.present(nav, animated: true, completion: {
                 
             })

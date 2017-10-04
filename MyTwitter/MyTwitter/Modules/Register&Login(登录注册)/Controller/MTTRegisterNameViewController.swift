@@ -36,11 +36,11 @@ class MTTRegisterNameViewController: MTTViewController {
     override func viewDidLoad() 
     {
         super.viewDidLoad()
+        self.addNotificationObserver()
         self.setupSubview()
         self.layoutSubview()
         self.setupEvent()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handlerKeyBoardFrame(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
     }
     
     
@@ -282,32 +282,36 @@ class MTTRegisterNameViewController: MTTViewController {
         })).addDisposableTo(disposeBag)
     }
     
-    // MARK: - 键盘通知回调
-    @objc func handlerKeyBoardFrame(notification:NSNotification) -> Void
+    func addNotificationObserver() -> Void
     {
-        let beginValue = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as! NSValue!
-        let beginFrame = beginValue?.cgRectValue
-        
-        let endValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue!
-        let endFrame = endValue?.cgRectValue
-        
-        let deltaY = (endFrame?.origin.y)! - (beginFrame?.origin.y)!
-        
-        UIView.animate(withDuration: 0.25) { 
-            self.contentView?.frame = CGRect(x: (self.contentView?.frame.origin.x)!, y: (self.contentView?.frame.origin.y)! + deltaY, width: (self.contentView?.frame.origin.x)!, height: (self.contentView?.frame.size.height)!)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowAction(notify:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideAction(notify:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShowAction(notify:Notification) -> Void
+    {
+        let userInfo = notify.userInfo
+        let keyboardFrame = userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
+        UIView.animate(withDuration: 0.5, animations: {
+            self.contentView?.y = keyboardFrame.origin.y - 50
+        }) { (completed) in
+            
         }
-        
     }
     
-    override func addKeyValue() 
+    @objc func keyboardWillHideAction(notify:Notification) -> Void
     {
-        
+        UIView.animate(withDuration: 0.2, animations: {
+            //contentView
+            self.contentView?.frame = CGRect(x: 0, y: kScreenHeight - 50, width: kScreenWidth, height: 50)
+        }) { (completed) in
+            
+        }
     }
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) 
     {
-        //self.view.endEditing(true)
+        self.view.endEditing(true)
     }
     
     deinit 

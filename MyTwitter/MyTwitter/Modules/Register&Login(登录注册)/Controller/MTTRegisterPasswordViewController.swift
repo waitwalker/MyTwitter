@@ -54,7 +54,7 @@ class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModel
         passwordLabel = UILabel()
         passwordLabel?.font = UIFont.boldSystemFont(ofSize: 25)
         passwordLabel?.textAlignment = NSTextAlignment.left
-        passwordLabel?.text = "你的电话号码是什么?"
+        passwordLabel?.text = "你需要设置一个密码?"
         passwordLabel?.numberOfLines = 1
         passwordLabel?.sizeToFit()
         self.view.addSubview(passwordLabel!)
@@ -63,7 +63,7 @@ class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModel
         passwordHintLabel = UILabel()
         passwordHintLabel?.font = UIFont.systemFont(ofSize: 15)
         passwordHintLabel?.textAlignment = NSTextAlignment.left
-        passwordHintLabel?.text = "不用担心,我们不会公开显示."
+        passwordHintLabel?.text = "请确保密码至少有6个字符"
         passwordHintLabel?.numberOfLines = 1
         passwordHintLabel?.sizeToFit()
         self.view.addSubview(passwordHintLabel!)
@@ -283,11 +283,8 @@ class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModel
         }).addDisposableTo(disposeBag)
     }
     
-    override func addKeyValue() 
-    {
-        self.userInfo = ["password":(self.passwordTextField?.text)!]
-        
-        print(self.userInfo as Any)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     // MARK: - 注册成功的回调

@@ -47,11 +47,11 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
     override func viewDidLoad() 
     {
         super.viewDidLoad()
+        self.addNotificationObserver()
         self.setupSubview()
         self.layoutSubview()
         self.setupEvent()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handlerKeyBoardFrame(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
     }
     
     // MARK: - 键盘通知回调
@@ -587,6 +587,33 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
             
         })
 
+    }
+    
+    func addNotificationObserver() -> Void
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowAction(notify:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideAction(notify:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShowAction(notify:Notification) -> Void
+    {
+        let userInfo = notify.userInfo
+        let keyboardFrame = userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
+        UIView.animate(withDuration: 0.5, animations: {
+            self.contentView?.y = keyboardFrame.origin.y - 50
+        }) { (completed) in
+            
+        }
+    }
+    
+    @objc func keyboardWillHideAction(notify:Notification) -> Void
+    {
+        UIView.animate(withDuration: 0.2, animations: {
+            //contentView
+            self.contentView?.frame = CGRect(x: 0, y: kScreenHeight - 50, width: kScreenWidth, height: 50)
+        }) { (completed) in
+            
+        }
     }
     
     // MARK: - private

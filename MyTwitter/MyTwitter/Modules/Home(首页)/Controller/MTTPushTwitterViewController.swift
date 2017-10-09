@@ -504,7 +504,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             
             if (error != nil) 
             {
-                
+                self.showAlertWithMessage(message: "网络有问题,定位失败,请稍候重试.")
             } else
             {
                 let placeMark = placemarks?.first
@@ -519,14 +519,14 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
     {
-        switch error.localizedDescription
+        switch (error as NSError).code
         {
-//        case kCLErrorDenied:
-//            showAlertWithoutMessage()
-//            break;
-//
-//        case kCLErrorNetwork:
-//            showAlertWithMessage(message: "网络有问题,定位失败,请稍候重试.")
+        case 1:
+            showAlertWithoutMessage()
+            break;
+
+        case 2:
+            showAlertWithMessage(message: "网络有问题,定位失败,请稍候重试.")
             
         default:
             showAlertWithMessage(message: "定位失败,无法获取当前定位数据")

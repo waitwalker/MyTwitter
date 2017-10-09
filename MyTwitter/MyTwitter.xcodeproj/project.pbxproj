@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1A0C10F41F66C44C00B6AD18 /* MTTRegularMatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0C10F31F66C44C00B6AD18 /* MTTRegularMatchManager.swift */; };
 		1A16F59E1F792F1000E09ECB /* MTTHomeImageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A16F59D1F792F1000E09ECB /* MTTHomeImageContainerView.swift */; };
+		1A234B581F8BB00E00D6C731 /* MTTLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A234B571F8BB00E00D6C731 /* MTTLocationViewController.swift */; };
+		1A234B5A1F8BB40D00D6C731 /* MTTLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A234B591F8BB40D00D6C731 /* MTTLocationCell.swift */; };
 		1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C071F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift */; };
 		1A304C101F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C0F1F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift */; };
 		1A304C121F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C111F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift */; };
@@ -99,6 +101,8 @@
 /* Begin PBXFileReference section */
 		1A0C10F31F66C44C00B6AD18 /* MTTRegularMatchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegularMatchManager.swift; sourceTree = "<group>"; };
 		1A16F59D1F792F1000E09ECB /* MTTHomeImageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeImageContainerView.swift; sourceTree = "<group>"; };
+		1A234B571F8BB00E00D6C731 /* MTTLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLocationViewController.swift; sourceTree = "<group>"; };
+		1A234B591F8BB40D00D6C731 /* MTTLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLocationCell.swift; sourceTree = "<group>"; };
 		1A304C071F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterViewModelDelegate.swift; sourceTree = "<group>"; };
 		1A304C0F1F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTPhoneAreaCodeSectionHeaderView.swift; sourceTree = "<group>"; };
 		1A304C111F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTPhoneAreaCodeViewController.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 			children = (
 				1A304C4F1F6D6B4800F366B9 /* MTTHomeViewController.swift */,
 				1AF53C691F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift */,
+				1A234B571F8BB00E00D6C731 /* MTTLocationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -724,6 +729,7 @@
 			children = (
 				CAE3F0E21F7498B700788455 /* MTTHomeCell.swift */,
 				1ABFD4BD1F84BE84004DF174 /* MTTPushBottomCell.swift */,
+				1A234B591F8BB40D00D6C731 /* MTTLocationCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1042,6 +1048,7 @@
 				1ABFD4BE1F84BE84004DF174 /* MTTPushBottomCell.swift in Sources */,
 				CAE674251F7F848200C1093E /* MTTRollingFileLogger.swift in Sources */,
 				CA36DE321F7391830077B44F /* MTTAboutHeaderView.swift in Sources */,
+				1A234B581F8BB00E00D6C731 /* MTTLocationViewController.swift in Sources */,
 				1A8F5BD01F729A27006D6CA0 /* MTTExtension.swift in Sources */,
 				CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */,
 				CAC5AE871F7F4B3500B50C98 /* MTTButtonExtension.swift in Sources */,
@@ -1092,6 +1099,7 @@
 				1A8F5BD51F72A915006D6CA0 /* MTTTableViewCell.swift in Sources */,
 				CAE3F0E31F7498B700788455 /* MTTHomeCell.swift in Sources */,
 				CA3058D01F79FCED00742237 /* MTTHomeProtocol.swift in Sources */,
+				1A234B5A1F8BB40D00D6C731 /* MTTLocationCell.swift in Sources */,
 				CA36DE341F7396D10077B44F /* MTTAboutFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -29,9 +29,19 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     var bottomCollectionView:UICollectionView?
     let reusedPushBottomId = "reusedPushBottomId"
     
+    var imageViewContainerView:UIView?
     var pushSingleImageView:MTTPushImageView?
+    var whoExistImageView:UIImageView?
+    var whoExistLabel:UILabel?
     
-    var loactionManager:CLLocationManager?
+    
+    
+    var locationManager:CLLocationManager?
+    var locationContainerView:UIView?
+    var locationImageView:UIImageView?
+    var locationLabel:UILabel?
+    
+    
     
     
     
@@ -106,11 +116,58 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         placeHolderLabel?.font = UIFont.systemFont(ofSize: 20)
         pushTextView?.addSubview(placeHolderLabel!)
         
+        //locationContainerView
+        locationContainerView = UIView()
+        locationContainerView?.isHidden = true
+        locationContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: 20, height: 20);
+        pushScrollContainerView?.addSubview(locationContainerView!)
+        
+        //locationImageView
+        locationImageView = UIImageView()
+        locationImageView?.image = UIImage(named: "twitter_location_normal")
+        locationImageView?.frame = CGRect(x: 20, y: 2.5, width: 20, height: 15);
+        locationImageView?.isUserInteractionEnabled = true
+        locationContainerView?.addSubview(locationImageView!)
+        
+        //locationLabel
+        locationLabel = UILabel()
+        locationLabel?.font = UIFont.systemFont(ofSize: 15)
+        locationLabel?.textColor = kMainGrayColor()
+        locationLabel?.textAlignment = NSTextAlignment.left
+        locationLabel?.isUserInteractionEnabled = true
+        locationLabel?.frame = CGRect(x: (locationImageView?.frame.maxX)! + 10, y: 0, width: 200, height: 20)
+        locationLabel?.text = "北京,中华人民共和国"
+        locationContainerView?.addSubview(locationLabel!)
+        
+        //imageViewContainerView
+        imageViewContainerView = UIView()
+        imageViewContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 330)
+        imageViewContainerView?.isHidden = true
+        imageViewContainerView?.backgroundColor = UIColor.orange
+        pushScrollContainerView?.addSubview(imageViewContainerView!)
+        
         //pushSingleImageView
-        pushSingleImageView = MTTPushImageView(frame: CGRect(x: 20, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth - 40, height: 300))
+        pushSingleImageView = MTTPushImageView(frame: CGRect(x: 20, y: 0, width: kScreenWidth - 40, height: 300))
         pushSingleImageView?.delegate = self
         pushSingleImageView?.backgroundColor = kMainRandomColor()
-        pushScrollContainerView?.addSubview(pushSingleImageView!)
+        imageViewContainerView?.addSubview(pushSingleImageView!)
+        
+        //whoExistImageView
+        whoExistImageView = UIImageView()
+        whoExistImageView?.image = UIImage(named: "man-user")
+        whoExistImageView?.isUserInteractionEnabled = true
+        whoExistImageView?.frame = CGRect(x: 20, y: (pushSingleImageView?.frame.maxY)! + 10, width: 20, height: 20)
+        imageViewContainerView?.addSubview(whoExistImageView!)
+        
+        //whoExistLabel
+        whoExistLabel = UILabel()
+        whoExistLabel?.text = "谁在这张照片里?"
+        whoExistLabel?.font = UIFont.systemFont(ofSize: 12)
+        whoExistLabel?.textAlignment = NSTextAlignment.left
+        whoExistLabel?.textColor = kMainBlueColor()
+        whoExistLabel?.isUserInteractionEnabled = true
+        whoExistLabel?.frame = CGRect(x: (whoExistImageView?.frame.maxX)! + 10, y: (pushSingleImageView?.frame.maxY)! + 10, width: 200, height: 20)
+        imageViewContainerView?.addSubview(whoExistLabel!)
         
         //contentView
         contentView = UIView()
@@ -260,6 +317,11 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             })
         }).addDisposableTo(disposeBag)
         
+        //location
+        (locationButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
+            self.setupLoactionManager()
+        }).addDisposableTo(disposeBag)
+        
         pushTextView?.rx.text.map({($0?.characters.count)! > 0})
             .subscribe(onNext:{ isTrue in
                 
@@ -342,6 +404,15 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         {
             pushTextView?.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: textView.contentSize.width, height: textView.contentSize.height)
         }
+        
+        if pushSingleImageView?.isHidden == true
+        {
+            locationContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: 20, height: 20);
+        } else
+        {
+            
+        }
+        
     }
     
     // MARK: - collectionView DataSource
@@ -410,21 +481,39 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     {
         if CLLocationManager.locationServicesEnabled()
         {
-            loactionManager = CLLocationManager()
-            loactionManager?.delegate = self
-            loactionManager?.requestAlwaysAuthorization()
-            loactionManager?.requestWhenInUseAuthorization()
-            loactionManager?.desiredAccuracy = kCLLocationAccuracyBest
-            loactionManager?.distanceFilter = 5.0
-            loactionManager?.startUpdatingLocation()
+            locationManager = CLLocationManager()
+            locationManager?.delegate = self
+            locationManager?.requestAlwaysAuthorization()
+            locationManager?.requestWhenInUseAuthorization()
+            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager?.distanceFilter = 5.0
+            locationManager?.startUpdatingLocation()
         } else
         {
             showAlertWithoutMessage()
         }
     }
     
-    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager)
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) 
     {
+        locationManager?.stopUpdatingLocation()
+        let currentLocation = locations.last
+        let geoCoder = CLGeocoder()
+        print("当前经纬度:",currentLocation?.coordinate.latitude as Any,currentLocation?.coordinate.longitude as Any)
+        geoCoder.reverseGeocodeLocation(currentLocation!) { (placemarks, error) in
+            
+            if (error != nil) 
+            {
+                
+            } else
+            {
+                let placeMark = placemarks?.first
+                
+                print(placeMark?.locality as Any)
+            }
+            
+        }
+        
         
     }
     

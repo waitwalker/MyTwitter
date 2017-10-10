@@ -507,14 +507,31 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
                 self.showAlertWithMessage(message: "网络有问题,定位失败,请稍候重试.")
             } else
             {
+                var places:[String] = ["中华人民共和国","河北,中华人民共和国","天津,中华人民共和国"]
+                
+                
                 let placeMark = placemarks?.first
                 
-                print(placeMark?.locality as Any)
+                print(placeMark?.locality as Any,placeMark?.country as Any)
+                
+                let place = (placeMark?.locality)! + "," + (placeMark?.country)!
+                let latitudelongitudeString = String.init(format: "(%.2f...,%.2f...)", (currentLocation?.coordinate.latitude)!,(currentLocation?.coordinate.longitude)!)
+                
+                
+                if place.characters.count > 1
+                {
+                    places.insert(place, at: 0)
+                    
+                    let locationVC = MTTLocationViewController()
+                    locationVC.places = places
+                    locationVC.latitudelongitudeString = latitudelongitudeString
+                    let nav = MTTNavigationController(rootViewController: locationVC)
+                    self.present(nav, animated: true, completion: { 
+                        
+                    })
+                }
             }
-            
         }
-        
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)

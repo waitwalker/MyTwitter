@@ -12,6 +12,8 @@ class MTTLocationCell: MTTTableViewCell {
 
     var locationTitleLabel:UILabel?
     var locationImageView:UIImageView?
+    var locationLineView:UIView?
+    
     
     
     
@@ -24,12 +26,44 @@ class MTTLocationCell: MTTTableViewCell {
     
     private func setupSubview() -> Void
     {
+        locationTitleLabel = UILabel()
+        locationTitleLabel?.textColor = UIColor.black
+        locationTitleLabel?.textAlignment = NSTextAlignment.left
+        locationTitleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        self.contentView.addSubview(locationTitleLabel!)
         
+        locationImageView = UIImageView()
+        locationImageView?.isHidden = true
+        locationImageView?.isUserInteractionEnabled = true
+        locationImageView?.image = UIImage(named: "twitter_check_mark")
+        self.contentView.addSubview(locationImageView!)
+        
+        locationLineView = UIView()
+        locationLineView?.backgroundColor = kMainGrayColor()
+        self.contentView.addSubview(locationLineView!)
     }
     
     private func layoutSubview() -> Void
     {
+        locationTitleLabel?.snp.makeConstraints({ (make) in
+            make.left.equalTo(20)
+            make.top.equalTo(0)
+            make.height.equalTo(50)
+            make.width.equalTo(kScreenWidth - 60)
+        })
         
+        locationImageView?.snp.makeConstraints({ (make) in
+            make.right.equalTo(-20)
+            make.height.width.equalTo(20)
+            make.centerY.equalTo(self.locationTitleLabel!)
+        })
+        
+        locationLineView?.snp.makeConstraints({ (make) in
+            make.left.equalTo(20)
+            make.right.equalTo(0)
+            make.height.equalTo(0.3)
+            make.bottom.equalTo(-0.3)
+        })
     }
     
     required init?(coder aDecoder: NSCoder)

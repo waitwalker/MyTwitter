@@ -40,6 +40,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     var locationContainerView:UIView?
     var locationImageView:UIImageView?
     var locationLabel:UILabel?
+    var locationTimes:Int?
     
     
     
@@ -87,6 +88,8 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     {
         setupNavBar()
         
+        self.locationTimes = 0
+        
         //pushScrollContainerView
         pushScrollContainerView = UIScrollView()
         pushScrollContainerView?.isUserInteractionEnabled = true
@@ -119,7 +122,8 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         //locationContainerView
         locationContainerView = UIView()
         locationContainerView?.isHidden = true
-        locationContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: 20, height: 20);
+        locationContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
+        locationContainerView?.isUserInteractionEnabled = true
         pushScrollContainerView?.addSubview(locationContainerView!)
         
         //locationImageView
@@ -136,7 +140,6 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         locationLabel?.textAlignment = NSTextAlignment.left
         locationLabel?.isUserInteractionEnabled = true
         locationLabel?.frame = CGRect(x: (locationImageView?.frame.maxX)! + 10, y: 0, width: 200, height: 20)
-        locationLabel?.text = "北京,中华人民共和国"
         locationContainerView?.addSubview(locationLabel!)
         
         //imageViewContainerView
@@ -319,6 +322,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         
         //location
         (locationButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
+            
             self.setupLoactionManager()
         }).addDisposableTo(disposeBag)
         
@@ -379,11 +383,19 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         let tap = UITapGestureRecognizer(target: self, action: #selector(pushScrollContainerViewTapAction))
         pushScrollContainerView?.addGestureRecognizer(tap)
         
+        let locationTap = UITapGestureRecognizer.init(target: self, action: #selector(locationTapAction(locationTap:)))
+        
+        locationContainerView?.addGestureRecognizer(locationTap)
     }
     
     func pushScrollContainerViewTapAction() -> Void
     {
         pushScrollContainerView?.endEditing(true)
+    }
+    
+    func locationTapAction(locationTap:UITapGestureRecognizer) -> Void
+    {
+        setupLoactionManager()
     }
 
     // MARK: - UITextView Delegate
@@ -405,12 +417,14 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             pushTextView?.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: textView.contentSize.width, height: textView.contentSize.height)
         }
         
-        if pushSingleImageView?.isHidden == true
+        if imageViewContainerView?.isHidden == true
         {
-            locationContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: 20, height: 20);
+            locationContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
         } else
         {
+            imageViewContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
             
+            locationContainerView?.frame = CGRect(x: 0, y: (imageViewContainerView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
         }
         
     }
@@ -479,6 +493,8 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     // MARK: - 初始化定位
     private func setupLoactionManager() -> Void
     {
+        locationTimes = 0
+        
         if CLLocationManager.locationServicesEnabled()
         {
             locationManager = CLLocationManager()
@@ -500,49 +516,58 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         let currentLocation = locations.last
         let geoCoder = CLGeocoder()
         print("当前经纬度:",currentLocation?.coordinate.latitude as Any,currentLocation?.coordinate.longitude as Any)
-        geoCoder.reverseGeocodeLocation(currentLocation!) { (placemarks, error) in
-            
-            if (error != nil) 
-            {
-                self.showAlertWithMessage(message: "网络有问题,定位失败,请稍候重试.")
-            } else
-            {
-                var places:[String] = ["中华人民共和国","河北,中华人民共和国","天津,中华人民共和国"]
+        
+        if locationTimes != 0
+        {
+            return
+        } else
+        {
+            locationTimes = 1
+            geoCoder.reverseGeocodeLocation(currentLocation!) { (placemarks, error) in
                 
-                
-                let placeMark = placemarks?.first
-                
-                print(placeMark?.locality as Any,placeMark?.country as Any)
-                
-                let place = (placeMark?.locality)! + "," + (placeMark?.country)!
-                let latitudelongitudeString = String.init(format: "(%.2f...,%.2f...)", (currentLocation?.coordinate.latitude)!,(currentLocation?.coordinate.longitude)!)
-                
-                
-                if place.characters.count > 1
+                if (error != nil)
                 {
-                    places.insert(place, at: 0)
+                    self.showAlertWithMessage(message: "网络有问题,定位失败,请稍候重试.")
+                } else
+                {
+                    var places:[String] = ["中华人民共和国","河北,中华人民共和国","天津,中华人民共和国"]
                     
-                    let locationVC = MTTLocationViewController()
-                    locationVC.places = places
-                    locationVC.latitudelongitudeString = latitudelongitudeString
-                    let nav = MTTNavigationController(rootViewController: locationVC)
-                    self.present(nav, animated: true, completion: { 
+                    
+                    let placeMark = placemarks?.first
+                    
+                    print(placeMark?.locality as Any,placeMark?.country as Any)
+                    
+                    let place = (placeMark?.locality)! + "," + "中华人民共和国"
+                    let latitudelongitudeString = String.init(format: "(%.2f...,%.2f...)", (currentLocation?.coordinate.latitude)!,(currentLocation?.coordinate.longitude)!)
+                    
+                    
+                    if place.characters.count > 1
+                    {
+                        places.insert(place, at: 0)
                         
-                    })
-                    locationVC.finishCallBack = { (placeString) in
-                        self.locationContainerView?.isHidden = false
-                        self.locationLabel?.text = placeString
-                        print(placeString)
-                    }
-                    
-                    locationVC.removeCallBack = { (isRemove) in
-                        if isRemove
-                        {
-                            self.locationContainerView?.isHidden = true
+                        let locationVC = MTTLocationViewController()
+                        locationVC.places = places
+                        locationVC.latitudelongitudeString = latitudelongitudeString
+                        let nav = MTTNavigationController(rootViewController: locationVC)
+                        self.present(nav, animated: true, completion: {
+                            
+                        })
+                        locationVC.finishCallBack = { (placeString) in
+                            self.locationContainerView?.isHidden = false
+                            self.locationLabel?.text = placeString
+                            print(placeString)
+                        }
+                        
+                        locationVC.removeCallBack = { (isRemove) in
+                            if isRemove
+                            {
+                                self.locationContainerView?.isHidden = true
+                            }
                         }
                     }
                 }
             }
+            locationManager?.stopUpdatingLocation()
         }
     }
     

@@ -529,6 +529,18 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
                     self.present(nav, animated: true, completion: { 
                         
                     })
+                    locationVC.finishCallBack = { (placeString) in
+                        self.locationContainerView?.isHidden = false
+                        self.locationLabel?.text = placeString
+                        print(placeString)
+                    }
+                    
+                    locationVC.removeCallBack = { (isRemove) in
+                        if isRemove
+                        {
+                            self.locationContainerView?.isHidden = true
+                        }
+                    }
                 }
             }
         }

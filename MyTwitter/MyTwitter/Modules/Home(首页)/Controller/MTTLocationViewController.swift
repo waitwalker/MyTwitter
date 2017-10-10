@@ -11,8 +11,8 @@ import UIKit
 class MTTLocationViewController: MTTViewController,UITableViewDelegate,UITableViewDataSource
 {
 
-    typealias locationRemoveCallBack = (_ isRemove:Bool)->()
-    typealias locationFinishCallBack = (_ place:String)->()
+    typealias locationRemoveCallBack = (_ isRemove:Bool) -> ()
+    typealias locationFinishCallBack = (_ place:String) -> ()
     
     var locationTableView:UITableView?
     var locationBottomContainerView:UIView?
@@ -147,7 +147,7 @@ class MTTLocationViewController: MTTViewController,UITableViewDelegate,UITableVi
         (leftButton?.rx.tap)?.subscribe(onNext:{[unowned self] in
             
             self.dismiss(animated: true, completion: { 
-//                self.removeCallBack!(true)
+                self.removeCallBack!(true)
             })
             
         }).addDisposableTo(disposeBag)
@@ -163,7 +163,7 @@ class MTTLocationViewController: MTTViewController,UITableViewDelegate,UITableVi
                 
                 print(self.placeString as Any)
                 
-//                self.finishCallBack!(self.placeString!)
+                self.finishCallBack!(self.placeString!)
             })
         }).addDisposableTo(disposeBag)
     }

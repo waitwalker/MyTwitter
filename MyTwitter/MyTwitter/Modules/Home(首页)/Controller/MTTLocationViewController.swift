@@ -154,9 +154,10 @@ class MTTLocationViewController: MTTViewController,UITableViewDelegate,UITableVi
         
         (rightButton?.rx.tap)?.subscribe(onNext:{[unowned self] in
             
-            if self.placeString?.characters.count == 0
+            if self.placeString == nil
             {
                 self.placeString = self.places?.first
+                print(self.placeString as Any)
             }
             
             self.dismiss(animated: true, completion: { 

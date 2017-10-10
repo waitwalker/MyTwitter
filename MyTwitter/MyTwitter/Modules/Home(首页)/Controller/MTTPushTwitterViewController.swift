@@ -429,7 +429,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             locationContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
         } else
         {
-            imageViewContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
+            imageViewContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 330);
             
             locationContainerView?.frame = CGRect(x: 0, y: (imageViewContainerView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
         }

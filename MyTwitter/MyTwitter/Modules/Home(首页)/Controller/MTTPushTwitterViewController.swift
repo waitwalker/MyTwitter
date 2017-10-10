@@ -58,6 +58,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         addGesture()
     }
     
+    // MARK: - 获取相册库中多张照片
     func getPhotosImage(cell:MTTPushBottomCell, index:Int, isOriginal:Bool, isSelected:Bool) -> Void
     {
         
@@ -75,7 +76,8 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             print(image as Any)
             if isSelected
             {
-                
+                self.imageViewContainerView?.isHidden = false
+                self.pushSingleImageView?.image = image
             } else
             {
                 cell.backgroundImageView?.image = image
@@ -326,6 +328,11 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             self.setupLoactionManager()
         }).addDisposableTo(disposeBag)
         
+        //pictureButton
+        (pictureButton?.rx.tap)?.subscribe(onNext:{
+            
+        })
+        
         pushTextView?.rx.text.map({($0?.characters.count)! > 0})
             .subscribe(onNext:{ isTrue in
                 
@@ -472,6 +479,23 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         print("%@",indexPath)
+        
+        if indexPath.item > 1 && indexPath.item < 19
+        {
+            let cell = collectionView.cellForItem(at: indexPath) as! MTTPushBottomCell
+            getPhotosImage(cell: cell, index: indexPath.item - 2, isOriginal: true, isSelected: true)
+            locationContainerView?.frame = CGRect(x: 0, y: (imageViewContainerView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
+        } else if indexPath.item == 0
+        {
+            
+        } else if indexPath.item == 1
+        {
+            
+        } else
+        {
+            
+        }
+        
     }
     
     // MARK: - 图片的代理回调

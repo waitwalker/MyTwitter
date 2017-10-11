@@ -9,10 +9,13 @@
 import UIKit
 import Photos
 
+private let pushLogger = MTTLogger.homeLogger
+
 class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UICollectionViewDelegate,UICollectionViewDataSource , MTTPushImageViewDelegate , CLLocationManagerDelegate{
 
     var placeHolderLabel:UILabel?
     
+    var leftButton:UIButton?
     var rightButton:UIButton?
     var pushTextView:UITextView?
     var pushScrollContainerView:UIScrollView?
@@ -22,6 +25,8 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     var gifButton:UIButton?
     var voteButton:UIButton?
     var locationButton:UIButton?
+    var textCountLabel:UILabel?
+    
     
     var pushButton:UIButton?
     var secondLine:UIView?
@@ -222,6 +227,14 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         pushButton?.clipsToBounds = true
         contentView?.addSubview(pushButton!)
         
+        //textCountLabel
+        textCountLabel = UILabel()
+        textCountLabel?.textColor = kMainGrayColor()
+        textCountLabel?.textAlignment = NSTextAlignment.right
+        textCountLabel?.font = UIFont.systemFont(ofSize: 15)
+        textCountLabel?.text = "140"
+        contentView?.addSubview(textCountLabel!)
+        
         //bottomCollectionView
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
@@ -300,6 +313,14 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             make.width.equalTo(70)
         })
         
+        //textCountLabel
+        textCountLabel?.snp.makeConstraints({ (make) in
+            make.right.equalTo((self.pushButton?.snp.left)!).offset(-10)
+            make.height.equalTo(30)
+            make.width.equalTo(100)
+            make.centerY.equalTo(self.pushButton!)
+        })
+        
     }
     
     func setupNavBar() -> Void
@@ -309,12 +330,25 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         rightButton?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         rightButton?.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightButton!)
+        
+        leftButton = UIButton()
+        leftButton?.setImage(UIImage.init(named: "twitter_push"), for: UIControlState.normal)
+        leftButton?.backgroundColor = kMainBlueColor()
+        leftButton?.layer.cornerRadius = 20
+        leftButton?.clipsToBounds = true
+        leftButton?.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftButton!)
     }
     
     // MARK: - 处理事件流
     func setupEvent() -> Void
     {
-        //close
+        //leftButton
+        leftButton?.rx.tap.subscribe(onNext:{ [unowned self] in
+            print("发送头像被点击",self)
+        }).addDisposableTo(disposeBag)
+        
+        //close rightButton
         (rightButton?.rx.tap)?.subscribe(onNext:{
             self.view.endEditing(true)
             self.navigationController?.dismiss(animated: true, completion: {
@@ -339,16 +373,42 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
                 if isTrue
                 {
                     self.placeHolderLabel?.isHidden = true
+                    self.textCountLabel?.text = String.init(format: "%d", 140 - (self.pushTextView?.text.characters.count)!)
                     
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.bottomCollectionView?.isHidden = true
-                    })
+                    if (self.pushTextView?.text.characters.count)! >= Int(120)
+                    {
+                        self.textCountLabel?.textColor = kMainRedColor()
+                        print("输入框个数:",self.pushTextView?.text.characters.count as Any)
+                    } else
+                    {
+                        self.textCountLabel?.textColor = kMainGrayColor()
+                    }
+                    
+                    if (self.pushTextView?.text.characters.count)! <= Int(140)
+                    {
+                        self.pushButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
+                        self.pushButton?.isEnabled = true
+                    } else
+                    {
+                        self.pushButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
+                        self.pushButton?.isEnabled = false
+                    }
+                    
+                    if self.bottomCollectionView?.isHidden == false
+                    {
+                        UIView.animate(withDuration: 0.2, animations: {
+                            self.bottomCollectionView?.isHidden = true
+                        })
+                    }
+                    
                 } else
                 {
+                    self.textCountLabel?.text = "140"
                     self.placeHolderLabel?.isHidden = false
                     self.bottomCollectionView?.isHidden = false
+                    self.pushButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
+                    self.pushButton?.isEnabled = false
                 }
-                
             }).addDisposableTo(disposeBag)
         
     }

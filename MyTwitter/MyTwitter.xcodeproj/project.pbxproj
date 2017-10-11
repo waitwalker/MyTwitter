@@ -50,6 +50,8 @@
 		CA36DE321F7391830077B44F /* MTTAboutHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE311F7391830077B44F /* MTTAboutHeaderView.swift */; };
 		CA36DE341F7396D10077B44F /* MTTAboutFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE331F7396D10077B44F /* MTTAboutFooterView.swift */; };
 		CA572B111F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA572B101F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift */; };
+		CA572B131F8E022300E9D7F6 /* MTTPhotoLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA572B121F8E022300E9D7F6 /* MTTPhotoLibraryViewController.swift */; };
+		CA572B151F8E040400E9D7F6 /* MTTPhotoLibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA572B141F8E040400E9D7F6 /* MTTPhotoLibraryCell.swift */; };
 		CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */; };
 		CAC5AE871F7F4B3500B50C98 /* MTTButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE861F7F4B3500B50C98 /* MTTButtonExtension.swift */; };
 		CAC5AE891F7F4B9400B50C98 /* MTTTextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */; };
@@ -149,6 +151,8 @@
 		CA36DE311F7391830077B44F /* MTTAboutHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutHeaderView.swift; sourceTree = "<group>"; };
 		CA36DE331F7396D10077B44F /* MTTAboutFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutFooterView.swift; sourceTree = "<group>"; };
 		CA572B101F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLocationSearchCell.swift; sourceTree = "<group>"; };
+		CA572B121F8E022300E9D7F6 /* MTTPhotoLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPhotoLibraryViewController.swift; sourceTree = "<group>"; };
+		CA572B141F8E040400E9D7F6 /* MTTPhotoLibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPhotoLibraryCell.swift; sourceTree = "<group>"; };
 		CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSingletonManager.swift; sourceTree = "<group>"; };
 		CAC5AE861F7F4B3500B50C98 /* MTTButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTButtonExtension.swift; sourceTree = "<group>"; };
 		CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTextViewExtension.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 				1A304C4F1F6D6B4800F366B9 /* MTTHomeViewController.swift */,
 				1AF53C691F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift */,
 				1A234B571F8BB00E00D6C731 /* MTTLocationViewController.swift */,
+				CA572B121F8E022300E9D7F6 /* MTTPhotoLibraryViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -733,6 +738,7 @@
 				1ABFD4BD1F84BE84004DF174 /* MTTPushBottomCell.swift */,
 				1A234B591F8BB40D00D6C731 /* MTTLocationCell.swift */,
 				CA572B101F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift */,
+				CA572B141F8E040400E9D7F6 /* MTTPhotoLibraryCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1066,6 +1072,7 @@
 				1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */,
 				1A16F59E1F792F1000E09ECB /* MTTHomeImageContainerView.swift in Sources */,
 				CA3058C61F78CAF100742237 /* MTTHomeModel.swift in Sources */,
+				CA572B151F8E040400E9D7F6 /* MTTPhotoLibraryCell.swift in Sources */,
 				CAE6742B1F7F926900C1093E /* MTTArrayExtension.swift in Sources */,
 				CADECBE11F5E821B0027E15F /* MTTNetworkManager.swift in Sources */,
 				1A304C121F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift in Sources */,
@@ -1085,6 +1092,7 @@
 				CA3058C21F78B6B300742237 /* MTTFPSDisplay.swift in Sources */,
 				1A304C561F6D6B7400F366B9 /* MTTSearchViewController.swift in Sources */,
 				1A561D7A1F6FF58F001C82FA /* MTTLoginViewController.swift in Sources */,
+				CA572B131F8E022300E9D7F6 /* MTTPhotoLibraryViewController.swift in Sources */,
 				1A304C501F6D6B4800F366B9 /* MTTHomeViewController.swift in Sources */,
 				CA36DE2A1F7367E20077B44F /* MTTAboutViewModel.swift in Sources */,
 				CA36DE261F73612D0077B44F /* MTTAboutSwitchCell.swift in Sources */,

@@ -363,7 +363,11 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         }).addDisposableTo(disposeBag)
         
         //pictureButton
-        (pictureButton?.rx.tap)?.subscribe(onNext:{
+        (pictureButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
+            
+            let photoLibraryVC = MTTPhotoLibraryViewController()
+            
+            
             
         })
         
@@ -410,6 +414,11 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
                     self.pushButton?.isEnabled = false
                 }
             }).addDisposableTo(disposeBag)
+        
+        //pushButton
+        pushButton?.rx.tap.subscribe(onNext:{ [unowned self] in
+            print("发推按钮被点击了",self)
+        }).addDisposableTo(disposeBag)
         
     }
     

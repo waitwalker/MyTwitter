@@ -47,6 +47,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     var locationLabel:UILabel?
     var locationTimes:Int?
     
+    var photos:[UIImage]?
     
     
     
@@ -66,7 +67,6 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     // MARK: - 获取相册库中多张照片
     func getPhotosImage(cell:MTTPushBottomCell, index:Int, isOriginal:Bool, isSelected:Bool) -> Void
     {
-        
         let fetchOptions = PHFetchOptions()
         let assets = PHAsset.fetchAssets( with: fetchOptions)
         print(assets.count)
@@ -78,7 +78,6 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         let size = isOriginal ? PHImageManagerMaximumSize : CGSize.zero
         
         manager.requestImage(for: assets.object(at: index), targetSize: size, contentMode: PHImageContentMode.aspectFit, options: options) { (image, hashable) in
-            print(image as Any)
             if isSelected
             {
                 self.imageViewContainerView?.isHidden = false
@@ -86,6 +85,28 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             } else
             {
                 cell.backgroundImageView?.image = image
+            }
+        }
+    }
+    
+    func getAllPictureFromPhotoLibrary() -> Void 
+    {
+        //开一个后台线程用于处理相册照片
+        let photoQueue = DispatchQueue(label: "photoQueue", qos: DispatchQoS.background, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: DispatchQueue?.none)
+        photoQueue.async {
+            let fetchOptions = PHFetchOptions()
+            
+            let assets = PHAsset.fetchAssets( with: fetchOptions)
+            
+            let manager = PHImageManager.default()
+            
+            let options = PHImageRequestOptions()
+            
+            for index in 0...assets.count - 1 
+            {
+                manager.requestImage(for: assets.object(at: index), targetSize: CGSize.zero, contentMode: PHImageContentMode.aspectFit, options: options, resultHandler: { (image, hashable) in
+                    self.photos?.append(image!)
+                })
             }
         }
     }
@@ -366,10 +387,13 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         (pictureButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
             
             let photoLibraryVC = MTTPhotoLibraryViewController()
+            let nav = MTTNavigationController(rootViewController: photoLibraryVC)
             
+            self.present(nav, animated: true, completion: { 
+                
+            })
             
-            
-        })
+        }).addDisposableTo(disposeBag)
         
         pushTextView?.rx.text.map({($0?.characters.count)! > 0})
             .subscribe(onNext:{ isTrue in

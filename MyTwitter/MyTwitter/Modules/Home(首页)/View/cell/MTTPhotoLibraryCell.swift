@@ -12,10 +12,11 @@ class MTTPhotoLibraryCell: MTTCollectionViewCell
 {
     var photoBackgroundView:UIView?
     var photoBackgroundImageView:UIImageView?
-    var photoIconImageView:UIImageView?
-    var photoTitleLabel:UILabel?
+    
+    var photoSelectedCoverView:UIView?
     var photoSelectedIconImageView:UIImageView?
     var photoSelectedEditImageView:UIImageView?
+    
     
     
     
@@ -40,8 +41,28 @@ class MTTPhotoLibraryCell: MTTCollectionViewCell
         //photoBackgroundImageView
         photoBackgroundImageView = UIImageView()
         photoBackgroundImageView?.isUserInteractionEnabled = true
-        photoBackgroundImageView?.backgroundColor = kMainRandomColor()
+        photoBackgroundImageView?.backgroundColor = kMainWhiteColor()
         photoBackgroundView?.addSubview(photoBackgroundImageView!)
+        
+        //photoSelectedCoverView
+        photoSelectedCoverView = UIView()
+        let color = UIColor.black
+        photoSelectedCoverView?.backgroundColor = color.withAlphaComponent(0.3)
+        photoBackgroundImageView?.addSubview(photoSelectedCoverView!)
+        
+        //photoSelectedIconImageView
+        photoSelectedIconImageView = UIImageView()
+        photoSelectedIconImageView?.image = UIImage(named: "twitter_check_large")
+        photoSelectedIconImageView?.isUserInteractionEnabled = true
+        photoSelectedCoverView?.addSubview(photoSelectedIconImageView!)
+        
+        //photoSelectedEditImageView
+        photoSelectedEditImageView = UIImageView()
+        photoSelectedEditImageView?.image = UIImage(named: "twitter_edit_large")
+        photoSelectedEditImageView?.isUserInteractionEnabled = true
+        photoSelectedCoverView?.addSubview(photoSelectedEditImageView!)
+        
+        
     }
     
     private func layoutSubview() -> Void 
@@ -53,8 +74,26 @@ class MTTPhotoLibraryCell: MTTCollectionViewCell
         
         //photoBackgroundImageView
         photoBackgroundImageView?.snp.makeConstraints({ (make) in
-            make.left.top.equalTo(2)
-            make.bottom.right.equalTo(-2)
+            make.left.top.equalTo(1)
+            make.bottom.right.equalTo(-1)
+        })
+        
+        //photoSelectedCoverView
+        photoSelectedCoverView?.snp.makeConstraints({ (make) in
+            make.left.right.top.bottom.equalTo(self.photoBackgroundImageView!)
+        })
+        
+        //photoSelectedIconImageView
+        photoSelectedIconImageView?.snp.makeConstraints({ (make) in
+            make.width.height.equalTo(30)
+            make.center.equalTo(self.photoBackgroundImageView!)
+        })
+        
+        //photoSelectedEditImageView
+        photoSelectedEditImageView?.snp.makeConstraints({ (make) in
+            make.right.equalTo((self.photoBackgroundImageView?.snp.right)!).offset(-10)
+            make.bottom.equalTo((self.photoBackgroundImageView?.snp.bottom)!).offset(-10)
+            make.height.width.equalTo(16)
         })
     }
     

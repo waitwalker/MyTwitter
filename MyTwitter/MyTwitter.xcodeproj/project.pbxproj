@@ -35,6 +35,8 @@
 		1AFC05AA1F5EE3B2006EAC9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A41F5EE3B2006EAC9F /* Main.storyboard */; };
 		1AFC05AB1F5EE3B2006EAC9F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A61F5EE3B2006EAC9F /* Info.plist */; };
 		44E9E8C13750B588F23552C8 /* Pods_MyTwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */; };
+		CA0994BB1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0994BA1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift */; };
+		CA0994BD1F8F459D00D79775 /* MTTPhotoLibraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0994BC1F8F459D00D79775 /* MTTPhotoLibraryModel.swift */; };
 		CA3058C21F78B6B300742237 /* MTTFPSDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3058C11F78B6B300742237 /* MTTFPSDisplay.swift */; };
 		CA3058C41F78CAE500742237 /* MTTHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3058C31F78CAE500742237 /* MTTHomeViewModel.swift */; };
 		CA3058C61F78CAF100742237 /* MTTHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3058C51F78CAF100742237 /* MTTHomeModel.swift */; };
@@ -136,6 +138,8 @@
 		BBD28B095E0F89AA1960F0FC /* Pods-MyTwitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterTests/Pods-MyTwitterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BDE3DAC010179F784B5E286A /* Pods-MyTwitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterUITests/Pods-MyTwitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C8B46619503CC4D8F2F2F494 /* Pods_MyTwitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA0994BA1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPhotoLibraryIconCell.swift; sourceTree = "<group>"; };
+		CA0994BC1F8F459D00D79775 /* MTTPhotoLibraryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPhotoLibraryModel.swift; sourceTree = "<group>"; };
 		CA3058C11F78B6B300742237 /* MTTFPSDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTFPSDisplay.swift; sourceTree = "<group>"; };
 		CA3058C31F78CAE500742237 /* MTTHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeViewModel.swift; sourceTree = "<group>"; };
 		CA3058C51F78CAF100742237 /* MTTHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeModel.swift; sourceTree = "<group>"; };
@@ -719,6 +723,7 @@
 			isa = PBXGroup;
 			children = (
 				CA3058C51F78CAF100742237 /* MTTHomeModel.swift */,
+				CA0994BC1F8F459D00D79775 /* MTTPhotoLibraryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -739,6 +744,7 @@
 				1A234B591F8BB40D00D6C731 /* MTTLocationCell.swift */,
 				CA572B101F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift */,
 				CA572B141F8E040400E9D7F6 /* MTTPhotoLibraryCell.swift */,
+				CA0994BA1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1051,6 +1057,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A8F5BD71F72A98F006D6CA0 /* MTTAboutNormalCell.swift in Sources */,
+				CA0994BD1F8F459D00D79775 /* MTTPhotoLibraryModel.swift in Sources */,
 				1A0C10F41F66C44C00B6AD18 /* MTTRegularMatchManager.swift in Sources */,
 				CADECBCD1F5E4FE30027E15F /* MTTNavigationController.swift in Sources */,
 				1A304C101F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift in Sources */,
@@ -1071,6 +1078,7 @@
 				CAC5AE8D1F7F4BE500B50C98 /* MTTViewExtension.swift in Sources */,
 				1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */,
 				1A16F59E1F792F1000E09ECB /* MTTHomeImageContainerView.swift in Sources */,
+				CA0994BB1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift in Sources */,
 				CA3058C61F78CAF100742237 /* MTTHomeModel.swift in Sources */,
 				CA572B151F8E040400E9D7F6 /* MTTPhotoLibraryCell.swift in Sources */,
 				CAE6742B1F7F926900C1093E /* MTTArrayExtension.swift in Sources */,

@@ -11,8 +11,12 @@ import Photos
 
 class MTTPhotoLibraryViewController: MTTViewController ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
-    
+    typealias photoLibraryAddCallBack = (_ addedImage:UIImage) -> ()
     var photos:[UIImage]?
+    var addCallBack:photoLibraryAddCallBack?
+    var addedImage:UIImage?
+    
+    
     
     var photoLibraryCollectionView:UICollectionView?
     var leftButton:UIButton?
@@ -136,6 +140,13 @@ class MTTPhotoLibraryViewController: MTTViewController ,UICollectionViewDelegate
                 
             })
         }).addDisposableTo(disposeBag)
+        
+        rightButton?.rx.tap.subscribe(onNext:{ [unowned self] in
+            self.addCallBack!(self.addedImage!)
+            self.dismiss(animated: true, completion: { 
+                
+            })
+        }).addDisposableTo(disposeBag)
     }
     
     // MARK: - collectionView DataSource
@@ -195,7 +206,7 @@ class MTTPhotoLibraryViewController: MTTViewController ,UICollectionViewDelegate
             }
             isHiddenSelected = cell.photoSelectedCoverView?.isHidden
             collectionView.reloadItems(at: [indexPath])
-            
+            addedImage = cell.photoBackgroundImageView?.image
             rightButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
             rightButton?.isEnabled = true
         }
@@ -205,7 +216,6 @@ class MTTPhotoLibraryViewController: MTTViewController ,UICollectionViewDelegate
     {
         return CGSize(width: kScreenWidth / 3, height: kScreenWidth / 3)
     }
-    
     
     
 

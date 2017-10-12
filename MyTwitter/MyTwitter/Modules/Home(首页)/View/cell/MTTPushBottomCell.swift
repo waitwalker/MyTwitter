@@ -33,9 +33,10 @@ class MTTPushBottomCell: MTTCollectionViewCell
         //backgroundImageView
         backgroundImageView = UIImageView()
         backgroundImageView?.isUserInteractionEnabled = true
-        backgroundImageView?.backgroundColor = kMainRandomColor()
-        backgroundImageView?.layer.cornerRadius = 5
+        backgroundImageView?.layer.cornerRadius = 10
         backgroundImageView?.clipsToBounds = true
+        backgroundImageView?.layer.borderColor = kMainLightGrayColor().cgColor
+        backgroundImageView?.layer.borderWidth = 1
         self.contentView.addSubview(backgroundImageView!)
         
         //innerImageView

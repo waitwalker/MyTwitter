@@ -11,7 +11,7 @@ import Photos
 
 private let pushLogger = MTTLogger.homeLogger
 
-class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UICollectionViewDelegate,UICollectionViewDataSource , MTTPushImageViewDelegate , CLLocationManagerDelegate{
+class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UICollectionViewDelegate,UICollectionViewDataSource , MTTPushImageViewDelegate , CLLocationManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
     var placeHolderLabel:UILabel?
     
@@ -62,6 +62,52 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         layoutSubview()
         setupEvent()
         addGesture()
+    }
+    
+    // MARK: - 从相机获取照片
+    func getImageFromCamera() -> Void 
+    {
+        let imagePickerVC = UIImagePickerController()
+        imagePickerVC.allowsEditing = true
+        imagePickerVC.sourceType = UIImagePickerControllerSourceType.camera
+        imagePickerVC.delegate = self
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
+        {
+            self.present(imagePickerVC, animated: true) { 
+                
+            }
+        } else
+        {
+            showAlertWithMessage(message: "相机不可用")
+        }
+        
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) 
+    {
+        self.dismiss(animated: true) { 
+            
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) 
+    {
+        let mediaType = info[UIImagePickerControllerMediaType] as! String
+        
+        if mediaType == "public.image"
+        {
+            let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+            imageViewContainerView?.isHidden = false
+            pushSingleImageView?.image = image
+            picker.dismiss(animated: true, completion: { 
+                
+                if self.locationContainerView?.isHidden == false
+                {
+                    self.locationContainerView?.frame = CGRect(x: 0, y: (self.imageViewContainerView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
+                }
+            })
+        }
     }
     
     // MARK: - 获取相册库中多张照片
@@ -121,7 +167,6 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         //pushScrollContainerView
         pushScrollContainerView = UIScrollView()
         pushScrollContainerView?.isUserInteractionEnabled = true
-        pushScrollContainerView?.backgroundColor = kMainBlueColor()
         pushScrollContainerView?.isPagingEnabled = true
         pushScrollContainerView?.showsVerticalScrollIndicator = false
         pushScrollContainerView?.contentSize = CGSize(width: 0, height: kScreenHeight - 59 - 50)
@@ -174,7 +219,6 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         imageViewContainerView = UIView()
         imageViewContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 330)
         imageViewContainerView?.isHidden = true
-        imageViewContainerView?.backgroundColor = UIColor.orange
         pushScrollContainerView?.addSubview(imageViewContainerView!)
         
         //pushSingleImageView
@@ -265,7 +309,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         bottomCollectionView?.delegate = self
         bottomCollectionView?.dataSource = self
         bottomCollectionView?.showsHorizontalScrollIndicator = false
-        bottomCollectionView?.backgroundColor = kMainGreenColor()
+        bottomCollectionView?.backgroundColor = kMainWhiteColor()
         bottomCollectionView?.register(MTTPushBottomCell.self, forCellWithReuseIdentifier: reusedPushBottomId)
         self.view.addSubview(bottomCollectionView!)
         
@@ -388,6 +432,15 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             
             let photoLibraryVC = MTTPhotoLibraryViewController()
             let nav = MTTNavigationController(rootViewController: photoLibraryVC)
+            photoLibraryVC.addCallBack = { (addedImage) in
+                
+                self.imageViewContainerView?.isHidden = false
+                self.pushSingleImageView?.image = addedImage
+                if self.locationContainerView?.isHidden == false
+                {
+                    self.locationContainerView?.frame = CGRect(x: 0, y: (self.imageViewContainerView?.frame.maxY)! + 10, width: kScreenWidth, height: 20)
+                }
+            }
             
             self.present(nav, animated: true, completion: { 
                 
@@ -519,12 +572,12 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         
         if imageViewContainerView?.isHidden == true
         {
-            locationContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
+            locationContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 20)
         } else
         {
-            imageViewContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 330);
+            imageViewContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 330)
             
-            locationContainerView?.frame = CGRect(x: 0, y: (imageViewContainerView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
+            locationContainerView?.frame = CGRect(x: 0, y: (imageViewContainerView?.frame.maxY)! + 10, width: kScreenWidth, height: 20)
         }
         
     }
@@ -571,8 +624,6 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     // MARK: - collectionView Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        print("%@",indexPath)
-        
         if indexPath.item > 1 && indexPath.item < 19
         {
             let cell = collectionView.cellForItem(at: indexPath) as! MTTPushBottomCell
@@ -580,13 +631,18 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             locationContainerView?.frame = CGRect(x: 0, y: (imageViewContainerView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
         } else if indexPath.item == 0
         {
-            
+            getImageFromCamera()
         } else if indexPath.item == 1
         {
             
         } else
         {
+            let photoLibraryVC = MTTPhotoLibraryViewController()
+            let nav = MTTNavigationController(rootViewController: photoLibraryVC)
             
+            self.present(nav, animated: true, completion: { 
+                
+            })
         }
         
     }
@@ -594,7 +650,13 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     // MARK: - 图片的代理回调
     func tappedCloseImageView(closeImageView: UIImageView)
     {
+        imageViewContainerView?.isHidden = true
+        pushSingleImageView?.image = UIImage()
         
+        if locationContainerView?.isHidden == false
+        {
+            locationContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
+        }
     }
     
     func tappedExpressionImageView(expressionImageView: UIImageView)
@@ -672,7 +734,16 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
                         locationVC.finishCallBack = { (placeString) in
                             self.locationContainerView?.isHidden = false
                             self.locationLabel?.text = placeString
-                            print(placeString)
+                            
+                            if self.imageViewContainerView?.isHidden == false
+                            {
+                                self.locationContainerView?.frame = CGRect(x: 0, y: (self.imageViewContainerView?.frame.maxY)! + 10, width: kScreenWidth, height: 20)
+                            } else
+                            {
+                                self.locationContainerView?.frame = CGRect(x: 0, y: (self.pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 20)
+                                
+                            }
+                            
                         }
                         
                         locationVC.removeCallBack = { (isRemove) in

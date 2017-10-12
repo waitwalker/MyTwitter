@@ -21,6 +21,7 @@
 		1A561D7A1F6FF58F001C82FA /* MTTLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A561D791F6FF58F001C82FA /* MTTLoginViewController.swift */; };
 		1A82AEAA1F8FA4E60015EAC4 /* MTTSearchLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A82AEA91F8FA4E60015EAC4 /* MTTSearchLabelCell.swift */; };
 		1A82AEAC1F8FA4FD0015EAC4 /* MTTSearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A82AEAB1F8FA4FD0015EAC4 /* MTTSearchHeaderView.swift */; };
+		1A82AEAE1F8FA9120015EAC4 /* MTTSearchShowMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A82AEAD1F8FA9120015EAC4 /* MTTSearchShowMoreCell.swift */; };
 		1A8F5BD01F729A27006D6CA0 /* MTTExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F5BCF1F729A27006D6CA0 /* MTTExtension.swift */; };
 		1A8F5BD21F729EB1006D6CA0 /* MTTAboutTwitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F5BD11F729EB1006D6CA0 /* MTTAboutTwitterViewController.swift */; };
 		1A8F5BD51F72A915006D6CA0 /* MTTTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F5BD41F72A915006D6CA0 /* MTTTableViewCell.swift */; };
@@ -120,6 +121,7 @@
 		1A561D791F6FF58F001C82FA /* MTTLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTLoginViewController.swift; sourceTree = "<group>"; };
 		1A82AEA91F8FA4E60015EAC4 /* MTTSearchLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchLabelCell.swift; sourceTree = "<group>"; };
 		1A82AEAB1F8FA4FD0015EAC4 /* MTTSearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchHeaderView.swift; sourceTree = "<group>"; };
+		1A82AEAD1F8FA9120015EAC4 /* MTTSearchShowMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchShowMoreCell.swift; sourceTree = "<group>"; };
 		1A8F5BCF1F729A27006D6CA0 /* MTTExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTExtension.swift; sourceTree = "<group>"; };
 		1A8F5BD11F729EB1006D6CA0 /* MTTAboutTwitterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutTwitterViewController.swift; sourceTree = "<group>"; };
 		1A8F5BD41F72A915006D6CA0 /* MTTTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTableViewCell.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				1A82AEA91F8FA4E60015EAC4 /* MTTSearchLabelCell.swift */,
+				1A82AEAD1F8FA9120015EAC4 /* MTTSearchShowMoreCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1087,6 +1090,7 @@
 				CAE674251F7F848200C1093E /* MTTRollingFileLogger.swift in Sources */,
 				CA36DE321F7391830077B44F /* MTTAboutHeaderView.swift in Sources */,
 				1A234B581F8BB00E00D6C731 /* MTTLocationViewController.swift in Sources */,
+				1A82AEAE1F8FA9120015EAC4 /* MTTSearchShowMoreCell.swift in Sources */,
 				1A8F5BD01F729A27006D6CA0 /* MTTExtension.swift in Sources */,
 				CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */,
 				CAC5AE871F7F4B3500B50C98 /* MTTButtonExtension.swift in Sources */,

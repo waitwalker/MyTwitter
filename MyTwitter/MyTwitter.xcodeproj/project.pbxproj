@@ -60,6 +60,7 @@
 		CA66B4F01F90C0BB001CD140 /* MTTSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66B4EF1F90C0BB001CD140 /* MTTSearchViewModel.swift */; };
 		CA66B4F21F90C118001CD140 /* MTTSearchData.json in Resources */ = {isa = PBXBuildFile; fileRef = CA66B4F11F90C118001CD140 /* MTTSearchData.json */; };
 		CA66B4F71F90C1BD001CD140 /* MTTSearchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66B4F61F90C1BD001CD140 /* MTTSearchHeader.swift */; };
+		CA66B4F91F90C6E8001CD140 /* MTTSearchSelectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66B4F81F90C6E8001CD140 /* MTTSearchSelectedViewController.swift */; };
 		CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */; };
 		CAC5AE871F7F4B3500B50C98 /* MTTButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE861F7F4B3500B50C98 /* MTTButtonExtension.swift */; };
 		CAC5AE891F7F4B9400B50C98 /* MTTTextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */; };
@@ -169,6 +170,7 @@
 		CA66B4EF1F90C0BB001CD140 /* MTTSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchViewModel.swift; sourceTree = "<group>"; };
 		CA66B4F11F90C118001CD140 /* MTTSearchData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MTTSearchData.json; sourceTree = "<group>"; };
 		CA66B4F61F90C1BD001CD140 /* MTTSearchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchHeader.swift; sourceTree = "<group>"; };
+		CA66B4F81F90C6E8001CD140 /* MTTSearchSelectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchSelectedViewController.swift; sourceTree = "<group>"; };
 		CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSingletonManager.swift; sourceTree = "<group>"; };
 		CAC5AE861F7F4B3500B50C98 /* MTTButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTButtonExtension.swift; sourceTree = "<group>"; };
 		CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTextViewExtension.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				1A304C551F6D6B7400F366B9 /* MTTSearchViewController.swift */,
+				CA66B4F81F90C6E8001CD140 /* MTTSearchSelectedViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1150,6 +1153,7 @@
 				1A304C501F6D6B4800F366B9 /* MTTHomeViewController.swift in Sources */,
 				CA36DE2A1F7367E20077B44F /* MTTAboutViewModel.swift in Sources */,
 				CA36DE261F73612D0077B44F /* MTTAboutSwitchCell.swift in Sources */,
+				CA66B4F91F90C6E8001CD140 /* MTTSearchSelectedViewController.swift in Sources */,
 				CA572B111F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift in Sources */,
 				CADECBD11F5E500D0027E15F /* MTTViewController.swift in Sources */,
 				CAE6742F1F7F98D100C1093E /* MTTLogger.swift in Sources */,

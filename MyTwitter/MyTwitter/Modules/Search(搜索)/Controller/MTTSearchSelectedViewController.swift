@@ -10,6 +10,20 @@ import UIKit
 
 class MTTSearchSelectedViewController: MTTViewController {
 
+    // MARK: - 工厂模式  根据选中不同的cell 跳转到不同的控制器
+    class func initWithSearchSelectedType(type:MTTSearchCellType) -> MTTSearchSelectedViewController
+    {
+        var searchSelectedVC:MTTSearchSelectedViewController?
+        switch type {
+        case MTTSearchCellType.lableCellType:
+            searchSelectedVC = MTTSearchLabelViewController()
+            return searchSelectedVC!
+        default:
+            return MTTSearchSelectedViewController()
+        }
+        
+    }
+    
     override func viewDidLoad() 
     {
         super.viewDidLoad()
@@ -22,15 +36,5 @@ class MTTSearchSelectedViewController: MTTViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

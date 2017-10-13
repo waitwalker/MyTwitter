@@ -130,5 +130,20 @@ class MTTSearchViewController: MTTViewController ,UITableViewDelegate,UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) 
     {
         tableView.deselectRow(at: indexPath, animated: true)
+        switch indexPath.section
+        {
+        case 0:
+            
+            if indexPath.item != 5
+            {
+                let searchSelectedVC = MTTSearchLabelViewController.initWithSearchSelectedType(type: MTTSearchCellType.lableCellType)
+                self.navigationController?.pushViewController(searchSelectedVC, animated: true)
+                
+            }
+            
+        default:
+            break
+            
+        }
     }
 }

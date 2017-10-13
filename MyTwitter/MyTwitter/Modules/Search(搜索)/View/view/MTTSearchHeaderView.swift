@@ -27,7 +27,7 @@ class MTTSearchHeaderView: MTTView
         super.setupSubview()
         titleLabel = UILabel()
         titleLabel?.textColor = UIColor.black
-        titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel?.textAlignment = NSTextAlignment.left
         self.addSubview(titleLabel!)
     }

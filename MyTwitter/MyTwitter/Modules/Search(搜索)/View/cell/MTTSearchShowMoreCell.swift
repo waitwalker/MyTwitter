@@ -19,6 +19,8 @@ class MTTSearchShowMoreCell: MTTTableViewCell
     override init(style: UITableViewCellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupSubview()
+        layoutSubview()
     }
     
     private func setupSubview() -> Void

@@ -21,6 +21,8 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     
     var leftButton:UIButton?
     
+    var homeDataArray:[MTTHomeModel]?
+    
     
     
     override func viewDidLoad() 
@@ -41,10 +43,8 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     func loadData() -> Void
     {
         MTTHomeViewModel.getHomeData { (dataArray) in
-            for homeModel in dataArray
-            {
-                print(homeModel.contentTextString)
-            }
+            
+            self.homeDataArray = dataArray
         }
     }
     

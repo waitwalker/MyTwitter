@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class MTTHomeViewModel: NSObject 
 {
-    typealias homeDataCallBack = (_ dataArray:Array<MTTHomeModel>)->()
+    typealias homeDataCallBack = (_ dataArray:[MTTHomeModel])->()
     
     class func getHomeData(callBack:homeDataCallBack) -> Void
     {
@@ -41,8 +41,20 @@ class MTTHomeViewModel: NSObject
                     homeModel.retwitterAccountString = subjson["retwitterAccount"].stringValue
                     homeModel.avatarImageString = subjson["avatarImage"].stringValue
                     homeModel.nickNameString = subjson["nickName"].stringValue
+                    homeModel.timeString = subjson["time"].stringValue
                     
                     homeModel.contentTextString = subjson["content"].stringValue
+                    
+                    homeModel.contentHeight = self.calculateTextHeight(text: homeModel.contentTextString!)
+                    
+                    if (homeModel.retwitterType?.characters.count)! > Int(0)
+                    {
+                        homeModel.cellHeight = 255 + homeModel.contentHeight!
+                    } else
+                    {
+                        homeModel.cellHeight = 230 + homeModel.contentHeight!
+                    }
+                    
                     homeModel.contentImageStrings = subjson["contentImages"].arrayValue
                     homeModel.contentVideoString = subjson["contentVideo"].stringValue
                     
@@ -59,7 +71,7 @@ class MTTHomeViewModel: NSObject
         
     }
     
-    func calculateTextHeight(text:String) -> CGFloat 
+    class func calculateTextHeight(text:String) -> CGFloat
     {
         let attributeString = NSMutableAttributedString.init(string: text)
         let style = NSMutableParagraphStyle.init()

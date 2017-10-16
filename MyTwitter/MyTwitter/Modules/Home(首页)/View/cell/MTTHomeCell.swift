@@ -45,6 +45,27 @@ class MTTHomeCell: MTTTableViewCell {
     {
         didSet
         {
+            self.layoutSubview(homeModel: homeModel!)
+            
+            if homeModel?.retwitterType == "retwitter"
+            {
+                retwitterImageView?.image = UIImage(named: "twitter_retwitter")
+            } else if homeModel?.retwitterType == "like"
+            {
+                retwitterImageView?.image = UIImage(named: "twitter_like")
+            }
+            
+            retwitterAccountLabel?.text = homeModel?.retwitterAccountString
+            
+            accountLabel?.text = homeModel?.accountString
+            nickNameLabel?.text = homeModel?.nickNameString
+            contentLabel?.text = homeModel?.contentTextString
+            timeLabel?.text = homeModel?.timeString
+            contentImageContainerView?.homeImagesArray = ["1","2","3"]
+            commentButton?.setTitle(String(format: "%d",(homeModel?.commentCount)!), for: UIControlState.normal)
+            retwitterButton?.setTitle(String(format: "%d",(homeModel?.retwitterCount)!), for: UIControlState.normal)
+            likeButton?.setTitle(String(format: "%d",(homeModel?.likeCount)!), for: UIControlState.normal)
+            privateMessageButton?.setTitle(String(format: "%d",(homeModel?.privateMessageCount)!), for: UIControlState.normal)
             
         }
     }
@@ -54,7 +75,6 @@ class MTTHomeCell: MTTTableViewCell {
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupSubview()
-        self.layoutSubview()
     }
     
     
@@ -207,7 +227,7 @@ class MTTHomeCell: MTTTableViewCell {
         toolBarContainerView?.addSubview(privateMessageButton!)
     }
     
-    private func layoutSubview() -> Void
+    private func layoutSubview(homeModel:MTTHomeModel) -> Void
     {
         topLineView?.snp.makeConstraints({ (make) in
             make.left.right.top.equalTo(0)
@@ -234,11 +254,23 @@ class MTTHomeCell: MTTTableViewCell {
             make.centerY.equalTo(self.retwitterImageView!)
         })
         
-        originalContainerView?.snp.makeConstraints({ (make) in
-            make.left.right.equalTo(0)
-            make.height.equalTo(330)
-            make.top.equalTo((self.retwitterContainerView?.snp.bottom)!).offset(5)
-        })
+        if (homeModel.retwitterType?.characters.count)! > Int(0)
+        {
+            retwitterContainerView?.isHidden = false
+            originalContainerView?.snp.makeConstraints({ (make) in
+                make.left.right.equalTo(0)
+                make.height.equalTo(homeModel.cellHeight! - 25)
+                make.top.equalTo((self.retwitterContainerView?.snp.bottom)!).offset(5)
+            })
+        } else
+        {
+            retwitterContainerView?.isHidden = true
+            originalContainerView?.snp.makeConstraints({ (make) in
+                make.left.right.equalTo(0)
+                make.height.equalTo(homeModel.cellHeight!)
+                make.top.equalTo(0)
+            })
+        }
         
         avatarImageView?.snp.makeConstraints({ (make) in
             make.left.equalTo(10)
@@ -289,19 +321,34 @@ class MTTHomeCell: MTTTableViewCell {
             make.height.equalTo(260)
         })
         
-        contentLabel?.snp.makeConstraints({ (make) in
-            make.left.equalTo(0)
-            make.right.equalTo(0)
-            make.top.equalTo(0)
-            make.height.equalTo(80)
-        })
-        
-        contentImageContainerView?.snp.makeConstraints({ (make) in
-            make.left.equalTo(0)
-            make.right.equalTo(0)
-            make.height.equalTo(150)
-            make.top.equalTo((self.contentLabel?.snp.bottom)!).offset(5)
-        })
+        if (homeModel.contentTextString?.characters.count)! > Int(0)
+        {
+            contentLabel?.isHidden = false
+            contentLabel?.snp.makeConstraints({ (make) in
+                make.left.equalTo(0)
+                make.right.equalTo(0)
+                make.top.equalTo(0)
+                make.height.equalTo(homeModel.contentHeight!)
+            })
+            
+            contentImageContainerView?.snp.makeConstraints({ (make) in
+                make.left.equalTo(0)
+                make.right.equalTo(0)
+                make.height.equalTo(150)
+                make.top.equalTo((self.contentLabel?.snp.bottom)!).offset(5)
+            })
+            
+        } else
+        {
+            contentLabel?.isHidden = true
+            
+            contentImageContainerView?.snp.makeConstraints({ (make) in
+                make.left.equalTo(0)
+                make.right.equalTo(0)
+                make.height.equalTo(150)
+                make.top.equalTo(5)
+            })
+        }
         
         toolBarContainerView?.snp.makeConstraints({ (make) in
             make.left.equalTo(80)

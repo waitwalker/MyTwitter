@@ -16,6 +16,8 @@ class MTTHomeModel: NSObject
     var retwitterAccountString:String?
     
     var avatarImageString:String?
+    var timeString:String?
+    
     
     var accountString:String?
     var nickNameString:String?
@@ -32,6 +34,9 @@ class MTTHomeModel: NSObject
     var privateMessageCount:Int?
     
     var cellHeight:CGFloat?
+    
+    var contentHeight:CGFloat?
+    
     
     
 }

@@ -41,6 +41,13 @@ class MTTHomeCell: MTTTableViewCell {
     var likeButton:UIButton?  //喜欢按钮
     var privateMessageButton:UIButton?  //私信按钮
     
+    var homeModel:MTTHomeModel?
+    {
+        didSet
+        {
+            
+        }
+    }
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) 
@@ -139,12 +146,22 @@ class MTTHomeCell: MTTTableViewCell {
         
         //内容容器
         contentContainerView = UIView()
-        contentContainerView?.backgroundColor = kMainGrayColor()
+        contentContainerView?.backgroundColor = kMainBlueColor()
         originalContainerView?.addSubview(contentContainerView!)
+        
+        //contentLabel
+        contentLabel = UILabel()
+        contentLabel?.text = "与特殊部门我的律师一起晚餐．我喝醉了．但非常非常高兴！我特别希望有一天分享这一切！他们都多次与王岐山孟建柱见过面！他们的一些观点一些态度与我们有时完全不同！几乎百分九十的信任王岐山恨习主席！因为他们觉得王对西方国家会更好．不知道为什么他们都恨他们不了解的粟战书因为他们相信南华早报"
+        contentLabel?.numberOfLines = 0
+        contentLabel?.font = UIFont.systemFont(ofSize: 14)
+        contentLabel?.textAlignment = NSTextAlignment.left
+        contentLabel?.textColor = UIColor.black
+        contentLabel?.backgroundColor = kMainGreenColor()
+        contentContainerView?.addSubview(contentLabel!)
         
         //图片容器
         contentImageContainerView = MTTHomeImageContainerView()
-        contentImageContainerView?.backgroundColor = kMainRandomColor()
+        contentImageContainerView?.backgroundColor = UIColor.white
         contentImageContainerView?.homeImagesArray = ["image1","image1","image2","image3"]
         contentContainerView?.addSubview(contentImageContainerView!)
         
@@ -219,7 +236,7 @@ class MTTHomeCell: MTTTableViewCell {
         
         originalContainerView?.snp.makeConstraints({ (make) in
             make.left.right.equalTo(0)
-            make.height.equalTo(210)
+            make.height.equalTo(330)
             make.top.equalTo((self.retwitterContainerView?.snp.bottom)!).offset(5)
         })
         
@@ -269,20 +286,27 @@ class MTTHomeCell: MTTTableViewCell {
             make.left.equalTo(80)
             make.right.equalTo(-10)
             make.top.equalTo((self.accountContainerView?.snp.bottom)!).offset(5)
-            make.height.equalTo(140)
+            make.height.equalTo(260)
+        })
+        
+        contentLabel?.snp.makeConstraints({ (make) in
+            make.left.equalTo(0)
+            make.right.equalTo(0)
+            make.top.equalTo(0)
+            make.height.equalTo(80)
         })
         
         contentImageContainerView?.snp.makeConstraints({ (make) in
             make.left.equalTo(0)
             make.right.equalTo(0)
             make.height.equalTo(150)
-            make.top.equalTo(0)
+            make.top.equalTo((self.contentLabel?.snp.bottom)!).offset(5)
         })
         
         toolBarContainerView?.snp.makeConstraints({ (make) in
             make.left.equalTo(80)
             make.right.equalTo(-10)
-            make.top.equalTo((self.contentContainerView?.snp.bottom)!).offset(5)
+            make.bottom.equalTo(self.contentView.snp.bottom).offset(-5)
             make.height.equalTo(40)
         })
         

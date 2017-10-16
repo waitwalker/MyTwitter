@@ -7,11 +7,57 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class MTTHomeViewModel: NSObject 
 {
-
+    typealias homeDataCallBack = (_ dataArray:Array<MTTHomeModel>)->()
     
+    class func getHomeData(callBack:homeDataCallBack) -> Void
+    {
+        var data:Data?
+        
+        if let filePath = Bundle.main.path(forResource: "HomeData", ofType: "json")
+        {
+            data = try? Data.init(contentsOf: URL.init(fileURLWithPath: filePath))
+        }
+        
+        let json = JSON.init(data: data!)
+        
+        let result = json["result"].intValue
+        
+        var homeModels:[MTTHomeModel] = []
+        
+        
+        if result == 200
+        {
+            if let dataArray = json["data"].array
+            {
+                for(subjson) in dataArray
+                {
+                    let homeModel = MTTHomeModel()
+                    homeModel.retwitterType = subjson["retwitterType"].stringValue
+                    homeModel.retwitterImageString = subjson["retwitterImage"].stringValue
+                    homeModel.retwitterAccountString = subjson["retwitterAccount"].stringValue
+                    homeModel.avatarImageString = subjson["avatarImage"].stringValue
+                    homeModel.nickNameString = subjson["nickName"].stringValue
+                    
+                    homeModel.contentTextString = subjson["content"].stringValue
+                    homeModel.contentImageStrings = subjson["contentImages"].arrayValue
+                    homeModel.contentVideoString = subjson["contentVideo"].stringValue
+                    
+                    homeModel.commentCount = subjson["commentCount"].intValue
+                    homeModel.retwitterCount = subjson["retwitterCount"].intValue
+                    homeModel.likeCount = subjson["likeCount"].intValue
+                    homeModel.privateMessageCount = subjson["privateMessageCount"].intValue
+                    homeModels.append(homeModel)
+                }
+                
+                callBack(homeModels)
+            }
+        }
+        
+    }
     
     func calculateTextHeight(text:String) -> CGFloat 
     {

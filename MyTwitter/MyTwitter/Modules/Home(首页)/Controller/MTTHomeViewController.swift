@@ -34,6 +34,18 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
         setupEvent()
         
         log()
+        
+        loadData()
+    }
+    
+    func loadData() -> Void
+    {
+        MTTHomeViewModel.getHomeData { (dataArray) in
+            for homeModel in dataArray
+            {
+                print(homeModel.contentTextString)
+            }
+        }
     }
     
     private func log() -> Void
@@ -131,7 +143,7 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     // MARK: - tableView delegate 代理回调
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat 
     {
-        return 255
+        return 455
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) 

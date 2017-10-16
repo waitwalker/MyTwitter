@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class MTTHomeModel: NSObject 
 {
-    var isRetwitter:Bool?
+    var retwitterType:String?
     var retwitterImageString:String?
     var retwitterAccountString:String?
     
@@ -20,15 +21,17 @@ class MTTHomeModel: NSObject
     var nickNameString:String?
     var contentTextString:String?
     
-    var haveImage:Bool?
-    var contentImageString:String?
+    var contentImageStrings:[JSON]?
     
     var haveVideo:Bool?
     var contentVideoString:String?
     
-    var commentCount:NSInteger?
-    var retwitterCount:NSInteger?
-    var likeCount:NSInteger?
-    var privateMessageCount:NSInteger?
+    var commentCount:Int?
+    var retwitterCount:Int?
+    var likeCount:Int?
+    var privateMessageCount:Int?
+    
+    var cellHeight:CGFloat?
+    
     
 }

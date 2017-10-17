@@ -1,7 +1,7 @@
 {
-    "result": 200,
+    "result":"200",
     "msg":"请求成功",
-    "data": [
+    "data": {
         "labelCellList":
         [
             {
@@ -288,5 +288,5 @@
                 "subTitle":"Popular in 美国"
             }
         ]
-    ]
+    }
 }

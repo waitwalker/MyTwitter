@@ -26,6 +26,7 @@ class MTTSearchViewController: MTTViewController ,UITableViewDelegate,UITableVie
         setupSubview()
         layoutSubview()
         setupEvent()
+        loadData()
     }
 
     private func setupSubview() -> Void
@@ -49,6 +50,13 @@ class MTTSearchViewController: MTTViewController ,UITableViewDelegate,UITableVie
     private func setupEvent() -> Void
     {
         
+    }
+    
+    func loadData() -> Void
+    {
+        MTTSearchViewModel.getSearchData { (dataArray) in
+            
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int 

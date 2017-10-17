@@ -183,6 +183,110 @@
                  "likeCount":"234",
                  "privateMessageCount":""
             }
+        ],
+        "popularCellList":
+        [
+            {   "website":"thenation.com",
+                "title":"A Soulless Coward:Coach Cregg Popovich Responds to Trump",
+                "avatarImage":"1",
+                "iconImage":"3",
+                "twitter":"The Nation 及另外4人发推"
+            },
+            {
+                "website":"medium.com",
+                "title":"You fired your top talent. I hope you're happy. -Tony Robinson - Medium",
+                "avatarImage":"8",
+                "iconImage":"13",
+                "twitter":"Steve Holden 及另外3人发推"
+            },
+            {
+                "website":"academy.realm.io",
+                "title":"Creating Rich Custom UI Notifications",
+                "avatarImage":"12",
+                "iconImage":"6",
+                "twitter":"Realm 及另外3人发推"
+            },
+            {
+                "website":"css-tricks.com",
+                "title":"The Art of Comments | CSS-Tricks",
+                "avatarImage":"15",
+                "iconImage":"8",
+                "twitter":"JavaScriptKicks 及另外3人发推"
+            },
+            {
+                "website":"cn.nytimes.com",
+                "title":"习近平的千秋大业",
+                "avatarImage":"15",
+                "iconImage":"8",
+                "twitter":"纽约时报中文网 及另外3人发推"
+            }
+        ],
+        "searchAllCellList":
+        [
+            {
+                "title":"News",
+                "subTitle":"Popular in 美国"
+            },
+            {
+                "title":"Sports",
+                "subTitle":"Popular in 美国"
+            },
+            {
+                "title":"Entertainment",
+                "subTitle":"Popular in 美国"
+            },
+            {
+                "title":"Technology",
+                "subTitle":"Popular in 美国"
+            },
+            {
+                "title":"Music",
+                "subTitle":"Popular in 美国"
+            },
+            {
+                "title":"Science",
+                "subTitle":"Popular in 美国"
+            },
+            {
+                "title":"Government & Ploitics",
+                "subTitle":"Popular in 美国"
+            },
+            {
+                "title":"Nonprofits",
+                "subTitle":"Popular in 美国"
+            },
+            {
+                "title":"Arts & Culture",
+                "subTitle":"Popular in 美国"
+            },
+            {
+                "title":"Lifestyle",
+                "subTitle":"Popular in 美国"
+            },
+            {
+                "title":"新闻时事",
+                "subTitle":"Popular in 中国"
+            },
+            {
+                "title":"生活",
+                "subTitle":"Popular in 中国"
+            },
+            {
+                "title":"名人",
+                "subTitle":"Popular in 中国"
+            },
+            {
+                "title":"影视",
+                "subTitle":"Popular in 中国"
+            },
+            {
+                "title":"Gaming",
+                "subTitle":"Popular in 美国"
+            },
+            {
+                "title":"Fun",
+                "subTitle":"Popular in 美国"
+            }
         ]
     ]
 }

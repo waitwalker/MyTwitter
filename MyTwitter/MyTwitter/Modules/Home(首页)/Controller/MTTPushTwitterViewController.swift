@@ -397,8 +397,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightButton!)
         
         leftButton = UIButton()
-        leftButton?.setImage(UIImage.init(named: "twitter_push"), for: UIControlState.normal)
-        leftButton?.backgroundColor = kMainBlueColor()
+        leftButton?.setImage(UIImage.init(named: "my_head.jpg"), for: UIControlState.normal)
         leftButton?.layer.cornerRadius = 20
         leftButton?.clipsToBounds = true
         leftButton?.frame = CGRect(x: 0, y: 0, width: 40, height: 40)

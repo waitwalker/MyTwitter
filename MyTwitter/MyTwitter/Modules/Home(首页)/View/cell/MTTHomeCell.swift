@@ -56,18 +56,34 @@ class MTTHomeCell: MTTTableViewCell {
             }
             
             retwitterAccountLabel?.text = homeModel?.retwitterAccountString
-            
+            avatarImageView?.image = UIImage(named: String(format: "head%@.jpg", (homeModel?.avatarImageString)!))
             accountLabel?.text = homeModel?.accountString
             nickNameLabel?.text = homeModel?.nickNameString
             contentLabel?.text = homeModel?.contentTextString
             timeLabel?.text = homeModel?.timeString
-            contentImageContainerView?.homeImagesArray = ["1","2","3"]
+            var homeImages:[String] = []
+            
+            for _ in Int(0)...(homeModel?.contentImageStrings?.count)!
+            {
+                let random = self.getRandomNum()
+                
+                homeImages.append(random)
+            }
+            print(homeImages as Any)
+            homeImages.remove(at: 0)
+            contentImageContainerView?.homeImagesArray = homeImages
             commentButton?.setTitle(String(format: "%d",(homeModel?.commentCount)!), for: UIControlState.normal)
             retwitterButton?.setTitle(String(format: "%d",(homeModel?.retwitterCount)!), for: UIControlState.normal)
             likeButton?.setTitle(String(format: "%d",(homeModel?.likeCount)!), for: UIControlState.normal)
             privateMessageButton?.setTitle(String(format: "%d",(homeModel?.privateMessageCount)!), for: UIControlState.normal)
             
         }
+    }
+    
+    func getRandomNum() -> String 
+    {
+        let num = (arc4random() % 17)
+        return String(format: "%d", num)
     }
     
     
@@ -87,7 +103,6 @@ class MTTHomeCell: MTTTableViewCell {
         
         //转推容器
         retwitterContainerView = UIView()
-        retwitterContainerView?.backgroundColor = kMainBlueColor()
         self.contentView.addSubview(retwitterContainerView!)
         
         //转推,喜欢图标
@@ -102,25 +117,21 @@ class MTTHomeCell: MTTTableViewCell {
         retwitterAccountLabel?.textColor = kMainGrayColor()
         retwitterAccountLabel?.textAlignment = NSTextAlignment.left
         retwitterAccountLabel?.font = UIFont.systemFont(ofSize: 12)
-        retwitterAccountLabel?.backgroundColor = UIColor.green
         retwitterContainerView?.addSubview(retwitterAccountLabel!)
         
         //原创容器
         originalContainerView = UIView()
-        originalContainerView?.backgroundColor = kMainLightGrayColor()
         self.contentView.addSubview(originalContainerView!)
         
         //头像
         avatarImageView = UIImageView()
         avatarImageView?.isUserInteractionEnabled = true
         avatarImageView?.layer.cornerRadius = 30
-        avatarImageView?.backgroundColor = kMainRedColor()
         avatarImageView?.clipsToBounds = true
         originalContainerView?.addSubview(avatarImageView!)
         
         //账号相关容器
         accountContainerView = UIView()
-        accountContainerView?.backgroundColor = UIColor.orange
         originalContainerView?.addSubview(accountContainerView!)
         
         //账号
@@ -166,28 +177,23 @@ class MTTHomeCell: MTTTableViewCell {
         
         //内容容器
         contentContainerView = UIView()
-        contentContainerView?.backgroundColor = kMainBlueColor()
         originalContainerView?.addSubview(contentContainerView!)
         
         //contentLabel
         contentLabel = UILabel()
-        contentLabel?.text = "与特殊部门我的律师一起晚餐．我喝醉了．但非常非常高兴！我特别希望有一天分享这一切！他们都多次与王岐山孟建柱见过面！他们的一些观点一些态度与我们有时完全不同！几乎百分九十的信任王岐山恨习主席！因为他们觉得王对西方国家会更好．不知道为什么他们都恨他们不了解的粟战书因为他们相信南华早报"
         contentLabel?.numberOfLines = 0
         contentLabel?.font = UIFont.systemFont(ofSize: 14)
         contentLabel?.textAlignment = NSTextAlignment.left
         contentLabel?.textColor = UIColor.black
-        contentLabel?.backgroundColor = kMainGreenColor()
         contentContainerView?.addSubview(contentLabel!)
         
         //图片容器
         contentImageContainerView = MTTHomeImageContainerView()
         contentImageContainerView?.backgroundColor = UIColor.white
-        contentImageContainerView?.homeImagesArray = ["image1","image1","image2","image3"]
         contentContainerView?.addSubview(contentImageContainerView!)
         
         //tool bar 容器
         toolBarContainerView = UIView()
-        toolBarContainerView?.backgroundColor = kMainGreenColor()
         originalContainerView?.addSubview(toolBarContainerView!)
         
         //评论
@@ -234,42 +240,27 @@ class MTTHomeCell: MTTTableViewCell {
             make.height.equalTo(0.3)
         })
         
-        retwitterContainerView?.snp.makeConstraints({ (make) in
-            make.left.equalTo(55)
-            make.right.equalTo(0)
-            make.top.equalTo((self.topLineView?.snp.bottom)!).offset(0)
-            make.height.equalTo(20)
-        })
-        
-        retwitterImageView?.snp.makeConstraints({ (make) in
-            make.left.equalTo(5)
-            make.width.height.equalTo(15)
-            make.top.equalTo(0)
-        })
-        
-        retwitterAccountLabel?.snp.makeConstraints({ (make) in
-            make.left.equalTo((self.retwitterImageView?.snp.right)!).offset(5)
-            make.right.equalTo(self.retwitterContainerView!).offset(0)
-            make.height.equalTo(20)
-            make.centerY.equalTo(self.retwitterImageView!)
-        })
-        
-        if (homeModel.retwitterType?.characters.count)! > Int(0)
+        if (homeModel.retwitterType?.characters.count)! > Int(0) 
         {
             retwitterContainerView?.isHidden = false
-            originalContainerView?.snp.makeConstraints({ (make) in
-                make.left.right.equalTo(0)
-                make.height.equalTo(homeModel.cellHeight! - 25)
-                make.top.equalTo((self.retwitterContainerView?.snp.bottom)!).offset(5)
+            retwitterContainerView?.frame = CGRect(x: 55, y: 0, width: kScreenWidth - 55, height: 20)
+            retwitterImageView?.snp.makeConstraints({ (make) in
+                make.left.equalTo(5)
+                make.width.height.equalTo(15)
+                make.top.equalTo(2.5)
             })
+            
+            retwitterAccountLabel?.snp.makeConstraints({ (make) in
+                make.left.equalTo((self.retwitterImageView?.snp.right)!).offset(5)
+                make.right.equalTo(self.retwitterContainerView!).offset(0)
+                make.height.equalTo(20)
+                make.top.equalTo(self.retwitterContainerView!).offset(0)
+            })
+            originalContainerView?.frame = CGRect(x: 0, y: 25, width: kScreenWidth, height: homeModel.cellHeight! - 25)
         } else
         {
             retwitterContainerView?.isHidden = true
-            originalContainerView?.snp.makeConstraints({ (make) in
-                make.left.right.equalTo(0)
-                make.height.equalTo(homeModel.cellHeight!)
-                make.top.equalTo(0)
-            })
+            originalContainerView?.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: homeModel.cellHeight!)
         }
         
         avatarImageView?.snp.makeConstraints({ (make) in
@@ -318,36 +309,18 @@ class MTTHomeCell: MTTTableViewCell {
             make.left.equalTo(80)
             make.right.equalTo(-10)
             make.top.equalTo((self.accountContainerView?.snp.bottom)!).offset(5)
-            make.height.equalTo(260)
+            make.height.equalTo(homeModel.contentHeight!)
         })
         
         if (homeModel.contentTextString?.characters.count)! > Int(0)
         {
             contentLabel?.isHidden = false
-            contentLabel?.snp.makeConstraints({ (make) in
-                make.left.equalTo(0)
-                make.right.equalTo(0)
-                make.top.equalTo(0)
-                make.height.equalTo(homeModel.contentHeight!)
-            })
-            
-            contentImageContainerView?.snp.makeConstraints({ (make) in
-                make.left.equalTo(0)
-                make.right.equalTo(0)
-                make.height.equalTo(150)
-                make.top.equalTo((self.contentLabel?.snp.bottom)!).offset(5)
-            })
-            
+            contentLabel?.frame = CGRect(x: 0, y: 0, width: kScreenWidth - 80, height: homeModel.contentHeight! - 150)
+            contentImageContainerView?.frame = CGRect(x: 0, y: homeModel.contentHeight! - 150, width: kScreenWidth - 80, height: 150)
         } else
         {
             contentLabel?.isHidden = true
-            
-            contentImageContainerView?.snp.makeConstraints({ (make) in
-                make.left.equalTo(0)
-                make.right.equalTo(0)
-                make.height.equalTo(150)
-                make.top.equalTo(5)
-            })
+            contentImageContainerView?.frame = CGRect(x: 0, y: 0, width: kScreenWidth - 80, height: 150)
         }
         
         toolBarContainerView?.snp.makeConstraints({ (make) in

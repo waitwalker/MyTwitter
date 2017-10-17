@@ -45,6 +45,7 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
         MTTHomeViewModel.getHomeData { (dataArray) in
             
             self.homeDataArray = dataArray
+            self.homeTableView?.reloadData()
         }
     }
     
@@ -93,8 +94,7 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightButton!)
         
         leftButton = UIButton()
-        leftButton?.setImage(UIImage.init(named: "twitter_push"), for: UIControlState.normal)
-        leftButton?.backgroundColor = kMainBlueColor()
+        leftButton?.setImage(UIImage.init(named: "my_head.jpg"), for: UIControlState.normal)
         leftButton?.layer.cornerRadius = 20
         leftButton?.clipsToBounds = true
         leftButton?.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
@@ -126,7 +126,7 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int 
     {
-        return 200
+        return (homeDataArray?.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell 
@@ -136,6 +136,7 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
         {
             homeCell = MTTHomeCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedHomeCellId)
         }
+        homeCell?.homeModel = homeDataArray?[indexPath.item]
         return homeCell!
         
     }
@@ -143,7 +144,15 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     // MARK: - tableView delegate 代理回调
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat 
     {
-        return 455
+        if (self.homeDataArray?.count)! > Int(1)
+        {
+            let homeModel = homeDataArray![indexPath.row]
+            
+            return homeModel.cellHeight!
+        } else
+        {
+            return 300
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) 

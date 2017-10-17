@@ -46,10 +46,9 @@ class MTTHomeImageContainerView: MTTView,UIScrollViewDelegate
             
             let imageView = UIImageView()
             imageView.isUserInteractionEnabled = true
-            imageView.backgroundColor = kMainRandomColor()
-            imageView.image = UIImage.init(named: (self.homeImagesArray?.first)!)
+            imageView.image = UIImage(named: String(format: "%@.JPG", (self.homeImagesArray?.first)!))
             self.addSubview(imageView)
-            imageView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: 150)
+            imageView.frame = CGRect(x: 0, y: 0, width: imageViewWidth * 2 + 5, height: 150)
             
             let tap = UITapGestureRecognizer.init(target: self, action: #selector(imageViewTapAction(tap:)))
             imageView.addGestureRecognizer(tap)
@@ -61,9 +60,8 @@ class MTTHomeImageContainerView: MTTView,UIScrollViewDelegate
             {
                 let imageView = UIImageView()
                 imageView.isUserInteractionEnabled = true
-                imageView.backgroundColor = kMainRandomColor()
                 imageView.tag = i
-                imageView.image = UIImage.init(named: self.homeImagesArray![i])
+                imageView.image = UIImage(named: String(format: "%@.JPG", (self.homeImagesArray![i])))
                 self.addSubview(imageView)
                 
                 imageView.frame = CGRect(x: (margin + imageViewWidth) * CGFloat(i), y: 0, width: imageViewWidth, height: 150)
@@ -77,9 +75,8 @@ class MTTHomeImageContainerView: MTTView,UIScrollViewDelegate
             {
                 let imageView = UIImageView()
                 imageView.isUserInteractionEnabled = true
-                imageView.backgroundColor = kMainRandomColor()
                 imageView.tag = i
-                imageView.image = UIImage.init(named: self.homeImagesArray![i])
+                imageView.image = UIImage(named: String(format: "%@.JPG", (self.homeImagesArray![i])))
                 self.addSubview(imageView)
                 
                 if i == 0
@@ -102,9 +99,8 @@ class MTTHomeImageContainerView: MTTView,UIScrollViewDelegate
             {
                 let imageView = UIImageView()
                 imageView.isUserInteractionEnabled = true
-                imageView.backgroundColor = kMainRandomColor()
                 imageView.tag = i
-                imageView.image = UIImage.init(named: self.homeImagesArray![i])
+                imageView.image = UIImage(named: String(format: "%@.JPG", (self.homeImagesArray![i])))
                 self.addSubview(imageView)
                 
                 if i < 2
@@ -143,6 +139,7 @@ class MTTHomeImageContainerView: MTTView,UIScrollViewDelegate
         appDelegate?.window??.isUserInteractionEnabled = true
         imageBackgroundView = UIView()
         imageBackgroundView?.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
+        imageBackgroundView?.backgroundColor = kMainRandomColor()
         appDelegate?.window??.addSubview(imageBackgroundView!)
         
         imageScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
@@ -153,13 +150,18 @@ class MTTHomeImageContainerView: MTTView,UIScrollViewDelegate
         imageScrollView?.isPagingEnabled = true
         imageBackgroundView?.addSubview(imageScrollView!)
         
-        for i in 0...(homeImagesArray?.count)!
+        for i in Int(0)...(homeImagesArray?.count)! - 1
         {
             let imageView = UIImageView()
             imageView.isUserInteractionEnabled = true
-            imageView.frame = CGRect(x: CGFloat(i) * kScreenWidth, y: 0, width: kScreenWidth, height: kScreenHeight)
+            
             imageView.tag = i
-            imageView.backgroundColor = kMainRandomColor()
+            imageView.image = UIImage(named: String(format: "%@.JPG", (self.homeImagesArray![i])))
+            let size = imageView.image?.size
+            let scale:CGFloat = (size?.width)! / (size?.height)!
+            
+            imageView.frame = CGRect(x: CGFloat(i) * kScreenWidth, y: 0, width: kScreenWidth, height: scale * kScreenWidth)
+            imageView.frame.origin.y = (kScreenHeight - imageView.frame.size.height) / 2
             imageScrollView?.addSubview(imageView)
             let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapGesAction(tap:)))
             tap.numberOfTapsRequired = 1

@@ -40,19 +40,20 @@ class MTTHomeViewModel: NSObject
                     homeModel.retwitterImageString = subjson["retwitterImage"].stringValue
                     homeModel.retwitterAccountString = subjson["retwitterAccount"].stringValue
                     homeModel.avatarImageString = subjson["avatarImage"].stringValue
+                    homeModel.accountString = subjson["account"].stringValue
                     homeModel.nickNameString = subjson["nickName"].stringValue
                     homeModel.timeString = subjson["time"].stringValue
                     
                     homeModel.contentTextString = subjson["content"].stringValue
                     
-                    homeModel.contentHeight = self.calculateTextHeight(text: homeModel.contentTextString!)
+                    homeModel.contentHeight = self.calculateTextHeight(text: homeModel.contentTextString!) + 150
                     
                     if (homeModel.retwitterType?.characters.count)! > Int(0)
                     {
-                        homeModel.cellHeight = 255 + homeModel.contentHeight!
+                        homeModel.cellHeight = 255 + homeModel.contentHeight! - 150
                     } else
                     {
-                        homeModel.cellHeight = 230 + homeModel.contentHeight!
+                        homeModel.cellHeight = 230 + homeModel.contentHeight! - 150 + 15
                     }
                     
                     homeModel.contentImageStrings = subjson["contentImages"].arrayValue
@@ -75,7 +76,7 @@ class MTTHomeViewModel: NSObject
     {
         let attributeString = NSMutableAttributedString.init(string: text)
         let style = NSMutableParagraphStyle.init()
-        style.lineSpacing = 0
+        style.lineSpacing = 5
         let font = UIFont.systemFont(ofSize: 14)
         attributeString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, text.characters.count))
         attributeString.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, text.characters.count))

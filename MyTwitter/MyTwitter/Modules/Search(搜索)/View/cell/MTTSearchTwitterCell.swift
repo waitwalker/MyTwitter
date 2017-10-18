@@ -41,33 +41,32 @@ class MTTSearchTwitterCell: MTTTableViewCell {
     var likeButton:UIButton?  //喜欢按钮
     var privateMessageButton:UIButton?  //私信按钮
     
-    var homeModel:MTTHomeModel?
+    var searchModel:MTTSearchModel?
     {
         didSet
         {
-            self.layoutSubview(homeModel: homeModel!)
+            self.layoutSubview(searchModel: searchModel!)
             
-            avatarImageView?.image = UIImage(named: String(format: "head%@.jpg", (homeModel?.avatarImageString)!))
-            accountLabel?.text = homeModel?.accountString
-            nickNameLabel?.text = homeModel?.nickNameString
-            contentLabel?.text = homeModel?.contentTextString
-            timeLabel?.text = homeModel?.timeString
-            var homeImages:[String] = []
+            avatarImageView?.image = UIImage(named: String(format: "head%@.jpg", (searchModel?.avatarImage)!))
+            accountLabel?.text = searchModel?.account
+            nickNameLabel?.text = searchModel?.nickName
+            contentLabel?.text = searchModel?.content
+            timeLabel?.text = searchModel?.time
+            var searchImages:[String] = []
             
-            for _ in Int(0)...(homeModel?.contentImageStrings?.count)!
+            for _ in Int(0)...(searchModel?.contentImages?.count)!
             {
                 let random = self.getRandomNum()
                 
-                homeImages.append(random)
+                searchImages.append(random)
             }
-            print(homeImages as Any)
-            homeImages.remove(at: 0)
-            contentImageContainerView?.homeImagesArray = homeImages
-            commentButton?.setTitle(String(format: "%d",(homeModel?.commentCount)!), for: UIControlState.normal)
-            retwitterButton?.setTitle(String(format: "%d",(homeModel?.retwitterCount)!), for: UIControlState.normal)
-            likeButton?.setTitle(String(format: "%d",(homeModel?.likeCount)!), for: UIControlState.normal)
-            privateMessageButton?.setTitle(String(format: "%d",(homeModel?.privateMessageCount)!), for: UIControlState.normal)
-            
+            print(searchImages as Any)
+            searchImages.remove(at: 0)
+            contentImageContainerView?.homeImagesArray = searchImages
+            commentButton?.setTitle(searchModel?.commentCount, for: UIControlState.normal)
+            retwitterButton?.setTitle(searchModel?.retwitterCount, for: UIControlState.normal)
+            likeButton?.setTitle(searchModel?.likeCount, for: UIControlState.normal)
+            privateMessageButton?.setTitle(searchModel?.privateMessageCount, for: UIControlState.normal)
         }
     }
     
@@ -206,14 +205,14 @@ class MTTSearchTwitterCell: MTTTableViewCell {
         toolBarContainerView?.addSubview(privateMessageButton!)
     }
     
-    private func layoutSubview(homeModel:MTTHomeModel) -> Void
+    private func layoutSubview(searchModel:MTTSearchModel) -> Void
     {
         topLineView?.snp.makeConstraints({ (make) in
             make.left.right.top.equalTo(0)
             make.height.equalTo(0.3)
         })
         
-        originalContainerView?.frame = CGRect(x: 0, y: 25, width: kScreenWidth, height: homeModel.cellHeight! - 25)
+        originalContainerView?.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: searchModel.cellHeight!)
         
         avatarImageView?.snp.makeConstraints({ (make) in
             make.left.equalTo(10)
@@ -260,14 +259,14 @@ class MTTSearchTwitterCell: MTTTableViewCell {
             make.left.equalTo(80)
             make.right.equalTo(-10)
             make.top.equalTo((self.accountContainerView?.snp.bottom)!).offset(5)
-            make.height.equalTo(homeModel.contentHeight!)
+            make.height.equalTo(searchModel.contentTextHeight! + 150)
         })
         
-        if (homeModel.contentTextString?.characters.count)! > Int(0)
+        if (searchModel.content?.characters.count)! > Int(0)
         {
             contentLabel?.isHidden = false
-            contentLabel?.frame = CGRect(x: 0, y: 0, width: kScreenWidth - 80, height: homeModel.contentHeight! - 150)
-            contentImageContainerView?.frame = CGRect(x: 0, y: homeModel.contentHeight! - 150, width: kScreenWidth - 80, height: 150)
+            contentLabel?.frame = CGRect(x: 0, y: 0, width: kScreenWidth - 80, height: searchModel.contentTextHeight!)
+            contentImageContainerView?.frame = CGRect(x: 0, y: searchModel.contentTextHeight!, width: kScreenWidth - 80, height: 150)
         } else
         {
             contentLabel?.isHidden = true

@@ -29,12 +29,10 @@ class MTTSearchViewModel: NSObject
         if result == 200
         {
             let dataDict = json["data"].dictionaryValue
-            print(dataDict)
             var labelList:[MTTSearchModel] = []
             var twitterList:[MTTSearchModel] = []
             var searchList:[MTTSearchModel] = []
             var popularList:[MTTSearchModel] = []
-            
             
             
             let labelCellList = dataDict["labelCellList"]?.array
@@ -63,40 +61,42 @@ class MTTSearchViewModel: NSObject
                 searchModel.retwitterCount = subTwitter["retwitterCount"].stringValue
                 searchModel.likeCount = subTwitter["likeCount"].stringValue
                 searchModel.privateMessageCount = subTwitter["privateMessageCount"].stringValue
+                searchModel.contentTextHeight = searchModel.content?.calculateTextHeight(text: searchModel.content!)
+                searchModel.cellHeight = 225 + searchModel.contentTextHeight!
                 
                 twitterList.append(searchModel)
-            }
-            
-            let searchAllCellList = dataDict["searchAllCellList"]?.array
-            for subSearch in searchAllCellList!
-            {
-                let searchModel = MTTSearchModel()
-                searchModel.website = subSearch["website"].stringValue
-                searchModel.title = subSearch["title"].stringValue
-                searchModel.avatarImage = subSearch["avatarImage"].stringValue
-                searchModel.iconImage = subSearch["iconImage"].stringValue
-                searchModel.twitter = subSearch["twitter"].stringValue
-                searchModel.cellHeight = 120
-                searchList.append(searchModel)
             }
             
             let popularCellList = dataDict["popularCellList"]?.array
             for subPopular in popularCellList!
             {
                 let searchModel = MTTSearchModel()
+                searchModel.website = subPopular["website"].stringValue
                 searchModel.title = subPopular["title"].stringValue
-                searchModel.subTitle = subPopular["subTitle"].stringValue
-                searchModel.cellHeight = 80
+                searchModel.avatarImage = subPopular["avatarImage"].stringValue
+                searchModel.iconImage = subPopular["iconImage"].stringValue
+                searchModel.twitter = subPopular["twitter"].stringValue
+                searchModel.cellHeight = 120
                 popularList.append(searchModel)
             }
             
+            let searchAllCellList = dataDict["searchAllCellList"]?.array
+            for subSearch in searchAllCellList!
+            {
+                let searchModel = MTTSearchModel()
+                searchModel.title = subSearch["title"].stringValue
+                searchModel.subTitle = subSearch["subTitle"].stringValue
+                searchModel.cellHeight = 80
+                searchList.append(searchModel)
+            }
+            
+            
             callDataArray.append(labelList)
             callDataArray.append(twitterList)
-            callDataArray.append(searchList)
             callDataArray.append(popularList)
+            callDataArray.append(searchList)
             
         }
-        print(callDataArray as Any)
         callBack(callDataArray)
         
     }

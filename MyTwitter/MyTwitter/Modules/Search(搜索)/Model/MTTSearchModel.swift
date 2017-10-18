@@ -33,10 +33,4 @@ class MTTSearchModel: NSObject
     var cellHeight:CGFloat?
     var contentTextHeight:CGFloat?
     
-    
-    
-    
-    
-    
-    
 }

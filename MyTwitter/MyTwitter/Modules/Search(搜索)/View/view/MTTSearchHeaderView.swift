@@ -25,6 +25,7 @@ class MTTSearchHeaderView: MTTView
     override func setupSubview()
     {
         super.setupSubview()
+        self.backgroundColor = kMainWhiteColor()
         titleLabel = UILabel()
         titleLabel?.textColor = UIColor.black
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)

@@ -69,7 +69,6 @@ class MTTHomeCell: MTTTableViewCell {
                 
                 homeImages.append(random)
             }
-            print(homeImages as Any)
             homeImages.remove(at: 0)
             contentImageContainerView?.homeImagesArray = homeImages
             commentButton?.setTitle(String(format: "%d",(homeModel?.commentCount)!), for: UIControlState.normal)

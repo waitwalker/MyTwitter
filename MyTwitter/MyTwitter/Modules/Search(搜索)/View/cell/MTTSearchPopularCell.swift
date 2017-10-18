@@ -18,6 +18,17 @@ class MTTSearchPopularCell: MTTTableViewCell {
     var iconImageView:UIImageView?
     
     
+    var searchModel:MTTSearchModel?
+    {
+        didSet
+        {
+            websiteLabel?.text = searchModel?.website
+            titleLabel?.text = searchModel?.title
+            avatarImageView?.image = UIImage(named: String(format: "%@", (searchModel?.avatarImage)!))
+            twitterLabel?.text = searchModel?.twitter
+            iconImageView?.image = UIImage(named: String(format: "%@", (searchModel?.iconImage)!))
+        }
+    }
     
     
     
@@ -50,10 +61,11 @@ class MTTSearchPopularCell: MTTTableViewCell {
         titleLabel?.font = UIFont.systemFont(ofSize: 18)
         titleLabel?.textColor = UIColor.black
         titleLabel?.numberOfLines = 0
+        self.contentView.addSubview(titleLabel!)
         
         avatarImageView = UIImageView()
         avatarImageView?.isUserInteractionEnabled = true
-        avatarImageView?.layer.cornerRadius = 10
+        avatarImageView?.layer.cornerRadius = 7.5
         avatarImageView?.clipsToBounds = true
         self.contentView.addSubview(avatarImageView!)
         
@@ -78,7 +90,7 @@ class MTTSearchPopularCell: MTTTableViewCell {
         websiteLabel?.snp.makeConstraints({ (make) in
             make.left.equalTo(20)
             make.height.equalTo(10)
-            make.top.equalTo(20)
+            make.top.equalTo(10)
             make.width.equalTo(200)
         })
         
@@ -92,7 +104,7 @@ class MTTSearchPopularCell: MTTTableViewCell {
         avatarImageView?.snp.makeConstraints({ (make) in
             make.left.equalTo(20)
             make.bottom.equalTo(-10)
-            make.height.width.equalTo(20)
+            make.height.width.equalTo(15)
         })
         
         twitterLabel?.snp.makeConstraints({ (make) in
@@ -103,8 +115,8 @@ class MTTSearchPopularCell: MTTTableViewCell {
         
         titleLabel?.snp.makeConstraints({ (make) in
             make.left.equalTo(20)
-            make.right.equalTo((self.iconImageView?.snp.left)!).offset(-10)
-            make.top.top.equalTo((self.websiteLabel?.snp.bottom)!).offset(5)
+            make.right.equalTo((self.iconImageView?.snp.left)!).offset(-5)
+            make.top.top.equalTo((self.websiteLabel?.snp.bottom)!).offset(0)
             make.bottom.equalTo((self.avatarImageView?.snp.top)!).offset(5)
         })
     }

@@ -15,6 +15,16 @@ class MTTSearchLabelCell: MTTTableViewCell {
     var STitleLabel:UILabel?
     var SSubTitleLabel:UILabel?
     
+    var searchModel:MTTSearchModel?
+    {
+        didSet
+        {
+            STitleLabel?.text = searchModel?.title
+            SSubTitleLabel?.text = searchModel?.subTitle
+        }
+    }
+    
+    
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?)

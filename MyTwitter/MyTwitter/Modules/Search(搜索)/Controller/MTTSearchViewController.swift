@@ -84,11 +84,10 @@ class MTTSearchViewController: MTTViewController ,UITableViewDelegate,UITableVie
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftButton!)
         
         titleButton = UIButton()
-        titleButton?.setImage(UIImage(named: "tabbar_search_normal"), for: UIControlState.normal)
+        titleButton?.setImage(UIImage(named: "twitter_search"), for: UIControlState.normal)
         titleButton?.setTitle("搜索 Twitter", for: UIControlState.normal)
         titleButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
         titleButton?.backgroundColor = kMainLightGrayColor()
-        titleButton?.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)
         titleButton?.setImageWithPosition(postion: MTTButtonImagePostion.Left, spacing: 5)
         titleButton?.frame = CGRect(x: 0, y: 0, width: kScreenWidth - 120, height: 30)
         titleButton?.layer.cornerRadius = 15

@@ -30,6 +30,11 @@ class MTTSearchModel: NSObject
     var iconImage:String?
     var twitter:String?
     
+    var cellHeight:CGFloat?
+    var contentTextHeight:CGFloat?
+    
+    
+    
     
     
     

@@ -37,7 +37,7 @@ class MTTNotificationButtonCell: MTTTableViewCell
         buttonContainerView = UIView()
         buttonContainerView?.layer.borderWidth = 1
         buttonContainerView?.layer.borderColor = kMainBlueColor().cgColor
-        buttonContainerView?.layer.cornerRadius = 15
+        buttonContainerView?.layer.cornerRadius = 12.5
         buttonContainerView?.clipsToBounds = true
         self.contentView.addSubview(buttonContainerView!)
         
@@ -45,12 +45,14 @@ class MTTNotificationButtonCell: MTTTableViewCell
         allButton?.setTitle("全部", for: UIControlState.normal)
         allButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
         allButton?.backgroundColor = kMainBlueColor()
+        allButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         allButton?.addTarget(self, action: #selector(allButtonAction(button:)), for: UIControlEvents.touchUpInside)
         buttonContainerView?.addSubview(allButton!)
         
         mentionButtion = UIButton()
-        mentionButtion?.setTitle("全部", for: UIControlState.normal)
+        mentionButtion?.setTitle("提及", for: UIControlState.normal)
         mentionButtion?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
+        mentionButtion?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         mentionButtion?.backgroundColor = kMainWhiteColor()
         mentionButtion?.addTarget(self, action: #selector(mentionButtonAction(button:)), for: UIControlEvents.touchUpInside)
         buttonContainerView?.addSubview(mentionButtion!)
@@ -58,7 +60,24 @@ class MTTNotificationButtonCell: MTTTableViewCell
     
     private func layoutSubview() -> Void 
     {
+        buttonContainerView?.snp.makeConstraints({ (make) in
+            make.left.equalTo(20)
+            make.right.equalTo(-20)
+            make.top.equalTo(5)
+            make.height.equalTo(25)
+        })
         
+        allButton?.snp.makeConstraints({ (make) in
+            make.left.top.equalTo(0)
+            make.height.equalTo(25)
+            make.width.equalTo((kScreenWidth - 60) / 2)
+        })
+        
+        mentionButtion?.snp.makeConstraints({ (make) in
+            make.left.equalTo((self.allButton?.snp.right)!).offset(0)
+            make.right.top.equalTo(0)
+            make.height.equalTo(25)
+        })
     }
     
     @objc func allButtonAction(button:UIButton) -> Void 

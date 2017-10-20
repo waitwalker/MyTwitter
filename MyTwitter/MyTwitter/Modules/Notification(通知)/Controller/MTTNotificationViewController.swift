@@ -20,6 +20,9 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
     
     let reusedNotificationButtonId = "reusedNotificationButtonId"
     
+    var allDataArray:[MTTNotificationModel] = []
+    var mentionDataArray:[[MTTNotificationModel]] = []
+    
     
     
     
@@ -30,8 +33,52 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
         setupSubview()
         layoutSubview()
         setupEvent()
+        
+        loadAllData()
+        loadMetionData()
     }
 
+    private func loadAllData() -> Void 
+    {
+        dataSourceType = MTTNotificationDataSourceType.all
+        
+        if self.allDataArray.count == Int(0) 
+        {
+            let queue = DispatchQueue(label: "queuesssss", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
+            queue.async {
+                
+                MTTNotificationViewModel.getNotificationAllData { (dataArray) in
+                    self.allDataArray = dataArray
+                    
+                    DispatchQueue.main.async {
+                        //self.notificationTableView?.reloadData()
+                    }
+                }
+            }
+            
+        }
+        
+        
+    }
+    
+    private func loadMetionData() -> Void 
+    {
+        dataSourceType = MTTNotificationDataSourceType.mention
+        if self.mentionDataArray.count == Int(0) 
+        {
+            //开启一个后台线程处理提及数据
+            let notificationQueue = DispatchQueue(label: "notificationQueue", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
+            notificationQueue.async {
+                MTTNotificationViewModel.getNotificationMentionData(callBack: { (dataArray) in
+                    self.mentionDataArray = dataArray
+                    
+                    DispatchQueue.main.async {
+                        //self.notificationTableView?.reloadData()
+                    }
+                })
+            }
+        }
+    }
     
     private func setupSubview() -> Void 
     {
@@ -150,14 +197,6 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

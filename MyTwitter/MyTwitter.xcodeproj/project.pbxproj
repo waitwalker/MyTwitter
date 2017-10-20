@@ -76,6 +76,8 @@
 		CA6ADD591F98903200A25646 /* MTTAvatarImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6ADD581F98903200A25646 /* MTTAvatarImagesView.swift */; };
 		CA6ADD5D1F9895F900A25646 /* MTTNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6ADD5C1F9895F900A25646 /* MTTNotificationDelegate.swift */; };
 		CA6ADD601F98AA4D00A25646 /* MTTNotificationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6ADD5F1F98AA4D00A25646 /* MTTNotificationHeader.swift */; };
+		CA6ADD621F99A2B000A25646 /* MTTNotificationAllData.json in Resources */ = {isa = PBXBuildFile; fileRef = CA6ADD611F99A2B000A25646 /* MTTNotificationAllData.json */; };
+		CA6ADD641F99A2EB00A25646 /* MTTNotificationMention.json in Resources */ = {isa = PBXBuildFile; fileRef = CA6ADD631F99A2EB00A25646 /* MTTNotificationMention.json */; };
 		CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */; };
 		CAC5AE871F7F4B3500B50C98 /* MTTButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE861F7F4B3500B50C98 /* MTTButtonExtension.swift */; };
 		CAC5AE891F7F4B9400B50C98 /* MTTTextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */; };
@@ -205,6 +207,8 @@
 		CA6ADD581F98903200A25646 /* MTTAvatarImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAvatarImagesView.swift; sourceTree = "<group>"; };
 		CA6ADD5C1F9895F900A25646 /* MTTNotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTNotificationDelegate.swift; sourceTree = "<group>"; };
 		CA6ADD5F1F98AA4D00A25646 /* MTTNotificationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTNotificationHeader.swift; sourceTree = "<group>"; };
+		CA6ADD611F99A2B000A25646 /* MTTNotificationAllData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MTTNotificationAllData.json; sourceTree = "<group>"; };
+		CA6ADD631F99A2EB00A25646 /* MTTNotificationMention.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MTTNotificationMention.json; sourceTree = "<group>"; };
 		CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSingletonManager.swift; sourceTree = "<group>"; };
 		CAC5AE861F7F4B3500B50C98 /* MTTButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTButtonExtension.swift; sourceTree = "<group>"; };
 		CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTextViewExtension.swift; sourceTree = "<group>"; };
@@ -332,6 +336,8 @@
 			isa = PBXGroup;
 			children = (
 				1A8B5D8B1F981BB200A6D6D0 /* MTTNotificationModel.swift */,
+				CA6ADD611F99A2B000A25646 /* MTTNotificationAllData.json */,
+				CA6ADD631F99A2EB00A25646 /* MTTNotificationMention.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1031,6 +1037,8 @@
 				CADECC081F60E1BE0027E15F /* evt_phone_area_code_zh.txt in Resources */,
 				1AFC05A81F5EE3B2006EAC9F /* Assets.xcassets in Resources */,
 				1AFC05A91F5EE3B2006EAC9F /* LaunchScreen.storyboard in Resources */,
+				CA6ADD621F99A2B000A25646 /* MTTNotificationAllData.json in Resources */,
+				CA6ADD641F99A2EB00A25646 /* MTTNotificationMention.json in Resources */,
 				CA66B4F21F90C118001CD140 /* MTTSearchData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

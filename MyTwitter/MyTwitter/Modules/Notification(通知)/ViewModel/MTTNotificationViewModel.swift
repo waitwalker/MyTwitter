@@ -96,14 +96,73 @@ class MTTNotificationViewModel: NSObject
             }
             callBack(dataArr)
         }
-        
-        
-        
     }
     
     class func getNotificationMentionData(callBack:mentionDataCallBack) -> Void 
     {
+        var data:Data?
+        var replyArray:[MTTNotificationModel] = []
+        var mentionArray:[MTTNotificationModel] = []
+        var dataArr:[[MTTNotificationModel]] = []
         
+        if let filePath = Bundle.main.path(forResource: "MTTNotificationMention", ofType: "json") 
+        {
+            data = try? Data(contentsOf: URL(fileURLWithPath: filePath))
+        }
+        
+        let json = JSON(data: data!)
+        
+        let result = json["result"].intValue
+        
+        if result == 200 
+        {
+            let dataDict = json["data"].dictionary
+            let replyList = dataDict!["replyList"]?.array
+            let mentionList = dataDict!["mentionList"]?.array
+            
+            for subjson in replyList!
+            {
+                let notificationModel = MTTNotificationModel()
+                notificationModel.avatarImage = subjson["avatarImage"].stringValue
+                notificationModel.account = subjson["account"].stringValue
+                notificationModel.nickName = subjson["nickName"].stringValue
+                notificationModel.time = subjson["time"].stringValue
+                notificationModel.replyNickName = subjson["replyNickName"].stringValue
+                notificationModel.content = subjson["content"].stringValue
+                notificationModel.contentImages = subjson["contentImages"].array
+                notificationModel.contentVideo = subjson["contentVideo"].stringValue
+                notificationModel.commentCount = subjson["commentCount"].stringValue
+                notificationModel.retwitterCount = subjson["retwitterCount"].stringValue
+                notificationModel.likeCount = subjson["likeCount"].stringValue
+                notificationModel.privateMessageCount = subjson["privateMessageCount"].stringValue
+                notificationModel.contentTextHeight = notificationModel.content?.calculateTextHeight(text: notificationModel.content!)
+                notificationModel.cellHeight = 245 + notificationModel.contentTextHeight!
+                replyArray.append(notificationModel)
+            }
+            
+            for subjson in mentionList!
+            {
+                let notificationModel = MTTNotificationModel()
+                notificationModel.avatarImage = subjson["avatarImage"].stringValue
+                notificationModel.account = subjson["account"].stringValue
+                notificationModel.nickName = subjson["nickName"].stringValue
+                notificationModel.time = subjson["time"].stringValue
+                notificationModel.content = subjson["content"].stringValue
+                notificationModel.contentImages = subjson["contentImages"].array
+                notificationModel.contentVideo = subjson["contentVideo"].stringValue
+                notificationModel.commentCount = subjson["commentCount"].stringValue
+                notificationModel.retwitterCount = subjson["retwitterCount"].stringValue
+                notificationModel.likeCount = subjson["likeCount"].stringValue
+                notificationModel.privateMessageCount = subjson["privateMessageCount"].stringValue
+                notificationModel.contentTextHeight = notificationModel.content?.calculateTextHeight(text: notificationModel.content!)
+                notificationModel.cellHeight = 225 + notificationModel.contentTextHeight!
+                mentionArray.append(notificationModel)
+            }
+            
+            dataArr.append(replyArray)
+            dataArr.append(mentionArray)
+        }
+        callBack(dataArr)
     }
     
     

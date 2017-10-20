@@ -39,6 +39,14 @@ class MTTNotificationReplyCell: MTTTableViewCell
     var likeButton:UIButton?  //喜欢按钮
     var privateMessageButton:UIButton?  //私信按钮
     
+    var notificationModel:MTTNotificationModel?
+    {
+        didSet
+        {
+            
+        }
+    }
+    
     var searchModel:MTTSearchModel?
     {
         didSet

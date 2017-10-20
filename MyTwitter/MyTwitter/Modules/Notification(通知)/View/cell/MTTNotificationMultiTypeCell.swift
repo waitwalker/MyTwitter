@@ -18,6 +18,13 @@ class MTTNotificationMultiTypeCell: MTTTableViewCell
     var multiContentLabel:UILabel?
     
     
+    var notificationModel:MTTNotificationModel?
+    {
+        didSet
+        {
+            
+        }
+    }
     
     
     

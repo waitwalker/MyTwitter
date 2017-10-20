@@ -19,6 +19,11 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
     var dataSourceType:MTTNotificationDataSourceType = MTTNotificationDataSourceType.all
     
     let reusedNotificationButtonId = "reusedNotificationButtonId"
+    let reusedNotificationFollowId = "reusedNotificationFollowId"
+    let reusedNotificationReplyId = "reusedNotificationReplyId"
+    let reusedNotificationMentionId = "reusedNotificationMentionId"
+    let reusedNotificationMultiId = "reusedNotificationMultiId"
+    
     
     var allDataArray:[MTTNotificationModel] = []
     var mentionDataArray:[[MTTNotificationModel]] = []
@@ -51,7 +56,7 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
                     self.allDataArray = dataArray
                     
                     DispatchQueue.main.async {
-                        //self.notificationTableView?.reloadData()
+                        self.notificationTableView?.reloadData()
                     }
                 }
             }
@@ -73,7 +78,7 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
                     self.mentionDataArray = dataArray
                     
                     DispatchQueue.main.async {
-                        //self.notificationTableView?.reloadData()
+                        self.notificationTableView?.reloadData()
                     }
                 })
             }
@@ -86,6 +91,11 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
         notificationTableView?.delegate = self
         notificationTableView?.dataSource = self
         notificationTableView?.register(MTTNotificationButtonCell.self, forCellReuseIdentifier: reusedNotificationButtonId)
+        notificationTableView?.register(MTTNotificationFollowCell.self, forCellReuseIdentifier: reusedNotificationFollowId)
+        notificationTableView?.register(MTTNotificationMentionCell.self, forCellReuseIdentifier: reusedNotificationMentionId)
+        notificationTableView?.register(MTTNotificationReplyCell.self, forCellReuseIdentifier: reusedNotificationReplyId)
+        notificationTableView?.register(MTTNotificationMultiTypeCell.self, forCellReuseIdentifier: reusedNotificationMultiId)
+        
         notificationTableView?.separatorStyle = UITableViewCellSeparatorStyle.none
         self.view.addSubview(notificationTableView!)
         
@@ -124,12 +134,24 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
     
     func numberOfSections(in tableView: UITableView) -> Int 
     {
-        return 1
+        switch dataSourceType
+        {
+        case MTTNotificationDataSourceType.all:
+            return 1
+        case MTTNotificationDataSourceType.mention:
+            return self.mentionDataArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int 
     {
-        return 1
+        switch dataSourceType
+        {
+        case MTTNotificationDataSourceType.all:
+            return self.allDataArray.count
+        case MTTNotificationDataSourceType.mention:
+            return self.mentionDataArray[section].count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell 
@@ -147,10 +169,71 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
         {
             switch dataSourceType
             {
-            case MTTNotificationDataSourceType.all: 
-                break
+            case MTTNotificationDataSourceType.all:
                 
-            case MTTNotificationDataSourceType.mention: 
+                let notificationModel = self.allDataArray[indexPath.item - 1]
+                switch notificationModel.cellType
+                {
+                case MTTNotificationCellType.followType:
+                    
+                    var cell = tableView.dequeueReusableCell(withIdentifier: reusedNotificationFollowId) as? MTTNotificationFollowCell
+                    if cell == nil
+                    {
+                        cell = MTTNotificationFollowCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedNotificationFollowId)
+                    }
+                    cell?.notificationModel = self.allDataArray[indexPath.item - 1]
+                    return cell!
+                    
+                case MTTNotificationCellType.mentionType:
+                    var cell = tableView.dequeueReusableCell(withIdentifier: reusedNotificationMentionId) as? MTTNotificationMentionCell
+                    if cell == nil
+                    {
+                        cell = MTTNotificationMentionCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedNotificationMentionId)
+                    }
+                    cell?.notificationModel = self.allDataArray[indexPath.item - 1]
+                    
+                    return cell!
+                case MTTNotificationCellType.replyType:
+                    var cell = tableView.dequeueReusableCell(withIdentifier: reusedNotificationReplyId) as? MTTNotificationReplyCell
+                    if cell == nil
+                    {
+                        cell = MTTNotificationReplyCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedNotificationReplyId)
+                    }
+                    cell?.notificationModel = self.allDataArray[indexPath.item - 1]
+                    return cell!
+                case MTTNotificationCellType.multiType:
+                    var cell = tableView.dequeueReusableCell(withIdentifier: reusedNotificationMultiId) as? MTTNotificationMultiTypeCell
+                    if cell == nil
+                    {
+                        cell = MTTNotificationMultiTypeCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedNotificationMultiId)
+                    }
+                    cell?.notificationModel = self.allDataArray[indexPath.item - 1]
+                    return cell!
+                }
+                
+            case MTTNotificationDataSourceType.mention:
+                switch self.mentionDataArray.count
+                {
+                case 0:
+
+                    var cell = tableView.dequeueReusableCell(withIdentifier: reusedNotificationReplyId) as? MTTNotificationReplyCell
+                    if cell == nil
+                    {
+                        cell = MTTNotificationReplyCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedNotificationReplyId)
+                    }
+                    cell?.notificationModel = self.mentionDataArray[indexPath.section][indexPath.item]
+                    return cell!
+                    
+                case 1:
+                    var cell = tableView.dequeueReusableCell(withIdentifier: reusedNotificationReplyId) as? MTTNotificationReplyCell
+                    if cell == nil
+                    {
+                        cell = MTTNotificationReplyCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedNotificationReplyId)
+                    }
+                    cell?.notificationModel = self.mentionDataArray[indexPath.section][indexPath.item]
+                    return cell!
+                default: break
+                }
                 break
             }
             return UITableViewCell()
@@ -165,7 +248,6 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
         allButton.backgroundColor = kMainBlueColor()
         cell.mentionButtion?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
         cell.mentionButtion?.backgroundColor = kMainWhiteColor()
-        
         dataSourceType = MTTNotificationDataSourceType.all
         
     }
@@ -182,7 +264,15 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat 
     {
-        return 35
+        switch dataSourceType
+        {
+        case MTTNotificationDataSourceType.all:
+            let notificationModel = self.allDataArray[indexPath.item - 1]
+            return notificationModel.cellHeight!
+        case MTTNotificationDataSourceType.mention:
+            let notificationModel = self.mentionDataArray[indexPath.section][indexPath.item]
+            return notificationModel.cellHeight!
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) 

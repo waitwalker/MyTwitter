@@ -18,7 +18,13 @@ class MTTNotificationFollowCell: MTTTableViewCell
     
     
     
-    
+    var notificationModel:MTTNotificationModel?
+    {
+        didSet
+        {
+            
+        }
+    }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) 
     {

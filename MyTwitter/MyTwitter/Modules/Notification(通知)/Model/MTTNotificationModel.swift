@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class MTTNotificationModel: NSObject
 {
-    var cellType:MTTNotificationCellType?
+    var cellType:MTTNotificationCellType = MTTNotificationCellType.followType
     
     //包括回复和提及类型
     var avatarImage:String?

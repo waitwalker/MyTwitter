@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A09A54A1F9B090E007BC41C /* MTTMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A09A5491F9B090E007BC41C /* MTTMessageModel.swift */; };
+		1A09A54E1F9B0930007BC41C /* MTTMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A09A54D1F9B0930007BC41C /* MTTMessageCell.swift */; };
 		1A0C10F41F66C44C00B6AD18 /* MTTRegularMatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0C10F31F66C44C00B6AD18 /* MTTRegularMatchManager.swift */; };
 		1A16F59E1F792F1000E09ECB /* MTTHomeImageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A16F59D1F792F1000E09ECB /* MTTHomeImageContainerView.swift */; };
 		1A234B581F8BB00E00D6C731 /* MTTLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A234B571F8BB00E00D6C731 /* MTTLocationViewController.swift */; };
@@ -132,6 +134,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A09A5491F9B090E007BC41C /* MTTMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTMessageModel.swift; sourceTree = "<group>"; };
+		1A09A54D1F9B0930007BC41C /* MTTMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTMessageCell.swift; sourceTree = "<group>"; };
 		1A0C10F31F66C44C00B6AD18 /* MTTRegularMatchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegularMatchManager.swift; sourceTree = "<group>"; };
 		1A16F59D1F792F1000E09ECB /* MTTHomeImageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeImageContainerView.swift; sourceTree = "<group>"; };
 		1A234B571F8BB00E00D6C731 /* MTTLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLocationViewController.swift; sourceTree = "<group>"; };
@@ -278,6 +282,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A09A54B1F9B0918007BC41C /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				1A09A54D1F9B0930007BC41C /* MTTMessageCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		1A09A54C1F9B091E007BC41C /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		1A304C061F6D535A00F366B9 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +391,7 @@
 		1A304C471F6D6B2400F366B9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1A09A5491F9B090E007BC41C /* MTTMessageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -379,6 +399,8 @@
 		1A304C481F6D6B2400F366B9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1A09A54C1F9B091E007BC41C /* view */,
+				1A09A54B1F9B0918007BC41C /* cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1216,6 +1238,7 @@
 				1A82AEAE1F8FA9120015EAC4 /* MTTSearchShowMoreCell.swift in Sources */,
 				1A596C5F1F90EE3900F14123 /* MTTSearchLabelViewController.swift in Sources */,
 				1A8F5BD01F729A27006D6CA0 /* MTTExtension.swift in Sources */,
+				1A09A54E1F9B0930007BC41C /* MTTMessageCell.swift in Sources */,
 				CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */,
 				CAC5AE871F7F4B3500B50C98 /* MTTButtonExtension.swift in Sources */,
 				1A82AEAA1F8FA4E60015EAC4 /* MTTSearchLabelCell.swift in Sources */,
@@ -1223,6 +1246,7 @@
 				CAC990651F690E67002255FA /* MTTRegisterPasswordViewController.swift in Sources */,
 				1A304C521F6D6B5700F366B9 /* MTTNotificationViewController.swift in Sources */,
 				1ABFD4BC1F84BE48004DF174 /* MTTCollectionViewCell.swift in Sources */,
+				1A09A54A1F9B090E007BC41C /* MTTMessageModel.swift in Sources */,
 				1A304C541F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift in Sources */,
 				CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */,
 				1A596C671F90F1D200F14123 /* MTTSearchSearchAllViewController.swift in Sources */,

@@ -39,11 +39,8 @@ class MTTAvatarImagesView: MTTView
     
     override func setupSubview() 
     {
-        print(avatarImageViews?.count as Any)
-        
         if avatarImageViews != nil
         {
-            
             for index in Int(0)...(avatarImageViews?.count)! - 1
             {
                 let imageView = UIImageView()

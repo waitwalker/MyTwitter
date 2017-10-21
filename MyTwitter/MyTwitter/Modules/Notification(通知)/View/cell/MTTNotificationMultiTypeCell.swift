@@ -28,7 +28,7 @@ class MTTNotificationMultiTypeCell: MTTTableViewCell
             
             var notificationImages:[String] = []
             
-            for _ in Int(0)...(notificationModel?.contentImages?.count)!
+            for _ in Int(0)...(notificationModel?.avatarImages?.count)!
             {
                 let random = self.getRandomNum()
                 

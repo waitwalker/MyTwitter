@@ -19,7 +19,10 @@ class MTTAvatarImagesView: MTTView
     {
         didSet 
         {
-            setupSubview()
+            if avatarImageViews != nil
+            {
+                self.setupSubview()
+            }
         }
     }
     
@@ -36,17 +39,24 @@ class MTTAvatarImagesView: MTTView
     
     override func setupSubview() 
     {
-        for index in Int(0)...(avatarImageViews?.count)! - 1 
+        print(avatarImageViews?.count as Any)
+        
+        if avatarImageViews != nil
         {
-            let imageView = UIImageView()
-            imageView.isUserInteractionEnabled = true
-            imageView.image = UIImage(named: String(format: "%@", avatarImageViews![index]))
-            imageView.layer.cornerRadius = 20
-            imageView.clipsToBounds = true
-            imageView.frame = CGRect(x: CGFloat(index) * (imageViewWidthHeight + margin), y: 0, width: imageViewWidthHeight, height: imageViewWidthHeight)
-            self.addSubview(imageView)
             
+            for index in Int(0)...(avatarImageViews?.count)! - 1
+            {
+                let imageView = UIImageView()
+                imageView.isUserInteractionEnabled = true
+                imageView.image = UIImage(named: String(format: "%@", avatarImageViews![index]))
+                imageView.layer.cornerRadius = 20
+                imageView.clipsToBounds = true
+                imageView.frame = CGRect(x: CGFloat(index) * (imageViewWidthHeight + margin), y: 0, width: imageViewWidthHeight, height: imageViewWidthHeight)
+                self.addSubview(imageView)
+                
+            }
         }
+        
     }
     
     /*

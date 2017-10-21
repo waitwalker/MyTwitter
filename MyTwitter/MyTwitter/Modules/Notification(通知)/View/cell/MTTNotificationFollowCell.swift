@@ -22,12 +22,14 @@ class MTTNotificationFollowCell: MTTTableViewCell
     {
         didSet
         {
+            
+            layoutSubview(notificationModel: notificationModel!)
             iconImageView?.image = UIImage(named: String(format: "%@", (notificationModel?.iconImage)!))
             followLabel?.text = notificationModel?.followString
             
             var notificationImages:[String] = []
             
-            for _ in Int(0)...(notificationModel?.contentImages?.count)!
+            for _ in Int(0)...(notificationModel?.avatarImages?.count)!
             {
                 let random = self.getRandomNum()
                 
@@ -36,6 +38,7 @@ class MTTNotificationFollowCell: MTTTableViewCell
             print(notificationImages as Any)
             notificationImages.remove(at: 0)
             avatarImageViews?.avatarImageViews = notificationImages
+            
         }
     }
     
@@ -49,7 +52,6 @@ class MTTNotificationFollowCell: MTTTableViewCell
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupSubview()
-        layoutSubview()
     }
     
     private func setupSubview() -> Void 
@@ -73,7 +75,7 @@ class MTTNotificationFollowCell: MTTTableViewCell
         
     }
     
-    private func layoutSubview() -> Void 
+    private func layoutSubview(notificationModel:MTTNotificationModel) -> Void
     {
         lineView?.snp.makeConstraints({ (make) in
             make.left.right.top.equalTo(0)
@@ -87,11 +89,7 @@ class MTTNotificationFollowCell: MTTTableViewCell
             make.top.equalTo(10)
         })
         
-        avatarImageViews?.snp.makeConstraints({ (make) in
-            make.left.equalTo((self.iconImageView?.snp.right)!).offset(5)
-            make.top.equalTo(10)
-            make.height.width.equalTo(40)
-        })
+        avatarImageViews?.frame = CGRect(x: (self.iconImageView?.frame.maxX)! + 5, y: 10, width: kScreenWidth - (self.iconImageView?.frame.maxX)! + 5 - 20, height: 40)
         
         followLabel?.snp.makeConstraints({ (make) in
             make.left.equalTo((self.iconImageView?.snp.right)!).offset(5)

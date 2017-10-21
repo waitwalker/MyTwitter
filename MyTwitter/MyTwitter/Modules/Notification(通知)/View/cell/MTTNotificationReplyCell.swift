@@ -262,27 +262,28 @@ class MTTNotificationReplyCell: MTTTableViewCell
             make.centerY.equalTo(self.nickNameLabel!)
         })
         
+        replyNickNameLabel?.snp.makeConstraints({ (make) in
+            make.top.equalTo((self.accountContainerView?.snp.bottom)!).offset(0)
+            make.left.right.equalTo(self.accountContainerView!)
+            make.height.equalTo(20)
+        })
+        
         contentContainerView?.snp.makeConstraints({ (make) in
             make.left.equalTo(80)
             make.right.equalTo(-10)
-            make.top.equalTo((self.accountContainerView?.snp.bottom)!).offset(5)
-            make.height.equalTo(notificationModel.contentTextHeight! + 150 + 20)
-        })
-        
-        replyNickNameLabel?.snp.makeConstraints({ (make) in
-            make.left.top.right.equalTo(0)
-            make.height.equalTo(20)
+            make.top.equalTo((self.replyNickNameLabel?.snp.bottom)!).offset(0)
+            make.height.equalTo(notificationModel.contentTextHeight! + 150)
         })
         
         if (notificationModel.content?.characters.count)! > Int(0)
         {
             contentLabel?.isHidden = false
-            contentLabel?.frame = CGRect(x: 0, y: 20, width: kScreenWidth - 80, height: notificationModel.contentTextHeight!)
+            contentLabel?.frame = CGRect(x: 0, y: 0, width: kScreenWidth - 80, height: notificationModel.contentTextHeight!)
             contentImageContainerView?.frame = CGRect(x: 0, y: notificationModel.contentTextHeight!, width: kScreenWidth - 80, height: 150)
         } else
         {
             contentLabel?.isHidden = true
-            contentImageContainerView?.frame = CGRect(x: 0, y: 20, width: kScreenWidth - 80, height: 150)
+            contentImageContainerView?.frame = CGRect(x: 0, y: 0, width: kScreenWidth - 80, height: 150)
         }
         
         toolBarContainerView?.snp.makeConstraints({ (make) in

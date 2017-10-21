@@ -184,7 +184,7 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
                         
                         cell?.notificationModel = self.allDataArray[indexPath.item - 1]
                         
-                        print(cell?.notificationModel?.avatarImages)
+                        print(cell?.notificationModel?.avatarImages as Any)
                         return cell!
                     
                     case MTTNotificationCellType.mentionType:
@@ -266,8 +266,6 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat 
     {
-        
-        
         switch dataSourceType
         {
         case MTTNotificationDataSourceType.all:

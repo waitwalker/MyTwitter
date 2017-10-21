@@ -5,15 +5,15 @@
              {
              "cellType":"followType",
              "iconImage":"1",
-             "avatarImages":["1","2","16"],
-             "followString":"Python Pro 及另外11人关注了你"
+             "avatarImages":["1","2","dfd","fsd","dg","dgs"],
+             "followString":"Python Pro 及另外5人关注了你"
              },
              {
              "cellType":"multiType",
              "isOther":"0",
              "twitterType":"1",
              "iconImage":"twitter_type",
-             "avatarImages":["1","2","16"],
+             "avatarImages":["1","2","16","er"],
              "multiTitle":"iOS URL 好久以后发推",
              "multiContent":"Due to @khanlou and @jcieplinski traveling this week, iOS IRL is sadly cancelled for October."
              },
@@ -21,7 +21,7 @@
              "cellType":"multiType",
              "isOther":"0",
              "twitterType":"2",
-             "iconImage":"twitter_like",
+             "iconImage":"twitter_likes",
              "avatarImages":["1","2","16"],
              "multiTitle":"Ryan Florence 及另外6人喜欢了Malala的一张照片",
              "multiContent":"5 years ago, I was shot in an attempt to stop me from speaking out for girls' education. Today, I attend my first lectures at Oxford."
@@ -39,7 +39,7 @@
              "cellType":"multiType",
              "isOther":"1",
              "twitterType":"2",
-             "iconImage":"twitter_like",
+             "iconImage":"twitter_likes",
              "avatarImages":["1","2","16"],
              "multiTitle":"html-lernen 喜欢了你的2条推文",
              "multiContent":"添加图片页面 pic.twitter.com/iMTuowELCM"
@@ -50,7 +50,7 @@
              "twitterType":"3",
              "iconImage":"twitter_retweet",
              "avatarImages":["1","2","16"],
-             "multiTitle":"html-lernen 喜欢了你的2条推文",
+             "multiTitle":"html-lernen 转推了你的2条推文",
              "multiContent":"添加图片页面 pic.twitter.com/iMTuowELCM"
              },
              {
@@ -65,18 +65,18 @@
              "contentVideo":"",
              "commentCount":"12",
              "retwitterCount":"24",
-             "likeCount":"234",
+             "likeCount":"87",
              "privateMessageCount":""
              },
              {
-             "cellType":"replyType",
-             "avatarImage":"2",
+             "cellType":"mentionType",
+             "avatarImage":"13",
              "account":"Oliver Halligon",
              "nickName":"oliverhalligon",
              "time":"20171016 20:39:55",
              "replyNickName":"回复 @284485487",
              "content":"@284485487 与特殊部门我的律师一起晚餐．我喝醉了．但非常非常高兴！我特别希望有一天分享这一切！他们都多次与王岐山孟建柱见过面！他们的一些观点一些态度与我们有时完全不同！几乎百分九十的信任王岐山恨习主席！因为他们觉得王对西方国家会更好．不知道为什么他们都恨他们不了解的粟战书因为他们相信南华早报",
-             "contentImages":["aaa","bbb","ccc"],
+             "contentImages":["aaa","bbb","ccc","sds"],
              "contentVideo":"",
              "commentCount":"12",
              "retwitterCount":"24",

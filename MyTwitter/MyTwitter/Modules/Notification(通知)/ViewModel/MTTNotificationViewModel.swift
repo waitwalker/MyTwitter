@@ -88,7 +88,7 @@ class MTTNotificationViewModel: NSObject
                         notificationModel.multiTitle = subjson["multiTitle"].stringValue
                         notificationModel.multiContent = subjson["multiContent"].stringValue
                         notificationModel.contentTextHeight = notificationModel.multiContent?.calculateTextHeight(text: notificationModel.multiContent!)
-                        notificationModel.cellHeight = notificationModel.contentTextHeight
+                        notificationModel.cellHeight = notificationModel.contentTextHeight! + 80
                     }
                     
                     dataArr.append(notificationModel)

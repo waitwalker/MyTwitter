@@ -22,6 +22,7 @@ class MTTNotificationMultiTypeCell: MTTTableViewCell
     {
         didSet
         {
+            layoutSubview()
             iconImageView?.image = UIImage(named: String(format: "%@", (notificationModel?.iconImage)!))
             multiTitleLabel?.text = notificationModel?.multiTitle
             multiContentLabel?.text = notificationModel?.multiContent
@@ -51,7 +52,6 @@ class MTTNotificationMultiTypeCell: MTTTableViewCell
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupSubview()
-        layoutSubview()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -94,28 +94,24 @@ class MTTNotificationMultiTypeCell: MTTTableViewCell
         })
         
         iconImageView?.snp.makeConstraints({ (make) in
-            make.left.equalTo(65)
+            make.left.equalTo(60)
             make.height.equalTo(20)
-            make.width.equalTo(15)
+            make.width.equalTo(20)
             make.top.equalTo(10)
         })
         
-        avatarImageViews?.snp.makeConstraints({ (make) in
-            make.left.equalTo((self.iconImageView?.snp.right)!).offset(5)
-            make.height.width.equalTo(40)
-            make.top.equalTo(10)
-        })
+        avatarImageViews?.frame = CGRect(x: 85, y: 10, width: kScreenWidth - 85 - 20, height: 40)
         
         multiTitleLabel?.snp.makeConstraints({ (make) in
             make.left.equalTo(self.avatarImageViews!)
             make.top.equalTo((self.avatarImageViews?.snp.bottom)!).offset(5)
             make.height.equalTo(20)
-            make.right.equalTo(20)
+            make.right.equalTo(-10)
         })
         
         multiContentLabel?.snp.makeConstraints({ (make) in
             make.left.equalTo(self.avatarImageViews!)
-            make.right.equalTo(20)
+            make.right.equalTo(-10)
             make.top.equalTo((self.multiTitleLabel?.snp.bottom)!).offset(0)
             make.bottom.equalTo(-5)
         })

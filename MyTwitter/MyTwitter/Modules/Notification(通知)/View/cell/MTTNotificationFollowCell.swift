@@ -24,7 +24,7 @@ class MTTNotificationFollowCell: MTTTableViewCell
         {
             
             layoutSubview(notificationModel: notificationModel!)
-            iconImageView?.image = UIImage(named: String(format: "%@", (notificationModel?.iconImage)!))
+            iconImageView?.image = UIImage(named: String(format: "head%@", (notificationModel?.iconImage)!))
             followLabel?.text = notificationModel?.followString
             
             var notificationImages:[String] = []
@@ -62,6 +62,8 @@ class MTTNotificationFollowCell: MTTTableViewCell
         
         iconImageView = UIImageView()
         iconImageView?.isUserInteractionEnabled = true
+        iconImageView?.layer.cornerRadius = 10
+        iconImageView?.clipsToBounds = true
         self.contentView.addSubview(iconImageView!)
         
         avatarImageViews = MTTAvatarImagesView()
@@ -83,13 +85,13 @@ class MTTNotificationFollowCell: MTTTableViewCell
         })
         
         iconImageView?.snp.makeConstraints({ (make) in
-            make.left.equalTo(65)
-            make.width.equalTo(15)
+            make.left.equalTo(60)
+            make.width.equalTo(20)
             make.height.equalTo(20)
             make.top.equalTo(10)
         })
         
-        avatarImageViews?.frame = CGRect(x: (self.iconImageView?.frame.maxX)! + 5, y: 10, width: kScreenWidth - (self.iconImageView?.frame.maxX)! + 5 - 20, height: 40)
+        avatarImageViews?.frame = CGRect(x: 85, y: 10, width: kScreenWidth - 85 - 20, height: 40)
         
         followLabel?.snp.makeConstraints({ (make) in
             make.left.equalTo((self.iconImageView?.snp.right)!).offset(5)

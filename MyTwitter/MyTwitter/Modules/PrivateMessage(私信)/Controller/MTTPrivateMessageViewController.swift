@@ -38,25 +38,31 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
     
     private func loadMailBoxData() -> Void
     {
-        dataSourceType = MTTMessageDataSourceType.mailBoxType
-        let mailBoxQueue = DispatchQueue(label: "mailBoxQueue", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
-        mailBoxQueue.async {
-            MTTMessageViewModel.getMailBoxData(callBack: { (dataArray) in
-                self.mailBoxArray = dataArray
-                DispatchQueue.main.async {
-                    self.messageTableView?.reloadData()
-                }
-            })
+        if self.mailBoxArray.count == 0
+        {
+            dataSourceType = MTTMessageDataSourceType.mailBoxType
+            let mailBoxQueue = DispatchQueue(label: "mailBoxQueue", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
+            mailBoxQueue.async {
+                MTTMessageViewModel.getMailBoxData(callBack: { (dataArray) in
+                    self.mailBoxArray = dataArray
+                    DispatchQueue.main.async {
+                        self.messageTableView?.reloadData()
+                    }
+                })
+            }
         }
     }
     
     private func loadRequestData() -> Void
     {
-        let requestQueue = DispatchQueue(label: "requestQueue", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
-        requestQueue.async {
-            MTTMessageViewModel.getRequestData(callBack: { (dataArray) in
-                self.requestArray = dataArray
-            })
+        if self.requestArray.count == 0
+        {
+            let requestQueue = DispatchQueue(label: "requestQueue", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
+            requestQueue.async {
+                MTTMessageViewModel.getRequestData(callBack: { (dataArray) in
+                    self.requestArray = dataArray
+                })
+            }
         }
     }
     
@@ -69,7 +75,6 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
         messageTableView?.register(MTTMessageCell.self, forCellReuseIdentifier: reusedMessageMailBoxId)
         messageTableView?.register(MTTMessageCell.self, forCellReuseIdentifier: reusedMessageRequestId)
         messageTableView?.register(MTTMessageHintCell.self, forCellReuseIdentifier: reusedMessageHintId)
-        
         messageTableView?.separatorStyle = UITableViewCellSeparatorStyle.none
         self.view.addSubview(messageTableView!)
         
@@ -90,7 +95,7 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
     
     func setupNavBar() -> Void
     {
-        self.navigationItem.title = "消息"
+        self.navigationItem.title = "私信"
         rightButton = UIButton()
         rightButton?.setImage(UIImage.init(named: "send-mail"), for: UIControlState.normal)
         rightButton?.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
@@ -118,7 +123,7 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
         case MTTMessageDataSourceType.mailBoxType:
             return self.mailBoxArray.count + 1
         case MTTMessageDataSourceType.requestType:
-            return self.mailBoxArray.count + 2
+            return self.requestArray.count + 2
         }
     }
     
@@ -143,7 +148,7 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
                 cell = MTTMessageButtonCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedMessageButtonId)
             }
             cell?.delegate = self
-            
+            return cell!
         } else
         {
             switch dataSourceType
@@ -175,12 +180,11 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
                     {
                         cell = MTTMessageCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedMessageRequestId)
                     }
-                    cell?.messageModel = self.requestArray[indexPath.item - 1]
+                    cell?.messageModel = self.requestArray[indexPath.item - 2]
                     return cell!
                 }
             }
         }
-        return UITableViewCell()
     }
     
     
@@ -208,7 +212,7 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
         requestButton.backgroundColor = kMainBlueColor()
         cell.mailBoxButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
         cell.mailBoxButton?.backgroundColor = kMainWhiteColor()
-        dataSourceType = MTTMessageDataSourceType.mailBoxType
+        dataSourceType = MTTMessageDataSourceType.requestType
         
         if self.requestArray.count == Int(0)
         {
@@ -218,6 +222,11 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
         DispatchQueue.main.async {
             self.messageTableView?.reloadData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

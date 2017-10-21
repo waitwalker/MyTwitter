@@ -38,6 +38,7 @@ class MTTMessageViewModel: NSObject
                     messageModel.account = subjson["account"].stringValue
                     messageModel.nickName = subjson["nickName"].stringValue
                     messageModel.avatarImage = subjson["avatarImage"].stringValue
+                    messageModel.time = subjson["time"].stringValue
                     messageModel.content = subjson["content"].stringValue
                     dataArray.append(messageModel)
                 }
@@ -70,6 +71,7 @@ class MTTMessageViewModel: NSObject
                     messageModel.account = subjson["account"].stringValue
                     messageModel.nickName = subjson["nickName"].stringValue
                     messageModel.avatarImage = subjson["avatarImage"].stringValue
+                    messageModel.time = subjson["time"].stringValue
                     messageModel.content = subjson["content"].stringValue
                     dataArray.append(messageModel)
                 }

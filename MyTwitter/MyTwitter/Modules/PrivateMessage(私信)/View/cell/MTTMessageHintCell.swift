@@ -11,6 +11,7 @@ import UIKit
 class MTTMessageHintCell: MTTTableViewCell
 {
     var hintLabel:UILabel?
+    var lineView:UIView?
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?)
@@ -27,10 +28,14 @@ class MTTMessageHintCell: MTTTableViewCell
     
     private func setupSubview() -> Void
     {
+        lineView = UIView()
+        lineView?.backgroundColor = kMainGrayColor()
+        self.contentView.addSubview(lineView!)
+        
         hintLabel = UILabel()
         hintLabel?.text = "这里显示你未关注用户发来的私信.在你接收之前他们不会知道你已经看过申请."
         hintLabel?.textColor = kMainGrayColor()
-        hintLabel?.font = UIFont.systemFont(ofSize: 16)
+        hintLabel?.font = UIFont.systemFont(ofSize: 17)
         hintLabel?.textAlignment = NSTextAlignment.left
         hintLabel?.numberOfLines = 2
         self.contentView.addSubview(hintLabel!)
@@ -38,6 +43,11 @@ class MTTMessageHintCell: MTTTableViewCell
     
     private func layoutSubview() -> Void
     {
+        lineView?.snp.makeConstraints({ (make) in
+            make.top.left.right.equalTo(0)
+            make.height.equalTo(0.3)
+        })
+        
         hintLabel?.snp.makeConstraints({ (make) in
             make.left.equalTo(20)
             make.right.equalTo(-20)

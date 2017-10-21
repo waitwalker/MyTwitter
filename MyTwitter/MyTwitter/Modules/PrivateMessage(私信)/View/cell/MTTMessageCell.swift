@@ -25,13 +25,19 @@ class MTTMessageCell: MTTTableViewCell
         didSet
         {
             layoutSubview()
-            
+            avatarImageView?.image = UIImage(named: String(format: "head%@", self.getRandomNum()))
+            accountLabel?.text = messageModel?.account
+            nickNameLabel?.text = messageModel?.nickName
+            timeLabel?.text = messageModel?.time
+            contentLabel?.text = messageModel?.content
         }
     }
     
-    
-    
-    
+    func getRandomNum() -> String
+    {
+        let num = (arc4random() % 17)
+        return String(format: "%d", num)
+    }
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?)

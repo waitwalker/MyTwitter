@@ -8,6 +8,11 @@
 
 import UIKit
 
-class MTTMessageModel: NSObject {
-
+class MTTMessageModel: NSObject
+{
+    var avatarImage:String?
+    var account:String?
+    var nickName:String?
+    var time:String?
+    var content:String?
 }

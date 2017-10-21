@@ -8,12 +8,216 @@
 
 import UIKit
 
-class MTTPrivateMessageViewController: MTTViewController {
+class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UITableViewDataSource,MTTMessagetButtonDelegate
+{
+    
+    var messageTableView:UITableView?
+    
+    var rightButton:UIButton?
+    
+    var leftButton:UIButton?
+    
+    var dataSourceType:MTTMessageDataSourceType = MTTMessageDataSourceType.mailBoxType
+    var mailBoxArray:[MTTMessageModel] = []
+    var requestArray:[MTTMessageModel] = []
+    
+    let reusedMessageButtonId = "reusedMessageButtonId"
+    let reusedMessageMailBoxId = "reusedMessageMailBoxId"
+    let reusedMessageRequestId = "reusedMessageRequestId"
+    let reusedMessageHintId = "reusedMessageHintId"
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupSubview()
+        layoutSubview()
+        setupEvent()
+        loadMailBoxData()
+        loadRequestData()
+    }
+    
+    private func loadMailBoxData() -> Void
+    {
+        dataSourceType = MTTMessageDataSourceType.mailBoxType
+        let mailBoxQueue = DispatchQueue(label: "mailBoxQueue", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
+        mailBoxQueue.async {
+            MTTMessageViewModel.getMailBoxData(callBack: { (dataArray) in
+                self.mailBoxArray = dataArray
+                DispatchQueue.main.async {
+                    self.messageTableView?.reloadData()
+                }
+            })
+        }
+    }
+    
+    private func loadRequestData() -> Void
+    {
+        let requestQueue = DispatchQueue(label: "requestQueue", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
+        requestQueue.async {
+            MTTMessageViewModel.getRequestData(callBack: { (dataArray) in
+                self.requestArray = dataArray
+            })
+        }
+    }
+    
+    private func setupSubview() -> Void
+    {
+        messageTableView = UITableView()
+        messageTableView?.delegate = self
+        messageTableView?.dataSource = self
+        messageTableView?.register(MTTMessageButtonCell.self, forCellReuseIdentifier: reusedMessageButtonId)
+        messageTableView?.register(MTTMessageCell.self, forCellReuseIdentifier: reusedMessageMailBoxId)
+        messageTableView?.register(MTTMessageCell.self, forCellReuseIdentifier: reusedMessageRequestId)
+        messageTableView?.register(MTTMessageHintCell.self, forCellReuseIdentifier: reusedMessageHintId)
+        
+        messageTableView?.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.view.addSubview(messageTableView!)
+        
+        setupNavBar()
+    }
+    
+    private func layoutSubview() -> Void
+    {
+        messageTableView?.snp.makeConstraints({ (make) in
+            make.top.left.bottom.right.equalTo(0)
+        })
+    }
+    
+    private func setupEvent() -> Void
+    {
+        
+    }
+    
+    func setupNavBar() -> Void
+    {
+        self.navigationItem.title = "消息"
+        rightButton = UIButton()
+        rightButton?.setImage(UIImage.init(named: "send-mail"), for: UIControlState.normal)
+        rightButton?.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
+        rightButton?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightButton!)
+        
+        leftButton = UIButton()
+        leftButton?.setImage(UIImage.init(named: "my_head.jpg"), for: UIControlState.normal)
+        leftButton?.layer.cornerRadius = 20
+        leftButton?.clipsToBounds = true
+        leftButton?.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftButton!)
+        
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        switch dataSourceType
+        {
+        case MTTMessageDataSourceType.mailBoxType:
+            return self.mailBoxArray.count + 1
+        case MTTMessageDataSourceType.requestType:
+            return self.mailBoxArray.count + 2
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        if indexPath.item == 0
+        {
+            return 40
+        } else
+        {
+            return 80
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        if indexPath.item == 0
+        {
+            var cell = tableView.dequeueReusableCell(withIdentifier: reusedMessageButtonId) as? MTTMessageButtonCell
+            if cell == nil
+            {
+                cell = MTTMessageButtonCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedMessageButtonId)
+            }
+            cell?.delegate = self
+            
+        } else
+        {
+            switch dataSourceType
+            {
+            case MTTMessageDataSourceType.mailBoxType:
+                
+                var cell = tableView.dequeueReusableCell(withIdentifier: reusedMessageMailBoxId) as? MTTMessageCell
+                if cell == nil
+                {
+                    cell = MTTMessageCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedMessageMailBoxId)
+                }
+                cell?.messageModel = self.mailBoxArray[indexPath.item - 1]
+                return cell!
+            case MTTMessageDataSourceType.requestType:
+                
+                if indexPath.item == 1
+                {
+                    var cell = tableView.dequeueReusableCell(withIdentifier: reusedMessageHintId) as? MTTMessageHintCell
+                    if cell == nil
+                    {
+                        cell = MTTMessageHintCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedMessageHintId)
+                    }
+                    return cell!
+                    
+                } else
+                {
+                    var cell = tableView.dequeueReusableCell(withIdentifier: reusedMessageRequestId) as? MTTMessageCell
+                    if cell == nil
+                    {
+                        cell = MTTMessageCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedMessageRequestId)
+                    }
+                    cell?.messageModel = self.requestArray[indexPath.item - 1]
+                    return cell!
+                }
+            }
+        }
+        return UITableViewCell()
+    }
+    
+    
+    func tappedMailBoxButton(mailBoxButton: UIButton, cell: MTTMessageButtonCell)
+    {
+        mailBoxButton.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
+        mailBoxButton.backgroundColor = kMainBlueColor()
+        cell.requestButtion?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
+        cell.requestButtion?.backgroundColor = kMainWhiteColor()
+        dataSourceType = MTTMessageDataSourceType.mailBoxType
+        
+        if self.mailBoxArray.count == Int(0)
+        {
+            loadMailBoxData()
+        }
+        
+        DispatchQueue.main.async {
+            self.messageTableView?.reloadData()
+        }
+    }
+    
+    func tappedRequestButton(requestButton: UIButton, cell: MTTMessageButtonCell)
+    {
+        requestButton.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
+        requestButton.backgroundColor = kMainBlueColor()
+        cell.mailBoxButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
+        cell.mailBoxButton?.backgroundColor = kMainWhiteColor()
+        dataSourceType = MTTMessageDataSourceType.mailBoxType
+        
+        if self.requestArray.count == Int(0)
+        {
+            loadRequestData()
+        }
+        
+        DispatchQueue.main.async {
+            self.messageTableView?.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {

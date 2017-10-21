@@ -22,6 +22,7 @@
 		1A304C521F6D6B5700F366B9 /* MTTNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C511F6D6B5700F366B9 /* MTTNotificationViewController.swift */; };
 		1A304C541F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C531F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift */; };
 		1A304C561F6D6B7400F366B9 /* MTTSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C551F6D6B7400F366B9 /* MTTSearchViewController.swift */; };
+		1A3ED5911F9B3F80000BE10F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A3ED5901F9B3F80000BE10F /* Images.xcassets */; };
 		1A4D8F0B1F9635F000B64D6B /* MTTSearchPopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D8F0A1F9635F000B64D6B /* MTTSearchPopularCell.swift */; };
 		1A4D8F0D1F963B7600B64D6B /* MTTSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D8F0C1F963B7600B64D6B /* MTTSearchModel.swift */; };
 		1A561D7A1F6FF58F001C82FA /* MTTLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A561D791F6FF58F001C82FA /* MTTLoginViewController.swift */; };
@@ -156,6 +157,7 @@
 		1A304C511F6D6B5700F366B9 /* MTTNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTNotificationViewController.swift; sourceTree = "<group>"; };
 		1A304C531F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTPrivateMessageViewController.swift; sourceTree = "<group>"; };
 		1A304C551F6D6B7400F366B9 /* MTTSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSearchViewController.swift; sourceTree = "<group>"; };
+		1A3ED5901F9B3F80000BE10F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1A4D8F0A1F9635F000B64D6B /* MTTSearchPopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchPopularCell.swift; sourceTree = "<group>"; };
 		1A4D8F0C1F963B7600B64D6B /* MTTSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchModel.swift; sourceTree = "<group>"; };
 		1A561D791F6FF58F001C82FA /* MTTLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTLoginViewController.swift; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 				1AFC059F1F5EE3B2006EAC9F /* Main */,
 				CADECBCA1F5E4F270027E15F /* Modules */,
 				CADECBC61F5E4EA30027E15F /* Common */,
+				1A3ED5901F9B3F80000BE10F /* Images.xcassets */,
 			);
 			path = MyTwitter;
 			sourceTree = "<group>";
@@ -1097,6 +1100,7 @@
 				1AFC05A81F5EE3B2006EAC9F /* Assets.xcassets in Resources */,
 				1AFC05A91F5EE3B2006EAC9F /* LaunchScreen.storyboard in Resources */,
 				CA6ADD621F99A2B000A25646 /* MTTNotificationAllData.json in Resources */,
+				1A3ED5911F9B3F80000BE10F /* Images.xcassets in Resources */,
 				CA6ADD641F99A2EB00A25646 /* MTTNotificationMention.json in Resources */,
 				1AA6E4C01F9B19710025FB7B /* MTTMessageMailBoxData.json in Resources */,
 				1AA6E4C21F9B19870025FB7B /* MTTMessageRequestData.json in Resources */,

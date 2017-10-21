@@ -1,94 +1,386 @@
 {
   "images" : [
     {
-      "idiom" : "iphone",
       "size" : "20x20",
+      "idiom" : "iphone",
+      "display-gamut" : "sRGB",
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
       "size" : "20x20",
-      "scale" : "3x"
-    },
-    {
       "idiom" : "iphone",
-      "size" : "29x29",
+      "display-gamut" : "display-P3",
       "scale" : "2x"
     },
     {
+      "size" : "20x20",
       "idiom" : "iphone",
-      "size" : "29x29",
+      "display-gamut" : "sRGB",
       "scale" : "3x"
     },
     {
+      "size" : "20x20",
       "idiom" : "iphone",
-      "size" : "40x40",
+      "display-gamut" : "display-P3",
+      "scale" : "3x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "iphone",
+      "display-gamut" : "sRGB",
       "scale" : "2x"
     },
     {
+      "size" : "29x29",
       "idiom" : "iphone",
-      "size" : "40x40",
+      "display-gamut" : "display-P3",
+      "scale" : "2x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "iphone",
+      "display-gamut" : "sRGB",
       "scale" : "3x"
     },
     {
+      "size" : "29x29",
       "idiom" : "iphone",
+      "display-gamut" : "display-P3",
+      "scale" : "3x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "display-gamut" : "sRGB",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "display-gamut" : "display-P3",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "display-gamut" : "sRGB",
+      "scale" : "3x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "display-gamut" : "display-P3",
+      "scale" : "3x"
+    },
+    {
       "size" : "60x60",
+      "idiom" : "iphone",
+      "display-gamut" : "sRGB",
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
       "size" : "60x60",
+      "idiom" : "iphone",
+      "display-gamut" : "display-P3",
+      "scale" : "2x"
+    },
+    {
+      "size" : "60x60",
+      "idiom" : "iphone",
+      "display-gamut" : "sRGB",
       "scale" : "3x"
     },
     {
-      "idiom" : "ipad",
+      "size" : "60x60",
+      "idiom" : "iphone",
+      "display-gamut" : "display-P3",
+      "scale" : "3x"
+    },
+    {
       "size" : "20x20",
+      "idiom" : "ipad",
+      "display-gamut" : "sRGB",
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "ProductionAppIcon20x20~ipad.png",
+      "language-direction" : "right-to-left",
+      "display-gamut" : "sRGB",
+      "scale" : "1x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "display-gamut" : "display-P3",
+      "scale" : "1x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "language-direction" : "right-to-left",
+      "display-gamut" : "display-P3",
+      "scale" : "1x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "display-gamut" : "sRGB",
       "scale" : "2x"
     },
     {
+      "size" : "20x20",
       "idiom" : "ipad",
+      "filename" : "ProductionAppIcon20x20@2x~ipad.png",
+      "language-direction" : "right-to-left",
+      "display-gamut" : "sRGB",
+      "scale" : "2x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "display-gamut" : "display-P3",
+      "scale" : "2x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "language-direction" : "right-to-left",
+      "display-gamut" : "display-P3",
+      "scale" : "2x"
+    },
+    {
       "size" : "29x29",
+      "idiom" : "ipad",
+      "display-gamut" : "sRGB",
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "29x29",
-      "scale" : "2x"
-    },
-    {
       "idiom" : "ipad",
-      "size" : "40x40",
+      "filename" : "ProductionAppIcon29x29~ipad.png",
+      "language-direction" : "left-to-right",
+      "display-gamut" : "sRGB",
       "scale" : "1x"
     },
     {
+      "size" : "29x29",
       "idiom" : "ipad",
-      "size" : "40x40",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "ipad",
-      "size" : "76x76",
+      "display-gamut" : "display-P3",
       "scale" : "1x"
     },
     {
+      "size" : "29x29",
       "idiom" : "ipad",
-      "size" : "76x76",
+      "language-direction" : "left-to-right",
+      "display-gamut" : "display-P3",
+      "scale" : "1x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "display-gamut" : "sRGB",
       "scale" : "2x"
     },
     {
+      "size" : "29x29",
       "idiom" : "ipad",
+      "display-gamut" : "display-P3",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "display-gamut" : "sRGB",
+      "scale" : "1x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "ProductionAppIcon40x40~ipad.png",
+      "language-direction" : "left-to-right",
+      "display-gamut" : "sRGB",
+      "scale" : "1x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "display-gamut" : "display-P3",
+      "scale" : "1x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "language-direction" : "left-to-right",
+      "display-gamut" : "display-P3",
+      "scale" : "1x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "ProductionAppIcon40x40@2x~ipad.png",
+      "display-gamut" : "sRGB",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "display-gamut" : "display-P3",
+      "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "display-gamut" : "sRGB",
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "display-gamut" : "display-P3",
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "display-gamut" : "sRGB",
+      "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "language-direction" : "left-to-right",
+      "display-gamut" : "sRGB",
+      "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "display-gamut" : "display-P3",
+      "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "language-direction" : "left-to-right",
+      "display-gamut" : "display-P3",
+      "scale" : "2x"
+    },
+    {
       "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "display-gamut" : "sRGB",
+      "scale" : "2x"
+    },
+    {
+      "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "language-direction" : "left-to-right",
+      "display-gamut" : "sRGB",
+      "scale" : "2x"
+    },
+    {
+      "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "display-gamut" : "display-P3",
+      "scale" : "2x"
+    },
+    {
+      "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "language-direction" : "left-to-right",
+      "display-gamut" : "display-P3",
       "scale" : "2x"
     },
     {
       "idiom" : "ios-marketing",
       "size" : "1024x1024",
       "scale" : "1x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "ProductionAppIcon29x29@2x~ipad.png",
+      "unassigned" : true,
+      "display-gamut" : "sRGB",
+      "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "ProductionAppIcon76x76~ipad.png",
+      "unassigned" : true,
+      "display-gamut" : "sRGB",
+      "scale" : "1x"
+    },
+    {
+      "language-direction" : "left-to-right",
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "ProductionAppIcon76x76@2x~ipad.png",
+      "display-gamut" : "display-P3",
+      "unassigned" : true,
+      "scale" : "2x"
+    },
+    {
+      "language-direction" : "left-to-right",
+      "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "filename" : "ProductionAppIcon83.5x83.5@2x~ipad.png",
+      "display-gamut" : "display-P3",
+      "unassigned" : true,
+      "scale" : "2x"
+    },
+    {
+      "size" : "60x60",
+      "idiom" : "car",
+      "filename" : "ProductionAppIcon60x60@2x~car.png",
+      "unassigned" : true,
+      "scale" : "2x"
+    },
+    {
+      "size" : "60x60",
+      "idiom" : "car",
+      "filename" : "ProductionAppIcon60x60@3x~car.png",
+      "unassigned" : true,
+      "scale" : "3x"
+    },
+    {
+      "filename" : "ProductionAppIcon20x20@2x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "ProductionAppIcon20x20@3x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "ProductionAppIcon29x29.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "ProductionAppIcon29x29@2x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "ProductionAppIcon29x29@3x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "ProductionAppIcon40x40@2x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "ProductionAppIcon40x40@3x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "ProductionAppIcon60x60@2x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "ProductionAppIcon60x60@3x.png",
+      "unassigned" : true
     }
   ],
   "info" : {

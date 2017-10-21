@@ -43,38 +43,32 @@ class MTTNotificationReplyCell: MTTTableViewCell
     {
         didSet
         {
+            self.layoutSubview(notificationModel: notificationModel!)
             
-        }
-    }
-    
-    var searchModel:MTTSearchModel?
-    {
-        didSet
-        {
-            self.layoutSubview(searchModel: searchModel!)
+            avatarImageView?.image = UIImage(named: String(format: "head%@.jpg", (notificationModel?.avatarImage)!))
+            accountLabel?.text = notificationModel?.account
+            nickNameLabel?.text = notificationModel?.nickName
+            replyNickNameLabel?.text = notificationModel?.replyNickName
+            contentLabel?.text = notificationModel?.content
+            timeLabel?.text = notificationModel?.time
+            var notificationImages:[String] = []
             
-            avatarImageView?.image = UIImage(named: String(format: "head%@.jpg", (searchModel?.avatarImage)!))
-            accountLabel?.text = searchModel?.account
-            nickNameLabel?.text = searchModel?.nickName
-            contentLabel?.text = searchModel?.content
-            timeLabel?.text = searchModel?.time
-            var searchImages:[String] = []
-            
-            for _ in Int(0)...(searchModel?.contentImages?.count)!
+            for _ in Int(0)...(notificationModel?.contentImages?.count)!
             {
                 let random = self.getRandomNum()
                 
-                searchImages.append(random)
+                notificationImages.append(random)
             }
-            print(searchImages as Any)
-            searchImages.remove(at: 0)
-            contentImageContainerView?.homeImagesArray = searchImages
-            commentButton?.setTitle(searchModel?.commentCount, for: UIControlState.normal)
-            retwitterButton?.setTitle(searchModel?.retwitterCount, for: UIControlState.normal)
-            likeButton?.setTitle(searchModel?.likeCount, for: UIControlState.normal)
-            privateMessageButton?.setTitle(searchModel?.privateMessageCount, for: UIControlState.normal)
+            print(notificationImages as Any)
+            notificationImages.remove(at: 0)
+            contentImageContainerView?.homeImagesArray = notificationImages
+            commentButton?.setTitle(notificationModel?.commentCount, for: UIControlState.normal)
+            retwitterButton?.setTitle(notificationModel?.retwitterCount, for: UIControlState.normal)
+            likeButton?.setTitle(notificationModel?.likeCount, for: UIControlState.normal)
+            privateMessageButton?.setTitle(notificationModel?.privateMessageCount, for: UIControlState.normal)
         }
     }
+    
     
     func getRandomNum() -> String 
     {
@@ -218,14 +212,14 @@ class MTTNotificationReplyCell: MTTTableViewCell
         toolBarContainerView?.addSubview(privateMessageButton!)
     }
     
-    private func layoutSubview(searchModel:MTTSearchModel) -> Void
+    private func layoutSubview(notificationModel:MTTNotificationModel) -> Void
     {
         topLineView?.snp.makeConstraints({ (make) in
             make.left.right.top.equalTo(0)
             make.height.equalTo(0.3)
         })
         
-        originalContainerView?.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: searchModel.cellHeight!)
+        originalContainerView?.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: notificationModel.cellHeight!)
         
         avatarImageView?.snp.makeConstraints({ (make) in
             make.left.equalTo(10)
@@ -272,7 +266,7 @@ class MTTNotificationReplyCell: MTTTableViewCell
             make.left.equalTo(80)
             make.right.equalTo(-10)
             make.top.equalTo((self.accountContainerView?.snp.bottom)!).offset(5)
-            make.height.equalTo(searchModel.contentTextHeight! + 150 + 20)
+            make.height.equalTo(notificationModel.contentTextHeight! + 150 + 20)
         })
         
         replyNickNameLabel?.snp.makeConstraints({ (make) in
@@ -280,11 +274,11 @@ class MTTNotificationReplyCell: MTTTableViewCell
             make.height.equalTo(20)
         })
         
-        if (searchModel.content?.characters.count)! > Int(0)
+        if (notificationModel.content?.characters.count)! > Int(0)
         {
             contentLabel?.isHidden = false
-            contentLabel?.frame = CGRect(x: 0, y: 20, width: kScreenWidth - 80, height: searchModel.contentTextHeight!)
-            contentImageContainerView?.frame = CGRect(x: 0, y: searchModel.contentTextHeight!, width: kScreenWidth - 80, height: 150)
+            contentLabel?.frame = CGRect(x: 0, y: 20, width: kScreenWidth - 80, height: notificationModel.contentTextHeight!)
+            contentImageContainerView?.frame = CGRect(x: 0, y: notificationModel.contentTextHeight!, width: kScreenWidth - 80, height: 150)
         } else
         {
             contentLabel?.isHidden = true

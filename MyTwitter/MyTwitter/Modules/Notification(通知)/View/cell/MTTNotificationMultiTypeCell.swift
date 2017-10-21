@@ -13,7 +13,7 @@ class MTTNotificationMultiTypeCell: MTTTableViewCell
     
     var lineView:UIView?
     var iconImageView:UIImageView?
-    var avatarImageViews:UIImageView?
+    var avatarImageViews:MTTAvatarImagesView?
     var multiTitleLabel:UILabel?
     var multiContentLabel:UILabel?
     
@@ -22,11 +22,29 @@ class MTTNotificationMultiTypeCell: MTTTableViewCell
     {
         didSet
         {
+            iconImageView?.image = UIImage(named: String(format: "%@", (notificationModel?.iconImage)!))
+            multiTitleLabel?.text = notificationModel?.multiTitle
+            multiContentLabel?.text = notificationModel?.multiContent
             
+            var notificationImages:[String] = []
+            
+            for _ in Int(0)...(notificationModel?.contentImages?.count)!
+            {
+                let random = self.getRandomNum()
+                
+                notificationImages.append(random)
+            }
+            print(notificationImages as Any)
+            notificationImages.remove(at: 0)
+            avatarImageViews?.avatarImageViews = notificationImages
         }
     }
     
-    
+    func getRandomNum() -> String
+    {
+        let num = (arc4random() % 17)
+        return String(format: "%d", num)
+    }
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) 
@@ -50,7 +68,7 @@ class MTTNotificationMultiTypeCell: MTTTableViewCell
         iconImageView?.isUserInteractionEnabled = true
         self.contentView.addSubview(iconImageView!)
         
-        avatarImageViews = UIImageView()
+        avatarImageViews = MTTAvatarImagesView()
         avatarImageViews?.isUserInteractionEnabled = true
         self.contentView.addSubview(avatarImageViews!)
         

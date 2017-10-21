@@ -12,7 +12,7 @@ class MTTNotificationFollowCell: MTTTableViewCell
 {
     var lineView:UIView?
     var iconImageView:UIImageView?
-    var avatarImageViews:UIImageView?
+    var avatarImageViews:MTTAvatarImagesView?
     var followLabel:UILabel?
     
     
@@ -22,8 +22,27 @@ class MTTNotificationFollowCell: MTTTableViewCell
     {
         didSet
         {
+            iconImageView?.image = UIImage(named: String(format: "%@", (notificationModel?.iconImage)!))
+            followLabel?.text = notificationModel?.followString
             
+            var notificationImages:[String] = []
+            
+            for _ in Int(0)...(notificationModel?.contentImages?.count)!
+            {
+                let random = self.getRandomNum()
+                
+                notificationImages.append(random)
+            }
+            print(notificationImages as Any)
+            notificationImages.remove(at: 0)
+            avatarImageViews?.avatarImageViews = notificationImages
         }
+    }
+    
+    func getRandomNum() -> String
+    {
+        let num = (arc4random() % 17)
+        return String(format: "%d", num)
     }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) 
@@ -43,8 +62,7 @@ class MTTNotificationFollowCell: MTTTableViewCell
         iconImageView?.isUserInteractionEnabled = true
         self.contentView.addSubview(iconImageView!)
         
-        avatarImageViews = UIImageView()
-        avatarImageViews?.isUserInteractionEnabled = true
+        avatarImageViews = MTTAvatarImagesView()
         self.contentView.addSubview(avatarImageViews!)
         
         followLabel = UILabel()

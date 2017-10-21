@@ -191,8 +191,8 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
                         cell = MTTNotificationMentionCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedNotificationMentionId)
                     }
                     cell?.notificationModel = self.allDataArray[indexPath.item - 1]
-                    
                     return cell!
+                    
                 case MTTNotificationCellType.replyType:
                     var cell = tableView.dequeueReusableCell(withIdentifier: reusedNotificationReplyId) as? MTTNotificationReplyCell
                     if cell == nil
@@ -201,6 +201,7 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
                     }
                     cell?.notificationModel = self.allDataArray[indexPath.item - 1]
                     return cell!
+                    
                 case MTTNotificationCellType.multiType:
                     var cell = tableView.dequeueReusableCell(withIdentifier: reusedNotificationMultiId) as? MTTNotificationMultiTypeCell
                     if cell == nil

@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.rootViewController = registerLoginVC
         self.window?.makeKeyAndVisible()
+        self.window?.backgroundColor = UIColor(red: 76 / 255.0, green: 159 / 255.0, blue: 236 / 255.0, alpha: 1.0)
+        MTTLanuchAnimation.launchAppWithSuperView(superView: (self.window?.rootViewController?.view)!)
         
         let _ = MTTFPSDisplay.shareInstance
         

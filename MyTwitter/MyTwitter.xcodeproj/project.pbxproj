@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A011D3D1F9C7D6800485766 /* MTTLanuchAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A011D3C1F9C7D6800485766 /* MTTLanuchAnimation.swift */; };
 		1A09A54A1F9B090E007BC41C /* MTTMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A09A5491F9B090E007BC41C /* MTTMessageModel.swift */; };
 		1A09A54E1F9B0930007BC41C /* MTTMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A09A54D1F9B0930007BC41C /* MTTMessageCell.swift */; };
 		1A09A5501F9B1669007BC41C /* MTTMessageButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A09A54F1F9B1669007BC41C /* MTTMessageButtonCell.swift */; };
@@ -142,6 +143,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A011D3C1F9C7D6800485766 /* MTTLanuchAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLanuchAnimation.swift; sourceTree = "<group>"; };
 		1A09A5491F9B090E007BC41C /* MTTMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTMessageModel.swift; sourceTree = "<group>"; };
 		1A09A54D1F9B0930007BC41C /* MTTMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTMessageCell.swift; sourceTree = "<group>"; };
 		1A09A54F1F9B1669007BC41C /* MTTMessageButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTMessageButtonCell.swift; sourceTree = "<group>"; };
@@ -542,6 +544,7 @@
 				CA3058C11F78B6B300742237 /* MTTFPSDisplay.swift */,
 				CA3058E31F7A156900742237 /* MTTLargeImagePreviewManager.swift */,
 				CAE6742C1F7F932000C1093E /* MTTFountions.swift */,
+				1A011D3C1F9C7D6800485766 /* MTTLanuchAnimation.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1293,6 +1296,7 @@
 				1ABFD4BC1F84BE48004DF174 /* MTTCollectionViewCell.swift in Sources */,
 				1A09A54A1F9B090E007BC41C /* MTTMessageModel.swift in Sources */,
 				1A304C541F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift in Sources */,
+				1A011D3D1F9C7D6800485766 /* MTTLanuchAnimation.swift in Sources */,
 				CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */,
 				1A596C671F90F1D200F14123 /* MTTSearchSearchAllViewController.swift in Sources */,
 				CAF065521F985628002F28F8 /* MTTNotificationReplyCell.swift in Sources */,

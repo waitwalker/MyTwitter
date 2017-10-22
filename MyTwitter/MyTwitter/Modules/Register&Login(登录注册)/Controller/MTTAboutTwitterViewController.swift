@@ -64,6 +64,7 @@ class MTTAboutTwitterViewController: MTTViewController,UITableViewDelegate,UITab
         //titleLabel
         titleLabel = UILabel()
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel?.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
         titleLabel?.text = "关于 Twitter"
         titleLabel?.textColor = UIColor.black
         titleLabel?.textAlignment = NSTextAlignment.center

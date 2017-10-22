@@ -76,7 +76,6 @@ class MTTAboutViewModel: NSObject
         let urlString = kServer + kAboutAPI
         
         Alamofire.request(URL.init(string: urlString)!, method: HTTPMethod.get, parameters: [:], encoding: URLEncoding.default, headers: nil).responseJSON { (responseData) in
-            
             switch responseData.result
             {
                 case .success:
@@ -131,9 +130,7 @@ class MTTAboutViewModel: NSObject
                     {
                         callBack(dataSource)
                     }
-                    
                 break
-                
                 case .failure:
                     callBack(dataSource)
                 break

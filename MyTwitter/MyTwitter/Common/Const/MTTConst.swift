@@ -9,7 +9,7 @@
 import UIKit
 
 //服务器
-let kServer:String = "http://192.168.8.109:8000/"
+let kServer:String = "http://192.168.199.183:8000/"
 
 
 

@@ -27,12 +27,15 @@ let kServer:String = "http://192.168.8.133:8000/"
 //关于
 let kAboutAPI:String = "about/"
 
-
 //注册
 let kRegisterAPI:String = "register/"
 
 //登录
 let kLoginAPI:String = "login/"
+
+//获取首页数据列表
+let kGetHomeTwitterList:String = "getHomeTwitterList/"
+
 
 
 

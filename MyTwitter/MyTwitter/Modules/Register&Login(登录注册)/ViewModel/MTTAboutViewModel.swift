@@ -29,7 +29,6 @@ class MTTAboutViewModel: NSObject
         var typeThreeArray:[MTTAboutModel] = []
         var dataSource:[[MTTAboutModel]] = [[]]
         
-        
         let json = JSON.init(data: data!)
         
         let result = json["result"].intValue
@@ -108,7 +107,6 @@ class MTTAboutViewModel: NSObject
                                 {
                                     typeThreeArrays.append(aboutModel)
                                 }
-                                
                             }
                             
                             typeTwoArrays.sort(by: { (model1, model2) -> Bool in
@@ -125,7 +123,6 @@ class MTTAboutViewModel: NSObject
                             dataSources.remove(at: 0)
                         }
                         callBack(dataSources)
-                        
                     } else
                     {
                         callBack(dataSource)
@@ -136,6 +133,5 @@ class MTTAboutViewModel: NSObject
                 break
             }
         }
-        
     }
 }

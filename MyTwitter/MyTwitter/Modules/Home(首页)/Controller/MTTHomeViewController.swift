@@ -42,10 +42,22 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     
     func loadData() -> Void
     {
-        MTTHomeViewModel.getHomeData { (dataArray) in
-            
-            self.homeDataArray = dataArray
-            self.homeTableView?.reloadData()
+        MTTHomeViewModel.getHomeNetworkData { (dataArray) in
+            if dataArray.count > Int(0)
+            {
+                self.homeDataArray = dataArray
+                self.homeTableView?.reloadData()
+            } else
+            {
+                MTTHomeViewModel.getHomeData { (dataArray) in
+                    
+                    if dataArray.count > Int(0)
+                    {
+                        self.homeDataArray = dataArray
+                        self.homeTableView?.reloadData()
+                    }
+                }
+            }
         }
     }
     
@@ -126,25 +138,37 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int 
     {
-        return (homeDataArray?.count)!
+        if homeDataArray == nil
+        {
+            return 1
+        } else
+        {
+            return (homeDataArray?.count)! 
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell 
     {
-        var homeCell = tableView.dequeueReusableCell(withIdentifier: reusedHomeCellId, for: indexPath) as? MTTHomeCell
-        if homeCell == nil 
+        if homeDataArray == nil
         {
-            homeCell = MTTHomeCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedHomeCellId)
+            return UITableViewCell()
+        } else
+        {
+          
+            var homeCell = tableView.dequeueReusableCell(withIdentifier: reusedHomeCellId, for: indexPath) as? MTTHomeCell
+            if homeCell == nil 
+            {
+                homeCell = MTTHomeCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedHomeCellId)
+            }
+            homeCell?.homeModel = homeDataArray?[indexPath.item]
+            return homeCell!  
         }
-        homeCell?.homeModel = homeDataArray?[indexPath.item]
-        return homeCell!
-        
     }
     
     // MARK: - tableView delegate 代理回调
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat 
     {
-        if (self.homeDataArray?.count)! > Int(1)
+        if self.homeDataArray != nil
         {
             let homeModel = homeDataArray![indexPath.row]
             

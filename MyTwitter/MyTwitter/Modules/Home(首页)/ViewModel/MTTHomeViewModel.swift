@@ -44,7 +44,7 @@ class MTTHomeViewModel: NSObject
                     homeModel.accountString = subjson["account"].stringValue
                     homeModel.nickNameString = subjson["nickName"].stringValue
                     homeModel.timeString = subjson["time"].stringValue
-                    
+                    homeModel.contentImageCount = self.getRandomNum()
                     homeModel.contentTextString = subjson["content"].stringValue
                     
                     homeModel.contentHeight = self.calculateTextHeight(text: homeModel.contentTextString!) + 150
@@ -82,6 +82,7 @@ class MTTHomeViewModel: NSObject
                 var dataArray:[MTTHomeModel] = []
                 let value = responseData.result.value
                 let json = JSON(value as Any)
+                
                 let result = json["result"].intValue
                 if result == 200
                 {
@@ -97,7 +98,7 @@ class MTTHomeViewModel: NSObject
                             homeModel.accountString = subjson["account"].stringValue
                             homeModel.nickNameString = subjson["nickName"].stringValue
                             homeModel.timeString = subjson["time"].stringValue
-                            
+                            homeModel.contentImageCount = self.getRandomNum()
                             homeModel.contentTextString = subjson["content"].stringValue
                             
                             homeModel.contentHeight = self.calculateTextHeight(text: homeModel.contentTextString!) + 150
@@ -118,14 +119,26 @@ class MTTHomeViewModel: NSObject
                             homeModel.privateMessageCount = subjson["privateMessageCount"].intValue
                             dataArray.append(homeModel)
                         }
-                        callBack(dataArray)
                     }
+                    callBack(dataArray)
                 }
                 case .failure:
+                    
+                    print(responseData.result.error as Any)
                 break
             }
             
         }
+    }
+    
+    class func getRandomNum() -> Int
+    {
+        var num = (arc4random() % 4)
+        if num == 0
+        {
+            num = 1
+        }
+        return Int(num)
     }
     
     

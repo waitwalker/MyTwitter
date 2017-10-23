@@ -50,7 +50,6 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
             } else
             {
                 MTTHomeViewModel.getHomeData { (dataArray) in
-                    
                     if dataArray.count > Int(0)
                     {
                         self.homeDataArray = dataArray

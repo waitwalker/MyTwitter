@@ -63,7 +63,7 @@ class MTTHomeCell: MTTTableViewCell {
             timeLabel?.text = homeModel?.timeString
             var homeImages:[String] = []
             
-            for _ in Int(0)...(homeModel?.contentImageStrings?.count)!
+            for _ in Int(0)...(homeModel?.contentImageCount)!
             {
                 let random = self.getRandomNum()
                 
@@ -239,7 +239,7 @@ class MTTHomeCell: MTTTableViewCell {
             make.height.equalTo(0.3)
         })
         
-        if (homeModel.retwitterType?.characters.count)! > Int(0) 
+        if (homeModel.retwitterType?.characters.count)! > Int(3) 
         {
             retwitterContainerView?.isHidden = false
             retwitterContainerView?.frame = CGRect(x: 55, y: 0, width: kScreenWidth - 55, height: 20)

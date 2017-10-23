@@ -22,6 +22,8 @@ class MTTHomeModel: NSObject
     var accountString:String?
     var nickNameString:String?
     var contentTextString:String?
+    var contentImageCount:Int?
+    
     
     var contentImageStrings:[JSON]?
     

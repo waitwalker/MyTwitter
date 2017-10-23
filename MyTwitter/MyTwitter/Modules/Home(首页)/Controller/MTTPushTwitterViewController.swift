@@ -494,8 +494,47 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         //pushButton
         pushButton?.rx.tap.subscribe(onNext:{ [unowned self] in
             print("发推按钮被点击了",self)
+            
+            let retwitterArray = ["1","like","3","retwitter","2","5"]
+            let retwitterType = retwitterArray[self.getRandomNum()]
+            let avatarImage = String(format: "%d", self.getRandomNum())
+            let retwitterAccountArray = ["Javascript🔥TOP Q&A‏","The Guardian‏","Brightwater Recruit‏","TheTimesofLondon‏","ABS-CBNNewsChannel‏","朝日新聞(asahi shimbun）"]
+            let retwitterAccount = retwitterAccountArray[self.getRandomNum()]
+            let nickName = "@" + retwitterAccount
+            let accountArray = ["The Guardian‏","Javascript🔥TOP Q&A‏","Brightwater Recruit‏","朝日新聞(asahi shimbun）","TheTimesofLondon‏","ABS-CBNNewsChannel‏"]
+            let account = accountArray[self.getRandomNum()]
+            
+            
+            
+            let parameter = ["retwitterType":retwitterType,
+                             "retwitterAccount":retwitterAccount,
+                             "avatarImage":avatarImage,
+                             "account":account,
+                             "nickName":nickName,
+                             "time":"20171024 12:20:22",
+                             "content":self.pushTextView?.text as Any,
+                             "contentImages":"contentImages",
+                             "contentVideo":"contentVideo",
+                             "commentCount":self.getRandomNum222(),
+                             "retwitterCount":self.getRandomNum222(),
+                             "likeCount":self.getRandomNum222(),
+                             "privateMessageCount":self.getRandomNum222()] as [String : Any]
+            
+            
         }).addDisposableTo(disposeBag)
         
+    }
+    
+    func getRandomNum() -> Int
+    {
+        let num = (arc4random() % 5)
+        return Int(num)
+    }
+    
+    func getRandomNum222() -> String
+    {
+        let num = (arc4random() % 2225)
+        return String(format: "%d", num)
     }
     
     // MARK: - 处理键盘

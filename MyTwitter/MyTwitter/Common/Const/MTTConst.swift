@@ -9,7 +9,7 @@
 import UIKit
 
 //服务器
-let kServer:String = "http://192.168.199.183:8000/"
+let kServer:String = "http://192.168.8.133:8000/"
 
 
 
@@ -30,5 +30,10 @@ let kAboutAPI:String = "about/"
 
 //注册
 let kRegisterAPI:String = "register/"
+
+//登录
+let kLoginAPI:String = "login/"
+
+
 
 		

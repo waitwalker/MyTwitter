@@ -270,7 +270,8 @@ class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModel
         
             let para = ["user_name":self.sharedInstance.user_name,
                  "email":self.sharedInstance.email,
-                 "password":self.sharedInstance.password
+                 "password":self.sharedInstance.password,
+                 "phone":"13699999999"
                 ]
             
             print("参数:",para)
@@ -292,9 +293,9 @@ class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModel
     {
         print(data)
         
-        let tabBarVC = MTTTabBarController()
+        let loginVC = MTTLoginViewController()
         let appDelegate = UIApplication.shared.delegate! as UIApplicationDelegate
-        appDelegate.window??.rootViewController = tabBarVC
+        appDelegate.window??.rootViewController = loginVC
         appDelegate.window??.makeKeyAndVisible()
         
     }

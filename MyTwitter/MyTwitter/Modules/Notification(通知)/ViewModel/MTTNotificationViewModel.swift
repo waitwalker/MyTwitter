@@ -148,6 +148,4 @@ class MTTNotificationViewModel: NSObject
         }
         callBack(dataArr)
     }
-    
-    
 }

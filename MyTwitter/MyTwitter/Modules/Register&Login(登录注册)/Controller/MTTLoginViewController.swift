@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MTTLoginViewController: MTTViewController {
+class MTTLoginViewController: MTTViewController,MTTLoginViewModelDelegate {
     
     var cancelButton:UIButton?
     var logoImageView:UIImageView?
@@ -133,7 +133,7 @@ class MTTLoginViewController: MTTViewController {
         //loginButton
         loginButton = UIButton()
         loginButton?.setTitle("登录", for: UIControlState.normal)
-        loginButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
+        loginButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
         loginButton?.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         loginButton?.backgroundColor = kMainBlueColor()
         loginButton?.layer.cornerRadius = 17.5
@@ -314,8 +314,43 @@ class MTTLoginViewController: MTTViewController {
         //loginButton
 //        Observable.combineLatest(accountTextFieldObserable, passwordTextFieldObserable) { $0 && $1 }
 //            .shareReplay(1)
+        loginButton?.rx.tap.subscribe(onNext:{
+            
+            if (self.passwordTextField?.text?.characters.count)! > Int(0) && (self.accountTextField?.text?.characters.count)! > Int(0)
+            {
+                let para = ["email":self.accountTextField?.text,
+                            "password":self.passwordTextField?.text]
+                
+                let loginViewModel = MTTLoginViewModel()
+                loginViewModel.delegate = self
+                loginViewModel.getLoginStatus(parameter: para as NSDictionary)
+                
+            }
+            
+        }).addDisposableTo(disposeBag)
     }
 
+    // MARK: - loginViewModelDelegate
+    func successCallBack(data: NSDictionary) 
+    {
+        print(data)
+        let responseObject = data.object(forKey: "responseObject") as! NSDictionary
+        let result:String = responseObject.object(forKey: "result") as! String
+        
+        if result == "1" 
+        {
+            let tabBarVC = MTTTabBarController()
+            let appDelegate = UIApplication.shared.delegate! as UIApplicationDelegate
+            appDelegate.window??.rootViewController = tabBarVC
+            appDelegate.window??.makeKeyAndVisible()
+        }
+    }
+    
+    func failureCallBack(error: NSError) 
+    {
+        
+    }
+    
     func addNotificationObserver() -> Void
     {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowAction(notify:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)

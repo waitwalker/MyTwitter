@@ -89,6 +89,8 @@
 		CA6ADD601F98AA4D00A25646 /* MTTNotificationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6ADD5F1F98AA4D00A25646 /* MTTNotificationHeader.swift */; };
 		CA6ADD621F99A2B000A25646 /* MTTNotificationAllData.json in Resources */ = {isa = PBXBuildFile; fileRef = CA6ADD611F99A2B000A25646 /* MTTNotificationAllData.json */; };
 		CA6ADD641F99A2EB00A25646 /* MTTNotificationMention.json in Resources */ = {isa = PBXBuildFile; fileRef = CA6ADD631F99A2EB00A25646 /* MTTNotificationMention.json */; };
+		CA908CB01F9DD79300E4AFB9 /* MTTLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA908CAF1F9DD79300E4AFB9 /* MTTLoginViewModel.swift */; };
+		CA908CB21F9DDA7700E4AFB9 /* MTTLoginViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA908CB11F9DDA7700E4AFB9 /* MTTLoginViewModelDelegate.swift */; };
 		CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */; };
 		CAC5AE871F7F4B3500B50C98 /* MTTButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE861F7F4B3500B50C98 /* MTTButtonExtension.swift */; };
 		CAC5AE891F7F4B9400B50C98 /* MTTTextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */; };
@@ -231,6 +233,8 @@
 		CA6ADD5F1F98AA4D00A25646 /* MTTNotificationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTNotificationHeader.swift; sourceTree = "<group>"; };
 		CA6ADD611F99A2B000A25646 /* MTTNotificationAllData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MTTNotificationAllData.json; sourceTree = "<group>"; };
 		CA6ADD631F99A2EB00A25646 /* MTTNotificationMention.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MTTNotificationMention.json; sourceTree = "<group>"; };
+		CA908CAF1F9DD79300E4AFB9 /* MTTLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLoginViewModel.swift; sourceTree = "<group>"; };
+		CA908CB11F9DDA7700E4AFB9 /* MTTLoginViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLoginViewModelDelegate.swift; sourceTree = "<group>"; };
 		CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSingletonManager.swift; sourceTree = "<group>"; };
 		CAC5AE861F7F4B3500B50C98 /* MTTButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTButtonExtension.swift; sourceTree = "<group>"; };
 		CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTextViewExtension.swift; sourceTree = "<group>"; };
@@ -330,6 +334,7 @@
 			children = (
 				1A304C071F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift */,
 				CA36DE271F73631B0077B44F /* MTTAboutSendErrorDelegate.swift */,
+				CA908CB11F9DDA7700E4AFB9 /* MTTLoginViewModelDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -814,6 +819,7 @@
 				CADECBF51F5F83450027E15F /* MTTRegitserViewModel.swift */,
 				CA36DE291F7367E20077B44F /* MTTAboutViewModel.swift */,
 				CA36DE2D1F736C9F0077B44F /* AboutTwitterData.json */,
+				CA908CAF1F9DD79300E4AFB9 /* MTTLoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1280,6 +1286,7 @@
 				1A304C101F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift in Sources */,
 				1ABFD4BE1F84BE84004DF174 /* MTTPushBottomCell.swift in Sources */,
 				CAE674251F7F848200C1093E /* MTTRollingFileLogger.swift in Sources */,
+				CA908CB21F9DDA7700E4AFB9 /* MTTLoginViewModelDelegate.swift in Sources */,
 				CA36DE321F7391830077B44F /* MTTAboutHeaderView.swift in Sources */,
 				1A234B581F8BB00E00D6C731 /* MTTLocationViewController.swift in Sources */,
 				1A09A5501F9B1669007BC41C /* MTTMessageButtonCell.swift in Sources */,
@@ -1358,6 +1365,7 @@
 				CAF065421F9606E3002F28F8 /* MTTSearchTwitterCell.swift in Sources */,
 				CA3058C91F78D2AA00742237 /* MTTHeaderHelper.swift in Sources */,
 				1A4D8F0D1F963B7600B64D6B /* MTTSearchModel.swift in Sources */,
+				CA908CB01F9DD79300E4AFB9 /* MTTLoginViewModel.swift in Sources */,
 				CA3058E41F7A156900742237 /* MTTLargeImagePreviewManager.swift in Sources */,
 				CAF065561F986F67002F28F8 /* MTTNotificationFollowCell.swift in Sources */,
 				CA66B4F71F90C1BD001CD140 /* MTTSearchHeader.swift in Sources */,

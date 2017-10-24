@@ -9,7 +9,7 @@
 import UIKit
 
 //服务器
-let kServer:String = "http://192.168.8.133:8000/"
+let kServer:String = "http://192.168.199.183:8000/"
 
 
 
@@ -35,6 +35,10 @@ let kLoginAPI:String = "login/"
 
 //获取首页数据列表
 let kGetHomeTwitterList:String = "getHomeTwitterList/"
+
+//发推
+let kPushNewTwitter = "pushNewTwitter/"
+
 
 
 

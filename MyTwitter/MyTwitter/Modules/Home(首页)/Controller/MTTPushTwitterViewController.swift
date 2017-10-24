@@ -11,13 +11,13 @@ import Photos
 
 private let pushLogger = MTTLogger.homeLogger
 
-class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UICollectionViewDelegate,UICollectionViewDataSource , MTTPushImageViewDelegate , CLLocationManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UICollectionViewDelegate,UICollectionViewDataSource , MTTPushImageViewDelegate , CLLocationManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MTTPushNewTwitterDelegate{
 
     var placeHolderLabel:UILabel?
     
     var leftButton:UIButton?
     var rightButton:UIButton?
-    var pushTextView:UITextView?
+    var pushTextView:UITextView = UITextView()
     var pushScrollContainerView:UIScrollView?
     
     var contentView:UIView?
@@ -175,13 +175,14 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         
         //pushTextView
         pushTextView = UITextView()
-        pushTextView?.placeholderText = "有什么新鲜事?"
-        pushTextView?.textColor = kMainGrayColor()
-        pushTextView?.backgroundColor = kMainWhiteColor()
-        pushTextView?.font = UIFont.systemFont(ofSize: 20)
-        pushTextView?.delegate = self
-        pushTextView?.frame = CGRect(x: 20, y: 5, width: kScreenWidth - 40, height: 40)
-        pushScrollContainerView?.addSubview(pushTextView!)
+        pushTextView.placeholderText = "有什么新鲜事?"
+        pushTextView.textColor = kMainGrayColor()
+        pushTextView.text = ""
+        pushTextView.backgroundColor = kMainWhiteColor()
+        pushTextView.font = UIFont.systemFont(ofSize: 20)
+        pushTextView.delegate = self
+        pushTextView.frame = CGRect(x: 20, y: 5, width: kScreenWidth - 40, height: 40)
+        pushScrollContainerView?.addSubview(pushTextView)
         
         //placeHolderLabel
         placeHolderLabel = UILabel()
@@ -190,12 +191,12 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         placeHolderLabel?.textColor = kMainGrayColor()
         placeHolderLabel?.frame = CGRect(x: 3, y: 0, width: kScreenWidth - 5, height: 40)
         placeHolderLabel?.font = UIFont.systemFont(ofSize: 20)
-        pushTextView?.addSubview(placeHolderLabel!)
+        pushTextView.addSubview(placeHolderLabel!)
         
         //locationContainerView
         locationContainerView = UIView()
         locationContainerView?.isHidden = true
-        locationContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
+        locationContainerView?.frame = CGRect(x: 0, y: pushTextView.frame.maxY + 10, width: kScreenWidth, height: 20);
         locationContainerView?.isUserInteractionEnabled = true
         pushScrollContainerView?.addSubview(locationContainerView!)
         
@@ -217,7 +218,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         
         //imageViewContainerView
         imageViewContainerView = UIView()
-        imageViewContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 330)
+        imageViewContainerView?.frame = CGRect(x: 0, y: pushTextView.frame.maxY + 10, width: kScreenWidth, height: 330)
         imageViewContainerView?.isHidden = true
         pushScrollContainerView?.addSubview(imageViewContainerView!)
         
@@ -447,24 +448,24 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             
         }).addDisposableTo(disposeBag)
         
-        pushTextView?.rx.text.map({($0?.characters.count)! > 0})
+        pushTextView.rx.text.map({($0?.characters.count)! > 0})
             .subscribe(onNext:{ isTrue in
                 
                 if isTrue
                 {
                     self.placeHolderLabel?.isHidden = true
-                    self.textCountLabel?.text = String.init(format: "%d", 140 - (self.pushTextView?.text.characters.count)!)
+                    self.textCountLabel?.text = String.init(format: "%d", 140 - self.pushTextView.text.characters.count)
                     
-                    if (self.pushTextView?.text.characters.count)! >= Int(120)
+                    if self.pushTextView.text.characters.count >= Int(120)
                     {
                         self.textCountLabel?.textColor = kMainRedColor()
-                        print("输入框个数:",self.pushTextView?.text.characters.count as Any)
+                        print("输入框个数:",self.pushTextView.text.characters.count as Any)
                     } else
                     {
                         self.textCountLabel?.textColor = kMainGrayColor()
                     }
                     
-                    if (self.pushTextView?.text.characters.count)! <= Int(140)
+                    if self.pushTextView.text.characters.count <= Int(140)
                     {
                         self.pushButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
                         self.pushButton?.isEnabled = true
@@ -504,15 +505,13 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             let accountArray = ["The Guardian‏","Javascript🔥TOP Q&A‏","Brightwater Recruit‏","朝日新聞(asahi shimbun）","TheTimesofLondon‏","ABS-CBNNewsChannel‏"]
             let account = accountArray[self.getRandomNum()]
             
-            
-            
             let parameter = ["retwitterType":retwitterType,
                              "retwitterAccount":retwitterAccount,
                              "avatarImage":avatarImage,
                              "account":account,
                              "nickName":nickName,
                              "time":"20171024 12:20:22",
-                             "content":self.pushTextView?.text as Any,
+                             "content":self.pushTextView.text,
                              "contentImages":"contentImages",
                              "contentVideo":"contentVideo",
                              "commentCount":self.getRandomNum222(),
@@ -520,11 +519,29 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
                              "likeCount":self.getRandomNum222(),
                              "privateMessageCount":self.getRandomNum222()] as [String : Any]
             
+            let pushViewModel = MTTPushTwitterViewModel()
+            pushViewModel.delegate = self
+            pushViewModel.getPushTwitterStatus(parameters: parameter as NSDictionary)
+            
             
         }).addDisposableTo(disposeBag)
         
     }
     
+    // MARK: - 发推状态回调
+    func successCallBack(data: NSDictionary)
+    {
+        self.dismiss(animated: true) {
+            
+        }
+    }
+    
+    func failureCallBack(error: NSError)
+    {
+        
+    }
+    
+    // MARK: - 获取随机数
     func getRandomNum() -> Int
     {
         let num = (arc4random() % 5)
@@ -602,18 +619,18 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         
         if size.height >= maxHeight
         {
-            pushTextView?.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: textView.contentSize.width, height: maxHeight)
+            pushTextView.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: textView.contentSize.width, height: maxHeight)
         } else
         {
-            pushTextView?.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: textView.contentSize.width, height: textView.contentSize.height)
+            pushTextView.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: textView.contentSize.width, height: textView.contentSize.height)
         }
         
         if imageViewContainerView?.isHidden == true
         {
-            locationContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 20)
+            locationContainerView?.frame = CGRect(x: 0, y: pushTextView.frame.maxY + 10, width: kScreenWidth, height: 20)
         } else
         {
-            imageViewContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 330)
+            imageViewContainerView?.frame = CGRect(x: 0, y: pushTextView.frame.maxY + 10, width: kScreenWidth, height: 330)
             
             locationContainerView?.frame = CGRect(x: 0, y: (imageViewContainerView?.frame.maxY)! + 10, width: kScreenWidth, height: 20)
         }
@@ -693,7 +710,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         
         if locationContainerView?.isHidden == false
         {
-            locationContainerView?.frame = CGRect(x: 0, y: (pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 20);
+            locationContainerView?.frame = CGRect(x: 0, y: pushTextView.frame.maxY + 10, width: kScreenWidth, height: 20);
         }
     }
     
@@ -778,7 +795,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
                                 self.locationContainerView?.frame = CGRect(x: 0, y: (self.imageViewContainerView?.frame.maxY)! + 10, width: kScreenWidth, height: 20)
                             } else
                             {
-                                self.locationContainerView?.frame = CGRect(x: 0, y: (self.pushTextView?.frame.maxY)! + 10, width: kScreenWidth, height: 20)
+                                self.locationContainerView?.frame = CGRect(x: 0, y: self.pushTextView.frame.maxY + 10, width: kScreenWidth, height: 20)
                                 
                             }
                             

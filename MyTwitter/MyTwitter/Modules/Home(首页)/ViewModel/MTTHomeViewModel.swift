@@ -99,6 +99,7 @@ class MTTHomeViewModel: NSObject
                             homeModel.nickNameString = subjson["nickName"].stringValue
                             homeModel.timeString = subjson["time"].stringValue
                             homeModel.contentImageCount = self.getRandomNum()
+                            
                             homeModel.contentTextString = subjson["content"].stringValue
                             
                             homeModel.contentHeight = self.calculateTextHeight(text: homeModel.contentTextString!) + 150

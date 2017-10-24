@@ -23,7 +23,13 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     
     var homeDataArray:[MTTHomeModel]?
     
+    var refreshControl:UIRefreshControl?
     
+    override func viewWillAppear(_ animated: Bool) 
+    {
+        super.viewDidAppear(animated)
+        self.loadNewData()
+    }
     
     override func viewDidLoad() 
     {
@@ -85,7 +91,23 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
         homeTableView?.separatorStyle = UITableViewCellSeparatorStyle.none
         self.view.addSubview(homeTableView!)
         
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(loadNewData), for: UIControlEvents.valueChanged)
+        refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新数据")
+        homeTableView?.addSubview(refreshControl!)
         setupNavBar()
+    }
+    
+    @objc func loadNewData() -> Void 
+    {
+        self.loadData()
+        
+        let timeInterval:TimeInterval = 3.0
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval) { 
+            
+            self.refreshControl?.endRefreshing()
+        }
+        
     }
     
     private func layoutSubview() -> Void 
@@ -115,7 +137,7 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     
     func setupEvent() -> Void
     {
-        (rightButton?.rx.tap)?.subscribe(onNext:{
+        rightButton?.rx.tap.subscribe(onNext:{
             print("发推按钮被点击了")
             
             let pushVC = MTTPushTwitterViewController()
@@ -125,6 +147,14 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
                 
             })
             
+            
+        }).addDisposableTo(disposeBag)
+        
+        (leftButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
+            print("发送头像被点击",self)
+            
+            let personalVC = MTTPersonalViewController()
+            self.navigationController?.pushViewController(personalVC, animated: true)
             
         }).addDisposableTo(disposeBag)
     }

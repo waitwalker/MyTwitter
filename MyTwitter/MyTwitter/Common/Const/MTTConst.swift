@@ -9,10 +9,10 @@
 import UIKit
 
 //服务器
-let kServer:String = "http://192.168.199.183:8000/"
+let kServer:String = "http://192.168.8.133:8000/"
 
-
-
+//192.168.8.133
+//192.168.199.183
 
 
 

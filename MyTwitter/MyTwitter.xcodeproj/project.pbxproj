@@ -93,6 +93,7 @@
 		CA6ADD641F99A2EB00A25646 /* MTTNotificationMention.json in Resources */ = {isa = PBXBuildFile; fileRef = CA6ADD631F99A2EB00A25646 /* MTTNotificationMention.json */; };
 		CA908CB01F9DD79300E4AFB9 /* MTTLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA908CAF1F9DD79300E4AFB9 /* MTTLoginViewModel.swift */; };
 		CA908CB21F9DDA7700E4AFB9 /* MTTLoginViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA908CB11F9DDA7700E4AFB9 /* MTTLoginViewModelDelegate.swift */; };
+		CA908CB61F9F05BB00E4AFB9 /* MTTPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA908CB51F9F05BB00E4AFB9 /* MTTPersonalViewController.swift */; };
 		CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */; };
 		CAC5AE871F7F4B3500B50C98 /* MTTButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE861F7F4B3500B50C98 /* MTTButtonExtension.swift */; };
 		CAC5AE891F7F4B9400B50C98 /* MTTTextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */; };
@@ -239,6 +240,7 @@
 		CA6ADD631F99A2EB00A25646 /* MTTNotificationMention.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MTTNotificationMention.json; sourceTree = "<group>"; };
 		CA908CAF1F9DD79300E4AFB9 /* MTTLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLoginViewModel.swift; sourceTree = "<group>"; };
 		CA908CB11F9DDA7700E4AFB9 /* MTTLoginViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLoginViewModelDelegate.swift; sourceTree = "<group>"; };
+		CA908CB51F9F05BB00E4AFB9 /* MTTPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPersonalViewController.swift; sourceTree = "<group>"; };
 		CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSingletonManager.swift; sourceTree = "<group>"; };
 		CAC5AE861F7F4B3500B50C98 /* MTTButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTButtonExtension.swift; sourceTree = "<group>"; };
 		CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTextViewExtension.swift; sourceTree = "<group>"; };
@@ -657,6 +659,22 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		CA908CB31F9F057400E4AFB9 /* Personal(个人中心) */ = {
+			isa = PBXGroup;
+			children = (
+				CA908CB41F9F058C00E4AFB9 /* Controller */,
+			);
+			path = "Personal(个人中心)";
+			sourceTree = "<group>";
+		};
+		CA908CB41F9F058C00E4AFB9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CA908CB51F9F05BB00E4AFB9 /* MTTPersonalViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		CAB5EF0D1F6F6F3B0003049B /* Singleton(单例) */ = {
 			isa = PBXGroup;
 			children = (
@@ -753,6 +771,7 @@
 		CADECBCA1F5E4F270027E15F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				CA908CB31F9F057400E4AFB9 /* Personal(个人中心) */,
 				1A304C3B1F6D6B2400F366B9 /* Home(首页) */,
 				1A304C401F6D6B2400F366B9 /* Notification(通知) */,
 				1A304C451F6D6B2400F366B9 /* PrivateMessage(私信) */,
@@ -1332,6 +1351,7 @@
 				CA6ADD5D1F9895F900A25646 /* MTTNotificationDelegate.swift in Sources */,
 				CADECBE11F5E821B0027E15F /* MTTNetworkManager.swift in Sources */,
 				1A304C121F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift in Sources */,
+				CA908CB61F9F05BB00E4AFB9 /* MTTPersonalViewController.swift in Sources */,
 				CAE674271F7F8F0A00C1093E /* MTTFileManagerExtension.swift in Sources */,
 				CADECBF61F5F83450027E15F /* MTTRegitserViewModel.swift in Sources */,
 				1AA6E4BE1F9B18520025FB7B /* MTTMessageViewModel.swift in Sources */,

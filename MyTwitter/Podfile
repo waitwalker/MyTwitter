@@ -14,6 +14,7 @@ target 'MyTwitter' do
   pod 'IQKeyboardManagerSwift', '~> 4.0.10'
   pod 'SwiftyJSON', '~> 3.1.4'
   pod 'XCGLogger', '~> 5.0.1'
+  pod 'MJRefresh', '~> 3.1.12'
 
 
   target 'MyTwitterTests' do

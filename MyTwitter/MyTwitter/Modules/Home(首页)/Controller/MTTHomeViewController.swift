@@ -8,6 +8,8 @@
 
 import UIKit
 import Photos
+import MJRefresh
+import AudioToolbox
 
 private let homeLogger = MTTLogger.homeLogger
 
@@ -23,7 +25,8 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     
     var homeDataArray:[MTTHomeModel]?
     
-    var refreshControl:UIRefreshControl?
+    var tableViewHeader:MJRefreshNormalHeader?
+    
     
     override func viewWillAppear(_ animated: Bool) 
     {
@@ -64,6 +67,15 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
                 }
             }
         }
+        
+        //暂时添加的调试代码 以后可以去掉
+        MTTHomeViewModel.getHomeData { (dataArray) in
+            if dataArray.count > Int(0)
+            {
+                self.homeDataArray = dataArray
+                self.homeTableView?.reloadData()
+            }
+        }
     }
     
     private func log() -> Void
@@ -90,22 +102,20 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
         homeTableView?.register(MTTHomeCell.self, forCellReuseIdentifier: reusedHomeCellId)
         homeTableView?.separatorStyle = UITableViewCellSeparatorStyle.none
         self.view.addSubview(homeTableView!)
-        
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(loadNewData), for: UIControlEvents.valueChanged)
-        refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新数据")
-        homeTableView?.addSubview(refreshControl!)
         setupNavBar()
+        
+        tableViewHeader = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(loadNewData))
+        homeTableView?.mj_header = tableViewHeader
     }
     
     @objc func loadNewData() -> Void 
     {
         self.loadData()
         
-        let timeInterval:TimeInterval = 3.0
+        let timeInterval:TimeInterval = 2.0
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval) { 
-            
-            self.refreshControl?.endRefreshing()
+            self.homeTableView?.mj_header.endRefreshing()
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         }
         
     }
@@ -115,6 +125,8 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
         homeTableView?.snp.makeConstraints({ (make) in
             make.left.right.top.bottom.equalTo(self.view)
         })
+        
+        
     }
     
     

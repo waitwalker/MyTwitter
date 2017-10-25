@@ -37,10 +37,12 @@ let kLoginAPI:String = "login/"
 let kGetHomeTwitterList:String = "getHomeTwitterList/"
 
 //发推
-let kPushNewTwitter = "pushNewTwitter/"
+let kPushNewTwitter:String = "pushNewTwitter/"
 
 
+//白天通知
+let kDayNotificationString:String = "kDayNotificationString"
 
-
-
+//夜晚通知
+let kNightNotificationString:String = "kNightNotificationString"
 		

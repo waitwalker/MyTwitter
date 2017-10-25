@@ -166,6 +166,7 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
             print("发送头像被点击",self)
             
             let personalVC = MTTPersonalViewController()
+            personalVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(personalVC, animated: true)
             
         }).addDisposableTo(disposeBag)

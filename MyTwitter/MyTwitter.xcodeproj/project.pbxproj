@@ -80,6 +80,9 @@
 		CA572B111F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA572B101F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift */; };
 		CA572B131F8E022300E9D7F6 /* MTTPhotoLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA572B121F8E022300E9D7F6 /* MTTPhotoLibraryViewController.swift */; };
 		CA572B151F8E040400E9D7F6 /* MTTPhotoLibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA572B141F8E040400E9D7F6 /* MTTPhotoLibraryCell.swift */; };
+		CA6147041FA075220005FD29 /* MTTPersonalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6147031FA075220005FD29 /* MTTPersonalCell.swift */; };
+		CA6147071FA077A10005FD29 /* MTTPersonalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6147061FA077A10005FD29 /* MTTPersonalViewModel.swift */; };
+		CA61470A1FA07A2F0005FD29 /* MTTPersonalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6147091FA07A2F0005FD29 /* MTTPersonalModel.swift */; };
 		CA66B4F01F90C0BB001CD140 /* MTTSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66B4EF1F90C0BB001CD140 /* MTTSearchViewModel.swift */; };
 		CA66B4F21F90C118001CD140 /* MTTSearchData.json in Resources */ = {isa = PBXBuildFile; fileRef = CA66B4F11F90C118001CD140 /* MTTSearchData.json */; };
 		CA66B4F71F90C1BD001CD140 /* MTTSearchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66B4F61F90C1BD001CD140 /* MTTSearchHeader.swift */; };
@@ -227,6 +230,9 @@
 		CA572B101F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLocationSearchCell.swift; sourceTree = "<group>"; };
 		CA572B121F8E022300E9D7F6 /* MTTPhotoLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPhotoLibraryViewController.swift; sourceTree = "<group>"; };
 		CA572B141F8E040400E9D7F6 /* MTTPhotoLibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPhotoLibraryCell.swift; sourceTree = "<group>"; };
+		CA6147031FA075220005FD29 /* MTTPersonalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPersonalCell.swift; sourceTree = "<group>"; };
+		CA6147061FA077A10005FD29 /* MTTPersonalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPersonalViewModel.swift; sourceTree = "<group>"; };
+		CA6147091FA07A2F0005FD29 /* MTTPersonalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPersonalModel.swift; sourceTree = "<group>"; };
 		CA66B4EF1F90C0BB001CD140 /* MTTSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchViewModel.swift; sourceTree = "<group>"; };
 		CA66B4F11F90C118001CD140 /* MTTSearchData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MTTSearchData.json; sourceTree = "<group>"; };
 		CA66B4F61F90C1BD001CD140 /* MTTSearchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchHeader.swift; sourceTree = "<group>"; };
@@ -618,6 +624,38 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		CA6147011FA074FD0005FD29 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA6147021FA075010005FD29 /* cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CA6147021FA075010005FD29 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				CA6147031FA075220005FD29 /* MTTPersonalCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		CA6147051FA077840005FD29 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CA6147061FA077A10005FD29 /* MTTPersonalViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CA6147081FA07A210005FD29 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA6147091FA07A2F0005FD29 /* MTTPersonalModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CA66B4ED1F90C08C001CD140 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,6 +700,9 @@
 		CA908CB31F9F057400E4AFB9 /* Personal(个人中心) */ = {
 			isa = PBXGroup;
 			children = (
+				CA6147081FA07A210005FD29 /* Model */,
+				CA6147051FA077840005FD29 /* ViewModel */,
+				CA6147011FA074FD0005FD29 /* View */,
 				CA908CB41F9F058C00E4AFB9 /* Controller */,
 			);
 			path = "Personal(个人中心)";
@@ -1331,6 +1372,7 @@
 				1A011D3D1F9C7D6800485766 /* MTTLanuchAnimation.swift in Sources */,
 				CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */,
 				1A596C671F90F1D200F14123 /* MTTSearchSearchAllViewController.swift in Sources */,
+				CA61470A1FA07A2F0005FD29 /* MTTPersonalModel.swift in Sources */,
 				CAF065521F985628002F28F8 /* MTTNotificationReplyCell.swift in Sources */,
 				1A596C631F90F1A100F14123 /* MTTSearchTwitterViewController.swift in Sources */,
 				1A596C611F90F17800F14123 /* MTTSearchShowMoreViewController.swift in Sources */,
@@ -1349,6 +1391,7 @@
 				CAE6742B1F7F926900C1093E /* MTTArrayExtension.swift in Sources */,
 				1A8B5D8C1F981BB200A6D6D0 /* MTTNotificationModel.swift in Sources */,
 				CA6ADD5D1F9895F900A25646 /* MTTNotificationDelegate.swift in Sources */,
+				CA6147041FA075220005FD29 /* MTTPersonalCell.swift in Sources */,
 				CADECBE11F5E821B0027E15F /* MTTNetworkManager.swift in Sources */,
 				1A304C121F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift in Sources */,
 				CA908CB61F9F05BB00E4AFB9 /* MTTPersonalViewController.swift in Sources */,
@@ -1382,6 +1425,7 @@
 				CAE6742F1F7F98D100C1093E /* MTTLogger.swift in Sources */,
 				1ADE78241F8505C4009D8CB9 /* MTTPushImageViewDelegate.swift in Sources */,
 				CADECBFC1F5FC9280027E15F /* MTTRegisterNameViewController.swift in Sources */,
+				CA6147071FA077A10005FD29 /* MTTPersonalViewModel.swift in Sources */,
 				CAE674291F7F904400C1093E /* MTTURLExtension.swift in Sources */,
 				1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */,
 				1A8F5BD21F729EB1006D6CA0 /* MTTAboutTwitterViewController.swift in Sources */,

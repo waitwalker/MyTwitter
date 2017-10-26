@@ -41,6 +41,9 @@ class MTTHomeCell: MTTTableViewCell {
     var likeButton:UIButton?  //喜欢按钮
     var privateMessageButton:UIButton?  //私信按钮
     
+    var delegate:MTTHomeCellButtonDelegate?
+    
+    
     var homeModel:MTTHomeModel?
     {
         didSet
@@ -90,6 +93,7 @@ class MTTHomeCell: MTTTableViewCell {
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupSubview()
+        self.setupEvent()
     }
     
     
@@ -357,6 +361,17 @@ class MTTHomeCell: MTTTableViewCell {
             make.top.equalTo(self.toolBarContainerView!)
         })
         
+    }
+    
+    private func setupEvent() -> Void
+    {
+        commentButton?.rx.tap.subscribe(onNext:{ [unowned self] in
+            self.delegate?.tappedCommentButton(comment: self.commentButton!, homeCell: self)
+        }).addDisposableTo(disposeBag)
+        
+        (retwitterButton?.rx.tap)?.subscribe(onNext: { [unowned self] in
+            self.delegate?.tappedRetwitterButton(comment: self.retwitterButton!, homeCell: self)
+        }).addDisposableTo(disposeBag)
     }
     
     

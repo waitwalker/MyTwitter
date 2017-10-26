@@ -36,8 +36,10 @@ class MTTHomeModel: NSObject
     var privateMessageCount:Int?
     
     var cellHeight:CGFloat?
-    
     var contentHeight:CGFloat?
+    
+    var isLike:Bool?
+    var isRetwitter:Bool?
     
     
     

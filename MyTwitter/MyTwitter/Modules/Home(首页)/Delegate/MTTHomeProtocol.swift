@@ -15,3 +15,12 @@ protocol MTTHomeImageCellImageViewDelegate
     func tappedImageView() -> Void
 }
 
+// MARK: - cell上按钮的代理方法
+protocol MTTHomeCellButtonDelegate
+{
+    func tappedCommentButton(comment:UIButton, homeCell:MTTHomeCell) -> Void
+    func tappedRetwitterButton(comment:UIButton, homeCell:MTTHomeCell) -> Void
+    func tappedlikeButton(comment:UIButton, homeCell:MTTHomeCell) -> Void
+    func tappedMessageButton(comment:UIButton, homeCell:MTTHomeCell) -> Void
+}
+

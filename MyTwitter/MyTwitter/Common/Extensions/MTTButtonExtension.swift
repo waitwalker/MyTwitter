@@ -10,6 +10,26 @@ import UIKit
 
 extension UIButton
 {
+    //关联对象  给按钮增加一个属性
+    private struct AssociatedKeys
+    {
+        static var indexPathKey = "indexPathKey"
+    }
+    
+    var indexPath:IndexPath
+    {
+        get
+        {
+          return objc_getAssociatedObject(self, &AssociatedKeys.indexPathKey) as! IndexPath
+        }
+        
+        set
+        {
+            objc_setAssociatedObject(self, &AssociatedKeys.indexPathKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    
     func setImageWithPosition(postion:MTTButtonImagePostion,spacing:CGFloat) -> Void 
     {
         self.setTitle(self.currentTitle, for: UIControlState.normal)

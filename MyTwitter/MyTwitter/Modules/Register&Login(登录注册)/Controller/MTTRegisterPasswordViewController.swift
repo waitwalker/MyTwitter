@@ -239,7 +239,7 @@ class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModel
                     self.nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
                 }
                 
-        }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         showPasswordButton?.rx.tap.subscribe(onNext:{[unowned self] in
             
@@ -281,7 +281,7 @@ class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModel
             
             viewModel.requestRegister(parameters: para as NSDictionary)
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

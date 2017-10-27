@@ -160,7 +160,7 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
             })
             
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         (leftButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
             print("发送头像被点击",self)
@@ -169,7 +169,7 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
             personalVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(personalVC, animated: true)
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     // MARK: - tableView dataSource 数据源回调

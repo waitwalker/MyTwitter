@@ -94,7 +94,7 @@ class MTTAboutTwitterViewController: MTTViewController,UITableViewDelegate,UITab
             self.dismiss(animated: true) {
                 
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     // MARK: - tableView DataSource

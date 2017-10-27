@@ -144,6 +144,6 @@ class MTTRegisterStartViewController: MTTViewController {
                 
             })
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     } 
 }

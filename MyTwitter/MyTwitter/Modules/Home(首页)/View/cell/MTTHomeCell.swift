@@ -367,19 +367,19 @@ class MTTHomeCell: MTTTableViewCell {
     {
         commentButton?.rx.tap.subscribe(onNext:{ [unowned self] in
             self.delegate?.tappedCommentButton(commentButton: self.commentButton!, homeCell: self)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         (retwitterButton?.rx.tap)?.subscribe(onNext: { [unowned self] in
             self.delegate?.tappedRetwitterButton(retwitterButton: self.retwitterButton!, homeCell: self)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         (likeButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
             self.delegate?.tappedlikeButton(likeButton: self.likeButton!, homeCell: self)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         (privateMessageButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
             self.delegate?.tappedMessageButton(messageButton: self.privateMessageButton!, homeCell: self)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     

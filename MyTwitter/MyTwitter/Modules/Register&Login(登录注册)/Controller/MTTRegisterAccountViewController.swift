@@ -427,7 +427,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
             
             let _ = self.navigationController?.popViewController(animated: true)
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         //phoneAreaCodeButton
         phoneAreaCodeButton?.rx.tap.subscribe(onNext:{[unowned self] in
@@ -442,7 +442,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
                 
             })
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         //phoneTextField
         phoneTextField?.rx.text
@@ -480,7 +480,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
                         }
                     } 
                 })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         //emailTextField            
         emailTextField?.rx.text.map{_ in (
@@ -514,7 +514,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
                     }
                 } 
                 
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
             
         //changeButton
         changeButton?.rx.tap.subscribe(onNext:{ [unowned self] in
@@ -545,7 +545,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
                 self.serviceContentView?.frame = CGRect(x: 0, y: 226, width: kScreenWidth, height: 100)
             }
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         //nextButton
         (nextButton?.rx.tap)?.subscribe(onNext:({[unowned self] in
@@ -564,7 +564,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
             let registerPasswordVC = MTTRegisterPasswordViewController()
             self.navigationController?.pushViewController(registerPasswordVC, animated: true)
             
-        })).addDisposableTo(disposeBag)
+        })).disposed(by: disposeBag)
             
     }
     

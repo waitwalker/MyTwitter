@@ -263,13 +263,13 @@ class MTTLoginViewController: MTTViewController,MTTLoginViewModelDelegate {
             
             self.clearAllButton?.isHidden = valid ? false : true
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         //passwordTextField
         let passwordTextFieldObserable = passwordTextField?.rx.text.map({($0?.characters.count)! > 0})
         passwordTextFieldObserable?.subscribe(onNext:{valid in
             self.showOrHiddenButton?.isHidden = valid ? false : true
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         //showOrHiddenButton
         showOrHiddenButton?.rx.tap.subscribe(onNext:{ 
@@ -285,7 +285,7 @@ class MTTLoginViewController: MTTViewController,MTTLoginViewModelDelegate {
                 self.passwordTextField?.isSecureTextEntry = false
             }
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         //rightButton
         rightButton?.rx.tap.subscribe(onNext:{
@@ -296,20 +296,20 @@ class MTTLoginViewController: MTTViewController,MTTLoginViewModelDelegate {
                 
             })
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         
         //clearAllButton
         clearAllButton?.rx.tap.subscribe(onNext:{
             self.accountTextField?.text = ""
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         //cancelButton
         (cancelButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
             self.dismiss(animated: true, completion: {
                 
             })
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         //loginButton
 //        Observable.combineLatest(accountTextFieldObserable, passwordTextFieldObserable) { $0 && $1 }
@@ -327,7 +327,7 @@ class MTTLoginViewController: MTTViewController,MTTLoginViewModelDelegate {
                 
             }
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
 
     // MARK: - loginViewModelDelegate

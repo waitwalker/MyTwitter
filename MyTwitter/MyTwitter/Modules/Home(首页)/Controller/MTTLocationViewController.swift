@@ -150,7 +150,7 @@ class MTTLocationViewController: MTTViewController,UITableViewDelegate,UITableVi
                 self.removeCallBack!(true)
             })
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         (rightButton?.rx.tap)?.subscribe(onNext:{[unowned self] in
             
@@ -166,7 +166,7 @@ class MTTLocationViewController: MTTViewController,UITableViewDelegate,UITableVi
                 
                 self.finishCallBack!(self.placeString!)
             })
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     private func setupNavigationBar() -> Void 

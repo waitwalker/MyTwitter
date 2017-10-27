@@ -196,7 +196,7 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
             appDelegate.window??.rootViewController = loginVC
             appDelegate.window??.makeKeyAndVisible()
             print(self)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         dayNightButton?.rx.tap.subscribe(onNext:{ [unowned self] in
             print(self)
@@ -209,7 +209,7 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNightNotificationString), object: nil)
             }
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
 
     func numberOfSections(in tableView: UITableView) -> Int 

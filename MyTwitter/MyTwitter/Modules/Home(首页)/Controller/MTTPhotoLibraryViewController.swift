@@ -139,14 +139,14 @@ class MTTPhotoLibraryViewController: MTTViewController ,UICollectionViewDelegate
             self.dismiss(animated: true, completion: { 
                 
             })
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         rightButton?.rx.tap.subscribe(onNext:{ [unowned self] in
             self.addCallBack!(self.addedImage!)
             self.dismiss(animated: true, completion: { 
                 
             })
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     // MARK: - collectionView DataSource

@@ -411,7 +411,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         //leftButton
         leftButton?.rx.tap.subscribe(onNext:{ [unowned self] in
             print("发送头像被点击",self)
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         //close rightButton
         (rightButton?.rx.tap)?.subscribe(onNext:{
@@ -419,13 +419,13 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             self.navigationController?.dismiss(animated: true, completion: {
                 
             })
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         //location
         (locationButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
             
             self.setupLoactionManager()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         //pictureButton
         (pictureButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in

@@ -227,7 +227,7 @@ class MTTRegisterNameViewController: MTTViewController {
             .disposed(by: disposeBag)
         
         //name 返回的是bool
-        let nameObservable = nameTextField?.rx.text.shareReplay(1).map({($0?.characters.count)! < 20})
+        let nameObservable = nameTextField?.rx.text.share(replay: 1).map({($0?.characters.count)! < 20})
         nameObservable?.subscribe(onNext:({valid in 
             if valid 
             {
@@ -258,7 +258,7 @@ class MTTRegisterNameViewController: MTTViewController {
                 self.nextButton?.isEnabled = false
             }
             
-        })).addDisposableTo(disposeBag)
+        })).disposed(by: disposeBag)
         
         //nextButton
         nextButton?.rx.tap.subscribe(onNext:({[unowned self] in 
@@ -268,7 +268,7 @@ class MTTRegisterNameViewController: MTTViewController {
             let registerAccountVC = MTTRegisterAccountViewController()
             self.navigationController?.pushViewController(registerAccountVC, animated: true)
             
-        })).addDisposableTo(disposeBag)
+        })).disposed(by: disposeBag)
         
         //leftButton
         leftButton?.rx.tap.subscribe(onNext:({[unowned self] in 
@@ -279,7 +279,7 @@ class MTTRegisterNameViewController: MTTViewController {
                 
             })
             
-        })).addDisposableTo(disposeBag)
+        })).disposed(by: disposeBag)
     }
     
     func addNotificationObserver() -> Void

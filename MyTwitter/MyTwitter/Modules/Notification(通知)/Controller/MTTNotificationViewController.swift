@@ -298,6 +298,21 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
+    {
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "删除") { (rowAction, indexPath) in
+            if self.dataSourceType == MTTNotificationDataSourceType.all
+            {
+                self.allDataArray .remove(at: indexPath.item)
+            } else if self.dataSourceType == MTTNotificationDataSourceType.mention
+            {
+                self.mentionDataArray.remove(at: indexPath.item)
+            }
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.bottom)
+        }
+        return [deleteAction]
+    }
+    
     override func didReceiveMemoryWarning() 
     {
         super.didReceiveMemoryWarning()

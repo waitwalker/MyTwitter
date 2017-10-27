@@ -232,6 +232,22 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
         
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
+    {
+        let followAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "关注") { (rowAction, indexPath) in
+            
+            print("点击关注了")
+            tableView.isEditing = false
+        }
+        
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "删除") { (rowAction, indexPath) in
+            self.homeDataArray?.remove(at: indexPath.item)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.bottom)
+        }
+        
+        return [followAction,deleteAction]
+    }
+    
     // MARK: - homeCell四个按钮代理回调
     func tappedCommentButton(commentButton: UIButton, homeCell: MTTHomeCell)
     {

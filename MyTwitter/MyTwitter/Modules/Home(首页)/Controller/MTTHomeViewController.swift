@@ -13,7 +13,7 @@ import AudioToolbox
 
 private let homeLogger = MTTLogger.homeLogger
 
-class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableViewDelegate
+class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableViewDelegate,MTTHomeCellButtonDelegate
 {
     let reusedHomeCellId = "reusedHomeCellId"
     
@@ -202,6 +202,11 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
             {
                 homeCell = MTTHomeCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedHomeCellId)
             }
+            homeCell?.delegate = self
+            homeCell?.commentButton?.indexPath = indexPath
+            homeCell?.retwitterButton?.indexPath = indexPath
+            homeCell?.likeButton?.indexPath = indexPath
+            homeCell?.privateMessageButton?.indexPath = indexPath
             homeCell?.homeModel = homeDataArray?[indexPath.item]
             return homeCell!  
         }
@@ -227,8 +232,29 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
         
     }
     
+    // MARK: - homeCell四个按钮代理回调
+    func tappedCommentButton(commentButton: UIButton, homeCell: MTTHomeCell)
+    {
+        homeTableView?.reloadRows(at: [commentButton.indexPath], with: UITableViewRowAnimation.fade)
+    }
     
+    func tappedRetwitterButton(retwitterButton: UIButton, homeCell: MTTHomeCell)
+    {
+        homeTableView?.reloadRows(at: [retwitterButton.indexPath], with: UITableViewRowAnimation.bottom)
+    }
     
+    func tappedlikeButton(likeButton: UIButton, homeCell: MTTHomeCell)
+    {
+        //根据模型中这个indexPath的喜欢状态 修改对应模型状态
+        
+        //刷新当前行
+        homeTableView?.reloadRows(at: [likeButton.indexPath], with: UITableViewRowAnimation.automatic)
+    }
+    
+    func tappedMessageButton(messageButton: UIButton, homeCell: MTTHomeCell)
+    {
+        homeTableView?.reloadRows(at: [messageButton.indexPath], with: UITableViewRowAnimation.right)
+    }
 
     override func didReceiveMemoryWarning() 
     {

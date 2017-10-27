@@ -366,11 +366,19 @@ class MTTHomeCell: MTTTableViewCell {
     private func setupEvent() -> Void
     {
         commentButton?.rx.tap.subscribe(onNext:{ [unowned self] in
-            self.delegate?.tappedCommentButton(comment: self.commentButton!, homeCell: self)
+            self.delegate?.tappedCommentButton(commentButton: self.commentButton!, homeCell: self)
         }).addDisposableTo(disposeBag)
         
         (retwitterButton?.rx.tap)?.subscribe(onNext: { [unowned self] in
-            self.delegate?.tappedRetwitterButton(comment: self.retwitterButton!, homeCell: self)
+            self.delegate?.tappedRetwitterButton(retwitterButton: self.retwitterButton!, homeCell: self)
+        }).addDisposableTo(disposeBag)
+        
+        (likeButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
+            self.delegate?.tappedlikeButton(likeButton: self.likeButton!, homeCell: self)
+        }).addDisposableTo(disposeBag)
+        
+        (privateMessageButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
+            self.delegate?.tappedMessageButton(messageButton: self.privateMessageButton!, homeCell: self)
         }).addDisposableTo(disposeBag)
     }
     

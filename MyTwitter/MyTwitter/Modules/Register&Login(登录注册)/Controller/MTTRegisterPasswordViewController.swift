@@ -255,7 +255,7 @@ class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModel
                 self.showPasswordButton?.setTitle("显示密码", for: UIControlState.normal)
             }
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         nextButton?.rx.tap.subscribe(onNext:{[unowned self] in
             

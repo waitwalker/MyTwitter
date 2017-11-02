@@ -446,7 +446,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
                 
             })
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         pushTextView.rx.text.map({($0?.characters.count)! > 0})
             .subscribe(onNext:{ isTrue in

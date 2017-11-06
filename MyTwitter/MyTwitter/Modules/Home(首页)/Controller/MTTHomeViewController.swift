@@ -114,6 +114,7 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
         
         alertView = MTTAlertView()
         alertView.isHidden = true
+        alertView.delegate = self
         alertView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
         appDelegate?.window??.addSubview(alertView)
     }
@@ -287,8 +288,23 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     {
         super.didReceiveMemoryWarning()
     }
-    
+}
 
+extension MTTHomeViewController:MTTAlertViewDelegate
+{
     
-
+    func tappedCancel(alertView: MTTAlertView, cancelButton: UIButton)
+    {
+        alertView.isHidden = true
+    }
+    
+    func tappedRetwitter(alertView: MTTAlertView, retwitterButton: UIButton)
+    {
+        alertView.isHidden = true
+    }
+    
+    func tappedQuoteTwitter(alertView: MTTAlertView, quoteTwitterButton: UIButton)
+    {
+        alertView.isHidden = true
+    }
 }

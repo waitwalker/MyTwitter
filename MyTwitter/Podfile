@@ -15,6 +15,7 @@ target 'MyTwitter' do
   pod 'SwiftyJSON', '~> 3.1.4'
   pod 'XCGLogger', '~> 5.0.1'
   pod 'MJRefresh', '~> 3.1.12'
+  pod 'RxGesture', '~> 1.2.1'
 
 
   target 'MyTwitterTests' do

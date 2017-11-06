@@ -24,6 +24,8 @@
 		1A304C541F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C531F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift */; };
 		1A304C561F6D6B7400F366B9 /* MTTSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C551F6D6B7400F366B9 /* MTTSearchViewController.swift */; };
 		1A3ED5911F9B3F80000BE10F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A3ED5901F9B3F80000BE10F /* Images.xcassets */; };
+		1A4B71DB1FB08C1500AAED83 /* MTTAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B71DA1FB08C1500AAED83 /* MTTAlertController.swift */; };
+		1A4B71DD1FB09D5600AAED83 /* MTTAlertViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B71DC1FB09D5600AAED83 /* MTTAlertViewDelegate.swift */; };
 		1A4D8F0B1F9635F000B64D6B /* MTTSearchPopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D8F0A1F9635F000B64D6B /* MTTSearchPopularCell.swift */; };
 		1A4D8F0D1F963B7600B64D6B /* MTTSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D8F0C1F963B7600B64D6B /* MTTSearchModel.swift */; };
 		1A561D7A1F6FF58F001C82FA /* MTTLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A561D791F6FF58F001C82FA /* MTTLoginViewController.swift */; };
@@ -168,6 +170,8 @@
 		1A304C531F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTPrivateMessageViewController.swift; sourceTree = "<group>"; };
 		1A304C551F6D6B7400F366B9 /* MTTSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTSearchViewController.swift; sourceTree = "<group>"; };
 		1A3ED5901F9B3F80000BE10F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		1A4B71DA1FB08C1500AAED83 /* MTTAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAlertController.swift; sourceTree = "<group>"; };
+		1A4B71DC1FB09D5600AAED83 /* MTTAlertViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAlertViewDelegate.swift; sourceTree = "<group>"; };
 		1A4D8F0A1F9635F000B64D6B /* MTTSearchPopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchPopularCell.swift; sourceTree = "<group>"; };
 		1A4D8F0C1F963B7600B64D6B /* MTTSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchModel.swift; sourceTree = "<group>"; };
 		1A561D791F6FF58F001C82FA /* MTTLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTLoginViewController.swift; sourceTree = "<group>"; };
@@ -562,6 +566,7 @@
 				CA3058E31F7A156900742237 /* MTTLargeImagePreviewManager.swift */,
 				CAE6742C1F7F932000C1093E /* MTTFountions.swift */,
 				1A011D3C1F9C7D6800485766 /* MTTLanuchAnimation.swift */,
+				1A4B71DA1FB08C1500AAED83 /* MTTAlertController.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -611,6 +616,7 @@
 				CA3058CF1F79FCED00742237 /* MTTHomeProtocol.swift */,
 				1ADE78231F8505C4009D8CB9 /* MTTPushImageViewDelegate.swift */,
 				1A7A0A421F9EB0B4002F8C9A /* MTTPushTwitterDelegate.swift */,
+				1A4B71DC1FB09D5600AAED83 /* MTTAlertViewDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -1293,6 +1299,7 @@
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -1305,6 +1312,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -1377,6 +1385,7 @@
 				CA66B4F01F90C0BB001CD140 /* MTTSearchViewModel.swift in Sources */,
 				1A0C10F41F66C44C00B6AD18 /* MTTRegularMatchManager.swift in Sources */,
 				CADECBCD1F5E4FE30027E15F /* MTTNavigationController.swift in Sources */,
+				1A4B71DD1FB09D5600AAED83 /* MTTAlertViewDelegate.swift in Sources */,
 				1A304C101F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift in Sources */,
 				1ABFD4BE1F84BE84004DF174 /* MTTPushBottomCell.swift in Sources */,
 				CAE674251F7F848200C1093E /* MTTRollingFileLogger.swift in Sources */,
@@ -1406,6 +1415,7 @@
 				1A596C611F90F17800F14123 /* MTTSearchShowMoreViewController.swift in Sources */,
 				CADECBCF1F5E4FFD0027E15F /* MTTTabBarController.swift in Sources */,
 				CAC5AE8D1F7F4BE500B50C98 /* MTTViewExtension.swift in Sources */,
+				1A4B71DB1FB08C1500AAED83 /* MTTAlertController.swift in Sources */,
 				1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */,
 				CA6ADD591F98903200A25646 /* MTTAvatarImagesView.swift in Sources */,
 				1A09A5531F9B16B4007BC41C /* MTTMessageDelegate.swift in Sources */,

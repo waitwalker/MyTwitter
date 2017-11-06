@@ -15,6 +15,9 @@ private let homeLogger = MTTLogger.homeLogger
 
 class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableViewDelegate,MTTHomeCellButtonDelegate
 {
+    var alertView:MTTAlertView!
+    
+    
     let reusedHomeCellId = "reusedHomeCellId"
     
     var homeTableView:UITableView?
@@ -106,6 +109,13 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
         
         tableViewHeader = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(loadNewData))
         homeTableView?.mj_header = tableViewHeader
+        
+        let appDelegate = UIApplication.shared.delegate
+        
+        alertView = MTTAlertView()
+        alertView.isHidden = true
+        alertView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
+        appDelegate?.window??.addSubview(alertView)
     }
     
     @objc func loadNewData() -> Void 
@@ -125,7 +135,6 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
         homeTableView?.snp.makeConstraints({ (make) in
             make.left.right.top.bottom.equalTo(self.view)
         })
-        
         
     }
     
@@ -257,6 +266,8 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     func tappedRetwitterButton(retwitterButton: UIButton, homeCell: MTTHomeCell)
     {
         homeTableView?.reloadRows(at: [retwitterButton.indexPath], with: UITableViewRowAnimation.bottom)
+        
+        alertView.isHidden = false
     }
     
     func tappedlikeButton(likeButton: UIButton, homeCell: MTTHomeCell)

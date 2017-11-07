@@ -28,6 +28,7 @@
 		1A4B71DD1FB09D5600AAED83 /* MTTAlertViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B71DC1FB09D5600AAED83 /* MTTAlertViewDelegate.swift */; };
 		1A4D8F0B1F9635F000B64D6B /* MTTSearchPopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D8F0A1F9635F000B64D6B /* MTTSearchPopularCell.swift */; };
 		1A4D8F0D1F963B7600B64D6B /* MTTSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D8F0C1F963B7600B64D6B /* MTTSearchModel.swift */; };
+		1A50B2C61FB1ECB000F3F1CF /* MTTUserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50B2C51FB1ECB000F3F1CF /* MTTUserDetailViewController.swift */; };
 		1A561D7A1F6FF58F001C82FA /* MTTLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A561D791F6FF58F001C82FA /* MTTLoginViewController.swift */; };
 		1A596C5F1F90EE3900F14123 /* MTTSearchLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A596C5E1F90EE3900F14123 /* MTTSearchLabelViewController.swift */; };
 		1A596C611F90F17800F14123 /* MTTSearchShowMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A596C601F90F17800F14123 /* MTTSearchShowMoreViewController.swift */; };
@@ -174,6 +175,7 @@
 		1A4B71DC1FB09D5600AAED83 /* MTTAlertViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAlertViewDelegate.swift; sourceTree = "<group>"; };
 		1A4D8F0A1F9635F000B64D6B /* MTTSearchPopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchPopularCell.swift; sourceTree = "<group>"; };
 		1A4D8F0C1F963B7600B64D6B /* MTTSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchModel.swift; sourceTree = "<group>"; };
+		1A50B2C51FB1ECB000F3F1CF /* MTTUserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTUserDetailViewController.swift; sourceTree = "<group>"; };
 		1A561D791F6FF58F001C82FA /* MTTLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTLoginViewController.swift; sourceTree = "<group>"; };
 		1A596C5E1F90EE3900F14123 /* MTTSearchLabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchLabelViewController.swift; sourceTree = "<group>"; };
 		1A596C601F90F17800F14123 /* MTTSearchShowMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchShowMoreViewController.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 		1A304C3B1F6D6B2400F366B9 /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				1A50B2C31FB1EC6500F3F1CF /* UserDetail */,
 				CA3058CE1F79FCC400742237 /* Delegate */,
 				CA3058C71F78D29300742237 /* HeaderHelper */,
 				CAE3F0DF1F7494CA00788455 /* ViewModel */,
@@ -499,6 +502,22 @@
 				1A82AEA71F8FA4970015EAC4 /* cell */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1A50B2C31FB1EC6500F3F1CF /* UserDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1A50B2C41FB1EC8F00F3F1CF /* Controller */,
+			);
+			path = UserDetail;
+			sourceTree = "<group>";
+		};
+		1A50B2C41FB1EC8F00F3F1CF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1A50B2C51FB1ECB000F3F1CF /* MTTUserDetailViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		1A82AEA71F8FA4970015EAC4 /* cell */ = {
@@ -1420,6 +1439,7 @@
 				CA6ADD591F98903200A25646 /* MTTAvatarImagesView.swift in Sources */,
 				1A09A5531F9B16B4007BC41C /* MTTMessageDelegate.swift in Sources */,
 				1A16F59E1F792F1000E09ECB /* MTTHomeImageContainerView.swift in Sources */,
+				1A50B2C61FB1ECB000F3F1CF /* MTTUserDetailViewController.swift in Sources */,
 				CA0994BB1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift in Sources */,
 				1A7A0A411F9EADAF002F8C9A /* MTTPushTwitterViewModel.swift in Sources */,
 				CA3058C61F78CAF100742237 /* MTTHomeModel.swift in Sources */,

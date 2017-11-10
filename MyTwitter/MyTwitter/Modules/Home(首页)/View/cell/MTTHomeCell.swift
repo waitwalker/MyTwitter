@@ -44,6 +44,7 @@ class MTTHomeCell: MTTTableViewCell {
     var delegate:MTTHomeCellButtonDelegate?
     
     
+    
     var homeModel:MTTHomeModel?
     {
         didSet
@@ -380,6 +381,13 @@ class MTTHomeCell: MTTTableViewCell {
         (privateMessageButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
             self.delegate?.tappedMessageButton(messageButton: self.privateMessageButton!, homeCell: self)
         }).disposed(by: disposeBag)
+        
+        avatarImageView?.rx
+            .tapGesture()
+            .when(UIGestureRecognizerState.recognized)
+            .subscribe(onNext:{ _ in
+                self.delegate?.tappedHomeHeaderImageView(homeCell: self)
+            }).disposed(by: disposeBag)
     }
     
     

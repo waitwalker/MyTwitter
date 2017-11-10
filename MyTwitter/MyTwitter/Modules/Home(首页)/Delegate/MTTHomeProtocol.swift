@@ -22,5 +22,13 @@ protocol MTTHomeCellButtonDelegate
     func tappedRetwitterButton(retwitterButton:UIButton, homeCell:MTTHomeCell) -> Void
     func tappedlikeButton(likeButton:UIButton, homeCell:MTTHomeCell) -> Void
     func tappedMessageButton(messageButton:UIButton, homeCell:MTTHomeCell) -> Void
+    func tappedHomeHeaderImageView(homeCell:MTTHomeCell) -> Void
+}
+
+// MARK: - 头像的点击代理 
+protocol MTTHomeHeaderImageViewDelegate:NSObjectProtocol
+{
+    func tappedHomeHeaderImageView() -> Void
+    
 }
 

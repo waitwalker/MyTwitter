@@ -13,8 +13,9 @@ import AudioToolbox
 
 private let homeLogger = MTTLogger.homeLogger
 
-class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableViewDelegate,MTTHomeCellButtonDelegate
+class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableViewDelegate
 {
+    
     var alertView:MTTAlertView!
     
     
@@ -290,7 +291,7 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     }
 }
 
-extension MTTHomeViewController:MTTAlertViewDelegate
+extension MTTHomeViewController:MTTAlertViewDelegate, MTTHomeCellButtonDelegate
 {
     
     func tappedCancel(alertView: MTTAlertView, cancelButton: UIButton)
@@ -306,5 +307,13 @@ extension MTTHomeViewController:MTTAlertViewDelegate
     func tappedQuoteTwitter(alertView: MTTAlertView, quoteTwitterButton: UIButton)
     {
         alertView.isHidden = true
+    }
+    
+    // MARK: - 头像按钮的点击
+    func tappedHomeHeaderImageView(homeCell: MTTHomeCell)
+    {
+        let userDetailViewController = MTTUserDetailViewController()
+        self.navigationController?.pushViewController(userDetailViewController, animated: true)
+        
     }
 }

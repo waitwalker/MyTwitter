@@ -17,17 +17,22 @@ class MTTUserDetailViewController: MTTViewController
     
     let kHeaderBackgroundImageViewHeight:CGFloat = 150
     
-    
-    
-    
     var headerBackgroundImageView:UIImageView!
     
     var userDetailTableView:UITableView!
     
-    var backButton:UIButton!
+    var isFirstTime:Bool!
+    
     
     
     let reusedUserDetailId:String = "reusedUserDetailId"
+    
+    
+    override func viewWillAppear(_ animated: Bool) 
+    {
+        super.viewWillAppear(animated)
+        
+    }
     
     
     override func viewDidLoad()
@@ -42,72 +47,37 @@ class MTTUserDetailViewController: MTTViewController
 
     }
     
-//    override func viewWillAppear(_ animated: Bool)
-//    {
-//        super.viewWillAppear(animated)
-//        self.navigationController?.navigationBar.isHidden = true
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool)
-//    {
-//        super.viewWillDisappear(animated)
-//        self.navigationController?.navigationBar.isHidden = false
-//    }
-//
     func setupSubview() -> Void
     {
+        isFirstTime = true
         
         userDetailTableView = UITableView()
         userDetailTableView.delegate = self
         userDetailTableView.dataSource = self
-        userDetailTableView.contentInset = UIEdgeInsetsMake(150 + 64, 0, 0, 0)
+        userDetailTableView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
         userDetailTableView.register(UITableViewCell.self, forCellReuseIdentifier: reusedUserDetailId)
         userDetailTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         userDetailTableView.backgroundColor = UIColor.orange
+        userDetailTableView.contentInset = UIEdgeInsetsMake(150, 0, 0, 0)
         self.automaticallyAdjustsScrollViewInsets = false
         self.view.addSubview(userDetailTableView)
         
-        
         headerBackgroundImageView = UIImageView()
+        headerBackgroundImageView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 150)
         headerBackgroundImageView.backgroundColor = kMainBlueColor()
         headerBackgroundImageView.isUserInteractionEnabled = true
         self.view.addSubview(headerBackgroundImageView)
-        
-        backButton = UIButton()
-        backButton.setTitle("返回", for: UIControlState.normal)
-        backButton.backgroundColor = UIColor.white
-        backButton.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
-        headerBackgroundImageView.addSubview(backButton)
         
     }
     
     func layoutSubview() -> Void
     {
         
-        userDetailTableView.snp.makeConstraints { (make) in
-            make.left.bottom.width.top.equalTo(self.view).offset(0)
-        }
-        
-        
-        headerBackgroundImageView.snp.makeConstraints { (make) in
-            make.top.left.width.equalTo(self.view)
-            make.height.equalTo(150)
-        }
-
-        backButton.snp.makeConstraints { (make) in
-            make.left.equalTo(20)
-            make.top.equalTo(50)
-            make.height.width.equalTo(60)
-
-        }
     }
     
     func setupEvent() -> Void
     {
-        backButton.rx.tap
-            .subscribe(onNext:{[unowned self] in
-                self.navigationController?.popViewController(animated: true)
-            }).disposed(by: disposeBag)
+        
     }
     
     
@@ -140,14 +110,18 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
     }
     
     // MARK: - scrollViewDelegate
-//    func scrollViewDidScroll(_ scrollView: UIScrollView)
-//    {
-//        let offSetY = scrollView.contentOffset.y
-//
-//        print("偏移量:\(offSetY)")
-//
-//
-//        self.headerBackgroundImageView.height = 150 - offSetY
-//    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    {
+        
+        if isFirstTime 
+        {
+            isFirstTime = false
+        } else
+        {
+            let offSetY = scrollView.contentOffset.y
+            self.headerBackgroundImageView.height = abs(offSetY)
+        }
+        
+    }
     
 }

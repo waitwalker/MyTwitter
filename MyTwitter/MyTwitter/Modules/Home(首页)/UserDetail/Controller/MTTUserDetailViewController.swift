@@ -27,8 +27,11 @@ class MTTUserDetailViewController: MTTViewController
     
     var rightButton:UIButton!
     
+    var headerContainerView:UIView!
     
     
+    
+    let reusedUserHeaderId:String = "reusedUserHeaderId"
     
     let reusedUserDetailId:String = "reusedUserDetailId"
     
@@ -69,17 +72,23 @@ class MTTUserDetailViewController: MTTViewController
         userDetailTableView.dataSource = self
         userDetailTableView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
         userDetailTableView.register(UITableViewCell.self, forCellReuseIdentifier: reusedUserDetailId)
+        userDetailTableView.register(MTTUserDetailHeaderCell.self, forCellReuseIdentifier: reusedUserHeaderId)
         userDetailTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        userDetailTableView.backgroundColor = UIColor.orange
-        userDetailTableView.contentInset = UIEdgeInsetsMake(150, 0, 0, 0)
+        userDetailTableView.backgroundColor = kMainBlueColor()
+        userDetailTableView.contentInset = UIEdgeInsetsMake(150 + 300, 0, 0, 0)
         self.automaticallyAdjustsScrollViewInsets = false
         self.view.addSubview(userDetailTableView)
         
         headerBackgroundImageView = UIImageView()
         headerBackgroundImageView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 150)
-        headerBackgroundImageView.backgroundColor = kMainBlueColor()
+        headerBackgroundImageView.image = UIImage.imageNamed(name: "user_detail_header_background")
         headerBackgroundImageView.isUserInteractionEnabled = true
         self.view.addSubview(headerBackgroundImageView)
+        
+        headerContainerView = UIView()
+        headerContainerView.backgroundColor = kMainRandomColor()
+        headerContainerView.frame = CGRect(x: 0, y: 150, width: kScreenWidth, height: 300)
+        self.view.addSubview(headerContainerView)
         
     }
     
@@ -99,6 +108,8 @@ class MTTUserDetailViewController: MTTViewController
 
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
+        
+        
     }
     
     
@@ -141,8 +152,13 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
         cell?.textLabel?.text = "第\(indexPath.item)行"
         
         return cell!
-        
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat 
+    {
+        return 44
+    }
+    
     
     // MARK: - scrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView)
@@ -153,8 +169,34 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
             isFirstTime = false
         } else
         {
-            let offSetY = scrollView.contentOffset.y
-            self.headerBackgroundImageView.height = abs(offSetY)
+            let offSetY = scrollView.contentOffset.y + 300
+//            if offSetY <= 0
+//            {
+//                self.headerBackgroundImageView.height = abs(offSetY)
+//                
+//                
+//            } else
+//            {
+//                self.headerBackgroundImageView.height = 0
+//                print("\(offSetY)")
+//            }
+            print("偏移量:\(offSetY)")
+            
+            // 设置背景头像下面的头容器 
+            self.headerBackgroundImageView.y = -offSetY - 150
+            
+            
+            if -offSetY >= 150
+            {
+                self.headerBackgroundImageView.height = -offSetY
+                self.headerBackgroundImageView.y = 0
+            }
+            self.headerContainerView.y = -offSetY
+            
+            let alpha = -offSetY / (150 - offSetY)
+            print("透明度:\(alpha)")
+            
+            
         }
         
     }

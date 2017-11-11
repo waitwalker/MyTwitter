@@ -107,6 +107,7 @@
 		CAC5AE8D1F7F4BE500B50C98 /* MTTViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE8C1F7F4BE500B50C98 /* MTTViewExtension.swift */; };
 		CAC789EC1FB6C1FA001A5A7D /* MTTImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC789EB1FB6C1FA001A5A7D /* MTTImageExtension.swift */; };
 		CAC789EE1FB6C29B001A5A7D /* MTTUIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC789ED1FB6C29B001A5A7D /* MTTUIColorExtension.swift */; };
+		CAC789F21FB6CC05001A5A7D /* MTTUserDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC789F11FB6CC05001A5A7D /* MTTUserDetailHeaderCell.swift */; };
 		CAC990651F690E67002255FA /* MTTRegisterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */; };
 		CAC990A71F6BB62F002255FA /* MTTConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC990A61F6BB62F002255FA /* MTTConst.swift */; };
 		CADECBAD1F5E4E3A0027E15F /* MyTwitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBAC1F5E4E3A0027E15F /* MyTwitterTests.swift */; };
@@ -262,6 +263,7 @@
 		CAC5AE8C1F7F4BE500B50C98 /* MTTViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTViewExtension.swift; sourceTree = "<group>"; };
 		CAC789EB1FB6C1FA001A5A7D /* MTTImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTImageExtension.swift; sourceTree = "<group>"; };
 		CAC789ED1FB6C29B001A5A7D /* MTTUIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTUIColorExtension.swift; sourceTree = "<group>"; };
+		CAC789F11FB6CC05001A5A7D /* MTTUserDetailHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTUserDetailHeaderCell.swift; sourceTree = "<group>"; };
 		CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterPasswordViewController.swift; sourceTree = "<group>"; };
 		CAC990A61F6BB62F002255FA /* MTTConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTConst.swift; sourceTree = "<group>"; };
 		CADECB941F5E4E3A0027E15F /* MyTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -511,6 +513,7 @@
 		1A50B2C31FB1EC6500F3F1CF /* UserDetail */ = {
 			isa = PBXGroup;
 			children = (
+				CAC789EF1FB6CBD8001A5A7D /* View */,
 				1A50B2C41FB1EC8F00F3F1CF /* Controller */,
 			);
 			path = UserDetail;
@@ -752,6 +755,22 @@
 			);
 			name = "Singleton(单例)";
 			path = Singleton;
+			sourceTree = "<group>";
+		};
+		CAC789EF1FB6CBD8001A5A7D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CAC789F01FB6CBDF001A5A7D /* cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAC789F01FB6CBDF001A5A7D /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				CAC789F11FB6CC05001A5A7D /* MTTUserDetailHeaderCell.swift */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		CAC990A51F6BB604002255FA /* Const */ = {
@@ -1487,6 +1506,7 @@
 				CA36DE261F73612D0077B44F /* MTTAboutSwitchCell.swift in Sources */,
 				CA66B4F91F90C6E8001CD140 /* MTTSearchSelectedViewController.swift in Sources */,
 				CA572B111F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift in Sources */,
+				CAC789F21FB6CC05001A5A7D /* MTTUserDetailHeaderCell.swift in Sources */,
 				CADECBD11F5E500D0027E15F /* MTTViewController.swift in Sources */,
 				CAE6742F1F7F98D100C1093E /* MTTLogger.swift in Sources */,
 				1ADE78241F8505C4009D8CB9 /* MTTPushImageViewDelegate.swift in Sources */,

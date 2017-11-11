@@ -28,6 +28,10 @@ class MTTUserDetailViewController: MTTViewController
     var rightButton:UIButton!
     
     var headerContainerView:UIView!
+    var avatarContainerView:UIView!
+    var avatarImageView:UIImageView!
+    
+    
     
     
     
@@ -90,6 +94,22 @@ class MTTUserDetailViewController: MTTViewController
         headerContainerView.frame = CGRect(x: 0, y: 150, width: kScreenWidth, height: 300)
         self.view.addSubview(headerContainerView)
         
+        avatarContainerView = UIView()
+        avatarContainerView.backgroundColor = UIColor.white
+        avatarContainerView.layer.cornerRadius = 40
+        avatarContainerView.frame = CGRect(x: 30, y: -30, width: 80, height: 80)
+        headerContainerView.addSubview(avatarContainerView)
+        
+        avatarImageView = UIImageView()
+        avatarImageView.isUserInteractionEnabled = true
+        avatarImageView.backgroundColor = kMainRandomColor()
+        avatarImageView.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
+        avatarImageView.center = avatarContainerView.center
+        avatarImageView.layer.cornerRadius = 35
+        avatarImageView.clipsToBounds = true
+        headerContainerView.addSubview(avatarImageView)
+        
+        
     }
     
     private func setupNavigationBar() -> Void 
@@ -108,7 +128,6 @@ class MTTUserDetailViewController: MTTViewController
 
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        
         
     }
     
@@ -188,6 +207,48 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
             
             print("透明度:\(alpha)")
             
+            let scale = (150 - 64) / (offSetY + 300 - 64)
+            print("比例:\(scale)")
+            
+            let finalScale = 1 - scale
+            
+            let x = 30 * (1 + finalScale)
+            let y = -30 * scale
+            let widthHeight = 80 * (1 - finalScale)
+            let avatarImageViewWidthHeight = self.avatarImageView.width * (1 - finalScale)
+            
+            if scale >= 1.0
+            {
+                avatarContainerView.layer.cornerRadius = 40        
+                avatarContainerView.frame = CGRect(x: 30, y: -30, width: 80, height: 80)
+                
+                avatarImageView.frame = CGRect(x: 0, y: 0, width: 70, height: 70)        
+                avatarImageView.center = avatarContainerView.center
+                avatarImageView.layer.cornerRadius = 35        
+                avatarImageView.clipsToBounds = true
+            } else if scale < 1.0 && scale > 0.5
+            {
+                self.avatarContainerView.cornerRadius = widthHeight * 0.5
+                self.avatarContainerView.clipsToBounds = true
+                self.avatarContainerView.frame = CGRect(x: x, y: y, width: widthHeight, height: widthHeight)
+                
+                self.avatarImageView.cornerRadius = avatarImageViewWidthHeight * 0.5
+                self.avatarImageView.clipsToBounds = true
+                self.avatarImageView.frame = CGRect(x: 0, y: 0, width: avatarImageViewWidthHeight, height: avatarImageViewWidthHeight)
+                self.avatarImageView.center = self.avatarContainerView.center
+                
+            } else
+            {
+                avatarContainerView.layer.cornerRadius = 20        
+                avatarContainerView.frame = CGRect(x: 45, y: 0, width: 40, height: 40)
+                
+                avatarImageView.frame = CGRect(x: 0, y: 0, width: 35, height: 35)        
+                avatarImageView.center = avatarContainerView.center
+                avatarImageView.layer.cornerRadius = 17.5        
+                avatarImageView.clipsToBounds = true
+            }
+            
+            print("x,y,widthHeight,avatarImageViewWidthHeight:\(x,y,widthHeight,avatarImageViewWidthHeight)")
             
             if -offSetY <= 64
             {

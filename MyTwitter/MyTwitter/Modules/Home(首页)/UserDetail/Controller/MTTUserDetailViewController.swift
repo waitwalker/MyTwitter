@@ -170,16 +170,7 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
         } else
         {
             let offSetY = scrollView.contentOffset.y + 300
-//            if offSetY <= 0
-//            {
-//                self.headerBackgroundImageView.height = abs(offSetY)
-//                
-//                
-//            } else
-//            {
-//                self.headerBackgroundImageView.height = 0
-//                print("\(offSetY)")
-//            }
+            
             print("偏移量:\(offSetY)")
             
             // 设置背景头像下面的头容器 
@@ -193,8 +184,18 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
             }
             self.headerContainerView.y = -offSetY
             
-            let alpha = -offSetY / (150 - offSetY)
+            let alpha = (offSetY + 150) / (150 - 64)
+            
             print("透明度:\(alpha)")
+            
+            
+            if -offSetY <= 64
+            {
+                self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageNamed(name: "user_detail_header_background"), for: UIBarMetrics.default)
+            } else
+            {
+                self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageWithColor(color: UIColor(white: 1, alpha: alpha)), for: UIBarMetrics.default)
+            }
             
             
         }

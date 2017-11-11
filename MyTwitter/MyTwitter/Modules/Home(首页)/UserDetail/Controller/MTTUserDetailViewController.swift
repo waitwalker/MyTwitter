@@ -36,7 +36,13 @@ class MTTUserDetailViewController: MTTViewController
     override func viewWillAppear(_ animated: Bool) 
     {
         super.viewWillAppear(animated)
-        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) 
+    {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = nil
     }
     
     
@@ -79,18 +85,20 @@ class MTTUserDetailViewController: MTTViewController
     
     private func setupNavigationBar() -> Void 
     {
-        backButton = UIButton()
+        backButton                             = UIButton()
         backButton.setImage(UIImage.imageNamed(name: "back_placeholder"), for: UIControlState.normal)
-        backButton.imageEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3)
-        backButton.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        
-        rightButton = UIButton()
+        backButton.imageEdgeInsets             = UIEdgeInsetsMake(3, 3, 3, 3)
+        backButton.frame                       = CGRect(x: 0, y: 0, width: 32, height: 32)
+        self.navigationItem.leftBarButtonItem  = UIBarButtonItem(customView: backButton)
+
+        rightButton                            = UIButton()
         rightButton.setImage(UIImage.imageNamed(name: "twitter_push"), for: UIControlState.normal)
-        rightButton.imageEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3)
-        rightButton.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+        rightButton.imageEdgeInsets            = UIEdgeInsetsMake(3, 3, 3, 3)
+        rightButton.frame                      = CGRect(x: 0, y: 0, width: 32, height: 32)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
-        
+
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     
@@ -101,7 +109,10 @@ class MTTUserDetailViewController: MTTViewController
     
     func setupEvent() -> Void
     {
-        
+        backButton.rx.tap
+            .subscribe(onNext:{[unowned self] in
+                self.navigationController?.popViewController(animated: true)
+            }).disposed(by: disposeBag)
     }
     
     

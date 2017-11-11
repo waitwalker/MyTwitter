@@ -105,6 +105,8 @@
 		CAC5AE891F7F4B9400B50C98 /* MTTTextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */; };
 		CAC5AE8B1F7F4BC400B50C98 /* MTTStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE8A1F7F4BC400B50C98 /* MTTStringExtension.swift */; };
 		CAC5AE8D1F7F4BE500B50C98 /* MTTViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC5AE8C1F7F4BE500B50C98 /* MTTViewExtension.swift */; };
+		CAC789EC1FB6C1FA001A5A7D /* MTTImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC789EB1FB6C1FA001A5A7D /* MTTImageExtension.swift */; };
+		CAC789EE1FB6C29B001A5A7D /* MTTUIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC789ED1FB6C29B001A5A7D /* MTTUIColorExtension.swift */; };
 		CAC990651F690E67002255FA /* MTTRegisterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */; };
 		CAC990A71F6BB62F002255FA /* MTTConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC990A61F6BB62F002255FA /* MTTConst.swift */; };
 		CADECBAD1F5E4E3A0027E15F /* MyTwitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBAC1F5E4E3A0027E15F /* MyTwitterTests.swift */; };
@@ -258,6 +260,8 @@
 		CAC5AE881F7F4B9400B50C98 /* MTTTextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTextViewExtension.swift; sourceTree = "<group>"; };
 		CAC5AE8A1F7F4BC400B50C98 /* MTTStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTStringExtension.swift; sourceTree = "<group>"; };
 		CAC5AE8C1F7F4BE500B50C98 /* MTTViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTViewExtension.swift; sourceTree = "<group>"; };
+		CAC789EB1FB6C1FA001A5A7D /* MTTImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTImageExtension.swift; sourceTree = "<group>"; };
+		CAC789ED1FB6C29B001A5A7D /* MTTUIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTUIColorExtension.swift; sourceTree = "<group>"; };
 		CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterPasswordViewController.swift; sourceTree = "<group>"; };
 		CAC990A61F6BB62F002255FA /* MTTConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTConst.swift; sourceTree = "<group>"; };
 		CADECB941F5E4E3A0027E15F /* MyTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -933,6 +937,8 @@
 				CAE674261F7F8F0A00C1093E /* MTTFileManagerExtension.swift */,
 				CAE674281F7F904400C1093E /* MTTURLExtension.swift */,
 				CAE6742A1F7F926900C1093E /* MTTArrayExtension.swift */,
+				CAC789EB1FB6C1FA001A5A7D /* MTTImageExtension.swift */,
+				CAC789ED1FB6C29B001A5A7D /* MTTUIColorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1400,6 +1406,7 @@
 				1AA6E4C71F9B1DC00025FB7B /* MTTMessageHintCell.swift in Sources */,
 				1A8F5BD71F72A98F006D6CA0 /* MTTAboutNormalCell.swift in Sources */,
 				CA0994BD1F8F459D00D79775 /* MTTPhotoLibraryModel.swift in Sources */,
+				CAC789EE1FB6C29B001A5A7D /* MTTUIColorExtension.swift in Sources */,
 				CAF065541F986DB7002F28F8 /* MTTNotificationMentionCell.swift in Sources */,
 				CA66B4F01F90C0BB001CD140 /* MTTSearchViewModel.swift in Sources */,
 				1A0C10F41F66C44C00B6AD18 /* MTTRegularMatchManager.swift in Sources */,
@@ -1427,6 +1434,7 @@
 				1A304C541F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift in Sources */,
 				1A011D3D1F9C7D6800485766 /* MTTLanuchAnimation.swift in Sources */,
 				CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */,
+				CAC789EC1FB6C1FA001A5A7D /* MTTImageExtension.swift in Sources */,
 				1A596C671F90F1D200F14123 /* MTTSearchSearchAllViewController.swift in Sources */,
 				CA61470A1FA07A2F0005FD29 /* MTTPersonalModel.swift in Sources */,
 				CAF065521F985628002F28F8 /* MTTNotificationReplyCell.swift in Sources */,

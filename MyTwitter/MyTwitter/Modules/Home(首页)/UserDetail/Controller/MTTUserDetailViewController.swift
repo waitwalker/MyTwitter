@@ -23,6 +23,11 @@ class MTTUserDetailViewController: MTTViewController
     
     var isFirstTime:Bool!
     
+    var backButton:UIButton!
+    
+    var rightButton:UIButton!
+    
+    
     
     
     let reusedUserDetailId:String = "reusedUserDetailId"
@@ -49,6 +54,8 @@ class MTTUserDetailViewController: MTTViewController
     
     func setupSubview() -> Void
     {
+        setupNavigationBar()
+        
         isFirstTime = true
         
         userDetailTableView = UITableView()
@@ -69,6 +76,23 @@ class MTTUserDetailViewController: MTTViewController
         self.view.addSubview(headerBackgroundImageView)
         
     }
+    
+    private func setupNavigationBar() -> Void 
+    {
+        backButton = UIButton()
+        backButton.setImage(UIImage.imageNamed(name: "back_placeholder"), for: UIControlState.normal)
+        backButton.imageEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3)
+        backButton.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        
+        rightButton = UIButton()
+        rightButton.setImage(UIImage.imageNamed(name: "twitter_push"), for: UIControlState.normal)
+        rightButton.imageEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
+        
+    }
+    
     
     func layoutSubview() -> Void
     {

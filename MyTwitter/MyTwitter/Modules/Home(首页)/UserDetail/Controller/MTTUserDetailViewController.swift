@@ -16,6 +16,9 @@ class MTTUserDetailViewController: MTTViewController
     var disposeBag = DisposeBag()
     
     let kHeaderBackgroundImageViewHeight:CGFloat = 150
+    let kHeaderContainerViewHeight:CGFloat = 300
+    let kNavigationBarHeight:CGFloat = 64
+    
     
     var headerBackgroundImageView:UIImageView!
     
@@ -79,19 +82,19 @@ class MTTUserDetailViewController: MTTViewController
         userDetailTableView.register(MTTUserDetailHeaderCell.self, forCellReuseIdentifier: reusedUserHeaderId)
         userDetailTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         userDetailTableView.backgroundColor = kMainBlueColor()
-        userDetailTableView.contentInset = UIEdgeInsetsMake(150 + 300, 0, 0, 0)
+        userDetailTableView.contentInset = UIEdgeInsetsMake(kHeaderBackgroundImageViewHeight + kHeaderContainerViewHeight, 0, 0, 0)
         self.automaticallyAdjustsScrollViewInsets = false
         self.view.addSubview(userDetailTableView)
         
         headerBackgroundImageView = UIImageView()
-        headerBackgroundImageView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 150)
+        headerBackgroundImageView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kHeaderBackgroundImageViewHeight)
         headerBackgroundImageView.image = UIImage.imageNamed(name: "user_detail_header_background")
         headerBackgroundImageView.isUserInteractionEnabled = true
         self.view.addSubview(headerBackgroundImageView)
         
         headerContainerView = UIView()
         headerContainerView.backgroundColor = kMainRandomColor()
-        headerContainerView.frame = CGRect(x: 0, y: 150, width: kScreenWidth, height: 300)
+        headerContainerView.frame = CGRect(x: 0, y: kHeaderBackgroundImageViewHeight, width: kScreenWidth, height: kHeaderContainerViewHeight)
         self.view.addSubview(headerContainerView)
         
         avatarContainerView = UIView()
@@ -188,26 +191,25 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
             isFirstTime = false
         } else
         {
-            let offSetY = scrollView.contentOffset.y + 300
+            let offSetY = scrollView.contentOffset.y + kHeaderContainerViewHeight
             
             print("偏移量:\(offSetY)")
             
             // 设置背景头像下面的头容器 
-            self.headerBackgroundImageView.y = -offSetY - 150
+            self.headerBackgroundImageView.y = -offSetY - kHeaderBackgroundImageViewHeight
             
-            
-            if -offSetY >= 150
+            if -offSetY >= kHeaderBackgroundImageViewHeight
             {
                 self.headerBackgroundImageView.height = -offSetY
                 self.headerBackgroundImageView.y = 0
             }
             self.headerContainerView.y = -offSetY
             
-            let alpha = (offSetY + 150) / (150 - 64)
+            let alpha = (offSetY + kHeaderBackgroundImageViewHeight) / (kHeaderBackgroundImageViewHeight - kNavigationBarHeight)
             
             print("透明度:\(alpha)")
             
-            let scale = (150 - 64) / (offSetY + 300 - 64)
+            let scale = (150 - kNavigationBarHeight) / (offSetY + 300 - kNavigationBarHeight)
             print("比例:\(scale)")
             
             let finalScale = 1 - scale
@@ -248,16 +250,13 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
                 avatarImageView.clipsToBounds = true
             }
             
-            print("x,y,widthHeight,avatarImageViewWidthHeight:\(x,y,widthHeight,avatarImageViewWidthHeight)")
-            
-            if -offSetY <= 64
+            if -offSetY <= kNavigationBarHeight
             {
                 self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageNamed(name: "user_detail_header_background"), for: UIBarMetrics.default)
             } else
             {
                 self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageWithColor(color: UIColor(white: 1, alpha: alpha)), for: UIBarMetrics.default)
             }
-            
             
         }
         

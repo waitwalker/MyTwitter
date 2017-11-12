@@ -213,11 +213,11 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
             let finalScale = 1 - scale
             
             let x = 30 * (1 + finalScale)
-            let y = -30 * scale
+            let y = -30 * (1 - alpha)
             let widthHeight = 80 * (1 - finalScale)
-            let avatarImageViewWidthHeight = self.avatarImageView.width * (1 - finalScale)
+            let avatarImageViewWidthHeight = 70 * (1 - finalScale)
             
-            if scale >= 1.0
+            if abs(scale) >= 1.0
             {
                 avatarContainerView.layer.cornerRadius = 40        
                 avatarContainerView.frame = CGRect(x: 30, y: -30, width: 80, height: 80)

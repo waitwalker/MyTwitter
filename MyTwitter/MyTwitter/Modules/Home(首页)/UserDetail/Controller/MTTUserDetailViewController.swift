@@ -65,7 +65,11 @@ class MTTUserDetailViewController: MTTViewController
         layoutSubview()
         
         setupEvent()
-
+        
+        let userTopView = MTTUserDetailTopView()
+        userTopView.frame = CGRect(x: 0, y: 500, width: kScreenWidth, height: 80)
+        self.view.addSubview(userTopView)
+        
     }
     
     func setupSubview() -> Void

@@ -35,6 +35,7 @@
 		1A596C631F90F1A100F14123 /* MTTSearchTwitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A596C621F90F1A100F14123 /* MTTSearchTwitterViewController.swift */; };
 		1A596C651F90F1BC00F14123 /* MTTSearchPopularArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A596C641F90F1BC00F14123 /* MTTSearchPopularArticleViewController.swift */; };
 		1A596C671F90F1D200F14123 /* MTTSearchSearchAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A596C661F90F1D200F14123 /* MTTSearchSearchAllViewController.swift */; };
+		1A6814641FC39E0900BC0341 /* MTTUserDetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6814631FC39E0900BC0341 /* MTTUserDetailTopView.swift */; };
 		1A7A0A411F9EADAF002F8C9A /* MTTPushTwitterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A0A401F9EADAF002F8C9A /* MTTPushTwitterViewModel.swift */; };
 		1A7A0A431F9EB0B4002F8C9A /* MTTPushTwitterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A0A421F9EB0B4002F8C9A /* MTTPushTwitterDelegate.swift */; };
 		1A82AEAA1F8FA4E60015EAC4 /* MTTSearchLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A82AEA91F8FA4E60015EAC4 /* MTTSearchLabelCell.swift */; };
@@ -185,6 +186,7 @@
 		1A596C621F90F1A100F14123 /* MTTSearchTwitterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchTwitterViewController.swift; sourceTree = "<group>"; };
 		1A596C641F90F1BC00F14123 /* MTTSearchPopularArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchPopularArticleViewController.swift; sourceTree = "<group>"; };
 		1A596C661F90F1D200F14123 /* MTTSearchSearchAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchSearchAllViewController.swift; sourceTree = "<group>"; };
+		1A6814631FC39E0900BC0341 /* MTTUserDetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTUserDetailTopView.swift; sourceTree = "<group>"; };
 		1A7A0A401F9EADAF002F8C9A /* MTTPushTwitterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPushTwitterViewModel.swift; sourceTree = "<group>"; };
 		1A7A0A421F9EB0B4002F8C9A /* MTTPushTwitterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPushTwitterDelegate.swift; sourceTree = "<group>"; };
 		1A82AEA91F8FA4E60015EAC4 /* MTTSearchLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchLabelCell.swift; sourceTree = "<group>"; };
@@ -527,6 +529,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		1A6814621FC39DD100BC0341 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				1A6814631FC39E0900BC0341 /* MTTUserDetailTopView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		1A82AEA71F8FA4970015EAC4 /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -760,6 +770,7 @@
 		CAC789EF1FB6CBD8001A5A7D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1A6814621FC39DD100BC0341 /* view */,
 				CAC789F01FB6CBDF001A5A7D /* cell */,
 			);
 			path = View;
@@ -1432,6 +1443,7 @@
 				CADECBCD1F5E4FE30027E15F /* MTTNavigationController.swift in Sources */,
 				1A4B71DD1FB09D5600AAED83 /* MTTAlertViewDelegate.swift in Sources */,
 				1A304C101F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift in Sources */,
+				1A6814641FC39E0900BC0341 /* MTTUserDetailTopView.swift in Sources */,
 				1ABFD4BE1F84BE84004DF174 /* MTTPushBottomCell.swift in Sources */,
 				CAE674251F7F848200C1093E /* MTTRollingFileLogger.swift in Sources */,
 				CA908CB21F9DDA7700E4AFB9 /* MTTLoginViewModelDelegate.swift in Sources */,

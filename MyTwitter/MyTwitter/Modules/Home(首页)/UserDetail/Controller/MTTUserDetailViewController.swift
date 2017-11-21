@@ -68,6 +68,7 @@ class MTTUserDetailViewController: MTTViewController
         
         let userTopView = MTTUserDetailTopView()
         userTopView.frame = CGRect(x: 0, y: 500, width: kScreenWidth, height: 80)
+        userTopView.delegate = self
         self.view.addSubview(userTopView)
         
         let userDetailContentView = MTTUserDetailContentView(frame: CGRect(x: 0, y: 580, width: kScreenWidth, height: kScreenHeight - 590))
@@ -273,8 +274,15 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
     
 }
 
-extension MTTUserDetailViewController:MTTUserDetailContentViewDelegate
+extension MTTUserDetailViewController:
+    MTTUserDetailContentViewDelegate,
+    MTTUserDetailTopViewDelegate
 {
+    func userDetailTopViewTappedButtonIndex(index: Int)
+    {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUserDetailTopButtonTappedIndexNotification), object: ["index":index])
+    }
+    
     func userDetailContentScrollToPage(page: Int)
     {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUserDetailContentScrollToPageNotification), object: ["page":page])

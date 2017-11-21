@@ -27,6 +27,8 @@ class MTTUserDetailContentView: MTTView
     override init(frame: CGRect)
     {
         super.init(frame: frame)
+        
+        setupNotification()
     }
     
     override func setupSubview()
@@ -75,17 +77,34 @@ class MTTUserDetailContentView: MTTView
     {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func setupNotification() -> Void
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(kUserDetailTopButtonTappedIndex(notify:)), name: NSNotification.Name(rawValue: kUserDetailTopButtonTappedIndexNotification), object: nil)
+    }
+    
+    @objc func kUserDetailTopButtonTappedIndex(notify:Notification) -> Void
+    {
+        let userInfo = notify.object as! NSDictionary
+        
+        let index = userInfo.object(forKey: "index") as! Int
+        
+        let subview = userDetailContentScrollView.subviews[index];
+        userDetailContentScrollView.contentOffset = CGPoint(x: subview.frame.origin.x, y: subview.frame.origin.y);
+    }
+    
+    deinit
+    {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 extension MTTUserDetailContentView:UIScrollViewDelegate
 {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
     {
-        print(scrollView.contentOffset.x)
         let page = Int(scrollView.contentOffset.x / kScreenWidth)
-        
         self.delegate?.userDetailContentScrollToPage(page: page)
-        
     }
 }
 

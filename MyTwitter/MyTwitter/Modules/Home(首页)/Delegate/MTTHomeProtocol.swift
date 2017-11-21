@@ -38,3 +38,9 @@ protocol MTTUserDetailContentViewDelegate
     func userDetailContentScrollToPage(page:Int) -> Void
 }
 
+// MARK: - 个人详情头部按钮被点击某个按钮
+protocol MTTUserDetailTopViewDelegate
+{
+    func userDetailTopViewTappedButtonIndex(index:Int) -> Void
+}
+

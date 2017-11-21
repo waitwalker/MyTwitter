@@ -70,6 +70,11 @@ class MTTUserDetailViewController: MTTViewController
         userTopView.frame = CGRect(x: 0, y: 500, width: kScreenWidth, height: 80)
         self.view.addSubview(userTopView)
         
+        let userDetailContentView = MTTUserDetailContentView(frame: CGRect(x: 0, y: 580, width: kScreenWidth, height: kScreenHeight - 590))
+        userDetailContentView.delegate = self
+        self.view.addSubview(userDetailContentView)
+        
+        
     }
     
     func setupSubview() -> Void
@@ -88,7 +93,7 @@ class MTTUserDetailViewController: MTTViewController
         userDetailTableView.backgroundColor = kMainBlueColor()
         userDetailTableView.contentInset = UIEdgeInsetsMake(kHeaderBackgroundImageViewHeight + kHeaderContainerViewHeight, 0, 0, 0)
         self.automaticallyAdjustsScrollViewInsets = false
-        self.view.addSubview(userDetailTableView)
+//        self.view.addSubview(userDetailTableView)
         
         headerBackgroundImageView = UIImageView()
         headerBackgroundImageView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kHeaderBackgroundImageViewHeight)
@@ -265,5 +270,15 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
         }
         
     }
+    
+}
+
+extension MTTUserDetailViewController:MTTUserDetailContentViewDelegate
+{
+    func userDetailContentScrollToPage(page: Int)
+    {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUserDetailContentScrollToPageNotification), object: ["page":page])
+    }
+    
     
 }

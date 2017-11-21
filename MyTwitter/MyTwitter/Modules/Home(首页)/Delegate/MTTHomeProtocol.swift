@@ -32,3 +32,9 @@ protocol MTTHomeHeaderImageViewDelegate:NSObjectProtocol
     
 }
 
+// MARK: - 个人详情内容容器滚到到某页代理 
+protocol MTTUserDetailContentViewDelegate
+{
+    func userDetailContentScrollToPage(page:Int) -> Void
+}
+

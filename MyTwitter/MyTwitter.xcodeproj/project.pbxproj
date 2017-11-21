@@ -14,6 +14,11 @@
 		1A09A5531F9B16B4007BC41C /* MTTMessageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A09A5521F9B16B4007BC41C /* MTTMessageDelegate.swift */; };
 		1A0C10F41F66C44C00B6AD18 /* MTTRegularMatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0C10F31F66C44C00B6AD18 /* MTTRegularMatchManager.swift */; };
 		1A16F59E1F792F1000E09ECB /* MTTHomeImageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A16F59D1F792F1000E09ECB /* MTTHomeImageContainerView.swift */; };
+		1A20C53A1FC461B800EAA0B6 /* MTTUserDetailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A20C5391FC461B800EAA0B6 /* MTTUserDetailContentView.swift */; };
+		1A20C53C1FC465A300EAA0B6 /* MTTTwitterTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A20C53B1FC465A300EAA0B6 /* MTTTwitterTextViewController.swift */; };
+		1A20C53E1FC465D600EAA0B6 /* MTTTwitterTextAndReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A20C53D1FC465D600EAA0B6 /* MTTTwitterTextAndReplyViewController.swift */; };
+		1A20C5401FC465EF00EAA0B6 /* MTTMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A20C53F1FC465EF00EAA0B6 /* MTTMediaViewController.swift */; };
+		1A20C5421FC465FC00EAA0B6 /* MTTLikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A20C5411FC465FC00EAA0B6 /* MTTLikeViewController.swift */; };
 		1A234B581F8BB00E00D6C731 /* MTTLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A234B571F8BB00E00D6C731 /* MTTLocationViewController.swift */; };
 		1A234B5A1F8BB40D00D6C731 /* MTTLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A234B591F8BB40D00D6C731 /* MTTLocationCell.swift */; };
 		1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C071F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift */; };
@@ -165,6 +170,11 @@
 		1A09A5521F9B16B4007BC41C /* MTTMessageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTMessageDelegate.swift; sourceTree = "<group>"; };
 		1A0C10F31F66C44C00B6AD18 /* MTTRegularMatchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegularMatchManager.swift; sourceTree = "<group>"; };
 		1A16F59D1F792F1000E09ECB /* MTTHomeImageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeImageContainerView.swift; sourceTree = "<group>"; };
+		1A20C5391FC461B800EAA0B6 /* MTTUserDetailContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTUserDetailContentView.swift; sourceTree = "<group>"; };
+		1A20C53B1FC465A300EAA0B6 /* MTTTwitterTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTwitterTextViewController.swift; sourceTree = "<group>"; };
+		1A20C53D1FC465D600EAA0B6 /* MTTTwitterTextAndReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTwitterTextAndReplyViewController.swift; sourceTree = "<group>"; };
+		1A20C53F1FC465EF00EAA0B6 /* MTTMediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTMediaViewController.swift; sourceTree = "<group>"; };
+		1A20C5411FC465FC00EAA0B6 /* MTTLikeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLikeViewController.swift; sourceTree = "<group>"; };
 		1A234B571F8BB00E00D6C731 /* MTTLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLocationViewController.swift; sourceTree = "<group>"; };
 		1A234B591F8BB40D00D6C731 /* MTTLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLocationCell.swift; sourceTree = "<group>"; };
 		1A304C071F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterViewModelDelegate.swift; sourceTree = "<group>"; };
@@ -525,6 +535,10 @@
 			isa = PBXGroup;
 			children = (
 				1A50B2C51FB1ECB000F3F1CF /* MTTUserDetailViewController.swift */,
+				1A20C53B1FC465A300EAA0B6 /* MTTTwitterTextViewController.swift */,
+				1A20C53D1FC465D600EAA0B6 /* MTTTwitterTextAndReplyViewController.swift */,
+				1A20C53F1FC465EF00EAA0B6 /* MTTMediaViewController.swift */,
+				1A20C5411FC465FC00EAA0B6 /* MTTLikeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -533,6 +547,7 @@
 			isa = PBXGroup;
 			children = (
 				1A6814631FC39E0900BC0341 /* MTTUserDetailTopView.swift */,
+				1A20C5391FC461B800EAA0B6 /* MTTUserDetailContentView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1456,7 +1471,10 @@
 				1A09A54E1F9B0930007BC41C /* MTTMessageCell.swift in Sources */,
 				CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */,
 				CAC5AE871F7F4B3500B50C98 /* MTTButtonExtension.swift in Sources */,
+				1A20C5401FC465EF00EAA0B6 /* MTTMediaViewController.swift in Sources */,
+				1A20C53E1FC465D600EAA0B6 /* MTTTwitterTextAndReplyViewController.swift in Sources */,
 				1A82AEAA1F8FA4E60015EAC4 /* MTTSearchLabelCell.swift in Sources */,
+				1A20C5421FC465FC00EAA0B6 /* MTTLikeViewController.swift in Sources */,
 				CA3058C41F78CAE500742237 /* MTTHomeViewModel.swift in Sources */,
 				CAC990651F690E67002255FA /* MTTRegisterPasswordViewController.swift in Sources */,
 				1A304C521F6D6B5700F366B9 /* MTTNotificationViewController.swift in Sources */,
@@ -1541,8 +1559,10 @@
 				CA66B4F71F90C1BD001CD140 /* MTTSearchHeader.swift in Sources */,
 				CA6ADD571F98833B00A25646 /* MTTNotificationButtonCell.swift in Sources */,
 				1A8F5BD51F72A915006D6CA0 /* MTTTableViewCell.swift in Sources */,
+				1A20C53A1FC461B800EAA0B6 /* MTTUserDetailContentView.swift in Sources */,
 				CAE3F0E31F7498B700788455 /* MTTHomeCell.swift in Sources */,
 				CA3058D01F79FCED00742237 /* MTTHomeProtocol.swift in Sources */,
+				1A20C53C1FC465A300EAA0B6 /* MTTTwitterTextViewController.swift in Sources */,
 				1A234B5A1F8BB40D00D6C731 /* MTTLocationCell.swift in Sources */,
 				CA36DE341F7396D10077B44F /* MTTAboutFooterView.swift in Sources */,
 			);

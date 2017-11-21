@@ -23,6 +23,8 @@ class MTTUserDetailTopView: MTTView
     override init(frame: CGRect)
     {
         super.init(frame: frame)
+        
+        setupNotification()
     }
     
     override func layoutSubviews()
@@ -37,7 +39,7 @@ class MTTUserDetailTopView: MTTView
         topScrollView = UIScrollView()
         topScrollView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 80)
         topScrollView.contentSize = CGSize(width: kScreenWidth, height: 0)
-        topScrollView.backgroundColor = kMainRandomColor()
+        topScrollView.backgroundColor = UIColor.orange
         topScrollView.isPagingEnabled = true
         topScrollView.isScrollEnabled = true
         self.addSubview(topScrollView)
@@ -73,8 +75,6 @@ class MTTUserDetailTopView: MTTView
             default:
                 break
             }
-            
-            
             
             buttonsArray.append(button)
             
@@ -112,6 +112,24 @@ class MTTUserDetailTopView: MTTView
                 tmpButton.isSelected = false
             }
         }
+    }
+    
+    func setupNotification() -> Void
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(userDetailContentScrollToPage(notify:)), name: NSNotification.Name(rawValue: kUserDetailContentScrollToPageNotification), object: nil)
+    }
+    
+    @objc func userDetailContentScrollToPage(notify:Notification) -> Void
+    {
+        let userInfo = notify.object as! NSDictionary
+        
+        print(userInfo.object(forKey: "page"))
+        
+    }
+    
+    deinit
+    {
+        NotificationCenter.default.removeObserver(self)
     }
     
     

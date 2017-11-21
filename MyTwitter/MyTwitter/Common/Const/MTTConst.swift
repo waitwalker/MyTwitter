@@ -46,4 +46,11 @@ let kDayNotificationString:String = "kDayNotificationString"
 
 //夜晚通知
 let kNightNotificationString:String = "kNightNotificationString"
+
+// 个人详情滚到到某页
+let kUserDetailContentScrollToPageNotification:String = "kUserDetailContentScrollToPageNotification"
+
+// 个人详情顶部视图某个按钮被点击
+let kUserDetailTopButtonTappedIndexNotification:String = "kUserDetailTopButtonTappedIndexNotification"
+
 		

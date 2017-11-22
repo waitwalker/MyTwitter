@@ -37,7 +37,7 @@ class MTTUserDetailContentView: MTTView
         userDetailContentScrollView.isScrollEnabled = true
         userDetailContentScrollView.isPagingEnabled = true
         userDetailContentScrollView.delegate = self
-        userDetailContentScrollView.contentSize = CGSize(width: 4 * kScreenWidth, height: self.frame.size.height)
+        userDetailContentScrollView.contentSize = CGSize(width: 4 * kScreenWidth, height: 0)
         userDetailContentScrollView.backgroundColor = kMainRandomColor()
         self.addSubview(userDetailContentScrollView)
         
@@ -80,7 +80,12 @@ class MTTUserDetailContentView: MTTView
     
     func setupNotification() -> Void
     {
-        NotificationCenter.default.addObserver(self, selector: #selector(kUserDetailTopButtonTappedIndex(notify:)), name: NSNotification.Name(rawValue: kUserDetailTopButtonTappedIndexNotification), object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(kUserDetailTopButtonTappedIndex(notify:)), name: NSNotification.Name(rawValue: kUserDetailTopButtonTappedIndexNotification),
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userDetailTableViewContentOffset(notify:)),
+                                               name: NSNotification.Name(rawValue: kUserDetailTableViewContentOffsetYNotification),
+                                               object: nil)
     }
     
     @objc func kUserDetailTopButtonTappedIndex(notify:Notification) -> Void
@@ -91,6 +96,25 @@ class MTTUserDetailContentView: MTTView
         
         let subview = userDetailContentScrollView.subviews[index];
         userDetailContentScrollView.contentOffset = CGPoint(x: subview.frame.origin.x, y: subview.frame.origin.y);
+    }
+    
+    @objc func userDetailTableViewContentOffset(notify:Notification) -> Void
+    {
+        let userInfo = notify.object as! NSDictionary
+        
+        let offsetY = userInfo.object(forKey: "contentOffsetY") as! CGFloat
+        
+        print(offsetY)
+        
+//        userDetailContentScrollView.frame.origin.y = 450 - offsetY;
+//        userDetailContentView.frame.origin.y = 500 - offsetY;
+        
+        userDetailContentScrollView.frame.size.height = kScreenHeight - 300 + offsetY;
+        twitterTextVC.view.frame.size.height = userDetailContentScrollView.frame.size.height
+        twitterTextAndReplyVC.view.frame.size.height = userDetailContentScrollView.frame.size.height
+        mediaVC.view.frame.size.height = userDetailContentScrollView.frame.size.height
+        likeVC.view.frame.size.height = userDetailContentScrollView.frame.size.height
+        userDetailContentScrollView.contentSize = CGSize(width: 4 * kScreenWidth, height: 0)
     }
     
     deinit

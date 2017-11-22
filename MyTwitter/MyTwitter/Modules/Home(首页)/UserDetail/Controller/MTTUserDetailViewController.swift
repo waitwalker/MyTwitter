@@ -15,8 +15,8 @@ class MTTUserDetailViewController: MTTViewController
 {
     var disposeBag = DisposeBag()
     
-    let kHeaderBackgroundImageViewHeight:CGFloat = 150
-    let kHeaderContainerViewHeight:CGFloat = 300
+    let kHeaderBackgroundImageViewHeight:CGFloat = 130
+    let kHeaderContainerViewHeight:CGFloat = 220
     let kNavigationBarHeight:CGFloat = 64
     
     
@@ -33,6 +33,9 @@ class MTTUserDetailViewController: MTTViewController
     var headerContainerView:UIView!
     var avatarContainerView:UIView!
     var avatarImageView:UIImageView!
+    
+    var userTopView:MTTUserDetailTopView!
+    var userDetailContentView:MTTUserDetailContentView!
     
     
     
@@ -66,12 +69,12 @@ class MTTUserDetailViewController: MTTViewController
         
         setupEvent()
         
-        let userTopView = MTTUserDetailTopView()
-        userTopView.frame = CGRect(x: 0, y: 500, width: kScreenWidth, height: 80)
+        userTopView = MTTUserDetailTopView()
+        userTopView.frame = CGRect(x: 0, y: 250, width: kScreenWidth, height: 50)
         userTopView.delegate = self
         self.view.addSubview(userTopView)
         
-        let userDetailContentView = MTTUserDetailContentView(frame: CGRect(x: 0, y: 580, width: kScreenWidth, height: kScreenHeight - 590))
+        userDetailContentView = MTTUserDetailContentView(frame: CGRect(x: 0, y: 300, width: kScreenWidth, height: kScreenHeight - 64))
         userDetailContentView.delegate = self
         self.view.addSubview(userDetailContentView)
         
@@ -286,7 +289,10 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
         
         print(offsetY)
         
+        userTopView.frame.origin.y = 250 - offsetY;
+        userDetailContentView.frame.origin.y = 300 - offsetY;
         
+        userDetailContentView.frame.size.height = kScreenHeight - 300 + offsetY;
     }
 }
 

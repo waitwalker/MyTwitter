@@ -39,7 +39,7 @@ class MTTUserDetailTopView: MTTView
         super.setupSubview()
         
         topScrollView = UIScrollView()
-        topScrollView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 80)
+        topScrollView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 50)
         topScrollView.contentSize = CGSize(width: kScreenWidth, height: 0)
         topScrollView.backgroundColor = UIColor.orange
         topScrollView.isPagingEnabled = true
@@ -63,16 +63,16 @@ class MTTUserDetailTopView: MTTView
             
             switch index{
             case 0:
-                button.frame = CGRect(x: 0, y: 25, width: kScreenWidth / 4, height: 30)
+                button.frame = CGRect(x: 0, y: 10, width: kScreenWidth / 4, height: 30)
                 break
             case 1:
-                button.frame = CGRect(x: kScreenWidth / 4, y: 25, width: kScreenWidth / 3, height: 30)
+                button.frame = CGRect(x: kScreenWidth / 4, y: 10, width: kScreenWidth / 3, height: 30)
                 break
             case 2:
-                button.frame = CGRect(x: kScreenWidth / 4 + kScreenWidth / 3, y: 25, width: kScreenWidth / 6, height: 30)
+                button.frame = CGRect(x: kScreenWidth / 4 + kScreenWidth / 3, y: 10, width: kScreenWidth / 6, height: 30)
                 break
             case 3:
-                button.frame = CGRect(x: kScreenWidth / 4 + kScreenWidth / 3 + kScreenWidth / 6, y: 25, width: kScreenWidth / 4, height: 30)
+                button.frame = CGRect(x: kScreenWidth / 4 + kScreenWidth / 3 + kScreenWidth / 6, y: 10, width: kScreenWidth / 4, height: 30)
                 break
             default:
                 break

@@ -75,7 +75,7 @@ class MTTUserDetailViewController: MTTViewController
         userDetailContentView.delegate = self
         self.view.addSubview(userDetailContentView)
         
-        
+        setupNotification()
     }
     
     func setupSubview() -> Void
@@ -272,6 +272,22 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
         
     }
     
+    func setupNotification() -> Void
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(userDetailTableViewContentOffset(notify:)), name: NSNotification.Name(rawValue: kUserDetailTableViewContentOffsetYNotification), object: nil)
+    }
+    
+    
+    @objc func userDetailTableViewContentOffset(notify:Notification) -> Void
+    {
+        let userInfo = notify.object as! NSDictionary
+        
+        let offsetY = userInfo.object(forKey: "contentOffsetY") as! CGFloat
+        
+        print(offsetY)
+        
+        
+    }
 }
 
 extension MTTUserDetailViewController:

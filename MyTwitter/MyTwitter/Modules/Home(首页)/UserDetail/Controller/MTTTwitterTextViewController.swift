@@ -10,6 +10,9 @@ import UIKit
 
 class MTTTwitterTextViewController: MTTViewController {
 
+    var tableView:UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = kMainRandomColor()
@@ -19,22 +22,49 @@ class MTTTwitterTextViewController: MTTViewController {
         label.text = "第1页"
         self.view.addSubview(label)
         
+        tableView = UITableView(frame: self.view.frame)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.view.addSubview(tableView)
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+
+extension MTTTwitterTextViewController:
+    UITableViewDelegate,
+    UITableViewDataSource,
+    UIScrollViewDelegate
+{
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        if cell == nil
+        {
+            cell = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        }
+        cell?.textLabel?.text = "第\(indexPath.item)行"
+        return cell!
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    {
+        print(scrollView.contentOffset.y)
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUserDetailTableViewContentOffsetYNotification), object: ["contentOffsetY":scrollView.contentOffset.y])
+    }
+}
+
+

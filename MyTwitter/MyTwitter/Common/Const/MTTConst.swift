@@ -53,4 +53,8 @@ let kUserDetailContentScrollToPageNotification:String = "kUserDetailContentScrol
 // 个人详情顶部视图某个按钮被点击
 let kUserDetailTopButtonTappedIndexNotification:String = "kUserDetailTopButtonTappedIndexNotification"
 
+// 个人详情tableView滚动的y偏移量
+let kUserDetailTableViewContentOffsetYNotification:String = "kUserDetailTableViewContentOffsetYNotification"
+
+
 		

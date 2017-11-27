@@ -8,8 +8,18 @@
 
 import UIKit
 
+// MARK: - 私信类型
 enum MTTMessageDataSourceType
 {
-    case mailBoxType
-    case requestType
+    case mailBoxType //收件箱
+    case requestType //请求
+}
+
+enum MTTChatMessageType:Int
+{
+    case text = 0         //文本
+    case picture = 1      //图片
+    case expression = 2   //表情
+    case voice = 3        //语音
+    case file  = 4        //文件
 }

@@ -227,6 +227,9 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         tableView.deselectRow(at: indexPath, animated: true)
+        let chatMessageVC = MTTChatMessageViewController()
+        self.navigationController?.pushViewController(chatMessageVC, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?

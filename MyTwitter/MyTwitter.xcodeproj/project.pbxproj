@@ -47,6 +47,7 @@
 		1A82AEAA1F8FA4E60015EAC4 /* MTTSearchLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A82AEA91F8FA4E60015EAC4 /* MTTSearchLabelCell.swift */; };
 		1A82AEAC1F8FA4FD0015EAC4 /* MTTSearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A82AEAB1F8FA4FD0015EAC4 /* MTTSearchHeaderView.swift */; };
 		1A82AEAE1F8FA9120015EAC4 /* MTTSearchShowMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A82AEAD1F8FA9120015EAC4 /* MTTSearchShowMoreCell.swift */; };
+		1A869C211FCD945C00FFFF38 /* MTTChatMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A869C201FCD945C00FFFF38 /* MTTChatMessageViewController.swift */; };
 		1A86CDD81F94DD6600089314 /* HomeData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A86CDD71F94DD6600089314 /* HomeData.json */; };
 		1A8B5D8C1F981BB200A6D6D0 /* MTTNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B5D8B1F981BB200A6D6D0 /* MTTNotificationModel.swift */; };
 		1A8B5D901F981BE300A6D6D0 /* MTTNotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B5D8F1F981BE300A6D6D0 /* MTTNotificationViewModel.swift */; };
@@ -205,6 +206,7 @@
 		1A82AEA91F8FA4E60015EAC4 /* MTTSearchLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchLabelCell.swift; sourceTree = "<group>"; };
 		1A82AEAB1F8FA4FD0015EAC4 /* MTTSearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchHeaderView.swift; sourceTree = "<group>"; };
 		1A82AEAD1F8FA9120015EAC4 /* MTTSearchShowMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchShowMoreCell.swift; sourceTree = "<group>"; };
+		1A869C201FCD945C00FFFF38 /* MTTChatMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTChatMessageViewController.swift; sourceTree = "<group>"; };
 		1A86CDD71F94DD6600089314 /* HomeData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HomeData.json; sourceTree = "<group>"; };
 		1A8B5D8B1F981BB200A6D6D0 /* MTTNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTNotificationModel.swift; sourceTree = "<group>"; };
 		1A8B5D8F1F981BE300A6D6D0 /* MTTNotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTNotificationViewModel.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				1A304C531F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift */,
+				1A869C201FCD945C00FFFF38 /* MTTChatMessageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1520,6 +1523,7 @@
 				CADECBF61F5F83450027E15F /* MTTRegitserViewModel.swift in Sources */,
 				1AA6E4BE1F9B18520025FB7B /* MTTMessageViewModel.swift in Sources */,
 				CA36DE2C1F7368090077B44F /* MTTAboutModel.swift in Sources */,
+				1A869C211FCD945C00FFFF38 /* MTTChatMessageViewController.swift in Sources */,
 				CAE6742D1F7F932000C1093E /* MTTFountions.swift in Sources */,
 				1AF53C6A1F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift in Sources */,
 				CADECBFA1F5FC9030027E15F /* MTTRegisterStartViewController.swift in Sources */,

@@ -48,16 +48,17 @@ class MTTChatMessageToolBar: MTTView
         self.addSubview(inputContainerView)
         
         inputTextView = UITextView()
+        inputTextView.delegate = self
         inputTextView.backgroundColor = UIColor.clear
         inputTextView.textColor = UIColor.black
         inputTextView.isEditable = true
-        inputTextView.font = UIFont.systemFont(ofSize: 15)
+        inputTextView.font = UIFont.systemFont(ofSize: 18)
         inputContainerView.addSubview(inputTextView)
 
         placeLabel = UILabel()
         placeLabel.text = "开始写私信"
         placeLabel.textColor = UIColor.black
-        placeLabel.font = UIFont.systemFont(ofSize: 15)
+        placeLabel.font = UIFont.systemFont(ofSize: 18)
         placeLabel.textAlignment = NSTextAlignment.left
         inputContainerView.addSubview(placeLabel)
         
@@ -106,7 +107,7 @@ class MTTChatMessageToolBar: MTTView
         
         placeLabel.frame = CGRect(x: 13, y: 0, width: 180, height: 40)
         
-        inputTextView.frame = CGRect(x: 10, y: 5, width: inputContainerView.frame.size.width - 20, height: 30)
+        inputTextView.frame = CGRect(x: 10, y: 0, width: inputContainerView.frame.size.width - 20, height: 40)
     }
     
     private func setupEvent() -> Void
@@ -137,51 +138,6 @@ class MTTChatMessageToolBar: MTTView
             .bind(to: sendButton.rx.isHidden)
             .disposed(by: disposeBag)
         
-        inputTextViewSequence
-            .subscribe(onNext:{[unowned self] element in
-                print(element)
-                
-                if element
-                {
-                    self.inputContainerView.width = kScreenWidth - 44 - 44
-                    self.inputTextView.width = self.inputContainerView.width - 20
-                    
-                    let maxHeight:CGFloat = 500
-                    
-                    let frame = self.inputTextView.frame
-                    
-                    let constraintSize = CGSize(width: frame.size.width, height: CGFloat(MAXFLOAT))
-                    
-                    let size = self.inputTextView.sizeThatFits(constraintSize)
-                    
-                    if size.height >= maxHeight
-                    {
-                        self.frame = CGRect(x: 0, y: kScreenHeight - maxHeight - 10 - 44, width: kScreenWidth, height: maxHeight + 10)
-                        
-                        self.inputTextView.height = maxHeight
-                        
-                    } else
-                    {
-                        if size.height < 40
-                        {
-                            return
-                        }
-                        
-                        print("size.height:\(size.height)")
-                        
-                        self.frame = CGRect(x: 0, y: kScreenHeight - size.height - 10 - 44, width: kScreenWidth, height: size.height + 10)
-                        self.inputTextView.frame = CGRect(x: 10, y: 5, width: self.inputContainerView.width - 20, height: size.height)
-                    }
-                    
-                } else
-                {
-                    self.inputContainerView.width = kScreenWidth - 44 - 78
-                    self.inputTextView.width = self.inputContainerView.width - 20
-                    self.inputContainerView.height = 40
-                    self.inputTextView.height = 30
-                }
-                
-            }).disposed(by: disposeBag)
         
     }
     
@@ -191,3 +147,47 @@ class MTTChatMessageToolBar: MTTView
     }
 
 }
+
+extension MTTChatMessageToolBar:UITextViewDelegate
+{
+    func textViewDidChange(_ textView: UITextView)
+    {
+        
+        let maxHeight:CGFloat = 300
+        
+        let frame = textView.frame
+        
+        let constraintSize = CGSize(width: frame.size.width, height: CGFloat(MAXFLOAT))
+        
+        let size = textView.sizeThatFits(constraintSize)
+        
+        if size.height >= maxHeight
+        {
+            self.frame = CGRect(x: 0, y: kScreenHeight - maxHeight - 10 - 44, width: kScreenWidth, height: maxHeight + 10)
+            
+            self.inputContainerView.frame = CGRect(x: 44, y: 5, width: kScreenWidth - 44 - 44, height: maxHeight - 5)
+            self.inputTextView.frame = CGRect(x: 10, y: 0, width: self.inputContainerView.width - 20, height: self.inputContainerView.height)
+            
+        } else
+        {
+            if size.height < 40
+            {
+                self.inputContainerView.width = kScreenWidth - 44 - 44
+                self.inputTextView.width = self.inputContainerView.width - 20
+                self.inputContainerView.height = 40
+                self.inputTextView.height = 40
+                return
+            }
+            
+            print("size.height:\(size.height)")
+            
+            self.frame = CGRect(x: 0, y: kScreenHeight - size.height - 10 - 44, width: kScreenWidth, height: size.height + 10)
+            self.inputContainerView.frame = CGRect(x: 44, y: 5, width: kScreenWidth - 44 - 44, height: size.height - 5)
+            self.inputTextView.frame = CGRect(x: 10, y: 0, width: self.inputContainerView.width - 20, height: self.inputContainerView.height)
+        }
+        
+    }
+    
+    
+}
+

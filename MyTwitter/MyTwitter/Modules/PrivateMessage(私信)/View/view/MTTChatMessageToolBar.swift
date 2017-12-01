@@ -189,5 +189,27 @@ extension MTTChatMessageToolBar:UITextViewDelegate
     }
     
     
+    func changeFrame(height:CGFloat) -> Void
+    {
+        var origianlFrame = self.frame
+        var textViewContainerViewFrame = self.inputContainerView.frame
+        var textViewFrame = self.inputTextView.frame
+        
+        origianlFrame.size.height = height + 10
+        origianlFrame.origin.y = kScreenHeight - height - 20 - 44;
+        
+        textViewContainerViewFrame.size.width = origianlFrame.size.width - 44 - 44
+        textViewContainerViewFrame.size.height = origianlFrame.size.height - 10
+        
+        textViewFrame.size.width = textViewContainerViewFrame.size.width - 10
+        textViewFrame.size.height = textViewContainerViewFrame.size.height
+        UIView.animate(withDuration: 0.3) {
+            self.frame = origianlFrame
+            self.inputContainerView.frame = textViewContainerViewFrame
+            self.inputTextView.frame = textViewFrame
+        }
+        
+    }
+    
 }
 

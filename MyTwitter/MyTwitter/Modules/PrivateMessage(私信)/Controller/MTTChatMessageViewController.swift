@@ -30,12 +30,12 @@ class MTTChatMessageViewController: MTTViewController {
     
     private func layoutSubview() -> Void
     {
-        chatMessageToolbar.snp.makeConstraints { (make) in
-            make.left.right.equalTo(0)
-            make.height.equalTo(50)
-            make.bottom.equalTo(self.view.snp.bottom).offset(-54)
-        }
+        chatMessageToolbar.frame = CGRect(x: 0, y: kScreenHeight - 50 - 44, width: kScreenWidth, height: 50)
     }
 
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
 }

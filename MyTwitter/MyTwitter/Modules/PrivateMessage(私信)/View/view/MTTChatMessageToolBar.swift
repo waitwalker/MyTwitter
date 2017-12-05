@@ -71,7 +71,7 @@ class MTTChatMessageToolBar: UIView
         // 输入框
         inputTextView = UITextView()
         inputTextView.delegate = self
-        inputTextView.backgroundColor = UIColor.green
+        inputTextView.backgroundColor = kMainChatBackgroundGrayColor()
         inputTextView.layer.cornerRadius = 10
         inputTextView.clipsToBounds = true
         inputTextView.textColor = UIColor.black

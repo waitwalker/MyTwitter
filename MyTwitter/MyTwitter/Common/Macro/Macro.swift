@@ -47,6 +47,12 @@ func kMainGrayColor() -> UIColor
     return UIColor.init(red: (102) / 255.0, green: (102) / 255.0, blue: (153) / 255.0, alpha: 1.0)
 }
 
+// MARK: - 主灰色
+func kMainChatBackgroundGrayColor() -> UIColor
+{
+    return UIColor.init(red: (231) / 255.0, green: (236) / 255.0, blue: (239) / 255.0, alpha: 1.0)
+}
+
 // MARK: - 主红色
 func kMainRedColor() -> UIColor
 {

@@ -15,7 +15,6 @@ class MTTView: UIView
     {
         super.init(frame: frame)
         self.setupSubview()
-        self.layoutSubview()
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class MTTChatMessageToolBar: MTTView
+class MTTChatMessageToolBar: UIView
 {
     var disposeBag = DisposeBag()
     
@@ -19,7 +19,6 @@ class MTTChatMessageToolBar: MTTView
     var lineView:UIView!
     
     var addButton:UIButton!
-    var inputContainerView:UIView!
     var inputTextView:UITextView!
     var placeLabel:UILabel!
     var pictureButton:UIButton!
@@ -28,49 +27,66 @@ class MTTChatMessageToolBar: MTTView
     
     var keyboardHeight:CGFloat?
     var original_y:CGFloat?
+    var textInputMaxHeight:CGFloat?
+    var textInputHeight:CGFloat?
     
+    
+    
+    var maxLines:NSInteger?
+    {
+        didSet{
+            textInputMaxHeight = ceil((self.inputTextView.font?.lineHeight)! * CGFloat(maxLines! + 1) + self.inputTextView.textContainerInset.top + self.inputTextView.textContainerInset.bottom)
+        }
+    }
     
     
     
     override init(frame: CGRect)
     {
         super.init(frame: frame)
-        self.original_y = self.y
+        setupSubview()
+        layoutSubview()
         setupEvent()
         setupNotification()
+        self.original_y = frame.origin.y
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
     }
     
     
-    override func setupSubview()
+    func setupSubview()
     {
+        // lineView
+        lineView = UIView()
+        lineView.backgroundColor = kMainLightGrayColor()
+        self.addSubview(lineView)
+        
         // 添加按钮
         addButton = UIButton()
         addButton.setImage(UIImage.imageNamed(name: "twitter_add_normal"), for: UIControlState.normal)
         self.addSubview(addButton)
         
-        // 输入框容器
-        inputContainerView = UIView()
-        inputContainerView.backgroundColor = kMainLightGrayColor()
-        inputContainerView.layer.cornerRadius = 10
-        inputContainerView.clipsToBounds = true
-        self.addSubview(inputContainerView)
-        
         // 输入框
         inputTextView = UITextView()
         inputTextView.delegate = self
-        inputTextView.backgroundColor = UIColor.clear
+        inputTextView.backgroundColor = UIColor.green
+        inputTextView.layer.cornerRadius = 10
+        inputTextView.clipsToBounds = true
         inputTextView.textColor = UIColor.black
         inputTextView.isEditable = true
         inputTextView.font = UIFont.systemFont(ofSize: 18)
-        inputContainerView.addSubview(inputTextView)
+        inputTextView.scrollRangeToVisible(NSRange.init(location: 0, length: 0))
+        self.addSubview(inputTextView)
 
         // 站位label
         placeLabel = UILabel()
         placeLabel.text = "开始写私信"
-        placeLabel.textColor = UIColor.black
-        placeLabel.font = UIFont.systemFont(ofSize: 18)
+        placeLabel.textColor = kMainGrayColor()
+        placeLabel.font = UIFont.systemFont(ofSize: 15)
         placeLabel.textAlignment = NSTextAlignment.left
-        inputContainerView.addSubview(placeLabel)
+        self.addSubview(placeLabel)
         
         // 图片按钮
         pictureButton = UIButton()
@@ -90,21 +106,21 @@ class MTTChatMessageToolBar: MTTView
     }
     
     
-    override func layoutSubview()
+    func layoutSubview()
     {
+        lineView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 1)
+        
         addButton.frame = CGRect(x: 10, y: 13, width: 24, height: 24)
         
-        inputContainerView.frame = CGRect(x: 44, y: 5, width: kScreenWidth - 44 - 78, height: 40)
+        placeLabel.frame = CGRect(x: 48, y: 5, width: 180, height: 40)
         
-        placeLabel.frame = CGRect(x: 13, y: 0, width: 180, height: 40)
+        inputTextView.frame = CGRect(x: 44, y: 5, width: kScreenWidth - 44 - 78, height: 40)
         
-        inputTextView.frame = CGRect(x: 10, y: 0, width: inputContainerView.frame.size.width - 20, height: 40)
-        
-        pictureButton.frame = CGRect(x: inputContainerView.frame.maxX + 10, y: 13, width: 24, height: 24)
+        pictureButton.frame = CGRect(x: inputTextView.frame.maxX + 10, y: 13, width: 24, height: 24)
         
         expressionButton.frame = CGRect(x: pictureButton.frame.maxX + 10, y: 13, width: 24, height: 24)
         
-        sendButton.frame = CGRect(x: kScreenWidth - 24 - 20, y: 13, width: 24, height: 24)
+        sendButton.frame = CGRect(x: kScreenWidth - 24 - 10, y: 13, width: 24, height: 24)
         
     }
     
@@ -145,12 +161,12 @@ class MTTChatMessageToolBar: MTTView
     {
         let inputTextViewSequence = (inputTextView.rx.text)
             .orEmpty
-            .map{ $0.characters.count > 0}
+            .map{ $0.count > 0}
             .share(replay: 1)
         
         let inputTextViewSequenceNegate = (inputTextView.rx.text)
             .orEmpty
-            .map{ $0.characters.count <= 0}
+            .map{ $0.count <= 0}
             .share(replay: 1)
         
         inputTextViewSequence
@@ -171,7 +187,6 @@ class MTTChatMessageToolBar: MTTView
         
     }
     
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -183,15 +198,52 @@ extension MTTChatMessageToolBar:UITextViewDelegate
     func textViewDidChange(_ textView: UITextView)
     {
         
+        if textView.text.count > 0 {
+            self.inputTextView.width = kScreenWidth - 44 - 44
+        } else
+        {
+            self.inputTextView.width = kScreenWidth - 44 - 78
+        }
         
+        self.textInputHeight = ceil(self.inputTextView.sizeThatFits(CGSize(width: self.inputTextView.width, height: CGFloat(MAXFLOAT))).height)
         
+        self.inputTextView.isScrollEnabled = (textInputHeight! > textInputMaxHeight!) && textInputMaxHeight! > CGFloat(0)
+        
+        if self.inputTextView.isScrollEnabled
+        {
+            UIView.beginAnimations(nil, context: nil)
+            UIView.setAnimationBeginsFromCurrentState(true)
+            UIView.setAnimationDuration(0.3)
+            UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: 7)!)
+            
+            self.inputTextView.height = 5 + textInputMaxHeight!
+            self.y = kScreenHeight - keyboardHeight! - self.inputTextView.height - 10
+            self.height = self.inputTextView.height + 10
+            self.sendButton.y = self.height - 24 - 13
+            self.addButton.y = self.sendButton.y
+            UIView.commitAnimations()
+        } else
+        {
+            UIView.beginAnimations(nil, context: nil)
+            UIView.setAnimationBeginsFromCurrentState(true)
+            UIView.setAnimationDuration(0.3)
+            UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: 7)!)
+            self.inputTextView.height = textInputHeight!
+            
+            self.y = kScreenHeight - keyboardHeight! - self.inputTextView.height - 10
+            self.height = self.inputTextView.height + 10
+            self.sendButton.y = self.height - 24 - 13
+            self.addButton.y = self.sendButton.y
+            UIView.commitAnimations()
+        }
+        lineView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 1)
     }
     
     
     func changeFrame(height:CGFloat) -> Void
     {
         var origianlFrame = self.frame
-        var textViewContainerViewFrame = self.inputContainerView.frame
+        var textViewContainerViewFrame = self.inputTextView.frame
         var textViewFrame = self.inputTextView.frame
         
         origianlFrame.size.height = height + 10
@@ -204,7 +256,7 @@ extension MTTChatMessageToolBar:UITextViewDelegate
         textViewFrame.size.height = textViewContainerViewFrame.size.height
         UIView.animate(withDuration: 0.3) {
             self.frame = origianlFrame
-            self.inputContainerView.frame = textViewContainerViewFrame
+            self.inputTextView.frame = textViewContainerViewFrame
             self.inputTextView.frame = textViewFrame
         }
         

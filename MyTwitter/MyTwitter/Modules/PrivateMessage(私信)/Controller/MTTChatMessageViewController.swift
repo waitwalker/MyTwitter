@@ -24,13 +24,14 @@ class MTTChatMessageViewController: MTTViewController {
     private func setupSubview() -> Void
     {
         chatMessageToolbar = MTTChatMessageToolBar()
-        chatMessageToolbar.backgroundColor = UIColor.orange
+        chatMessageToolbar.backgroundColor = UIColor.white
         self.view.addSubview(chatMessageToolbar)
     }
     
     private func layoutSubview() -> Void
     {
-        chatMessageToolbar.frame = CGRect(x: 0, y: kScreenHeight - 50 - 44, width: kScreenWidth, height: 50)
+        chatMessageToolbar.frame = CGRect(x: 0, y: kScreenHeight - 50 - 44 - 5, width: kScreenWidth, height: 50)
+        chatMessageToolbar.maxLines = 9
     }
 
     

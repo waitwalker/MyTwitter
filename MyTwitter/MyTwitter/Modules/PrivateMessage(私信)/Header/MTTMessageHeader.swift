@@ -23,3 +23,8 @@ enum MTTChatMessageType:Int
     case voice = 3        //语音
     case file  = 4        //文件
 }
+
+enum MTTChatMessageFromType {
+    case Me    //自己发的
+    case Other //别人发的
+}

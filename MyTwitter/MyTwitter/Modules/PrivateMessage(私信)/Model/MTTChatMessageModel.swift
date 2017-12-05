@@ -2,7 +2,7 @@
 //  MTTChatMessageModel.swift
 //  MyTwitter
 //
-//  Created by WangJunZi on 2017/11/27.
+//  Created by WangJunZi on 2017/12/5.
 //  Copyright © 2017年 waitWalker. All rights reserved.
 //
 
@@ -10,7 +10,6 @@ import UIKit
 
 class MTTChatMessageModel: NSObject
 {
-    var chatMessageType:MTTChatMessageType?
-    
+    var messageFrom:MTTChatMessageFromType!
     
 }

@@ -12,6 +12,8 @@ class MTTChatMessageViewController: MTTViewController {
 
     var chatMessageToolbar:MTTChatMessageToolBar!
     
+    var chatMessageView:MTTChatMessageView!
+    
     
     override func viewDidLoad()
     {
@@ -23,15 +25,21 @@ class MTTChatMessageViewController: MTTViewController {
     
     private func setupSubview() -> Void
     {
-        chatMessageToolbar = MTTChatMessageToolBar()
+        chatMessageView = MTTChatMessageView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight - 50))
+        chatMessageView.backgroundColor = UIColor.orange
+        self.view.addSubview(chatMessageView)
+        
+        chatMessageToolbar = MTTChatMessageToolBar(frame: CGRect(x: 0, y: kScreenHeight - 50 - 44 - 5, width: kScreenWidth, height: 50))
         chatMessageToolbar.backgroundColor = UIColor.white
+        
+        chatMessageToolbar.maxLines = 9
         self.view.addSubview(chatMessageToolbar)
+        
     }
     
     private func layoutSubview() -> Void
     {
-        chatMessageToolbar.frame = CGRect(x: 0, y: kScreenHeight - 50 - 44 - 5, width: kScreenWidth, height: 50)
-        chatMessageToolbar.maxLines = 9
+        
     }
 
     

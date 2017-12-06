@@ -11,6 +11,7 @@ import UIKit
 class MTTChatMessageCell: MTTTableViewCell {
 
     var avatarImageView:UIImageView!
+    var timeLabel:UILabel!
     
     
     var chatMessageModel:MTTChatMessageModel?
@@ -30,6 +31,12 @@ class MTTChatMessageCell: MTTTableViewCell {
     
     func setupSubview() -> Void
     {
+        timeLabel = UILabel()
+        timeLabel.font = UIFont.systemFont(ofSize: 12)
+        timeLabel.textColor = UIColor.black
+        timeLabel.textAlignment = NSTextAlignment.center
+        self.contentView.addSubview(timeLabel)
+        
         avatarImageView = UIImageView()
         avatarImageView.layer.cornerRadius = 25
         avatarImageView.clipsToBounds = true
@@ -40,6 +47,9 @@ class MTTChatMessageCell: MTTTableViewCell {
     
     func layoutSubview(model:MTTChatMessageModel) -> Void
     {
+        timeLabel.frame = CGRect(x: 10, y: 10, width: kScreenWidth - 20, height: 20)
+        timeLabel.text = getTimeString()
+        
         if model.messageFrom == MTTChatMessageFromType.My
         {
            self.layoutMyMessageSubview(model: model)
@@ -51,20 +61,23 @@ class MTTChatMessageCell: MTTTableViewCell {
     
     func layoutMyMessageSubview(model:MTTChatMessageModel) -> Void
     {
-        avatarImageView.snp.makeConstraints { (make) in
-            make.height.width.equalTo(50)
-            make.right.equalTo(-10)
-            make.bottom.equalTo(-10)
-        }
+        avatarImageView.frame = CGRect(x: 10, y: 30, width: 50, height: 50)
+        
     }
     
     func layoutOthersMessageSubview(model:MTTChatMessageModel) -> Void
     {
-        avatarImageView.snp.makeConstraints { (make) in
-            make.height.width.equalTo(50)
-            make.left.equalTo(10)
-            make.top.equalTo(10)
-        }
+        avatarImageView.frame = CGRect(x: kScreenWidth - 50 - 10, y: 30, width: 50, height: 50)
+        
+    }
+    
+    // MARK: - 获取当前时间string
+    func getTimeString() -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy年MM月dd天 HH:mm:ss"
+        let dateStr = dateFormatter.string(from: Date.init(timeIntervalSinceNow: 0))
+        return dateStr
     }
     
     

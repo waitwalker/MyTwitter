@@ -11,5 +11,7 @@ import UIKit
 class MTTChatMessageModel: NSObject
 {
     var messageFrom:MTTChatMessageFromType!
+    var cellHeight:CGFloat!
+    
     
 }

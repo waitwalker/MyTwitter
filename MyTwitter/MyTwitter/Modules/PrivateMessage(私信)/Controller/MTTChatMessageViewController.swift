@@ -20,7 +20,6 @@ class MTTChatMessageViewController: MTTViewController {
         super.viewDidLoad()
         setupSubview()
         layoutSubview()
-
     }
     
     private func setupSubview() -> Void
@@ -41,6 +40,8 @@ class MTTChatMessageViewController: MTTViewController {
     {
         
     }
+    
+    
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

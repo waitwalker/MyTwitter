@@ -25,6 +25,6 @@ enum MTTChatMessageType:Int
 }
 
 enum MTTChatMessageFromType {
-    case Me    //自己发的
-    case Other //别人发的
+    case My    //自己发的
+    case Others //别人发的
 }

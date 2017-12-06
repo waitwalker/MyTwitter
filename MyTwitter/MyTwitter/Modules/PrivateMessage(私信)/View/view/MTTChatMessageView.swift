@@ -10,15 +10,20 @@ import UIKit
 
 class MTTChatMessageView: MTTView {
 
+    var reusedChatMessageNoneCellId:String = "reusedChatMessageNoneCellId"
     var reusedChatMessageCellId:String = "reusedChatMessageCellId"
     
-    
     var chatMessageTableView:UITableView!
+    
+    var dataSource:[MTTChatMessageModel] = []
+    
     
     
     override init(frame: CGRect)
     {
         super.init(frame: frame)
+        
+        loadChatMessageData()
     }
     
     override func setupSubview()
@@ -27,15 +32,46 @@ class MTTChatMessageView: MTTView {
         chatMessageTableView.backgroundColor = kMainBlueColor()
         chatMessageTableView.delegate = self
         chatMessageTableView.dataSource = self
-        chatMessageTableView.register(UITableViewCell.self, forCellReuseIdentifier: reusedChatMessageCellId)
+        chatMessageTableView.register(UITableViewCell.self, forCellReuseIdentifier: reusedChatMessageNoneCellId)
+        chatMessageTableView.register(MTTChatMessageCell.self, forCellReuseIdentifier: reusedChatMessageCellId)
         self.addSubview(chatMessageTableView)
     }
     
     override func layoutSubview()
     {
         super.layoutSubview()
-        
         chatMessageTableView.frame = self.bounds
+    }
+    
+    func loadChatMessageData() -> Void
+    {
+        let chatMessageArr = [
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others],
+            
+            ]
+        
+        for dict in chatMessageArr {
+            let model = MTTChatMessageModel()
+            model.cellHeight = CGFloat(dict["cellHeight"] as! Int)
+            model.messageFrom = dict["messageFrom"] as! MTTChatMessageFromType
+            dataSource.append(model)
+        }
+        
+        self.chatMessageTableView.reloadData()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,18 +92,46 @@ UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 20
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        var cell = tableView.dequeueReusableCell(withIdentifier: reusedChatMessageCellId)
-        if cell == nil
+        if dataSource.count > 0
         {
-            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: reusedChatMessageCellId)
+            var cell = tableView.dequeueReusableCell(withIdentifier: reusedChatMessageCellId) as? MTTChatMessageCell
+            if cell == nil
+            {
+                cell = MTTChatMessageCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedChatMessageCellId)
+            }
+            cell?.chatMessageModel = dataSource[indexPath.item]
+            return cell!
+        } else
+        {
+            var cell = tableView.dequeueReusableCell(withIdentifier: reusedChatMessageNoneCellId)
+            if cell == nil
+            {
+                cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: reusedChatMessageNoneCellId)
+            }
+            cell?.textLabel?.text = "\(indexPath.item)"
+            return cell!
         }
-        cell?.textLabel?.text = "\(indexPath.item)"
-        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        if dataSource.count > 0
+        {
+            let model = dataSource[indexPath.item]
+            return model.cellHeight
+        } else
+        {
+            return 20
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("选中行数:\(indexPath.item)")
     }
     
 }

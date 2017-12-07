@@ -46,20 +46,20 @@ class MTTChatMessageView: MTTView {
     func loadChatMessageData() -> Void
     {
         let chatMessageArr = [
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?"],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天有事吗?"],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"刚才你说的什么,没有收到,明天可能有时间,明天在过去吧"],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?"],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?"],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?"],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?"],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?"],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?"],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?"],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?"],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?"],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?"],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?"],
             
             ]
         
@@ -67,6 +67,7 @@ class MTTChatMessageView: MTTView {
             let model = MTTChatMessageModel()
             model.cellHeight = CGFloat(dict["cellHeight"] as! Int)
             model.messageFrom = dict["messageFrom"] as! MTTChatMessageFromType
+            model.messageContent = dict["messageContent"] as! String
             dataSource.append(model)
         }
         

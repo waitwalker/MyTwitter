@@ -12,6 +12,8 @@ class MTTChatMessageCell: MTTTableViewCell {
 
     var avatarImageView:UIImageView!
     var timeLabel:UILabel!
+    var contentLabel:UILabel!
+    
     
     
     var chatMessageModel:MTTChatMessageModel?
@@ -43,13 +45,21 @@ class MTTChatMessageCell: MTTTableViewCell {
         avatarImageView.backgroundColor = kMainRandomColor()
         avatarImageView.isUserInteractionEnabled = true
         self.contentView.addSubview(avatarImageView)
+        
+        contentLabel = UILabel()
+        contentLabel.font = UIFont.systemFont(ofSize: 12)
+        contentLabel.textColor = kMainRandomColor()
+        contentLabel.numberOfLines = 0
+        contentLabel.sizeToFit()
+        contentLabel.backgroundColor = kMainGreenColor()
+        self.contentView.addSubview(contentLabel)
     }
     
     func layoutSubview(model:MTTChatMessageModel) -> Void
     {
         timeLabel.frame = CGRect(x: 10, y: 10, width: kScreenWidth - 20, height: 20)
         timeLabel.text = getTimeString()
-        
+        contentLabel.text = model.messageContent
         if model.messageFrom == MTTChatMessageFromType.My
         {
            self.layoutMyMessageSubview(model: model)
@@ -59,17 +69,24 @@ class MTTChatMessageCell: MTTTableViewCell {
         }
     }
     
-    func layoutMyMessageSubview(model:MTTChatMessageModel) -> Void
-    {
-        avatarImageView.frame = CGRect(x: 10, y: 30, width: 50, height: 50)
-        
-    }
-    
+    // MARK: - 布局别人发的消息
     func layoutOthersMessageSubview(model:MTTChatMessageModel) -> Void
     {
-        avatarImageView.frame = CGRect(x: kScreenWidth - 50 - 10, y: 30, width: 50, height: 50)
+        avatarImageView.frame = CGRect(x: 10, y: 30, width: 50, height: 50)
+        contentLabel.frame = CGRect(x: 50 + 10 + 10, y: 30, width: 200, height: 80)
         
+        contentLabel.textAlignment = NSTextAlignment.left
     }
+    
+    // MARK: - 布局自己发的消息
+    func layoutMyMessageSubview(model:MTTChatMessageModel) -> Void
+    {
+        avatarImageView.frame = CGRect(x: kScreenWidth - 50 - 10, y: 30, width: 50, height: 50)
+        contentLabel.frame = CGRect(x: kScreenWidth - 200 - 50 - 10 - 10, y: 30, width: 200, height: 80)
+        
+        contentLabel.textAlignment = NSTextAlignment.right
+    }
+    
     
     // MARK: - 获取当前时间string
     func getTimeString() -> String

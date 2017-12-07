@@ -10,9 +10,11 @@ import UIKit
 
 class MTTChatMessageCell: MTTTableViewCell {
 
+    var contentBackgroundImageView:UIImageView!
+    
     var avatarImageView:UIImageView!
     var timeLabel:UILabel!
-    var contentLabel:UILabel!
+    var contentTextLabel:UILabel!
     
     
     
@@ -28,6 +30,7 @@ class MTTChatMessageCell: MTTTableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = UITableViewCellSelectionStyle.none
         setupSubview()
     }
     
@@ -46,20 +49,24 @@ class MTTChatMessageCell: MTTTableViewCell {
         avatarImageView.isUserInteractionEnabled = true
         self.contentView.addSubview(avatarImageView)
         
-        contentLabel = UILabel()
-        contentLabel.font = UIFont.systemFont(ofSize: 12)
-        contentLabel.textColor = kMainRandomColor()
-        contentLabel.numberOfLines = 0
-        contentLabel.sizeToFit()
-        contentLabel.backgroundColor = kMainGreenColor()
-        self.contentView.addSubview(contentLabel)
+        contentBackgroundImageView = UIImageView()
+        contentBackgroundImageView.isUserInteractionEnabled = true
+        self.contentView.addSubview(contentBackgroundImageView)
+        
+        contentTextLabel = UILabel()
+        contentTextLabel.font = UIFont.systemFont(ofSize: 18)
+        contentTextLabel.textColor = kMainRandomColor()
+        contentTextLabel.numberOfLines = 0
+        contentTextLabel.sizeToFit()
+        contentTextLabel.backgroundColor = kMainGreenColor()
+        contentBackgroundImageView.addSubview(contentTextLabel)
     }
     
     func layoutSubview(model:MTTChatMessageModel) -> Void
     {
         timeLabel.frame = CGRect(x: 10, y: 10, width: kScreenWidth - 20, height: 20)
         timeLabel.text = getTimeString()
-        contentLabel.text = model.messageContent
+        contentTextLabel.text = model.messageContent
         if model.messageFrom == MTTChatMessageFromType.My
         {
            self.layoutMyMessageSubview(model: model)
@@ -73,18 +80,24 @@ class MTTChatMessageCell: MTTTableViewCell {
     func layoutOthersMessageSubview(model:MTTChatMessageModel) -> Void
     {
         avatarImageView.frame = CGRect(x: 10, y: 30, width: 50, height: 50)
-        contentLabel.frame = CGRect(x: 50 + 10 + 10, y: 30, width: 200, height: 80)
-        
-        contentLabel.textAlignment = NSTextAlignment.left
+        contentBackgroundImageView.frame = CGRect(x: 50 + 10 + 10, y: 30, width: 200, height: 80)
+        var contentBackImage = UIImage.imageNamed(name: "twitter_chat_message_others")
+        contentBackImage = contentBackImage.resizableImage(withCapInsets: UIEdgeInsetsMake(35, 10, 10, 22), resizingMode: UIImageResizingMode.tile)
+        contentBackgroundImageView.image = contentBackImage
+        contentTextLabel.frame = CGRect(x: 15, y: 10, width: 200 - 15, height: 60)
+        contentTextLabel.textAlignment = NSTextAlignment.left
     }
     
     // MARK: - 布局自己发的消息
     func layoutMyMessageSubview(model:MTTChatMessageModel) -> Void
     {
         avatarImageView.frame = CGRect(x: kScreenWidth - 50 - 10, y: 30, width: 50, height: 50)
-        contentLabel.frame = CGRect(x: kScreenWidth - 200 - 50 - 10 - 10, y: 30, width: 200, height: 80)
-        
-        contentLabel.textAlignment = NSTextAlignment.right
+        contentBackgroundImageView.frame = CGRect(x: kScreenWidth - 200 - 50 - 10 - 10, y: 30, width: 200, height: 80)
+        var contentBackImage = UIImage.imageNamed(name: "twitter_chat_message_my")
+        contentBackImage = contentBackImage.resizableImage(withCapInsets: UIEdgeInsetsMake(35, 22, 10, 10), resizingMode: UIImageResizingMode.stretch)
+        contentBackgroundImageView.image = contentBackImage
+        contentTextLabel.frame = CGRect(x: 0, y: 10, width: 200 - 15, height: 60)
+        contentTextLabel.textAlignment = NSTextAlignment.right
     }
     
     

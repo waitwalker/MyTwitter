@@ -10,9 +10,22 @@ import UIKit
 
 class MTTChatMessageModel: NSObject
 {
+    var messageType:MTTChatMessageType!
+    
     var messageFrom:MTTChatMessageFromType!
     var cellHeight:CGFloat!
     var messageContent:String!
+    var messagePicture:String!
+    var messageVoice:String!
+    
+    var contentTextHeight:CGFloat!
+    var contentPictureHeight:CGFloat!
+    var contentVoiceHeight:CGFloat!
+    var contentBackImageHeight:CGFloat!
+    
+    
+    
+    
     
     
 }

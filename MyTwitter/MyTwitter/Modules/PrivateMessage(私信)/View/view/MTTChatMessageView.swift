@@ -34,6 +34,7 @@ class MTTChatMessageView: MTTView {
         chatMessageTableView.dataSource = self
         chatMessageTableView.register(UITableViewCell.self, forCellReuseIdentifier: reusedChatMessageNoneCellId)
         chatMessageTableView.register(MTTChatMessageCell.self, forCellReuseIdentifier: reusedChatMessageCellId)
+        chatMessageTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.addSubview(chatMessageTableView)
     }
     
@@ -46,20 +47,20 @@ class MTTChatMessageView: MTTView {
     func loadChatMessageData() -> Void
     {
         let chatMessageArr = [
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?"],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天有事吗?"],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"刚才你说的什么,没有收到,明天可能有时间,明天在过去吧"],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?"],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?"],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?"],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?"],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?"],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?"],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?"],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?"],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?"],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?"],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?"],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.text],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天有事吗?","messageType":MTTChatMessageType.picture],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"刚才你说的什么,没有收到,明天可能有时间,明天在过去吧","messageType":MTTChatMessageType.text],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.voice],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.text],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.picture],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.text],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.text],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.voice],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.voice],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.text],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.picture],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.text],
+            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.voice],
             
             ]
         
@@ -68,6 +69,8 @@ class MTTChatMessageView: MTTView {
             model.cellHeight = CGFloat(dict["cellHeight"] as! Int)
             model.messageFrom = dict["messageFrom"] as! MTTChatMessageFromType
             model.messageContent = dict["messageContent"] as! String
+            model.contentTextHeight = model.messageContent.heightWithFont(fontSize: 15, fixedWidth: 200)
+            print("文本高度:\(model.contentTextHeight)")
             dataSource.append(model)
         }
         

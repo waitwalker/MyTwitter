@@ -1,0 +1,13 @@
+{
+    "result": "200",
+    "msg":"请求成功",
+    "data": [
+             {
+             "avatarImage":"13",
+             "account":"Twitter Support",
+             "nickName":"@TwitterSupport",
+             "time":"2017/10/16",
+             "content":"We love hearing from our users on making Twitter better. You can provide feedback for product features at https://support.twitter.com/forms under Features & Settings.",
+             },
+             ]
+}

@@ -226,5 +226,26 @@ extension String
         return rect.size.height
     }
     
+    /**
+     Get the height with font.
+     
+     - parameter font:       The font.
+     - parameter fixedWidth: The fixed width.
+     
+     - returns: The height.
+     */
+    func heightWithFont(fontSize : CGFloat, fixedWidth : CGFloat) -> CGFloat
+    {
+        let attributeString = NSMutableAttributedString.init(string: self)
+        let style = NSMutableParagraphStyle.init()
+        style.lineSpacing = 5
+        let font = UIFont.systemFont(ofSize: fontSize)
+        attributeString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, self.characters.count))
+        attributeString.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, self.characters.count))
+        let options = UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue)
+        let rect = attributeString.boundingRect(with: CGSize.init(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(options)), context: nil)
+        return rect.size.height
+    }
+    
 }
 

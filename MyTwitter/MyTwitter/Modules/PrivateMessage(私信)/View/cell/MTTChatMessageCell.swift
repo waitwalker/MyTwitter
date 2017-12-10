@@ -16,6 +16,11 @@ class MTTChatMessageCell: MTTTableViewCell {
     var timeLabel:UILabel!
     var contentTextLabel:UILabel!
     
+    var contentImageView:UIImageView!
+    
+    var contentVoiceImageView:UIImageView!
+    
+    
     
     
     var chatMessageModel:MTTChatMessageModel?
@@ -60,10 +65,21 @@ class MTTChatMessageCell: MTTTableViewCell {
         contentTextLabel.sizeToFit()
         contentTextLabel.backgroundColor = kMainGreenColor()
         contentBackgroundImageView.addSubview(contentTextLabel)
+        
+        contentImageView = UIImageView()
+        contentImageView.backgroundColor = kMainRandomColor()
+        contentImageView.isUserInteractionEnabled = true
+        contentBackgroundImageView.addSubview(contentImageView)
+        
+        contentVoiceImageView = UIImageView()
+        contentVoiceImageView.backgroundColor = kMainRandomColor()
+        contentVoiceImageView.isUserInteractionEnabled = true
+        contentBackgroundImageView.addSubview(contentVoiceImageView)
     }
     
     func layoutSubview(model:MTTChatMessageModel) -> Void
     {
+        // 聊天时间
         timeLabel.frame = CGRect(x: 10, y: 10, width: kScreenWidth - 20, height: 20)
         timeLabel.text = getTimeString()
         contentTextLabel.text = model.messageContent
@@ -79,12 +95,42 @@ class MTTChatMessageCell: MTTTableViewCell {
     // MARK: - 布局别人发的消息
     func layoutOthersMessageSubview(model:MTTChatMessageModel) -> Void
     {
+        // 头像
         avatarImageView.frame = CGRect(x: 10, y: 30, width: 50, height: 50)
-        contentBackgroundImageView.frame = CGRect(x: 50 + 10 + 10, y: 30, width: 200, height: 80)
+        
+        switch model.messageType
+        {
+        case .text:
+            
+            // 聊天背景气泡
+            contentBackgroundImageView.frame = CGRect(x: 50 + 10 + 10, y: 30, width: 200, height: model.contentTextHeight + 20)
+            
+            // 聊天文本
+            contentTextLabel.frame = CGRect(x: 15, y: 10, width: 200 - 15, height: 60)
+            contentImageView.isHidden = true
+            contentVoiceImageView.isHidden = true
+            
+            break
+        case .picture:
+            
+            
+            break
+        case .voice:
+            break
+        case .expression:
+            break
+        case .file:
+            break
+            
+        default:
+            break
+            
+        }
+        
         var contentBackImage = UIImage.imageNamed(name: "twitter_chat_message_others")
         contentBackImage = contentBackImage.resizableImage(withCapInsets: UIEdgeInsetsMake(35, 10, 10, 22), resizingMode: UIImageResizingMode.tile)
         contentBackgroundImageView.image = contentBackImage
-        contentTextLabel.frame = CGRect(x: 15, y: 10, width: 200 - 15, height: 60)
+        
         contentTextLabel.textAlignment = NSTextAlignment.left
     }
     

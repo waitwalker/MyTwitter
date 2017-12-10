@@ -67,10 +67,10 @@ class MTTChatMessageView: MTTView {
         for dict in chatMessageArr
         {
             let model = MTTChatMessageModel()
-            model.cellHeight = CGFloat(dict["cellHeight"] as! Int)
             model.messageFrom = dict["messageFrom"] as! MTTChatMessageFromType
             model.messageContent = dict["messageContent"] as! String
             model.contentTextHeight = model.messageContent.heightWithFont(fontSize: 15, fixedWidth: 200)
+            model.messageType = dict["messageType"] as! MTTChatMessageType
             print("文本高度:\(model.contentTextHeight)")
             
             if model.contentTextHeight < 30
@@ -81,14 +81,18 @@ class MTTChatMessageView: MTTView {
             switch model.messageType
             {
             case .text:
-                model.cellHeight = 10 + 20 + 10 + 10 + model.contentTextHeight + 10
+                model.contentBackImageHeight = 10 + model.contentTextHeight + 10
+                model.cellHeight = 10 + 20 + 10 + model.contentBackImageHeight
                 break
             case .picture:
-                
-                model.cellHeight = 10 + 20 + 10 + 10 + 250 + 10
+                model.contentPictureHeight = 250
+                model.contentBackImageHeight = 10 + model.contentPictureHeight + 10
+                model.cellHeight = 10 + 20 + 10 + model.contentPictureHeight
                 break
             case .voice:
-                model.cellHeight = 10 + 20 + 10 + 10 + 40 + 10
+                model.contentVoiceHeight = 40
+                model.contentBackImageHeight = 10 + model.contentVoiceHeight + 10
+                model.cellHeight = 10 + 20 + 10 + model.contentBackImageHeight
                 break
             case .expression:
                 break

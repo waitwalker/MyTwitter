@@ -103,19 +103,38 @@ class MTTChatMessageCell: MTTTableViewCell {
         case .text:
             
             // 聊天背景气泡
-            contentBackgroundImageView.frame = CGRect(x: 50 + 10 + 10, y: 30, width: 200, height: model.contentTextHeight + 20)
+            contentBackgroundImageView.frame = CGRect(x: 50 + 10 + 10, y: 30, width: 200, height: model.contentBackImageHeight)
             
             // 聊天文本
             contentTextLabel.frame = CGRect(x: 15, y: 10, width: 200 - 15, height: 60)
+            
+            contentTextLabel.isHidden = false
             contentImageView.isHidden = true
             contentVoiceImageView.isHidden = true
             
             break
         case .picture:
+            // 聊天背景气泡
+            contentBackgroundImageView.frame = CGRect(x: 50 + 10 + 10, y: 30, width: 200, height: model.contentBackImageHeight)
             
+            // 聊天图片
+            contentImageView.frame = CGRect(x: 15, y: 10, width: 200 - 15, height: model.contentPictureHeight)
+            
+            contentTextLabel.isHidden = true
+            contentImageView.isHidden = false
+            contentVoiceImageView.isHidden = true
             
             break
         case .voice:
+            // 聊天背景气泡
+            contentBackgroundImageView.frame = CGRect(x: 50 + 10 + 10, y: 30, width: 200, height: model.contentTextHeight + 20)
+            
+            // 聊天语音
+            contentVoiceImageView.frame = CGRect(x: 15, y: 10, width: 200 - 15, height: model.contentVoiceHeight)
+            
+            contentTextLabel.isHidden = true
+            contentImageView.isHidden = true
+            contentVoiceImageView.isHidden = false
             break
         case .expression:
             break
@@ -138,11 +157,57 @@ class MTTChatMessageCell: MTTTableViewCell {
     func layoutMyMessageSubview(model:MTTChatMessageModel) -> Void
     {
         avatarImageView.frame = CGRect(x: kScreenWidth - 50 - 10, y: 30, width: 50, height: 50)
-        contentBackgroundImageView.frame = CGRect(x: kScreenWidth - 200 - 50 - 10 - 10, y: 30, width: 200, height: 80)
+        
+        switch model.messageType
+        {
+        case .text:
+            
+            // 聊天背景气泡
+            contentBackgroundImageView.frame = CGRect(x: kScreenWidth - 200 - 50 - 10 - 10 + 10 + 10, y: 30, width: 200, height: model.contentBackImageHeight)
+            
+            // 聊天文本
+            contentTextLabel.frame = CGRect(x: 0, y: 10, width: 200 - 15, height: 60)
+            
+            contentTextLabel.isHidden = false
+            contentImageView.isHidden = true
+            contentVoiceImageView.isHidden = true
+            
+            break
+        case .picture:
+            // 聊天背景气泡
+            contentBackgroundImageView.frame = CGRect(x: kScreenWidth - 200 - 50 - 10 - 10 + 10 + 10, y: 30, width: 200, height: model.contentBackImageHeight)
+            
+            // 聊天图片
+            contentImageView.frame = CGRect(x: 0, y: 10, width: 200 - 15, height: model.contentPictureHeight)
+            
+            contentTextLabel.isHidden = true
+            contentImageView.isHidden = false
+            contentVoiceImageView.isHidden = true
+            
+            break
+        case .voice:
+            // 聊天背景气泡
+            contentBackgroundImageView.frame = CGRect(x: kScreenWidth - 200 - 50 - 10 - 10 + 10 + 10, y: 30, width: 200, height: model.contentTextHeight + 20)
+            
+            // 聊天语音
+            contentVoiceImageView.frame = CGRect(x: 0, y: 10, width: 200 - 15, height: model.contentVoiceHeight)
+            
+            contentTextLabel.isHidden = true
+            contentImageView.isHidden = true
+            contentVoiceImageView.isHidden = false
+            break
+        case .expression:
+            break
+        case .file:
+            break
+            
+        default:
+            break
+            
+        }
         var contentBackImage = UIImage.imageNamed(name: "twitter_chat_message_my")
         contentBackImage = contentBackImage.resizableImage(withCapInsets: UIEdgeInsetsMake(35, 22, 10, 10), resizingMode: UIImageResizingMode.stretch)
         contentBackgroundImageView.image = contentBackImage
-        contentTextLabel.frame = CGRect(x: 0, y: 10, width: 200 - 15, height: 60)
         contentTextLabel.textAlignment = NSTextAlignment.right
     }
     

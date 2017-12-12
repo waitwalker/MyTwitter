@@ -46,6 +46,7 @@ class MTTChatMessageViewController: MTTViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+        self.chatMessageToolbar.inputTextView.resignFirstResponder()
     }
 
 }

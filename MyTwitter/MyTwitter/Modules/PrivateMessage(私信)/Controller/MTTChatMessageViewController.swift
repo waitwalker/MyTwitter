@@ -25,7 +25,7 @@ class MTTChatMessageViewController: MTTViewController {
     private func setupSubview() -> Void
     {
         chatMessageView = MTTChatMessageView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight - 50))
-        chatMessageView.backgroundColor = UIColor.orange
+        chatMessageView.delegate = self
         self.view.addSubview(chatMessageView)
         
         chatMessageToolbar = MTTChatMessageToolBar(frame: CGRect(x: 0, y: kScreenHeight - 50 - 44 - 5, width: kScreenWidth, height: 50))
@@ -46,7 +46,18 @@ class MTTChatMessageViewController: MTTViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-        self.chatMessageToolbar.inputTextView.resignFirstResponder()
     }
 
 }
+
+extension MTTChatMessageViewController:
+MTTChatMessageViewDelegate
+{
+    func chatMessageViewDidScroll()
+    {
+        self.chatMessageToolbar.inputTextView.resignFirstResponder()
+    }
+    
+    
+}
+

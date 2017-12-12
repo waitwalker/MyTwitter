@@ -14,3 +14,8 @@ protocol MTTMessagetButtonDelegate
     func tappedMailBoxButton(mailBoxButton:UIButton, cell:MTTMessageButtonCell) -> Void
     func tappedRequestButton(requestButton:UIButton, cell:MTTMessageButtonCell) -> Void
 }
+
+protocol MTTChatMessageViewDelegate
+{
+    func chatMessageViewDidScroll() -> Void
+}

@@ -17,6 +17,7 @@ class MTTChatMessageView: MTTView {
     
     var dataSource:[MTTChatMessageModel] = []
     
+    var delegate:MTTChatMessageViewDelegate?
     
     
     override init(frame: CGRect)
@@ -171,6 +172,28 @@ UITableViewDataSource
     {
         print("选中行数:\(indexPath.item)")
         
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    {
+        let contentOffset = scrollView.contentOffset
+        
+        if contentOffset.y < -64
+        {
+            
+        }
+        print(contentOffset)
+        
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
+    {
+        
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView)
+    {
+        self.delegate?.chatMessageViewDidScroll()
     }
     
 }

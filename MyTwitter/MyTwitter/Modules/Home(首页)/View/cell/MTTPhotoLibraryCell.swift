@@ -18,11 +18,6 @@ class MTTPhotoLibraryCell: MTTCollectionViewCell
     var photoSelectedEditImageView:UIImageView?
     
     
-    
-    
-    
-    
-    
     override init(frame: CGRect) 
     {
         super.init(frame: frame)
@@ -104,4 +99,41 @@ class MTTPhotoLibraryCell: MTTCollectionViewCell
     }
     
     
+}
+
+class MTTPhotosCell: MTTCollectionViewCell
+{
+    var photoBackgroundImageView:UIImageView!
+    
+    override init(frame: CGRect)
+    {
+        super.init(frame: frame)
+        setupSubview()
+        layoutSubview()
+    }
+    
+    
+    private func setupSubview() -> Void
+    {
+        //photoBackgroundImageView
+        photoBackgroundImageView = UIImageView()
+        photoBackgroundImageView.isUserInteractionEnabled = true
+        photoBackgroundImageView.backgroundColor = kMainWhiteColor()
+        self.contentView.addSubview(photoBackgroundImageView!)
+    }
+    
+    private func layoutSubview() -> Void
+    {
+        //photoBackgroundImageView
+        photoBackgroundImageView?.snp.makeConstraints({ (make) in
+            make.left.top.equalTo(0.5)
+            make.bottom.right.equalTo(0.5)
+        })
+    }
+    
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

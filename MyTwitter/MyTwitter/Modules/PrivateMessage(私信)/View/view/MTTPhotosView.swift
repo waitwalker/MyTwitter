@@ -1,0 +1,144 @@
+//
+//  MTTPhotosView.swift
+//  MyTwitter
+//
+//  Created by WangJunZi on 2017/12/13.
+//  Copyright © 2017年 waitWalker. All rights reserved.
+//
+
+import UIKit
+import Photos
+
+class MTTPhotosView: MTTView
+{
+    
+    var photoLibraryCollectionView:UICollectionView!
+    let photoIcons:[String] = ["twitter_camera_large","twittwer_video_large","twittwer_live_large"]
+    let titles:[String] = ["照片","视频","直播"]
+    let reusedPhotoLibraryId:String = "reusedPhotoLibraryId"
+    let reusedPhotoLibraryIconId:String = "reusedPhotoLibraryIconId"
+    
+    override init(frame: CGRect)
+    {
+        super.init(frame: frame)
+        _ = getAllPhotoCount()
+        
+        setupSubview()
+    }
+    
+    // MARK: - 获取相册中全部照片数量
+    func getAllPhotoCount() -> Int
+    {
+        let fetchOptions = PHFetchOptions()
+        
+        let assets = PHAsset.fetchAssets( with: fetchOptions)
+        
+        return assets.count
+    }
+    
+    override func layoutSubview()
+    {
+        super.layoutSubview()
+    }
+
+    override func setupSubview()
+    {
+        let photoFlowLayout = UICollectionViewFlowLayout()
+        photoFlowLayout.scrollDirection = UICollectionViewScrollDirection.vertical
+        photoFlowLayout.minimumLineSpacing = 0
+        photoFlowLayout.minimumInteritemSpacing = 0
+        
+        photoLibraryCollectionView = UICollectionView(frame: self.bounds, collectionViewLayout: photoFlowLayout)
+        photoLibraryCollectionView.register(MTTPhotosCell.self, forCellWithReuseIdentifier: reusedPhotoLibraryId)
+        photoLibraryCollectionView.register(MTTPhotoLibraryIconCell.self, forCellWithReuseIdentifier: reusedPhotoLibraryIconId)
+        photoLibraryCollectionView.backgroundColor = kMainWhiteColor()
+        photoLibraryCollectionView.delegate = self
+        photoLibraryCollectionView.dataSource = self
+        self.addSubview(photoLibraryCollectionView)
+    }
+    
+    override func layoutSubviews()
+    {
+        
+    }
+    
+    func getAllPictureFromPhotoLibrary(cell:MTTPhotosCell,index:Int) -> Void
+    {
+        //开一个后台线程用于处理相册照片
+        let photoQueue = DispatchQueue(label: "photoQueue", qos: DispatchQoS.background, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: DispatchQueue?.none)
+        photoQueue.async {
+            let fetchOptions = PHFetchOptions()
+            
+            let assets = PHAsset.fetchAssets( with: fetchOptions)
+            
+            let manager = PHImageManager.default()
+            
+            let options = PHImageRequestOptions()
+            
+            manager.requestImage(for: assets.object(at: index), targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.aspectFit, options: options, resultHandler: { (image, hashable) in
+                
+                //压缩之后 有些卡 待优化
+                //let imageData = UIImageJPEGRepresentation(image!, 0.5)
+                //let newImage = UIImage(data: imageData!)
+                DispatchQueue.main.async {
+                    
+                    cell.photoBackgroundImageView.image = image
+                }
+            })
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension MTTPhotosView:
+UICollectionViewDelegate,
+UICollectionViewDataSource
+{
+    // MARK: - collectionView DataSource
+    func numberOfSections(in collectionView: UICollectionView) -> Int
+    {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return getAllPhotoCount() + 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        if indexPath.item <= 2
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusedPhotoLibraryIconId, for: indexPath) as! MTTPhotoLibraryIconCell
+            cell.photoTitleLabel?.text = titles[indexPath.item]
+            cell.photoIconImageView?.image = UIImage(named: photoIcons[indexPath.item])
+            return cell
+            
+        } else
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusedPhotoLibraryId, for: indexPath) as! MTTPhotosCell
+            getAllPictureFromPhotoLibrary(cell: cell, index: indexPath.item - 3)
+            
+            return cell
+        }
+    }
+    
+    // MARK: - collectionView Delegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        if indexPath.item > 2
+        {
+            
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        return CGSize(width: kScreenWidth / 3, height: kScreenWidth / 3)
+    }
+}
+
+

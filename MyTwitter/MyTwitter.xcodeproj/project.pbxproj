@@ -74,6 +74,7 @@
 		1AFC05A91F5EE3B2006EAC9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A21F5EE3B2006EAC9F /* LaunchScreen.storyboard */; };
 		1AFC05AA1F5EE3B2006EAC9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A41F5EE3B2006EAC9F /* Main.storyboard */; };
 		1AFC05AB1F5EE3B2006EAC9F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A61F5EE3B2006EAC9F /* Info.plist */; };
+		1AFC96AC1FE163B300B36FD8 /* MTTPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC96AB1FE163B300B36FD8 /* MTTPhotosView.swift */; };
 		44E9E8C13750B588F23552C8 /* Pods_MyTwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */; };
 		CA0994BB1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0994BA1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift */; };
 		CA0994BD1F8F459D00D79775 /* MTTPhotoLibraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0994BC1F8F459D00D79775 /* MTTPhotoLibraryModel.swift */; };
@@ -235,6 +236,7 @@
 		1AFC05A31F5EE3B2006EAC9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1AFC05A51F5EE3B2006EAC9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1AFC05A61F5EE3B2006EAC9F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AFC96AB1FE163B300B36FD8 /* MTTPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPhotosView.swift; sourceTree = "<group>"; };
 		1B8705A97836EFD837D5D0CA /* Pods-MyTwitterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterTests/Pods-MyTwitterTests.release.xcconfig"; sourceTree = "<group>"; };
 		3BC01DD32B63AD348DFCD919 /* Pods_MyTwitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F24A29CF39DDC29B1234D51 /* Pods-MyTwitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitter/Pods-MyTwitter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 			children = (
 				1AB9D1551FCCD4A000CA0DA0 /* MTTChatMessageToolBar.swift */,
 				1A5395921FD6D281000CEEE4 /* MTTChatMessageView.swift */,
+				1AFC96AB1FE163B300B36FD8 /* MTTPhotosView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1570,6 +1573,7 @@
 				1A82AEAC1F8FA4FD0015EAC4 /* MTTSearchHeaderView.swift in Sources */,
 				CAF065421F9606E3002F28F8 /* MTTSearchTwitterCell.swift in Sources */,
 				1A7A0A431F9EB0B4002F8C9A /* MTTPushTwitterDelegate.swift in Sources */,
+				1AFC96AC1FE163B300B36FD8 /* MTTPhotosView.swift in Sources */,
 				CA3058C91F78D2AA00742237 /* MTTHeaderHelper.swift in Sources */,
 				1A4D8F0D1F963B7600B64D6B /* MTTSearchModel.swift in Sources */,
 				CA908CB01F9DD79300E4AFB9 /* MTTLoginViewModel.swift in Sources */,

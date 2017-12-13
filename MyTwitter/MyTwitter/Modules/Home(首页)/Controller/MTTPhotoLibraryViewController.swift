@@ -33,8 +33,8 @@ class MTTPhotoLibraryViewController: MTTViewController ,UICollectionViewDelegate
     
     
     
-    let reusedPhotoLibraryId = "reusedPhotoLibraryId"
-    let reusedPhotoLibraryIconId = "reusedPhotoLibraryIconId"
+    let reusedPhotoLibraryId:String = "reusedPhotoLibraryId"
+    let reusedPhotoLibraryIconId:String = "reusedPhotoLibraryIconId"
     
     
     
@@ -157,7 +157,7 @@ class MTTPhotoLibraryViewController: MTTViewController ,UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int 
     {
-        return getAllPhotoCount()
+        return getAllPhotoCount() + 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell 

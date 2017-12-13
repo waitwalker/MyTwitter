@@ -6,6 +6,11 @@
 //  Copyright © 2017年 waitWalker. All rights reserved.
 //
 
+/*
+    细节容错判断完善 超过20个 小于20个的
+ 
+ */
+
 import UIKit
 import Photos
 
@@ -667,7 +672,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             cell?.innerTitleLabel?.text = "库"
             cell?.backgroundImageView?.image = UIImage()
         default:
-            getPhotosImage(cell: cell!, index: indexPath.item - 2, isOriginal: false, isSelected: false)
+            //getPhotosImage(cell: cell!, index: indexPath.item - 2, isOriginal: false, isSelected: false)
             cell?.innerImageView?.isHidden = true
             cell?.innerTitleLabel?.isHidden = true
             

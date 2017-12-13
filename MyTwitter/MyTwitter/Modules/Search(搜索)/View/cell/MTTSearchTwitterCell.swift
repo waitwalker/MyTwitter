@@ -262,7 +262,7 @@ class MTTSearchTwitterCell: MTTTableViewCell {
             make.height.equalTo(searchModel.contentTextHeight! + 150)
         })
         
-        if (searchModel.content?.characters.count)! > Int(0)
+        if (searchModel.content?.count)! > Int(0)
         {
             contentLabel?.isHidden = false
             contentLabel?.frame = CGRect(x: 0, y: 0, width: kScreenWidth - 80, height: searchModel.contentTextHeight!)

@@ -177,7 +177,7 @@ open class IQToolbar: UIToolbar , UIInputViewAudioFeedback {
                     if let newItem = item as? IQTitleBarButtonItem {
 
                         if barStyle == .default {
-                            newItem.selectableTextColor = UIColor.init(colorLiteralRed: 0.0, green: 0.5, blue: 1.0, alpha: 1)
+                            newItem.selectableTextColor = UIColor.init(red: 0.0, green: 0.5, blue: 1.0, alpha: 1)
                         } else {
                             newItem.selectableTextColor = UIColor.yellow
                         }

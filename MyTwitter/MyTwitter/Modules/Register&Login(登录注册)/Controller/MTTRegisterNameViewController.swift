@@ -227,13 +227,13 @@ class MTTRegisterNameViewController: MTTViewController {
             .disposed(by: disposeBag)
         
         //name 返回的是bool
-        let nameObservable = nameTextField?.rx.text.share(replay: 1).map({($0?.characters.count)! < 20})
+        let nameObservable = nameTextField?.rx.text.share(replay: 1).map({($0?.count)! < 20})
         nameObservable?.subscribe(onNext:({valid in 
             if valid 
             {
                 self.nameTextField?.textColor = kMainBlueColor()
                 self.errorHintLabel?.isHidden = true
-                if self.nameTextField?.text?.characters.count == 0
+                if self.nameTextField?.text?.count == 0
                 {
                     self.nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
                     self.nextButton?.isEnabled = false

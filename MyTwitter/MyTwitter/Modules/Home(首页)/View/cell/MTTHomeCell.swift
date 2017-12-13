@@ -244,7 +244,7 @@ class MTTHomeCell: MTTTableViewCell {
             make.height.equalTo(0.3)
         })
         
-        if (homeModel.retwitterType?.characters.count)! > Int(3) 
+        if (homeModel.retwitterType?.count)! > Int(3) 
         {
             retwitterContainerView?.isHidden = false
             retwitterContainerView?.frame = CGRect(x: 55, y: 0, width: kScreenWidth - 55, height: 20)
@@ -316,7 +316,7 @@ class MTTHomeCell: MTTTableViewCell {
             make.height.equalTo(homeModel.contentHeight!)
         })
         
-        if (homeModel.contentTextString?.characters.count)! > Int(0)
+        if (homeModel.contentTextString?.count)! > Int(0)
         {
             contentLabel?.isHidden = false
             contentLabel?.frame = CGRect(x: 0, y: 0, width: kScreenWidth - 80, height: homeModel.contentHeight! - 150)

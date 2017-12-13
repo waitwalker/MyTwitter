@@ -16,8 +16,8 @@ extension String
     /// - Parameter end: 结束的位值
     /// - Returns: 截取后的字符串
     func stringCut(end: Int) ->String{
-        print(self.characters.count)
-        if !(end < characters.count) { return "截取超出范围" }
+        print(self.count)
+        if !(end < count) { return "截取超出范围" }
         let sInde = index(startIndex, offsetBy: end)
         return substring(to: sInde)
     }
@@ -27,7 +27,7 @@ extension String
     /// - Parameter end:
     /// - Returns: 截取后的字符串
     func stringCutToEnd(star: Int) -> String {
-        if !(star < characters.count) { return "截取超出范围" }
+        if !(star < count) { return "截取超出范围" }
         let sRang = index(startIndex, offsetBy: star)..<endIndex
         return substring(with: sRang)
     }
@@ -39,7 +39,7 @@ extension String
     ///   - locat: 插入的位置
     /// - Returns: 添加后的字符串
     func stringInsert(content: String,locat: Int) -> String {
-        if !(locat < characters.count) { return "截取超出范围" }
+        if !(locat < count) { return "截取超出范围" }
         let str1 = stringCut(end: locat)
         let str2 = stringCutToEnd(star: locat)
         return str1 + content + str2
@@ -66,7 +66,7 @@ extension String
     /// e.g  "qwert" -> ["q","w","e","r","t"]
     /// - Returns: ["q","w","e","r","t"]
     func stringToArr() -> [String] {
-        let num = characters.count
+        let num = count
         if !(num > 0) { return [""] }
         var arr: [String] = []
         for i in 0..<num {
@@ -83,7 +83,7 @@ extension String
     ///   - end: 结束位置 6
     /// - Returns: 截取后的字符串 "cdef"
     func startToEnd(start: Int,end: Int) -> String {
-        if !(end < characters.count) || start > end { return "取值范围错误" }
+        if !(end < count) || start > end { return "取值范围错误" }
         var tempStr: String = ""
         for i in start...end {
             let temp: String = self[self.index(self.startIndex, offsetBy: i - 1)].description
@@ -161,9 +161,9 @@ extension String
      :returns: A String with `maxLength` characters or less
      */
     func ellipsize(maxLength: Int) -> String {
-        if (maxLength >= 2) && (self.characters.count > maxLength) {
-            let index1 = self.characters.index(self.startIndex, offsetBy: (maxLength + 1) / 2) // `+ 1` has the same effect as an int ceil
-            let index2 = self.characters.index(self.endIndex, offsetBy: maxLength / -2)
+        if (maxLength >= 2) && (self.count > maxLength) {
+            let index1 = self.index(self.startIndex, offsetBy: (maxLength + 1) / 2) // `+ 1` has the same effect as an int ceil
+            let index2 = self.index(self.endIndex, offsetBy: maxLength / -2)
             
             return self.substring(to: index1) + "…\u{2060}" + self.substring(from: index2)
         }
@@ -196,10 +196,10 @@ extension String
     /// Adds a newline at the closest space from the middle of a string.
     /// Example turning "Mark as Read" into "Mark as\n Read"
     public func stringSplitWithNewline() -> String {
-        let mid = self.characters.count/2
+        let mid = self.count/2
         
-        let arr: [Int] = self.characters.indices.flatMap {
-            if self.characters[$0] == " " {
+        let arr: [Int] = self.indices.flatMap {
+            if self[$0] == " " {
                 return self.distance(from: startIndex, to: $0)
             }
             
@@ -209,7 +209,7 @@ extension String
             return self
         }
         var newString = self
-        newString.insert("\n", at: newString.characters.index(newString.characters.startIndex, offsetBy: closest.element))
+        newString.insert("\n", at: newString.index(newString.startIndex, offsetBy: closest.element))
         return newString
     }
     
@@ -219,8 +219,8 @@ extension String
         let style = NSMutableParagraphStyle.init()
         style.lineSpacing = 5
         let font = UIFont.systemFont(ofSize: 14)
-        attributeString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, text.characters.count))
-        attributeString.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, text.characters.count))
+        attributeString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, text.count))
+        attributeString.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, text.count))
         let options = UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue)
         let rect = attributeString.boundingRect(with: CGSize.init(width: kScreenWidth - 60 - 20, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(options)), context: nil)
         return rect.size.height
@@ -240,8 +240,8 @@ extension String
         let style = NSMutableParagraphStyle.init()
         style.lineSpacing = 5
         let font = UIFont.systemFont(ofSize: fontSize)
-        attributeString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, self.characters.count))
-        attributeString.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, self.characters.count))
+        attributeString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, self.count))
+        attributeString.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, self.count))
         let options = UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue)
         let rect = attributeString.boundingRect(with: CGSize.init(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(options)), context: nil)
         return rect.size.height

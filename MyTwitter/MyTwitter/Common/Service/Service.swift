@@ -25,12 +25,12 @@ class ValidationService
     
     func validAccount(_ account:String) -> Observable<Result>
     {
-        if account.characters.count == 0
+        if account.count == 0
         {
             return Observable.just(Result.empty)
         }
         
-        if account.characters.count > kAccountCharactersCount
+        if account.count > kAccountCharactersCount
         {
             return Observable.just(Result.failed(messsage: "你的全名不能多于20个字符"))
         }

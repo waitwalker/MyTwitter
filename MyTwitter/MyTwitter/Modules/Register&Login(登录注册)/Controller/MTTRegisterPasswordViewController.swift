@@ -220,7 +220,7 @@ class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModel
     // MARK: - 初始化事件
     func setupEvent() -> Void 
     {
-        passwordTextField?.rx.text.map({($0?.characters.count)! >= 6})
+        passwordTextField?.rx.text.map({($0?.count)! >= 6})
             .subscribe(onNext:{ isTrue in
                 
                 if isTrue

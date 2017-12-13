@@ -448,24 +448,24 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             
         }).disposed(by: disposeBag)
         
-        pushTextView.rx.text.map({($0?.characters.count)! > 0})
+        pushTextView.rx.text.map({($0?.count)! > 0})
             .subscribe(onNext:{ isTrue in
                 
                 if isTrue
                 {
                     self.placeHolderLabel?.isHidden = true
-                    self.textCountLabel?.text = String.init(format: "%d", 140 - self.pushTextView.text.characters.count)
+                    self.textCountLabel?.text = String.init(format: "%d", 140 - self.pushTextView.text.count)
                     
-                    if self.pushTextView.text.characters.count >= Int(120)
+                    if self.pushTextView.text.count >= Int(120)
                     {
                         self.textCountLabel?.textColor = kMainRedColor()
-                        print("输入框个数:",self.pushTextView.text.characters.count as Any)
+                        print("输入框个数:",self.pushTextView.text.count as Any)
                     } else
                     {
                         self.textCountLabel?.textColor = kMainGrayColor()
                     }
                     
-                    if self.pushTextView.text.characters.count <= Int(140)
+                    if self.pushTextView.text.count <= Int(140)
                     {
                         self.pushButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
                         self.pushButton?.isEnabled = true
@@ -490,7 +490,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
                     self.pushButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
                     self.pushButton?.isEnabled = false
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         //pushButton
         pushButton?.rx.tap.subscribe(onNext:{ [unowned self] in
@@ -524,7 +524,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             pushViewModel.getPushTwitterStatus(parameters: parameter as NSDictionary)
             
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
     }
     
@@ -775,7 +775,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
                     let latitudelongitudeString = String.init(format: "(%.2f...,%.2f...)", (currentLocation?.coordinate.latitude)!,(currentLocation?.coordinate.longitude)!)
                     
                     
-                    if place.characters.count > 1
+                    if place.count > 1
                     {
                         places.insert(place, at: 0)
                         

@@ -275,7 +275,7 @@ class MTTNotificationReplyCell: MTTTableViewCell
             make.height.equalTo(notificationModel.contentTextHeight! + 150)
         })
         
-        if (notificationModel.content?.characters.count)! > Int(0)
+        if (notificationModel.content?.count)! > Int(0)
         {
             contentLabel?.isHidden = false
             contentLabel?.frame = CGRect(x: 0, y: 0, width: kScreenWidth - 80, height: notificationModel.contentTextHeight!)

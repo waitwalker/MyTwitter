@@ -49,7 +49,7 @@ class MTTHomeViewModel: NSObject
                     
                     homeModel.contentHeight = self.calculateTextHeight(text: homeModel.contentTextString!) + 150
                     
-                    if (homeModel.retwitterType?.characters.count)! > Int(0)
+                    if (homeModel.retwitterType?.count)! > Int(0)
                     {
                         homeModel.cellHeight = 255 + homeModel.contentHeight! - 150
                     } else
@@ -104,7 +104,7 @@ class MTTHomeViewModel: NSObject
                             
                             homeModel.contentHeight = self.calculateTextHeight(text: homeModel.contentTextString!) + 150
                             
-                            if (homeModel.retwitterType?.characters.count)! > Int(0)
+                            if (homeModel.retwitterType?.count)! > Int(0)
                             {
                                 homeModel.cellHeight = 255 + homeModel.contentHeight! - 150
                             } else
@@ -150,8 +150,8 @@ class MTTHomeViewModel: NSObject
         let style = NSMutableParagraphStyle.init()
         style.lineSpacing = 5
         let font = UIFont.systemFont(ofSize: 14)
-        attributeString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, text.characters.count))
-        attributeString.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, text.characters.count))
+        attributeString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, text.count))
+        attributeString.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, text.count))
         let options = UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue)
         let rect = attributeString.boundingRect(with: CGSize.init(width: kScreenWidth - 60 - 20, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(options)), context: nil)
         return rect.size.height

@@ -257,7 +257,7 @@ class MTTLoginViewController: MTTViewController,MTTLoginViewModelDelegate {
     func setupEvent() -> Void
     {
         //accountTextField
-        let accountTextFieldObserable = accountTextField?.rx.text.map({($0?.characters.count)! > 0})
+        let accountTextFieldObserable = accountTextField?.rx.text.map({($0?.count)! > 0})
         
         accountTextFieldObserable?.subscribe(onNext:{valid in
             
@@ -266,7 +266,7 @@ class MTTLoginViewController: MTTViewController,MTTLoginViewModelDelegate {
         }).disposed(by: disposeBag)
         
         //passwordTextField
-        let passwordTextFieldObserable = passwordTextField?.rx.text.map({($0?.characters.count)! > 0})
+        let passwordTextFieldObserable = passwordTextField?.rx.text.map({($0?.count)! > 0})
         passwordTextFieldObserable?.subscribe(onNext:{valid in
             self.showOrHiddenButton?.isHidden = valid ? false : true
         }).disposed(by: disposeBag)
@@ -316,7 +316,7 @@ class MTTLoginViewController: MTTViewController,MTTLoginViewModelDelegate {
 //            .shareReplay(1)
         loginButton?.rx.tap.subscribe(onNext:{
             
-            if (self.passwordTextField?.text?.characters.count)! > Int(0) && (self.accountTextField?.text?.characters.count)! > Int(0)
+            if (self.passwordTextField?.text?.count)! > Int(0) && (self.accountTextField?.text?.count)! > Int(0)
             {
                 let para = ["email":self.accountTextField?.text,
                             "password":self.passwordTextField?.text]

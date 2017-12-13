@@ -126,8 +126,8 @@ class MTTPhotosCell: MTTCollectionViewCell
     {
         //photoBackgroundImageView
         photoBackgroundImageView?.snp.makeConstraints({ (make) in
-            make.left.top.equalTo(0.5)
-            make.bottom.right.equalTo(0.5)
+            make.left.top.equalTo(0)
+            make.bottom.right.equalTo(0)
         })
     }
     

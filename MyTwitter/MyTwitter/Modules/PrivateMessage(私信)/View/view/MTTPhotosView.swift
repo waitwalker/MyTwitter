@@ -22,8 +22,6 @@ class MTTPhotosView: MTTView
     {
         super.init(frame: frame)
         _ = getAllPhotoCount()
-        
-        setupSubview()
     }
     
     // MARK: - 获取相册中全部照片数量
@@ -50,8 +48,8 @@ class MTTPhotosView: MTTView
         
         photoLibraryCollectionView = UICollectionView(frame: self.bounds, collectionViewLayout: photoFlowLayout)
         photoLibraryCollectionView.register(MTTPhotosCell.self, forCellWithReuseIdentifier: reusedPhotoLibraryId)
-        photoLibraryCollectionView.register(MTTPhotoLibraryIconCell.self, forCellWithReuseIdentifier: reusedPhotoLibraryIconId)
-        photoLibraryCollectionView.backgroundColor = kMainWhiteColor()
+        photoLibraryCollectionView.register(MTTPhotosIconCell.self, forCellWithReuseIdentifier: reusedPhotoLibraryIconId)
+        photoLibraryCollectionView.backgroundColor = kMainChatBackgroundGrayColor()
         photoLibraryCollectionView.delegate = self
         photoLibraryCollectionView.dataSource = self
         self.addSubview(photoLibraryCollectionView)
@@ -95,7 +93,8 @@ class MTTPhotosView: MTTView
 
 extension MTTPhotosView:
 UICollectionViewDelegate,
-UICollectionViewDataSource
+UICollectionViewDataSource,
+UICollectionViewDelegateFlowLayout
 {
     // MARK: - collectionView DataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int
@@ -112,9 +111,9 @@ UICollectionViewDataSource
     {
         if indexPath.item <= 2
         {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusedPhotoLibraryIconId, for: indexPath) as! MTTPhotoLibraryIconCell
-            cell.photoTitleLabel?.text = titles[indexPath.item]
-            cell.photoIconImageView?.image = UIImage(named: photoIcons[indexPath.item])
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusedPhotoLibraryIconId, for: indexPath) as! MTTPhotosIconCell
+            cell.photoTitleLabel.text = titles[indexPath.item]
+            cell.photoIconImageView.image = UIImage(named: photoIcons[indexPath.item])
             return cell
             
         } else
@@ -135,9 +134,26 @@ UICollectionViewDataSource
         }
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
-        return CGSize(width: kScreenWidth / 3, height: kScreenWidth / 3)
+        return CGSize(width: kScreenWidth / 3 - 4, height: kScreenWidth / 3 - 4)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
+    {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat
+    {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
+    {
+        return UIEdgeInsetsMake(1, 1, -1, -1)
     }
 }
 

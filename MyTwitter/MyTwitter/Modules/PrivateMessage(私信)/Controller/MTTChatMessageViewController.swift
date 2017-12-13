@@ -14,6 +14,9 @@ class MTTChatMessageViewController: MTTViewController {
     
     var chatMessageView:MTTChatMessageView!
     
+    var photosView:MTTPhotosView!
+    
+    
     
     override func viewDidLoad()
     {
@@ -24,15 +27,18 @@ class MTTChatMessageViewController: MTTViewController {
     
     private func setupSubview() -> Void
     {
-        chatMessageView = MTTChatMessageView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight - 50))
-        chatMessageView.delegate = self
-        self.view.addSubview(chatMessageView)
+//        chatMessageView = MTTChatMessageView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight - 50))
+//        chatMessageView.delegate = self
+//        self.view.addSubview(chatMessageView)
+//        
+//        chatMessageToolbar = MTTChatMessageToolBar(frame: CGRect(x: 0, y: kScreenHeight - 50 - 44 - 5, width: kScreenWidth, height: 50))
+//        chatMessageToolbar.backgroundColor = UIColor.white
+//        
+//        chatMessageToolbar.maxLines = 9
+//        self.view.addSubview(chatMessageToolbar)
         
-        chatMessageToolbar = MTTChatMessageToolBar(frame: CGRect(x: 0, y: kScreenHeight - 50 - 44 - 5, width: kScreenWidth, height: 50))
-        chatMessageToolbar.backgroundColor = UIColor.white
-        
-        chatMessageToolbar.maxLines = 9
-        self.view.addSubview(chatMessageToolbar)
+        photosView = MTTPhotosView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight - 50))
+        self.view.addSubview(photosView)
         
     }
     

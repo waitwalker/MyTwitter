@@ -101,12 +101,17 @@ class MTTPhotosView: MTTView
     
     func panGesAction(pan:UIPanGestureRecognizer) -> Void
     {
-        if pan.state == UIGestureRecognizerState.changed || pan.state == UIGestureRecognizerState.ended
+        if pan.state == UIGestureRecognizerState.changed
         {
             let offset = pan.translation(in: self)
             self.center.y = self.center.y + offset.y
             pan.setTranslation(CGPoint(x: 0,y: 0), in: self)
             
+            
+        }
+        
+        if pan.state == UIGestureRecognizerState.ended
+        {
             if self.y > 100  && self.y < 300
             {
                 UIView.animate(withDuration: 0.5, animations: {
@@ -114,6 +119,7 @@ class MTTPhotosView: MTTView
                 })
             }
         }
+        
     }
     
     // MARK: - touch事件会被上层捕获 事件无法穿透

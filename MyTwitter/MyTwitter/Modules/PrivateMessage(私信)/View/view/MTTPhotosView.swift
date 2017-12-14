@@ -21,6 +21,8 @@ class MTTPhotosView: MTTView
     var originalY:CGFloat!
     var currentY:CGFloat!
     
+    var delegate:MTTPhotosViewDelegate?
+    
     
     override init(frame: CGRect)
     {
@@ -112,11 +114,14 @@ class MTTPhotosView: MTTView
         
         if pan.state == UIGestureRecognizerState.ended
         {
-            if self.y > 100  && self.y < 300
+            if self.y > 150
             {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.y = self.originalY
                 })
+            }else
+            {
+                self.delegate?.photosViewDragDelegate()
             }
         }
         

@@ -13,6 +13,7 @@ import RxSwift
 class MTTChatMessageToolBar: UIView
 {
     var disposeBag = DisposeBag()
+    var delegate:MTTChatMessageToolBarDelegate?
     
     
     
@@ -184,6 +185,11 @@ class MTTChatMessageToolBar: UIView
         inputTextViewSequenceNegate
             .bind(to: sendButton.rx.isHidden)
             .disposed(by: disposeBag)
+        
+        (pictureButton.rx.tap)
+            .subscribe(onNext:{[unowned self] in
+                self.delegate?.tappedPictureButton()
+            }).disposed(by: disposeBag)
         
     }
     

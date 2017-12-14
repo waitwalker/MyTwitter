@@ -15,7 +15,20 @@ protocol MTTMessagetButtonDelegate
     func tappedRequestButton(requestButton:UIButton, cell:MTTMessageButtonCell) -> Void
 }
 
+// MARK: - 聊天页面delegate
 protocol MTTChatMessageViewDelegate
 {
     func chatMessageViewDidScroll() -> Void
+    
+}
+
+// MARK: - 聊天toolBar delegate
+protocol MTTChatMessageToolBarDelegate
+{
+    func tappedPictureButton() -> Void
+}
+
+protocol MTTPhotosViewDelegate
+{
+    func photosViewDragDelegate() -> Void
 }

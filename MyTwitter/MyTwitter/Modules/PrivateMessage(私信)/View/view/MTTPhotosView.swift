@@ -18,11 +18,16 @@ class MTTPhotosView: MTTView
     let reusedPhotoLibraryId:String = "reusedPhotoLibraryId"
     let reusedPhotoLibraryIconId:String = "reusedPhotoLibraryIconId"
     
+    var originalY:CGFloat!
+    var currentY:CGFloat!
+    
+    
     override init(frame: CGRect)
     {
         super.init(frame: frame)
         _ = getAllPhotoCount()
         setupGesture()
+        self.originalY = frame.origin.y
     }
     
     // MARK: - 获取相册中全部照片数量
@@ -101,6 +106,13 @@ class MTTPhotosView: MTTView
             let offset = pan.translation(in: self)
             self.center.y = self.center.y + offset.y
             pan.setTranslation(CGPoint(x: 0,y: 0), in: self)
+            
+            if self.y > 100  && self.y < 300
+            {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.y = self.originalY
+                })
+            }
         }
     }
     
@@ -117,7 +129,6 @@ class MTTPhotosView: MTTView
         
         let prePoint = touch?.previousLocation(in: self.photoLibraryCollectionView)
         
-        let offSetX = (currentPoint?.x)! - (prePoint?.x)!
         let offSetY = (currentPoint?.y)! - (prePoint?.y)!
         
         self.transform = CGAffineTransform(translationX: 0, y: offSetY)

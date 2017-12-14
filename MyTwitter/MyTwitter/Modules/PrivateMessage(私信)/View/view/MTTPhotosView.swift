@@ -22,6 +22,7 @@ class MTTPhotosView: MTTView
     {
         super.init(frame: frame)
         _ = getAllPhotoCount()
+        setupGesture()
     }
     
     // MARK: - 获取相册中全部照片数量
@@ -84,6 +85,45 @@ class MTTPhotosView: MTTView
                 }
             })
         }
+    }
+    
+    func setupGesture() -> Void
+    {
+        let panGes = UIPanGestureRecognizer(target: self, action: #selector(panGesAction(pan:)))
+            
+        self.addGestureRecognizer(panGes)
+    }
+    
+    func panGesAction(pan:UIPanGestureRecognizer) -> Void
+    {
+        if pan.state == UIGestureRecognizerState.changed || pan.state == UIGestureRecognizerState.ended
+        {
+            let offset = pan.translation(in: self)
+            self.center.y = self.center.y + offset.y
+            pan.setTranslation(CGPoint(x: 0,y: 0), in: self)
+        }
+    }
+    
+    // MARK: - touch事件会被上层捕获 事件无法穿透
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        print("开始被触摸:\(self)")
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        let touch = touches.first
+        let currentPoint = touch?.location(in: self.photoLibraryCollectionView)
+        
+        let prePoint = touch?.previousLocation(in: self.photoLibraryCollectionView)
+        
+        let offSetX = (currentPoint?.x)! - (prePoint?.x)!
+        let offSetY = (currentPoint?.y)! - (prePoint?.y)!
+        
+        self.transform = CGAffineTransform(translationX: 0, y: offSetY)
+        
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

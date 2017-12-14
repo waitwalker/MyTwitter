@@ -37,7 +37,7 @@ class MTTChatMessageViewController: MTTViewController {
 //        chatMessageToolbar.maxLines = 9
 //        self.view.addSubview(chatMessageToolbar)
         
-        photosView = MTTPhotosView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight - 50))
+        photosView = MTTPhotosView(frame: CGRect(x: 0, y: 300, width: kScreenWidth, height: kScreenHeight - 350))
         self.view.addSubview(photosView)
         
     }

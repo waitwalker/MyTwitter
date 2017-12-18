@@ -16,13 +16,20 @@ class MTTChatMessageViewController: MTTViewController {
     
     var photosView:MTTPhotosView!
     
+    var pictureButtonIsSelected:Bool?
     
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        setupOriginal()
         setupSubview()
         layoutSubview()
+    }
+    
+    func setupOriginal() -> Void
+    {
+        self.pictureButtonIsSelected = false
     }
     
     private func setupSubview() -> Void
@@ -79,24 +86,47 @@ MTTPhotosViewDelegate
     }
     
     // 图片按钮点击回调
-    func tappedPictureButton()
+    func tappedPictureButton(button: UIButton)
     {
-        UIView.animate(withDuration: 0.1) {
-            self.view.endEditing(true)
-            let timeInterval:TimeInterval = 0.3
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: {
-                self.chatMessageToolbar.y = kScreenHeight - 50 - 150
-                self.photosView.isHidden = false
+        button.isSelected = !button.isSelected
+        button.setImage(UIImage.imageNamed(name: "twitter_pictures_selected"), for: UIControlState.selected)
+        self.pictureButtonIsSelected = button.isSelected
+        if button.isSelected
+        {
+            UIView.animate(withDuration: 0.1) {
+                self.view.endEditing(true)
+                let timeInterval:TimeInterval = 0.3
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: {
+                    self.chatMessageToolbar.y = kScreenHeight - 50 - 150
+                    self.photosView.isHidden = false
+                })
+            }
+        } else
+        {
+            UIView.animate(withDuration: 0.1, animations: {
+                self.chatMessageToolbar.inputTextView.becomeFirstResponder()
+                self.photosView.isHidden = true
             })
-            
-            
         }
+        
+        
     }
     
     // 聊天页面滚动回调
     func chatMessageViewDidScroll()
     {
-        self.chatMessageToolbar.inputTextView.resignFirstResponder()
+        if self.chatMessageToolbar.inputTextView.text.count == 0
+        {
+            self.chatMessageToolbar.inputTextView.resignFirstResponder()
+            if self.pictureButtonIsSelected!
+            {
+                self.photosView.isHidden = false
+            } else
+            {
+                self.photosView.isHidden = true
+            }
+            return
+        }
     }
     
     

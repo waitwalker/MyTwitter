@@ -25,7 +25,7 @@ protocol MTTChatMessageViewDelegate
 // MARK: - 聊天toolBar delegate
 protocol MTTChatMessageToolBarDelegate
 {
-    func tappedPictureButton() -> Void
+    func tappedPictureButton(button:UIButton) -> Void
 }
 
 protocol MTTPhotosViewDelegate

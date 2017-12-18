@@ -63,6 +63,8 @@
 		1AA6E4C51F9B1C250025FB7B /* MTTMessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA6E4C41F9B1C250025FB7B /* MTTMessageHeader.swift */; };
 		1AA6E4C71F9B1DC00025FB7B /* MTTMessageHintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA6E4C61F9B1DC00025FB7B /* MTTMessageHintCell.swift */; };
 		1AB7E00F1FE7EAEF0068B5D4 /* MTTPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB7E00E1FE7EAEF0068B5D4 /* MTTPhotosViewController.swift */; };
+		1AB7E0111FE800080068B5D4 /* MTTVideosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB7E0101FE800080068B5D4 /* MTTVideosView.swift */; };
+		1AB7E0131FE8018C0068B5D4 /* MTTAddVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB7E0121FE8018C0068B5D4 /* MTTAddVideoCell.swift */; };
 		1AB9D1561FCCD4A000CA0DA0 /* MTTChatMessageToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9D1551FCCD4A000CA0DA0 /* MTTChatMessageToolBar.swift */; };
 		1ABFD4BC1F84BE48004DF174 /* MTTCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFD4BB1F84BE48004DF174 /* MTTCollectionViewCell.swift */; };
 		1ABFD4BE1F84BE84004DF174 /* MTTPushBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFD4BD1F84BE84004DF174 /* MTTPushBottomCell.swift */; };
@@ -226,6 +228,8 @@
 		1AA6E4C41F9B1C250025FB7B /* MTTMessageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTMessageHeader.swift; sourceTree = "<group>"; };
 		1AA6E4C61F9B1DC00025FB7B /* MTTMessageHintCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTMessageHintCell.swift; sourceTree = "<group>"; };
 		1AB7E00E1FE7EAEF0068B5D4 /* MTTPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPhotosViewController.swift; sourceTree = "<group>"; };
+		1AB7E0101FE800080068B5D4 /* MTTVideosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTVideosView.swift; sourceTree = "<group>"; };
+		1AB7E0121FE8018C0068B5D4 /* MTTAddVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAddVideoCell.swift; sourceTree = "<group>"; };
 		1AB9D1551FCCD4A000CA0DA0 /* MTTChatMessageToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTChatMessageToolBar.swift; sourceTree = "<group>"; };
 		1ABFD4BB1F84BE48004DF174 /* MTTCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTCollectionViewCell.swift; sourceTree = "<group>"; };
 		1ABFD4BD1F84BE84004DF174 /* MTTPushBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPushBottomCell.swift; sourceTree = "<group>"; };
@@ -361,6 +365,7 @@
 				1A09A54F1F9B1669007BC41C /* MTTMessageButtonCell.swift */,
 				1AA6E4C61F9B1DC00025FB7B /* MTTMessageHintCell.swift */,
 				1A5395941FD6DABA000CEEE4 /* MTTChatMessageCell.swift */,
+				1AB7E0121FE8018C0068B5D4 /* MTTAddVideoCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -371,6 +376,7 @@
 				1AB9D1551FCCD4A000CA0DA0 /* MTTChatMessageToolBar.swift */,
 				1A5395921FD6D281000CEEE4 /* MTTChatMessageView.swift */,
 				1AFC96AB1FE163B300B36FD8 /* MTTPhotosView.swift */,
+				1AB7E0101FE800080068B5D4 /* MTTVideosView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1478,6 +1484,7 @@
 				1A5395951FD6DABA000CEEE4 /* MTTChatMessageCell.swift in Sources */,
 				CA66B4F01F90C0BB001CD140 /* MTTSearchViewModel.swift in Sources */,
 				1A0C10F41F66C44C00B6AD18 /* MTTRegularMatchManager.swift in Sources */,
+				1AB7E0131FE8018C0068B5D4 /* MTTAddVideoCell.swift in Sources */,
 				CADECBCD1F5E4FE30027E15F /* MTTNavigationController.swift in Sources */,
 				1A4B71DD1FB09D5600AAED83 /* MTTAlertViewDelegate.swift in Sources */,
 				1A304C101F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift in Sources */,
@@ -1495,6 +1502,7 @@
 				1A09A54E1F9B0930007BC41C /* MTTMessageCell.swift in Sources */,
 				CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */,
 				CAC5AE871F7F4B3500B50C98 /* MTTButtonExtension.swift in Sources */,
+				1AB7E0111FE800080068B5D4 /* MTTVideosView.swift in Sources */,
 				1A20C5401FC465EF00EAA0B6 /* MTTMediaViewController.swift in Sources */,
 				1A20C53E1FC465D600EAA0B6 /* MTTTwitterTextAndReplyViewController.swift in Sources */,
 				1A82AEAA1F8FA4E60015EAC4 /* MTTSearchLabelCell.swift in Sources */,

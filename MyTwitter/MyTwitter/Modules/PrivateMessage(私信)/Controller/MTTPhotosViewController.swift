@@ -1,35 +1,59 @@
 //
-//  MTTPhotosView.swift
+//  MTTPhotosViewController.swift
 //  MyTwitter
 //
-//  Created by WangJunZi on 2017/12/13.
+//  Created by WangJunZi on 2017/12/18.
 //  Copyright © 2017年 waitWalker. All rights reserved.
 //
 
 import UIKit
 import Photos
+import RxCocoa
+import RxSwift
 
-class MTTPhotosView: MTTView
-{
-    
+class MTTPhotosViewController: MTTViewController {
+
     var photoLibraryCollectionView:UICollectionView!
     let photoIcons:[String] = ["twitter_camera_large","twittwer_video_large","twittwer_live_large"]
     let titles:[String] = ["照片","视频","直播"]
     let reusedPhotoLibraryId:String = "reusedPhotoLibraryId"
     let reusedPhotoLibraryIconId:String = "reusedPhotoLibraryIconId"
-    
-    var originalY:CGFloat!
-    var currentY:CGFloat!
-    
-    var delegate:MTTPhotosViewDelegate?
+    var backButton:UIButton!
+    var disposeBag = DisposeBag()
     
     
-    override init(frame: CGRect)
+    override func viewDidLoad()
     {
-        super.init(frame: frame)
+        super.viewDidLoad()
         _ = getAllPhotoCount()
-        setupGesture()
-        self.originalY = frame.origin.y
+        setupSubview()
+        
+        setupEvent()
+    }
+    
+    
+    private func setupNavigationBar() -> Void
+    {
+        backButton                             = UIButton()
+        backButton.frame                       = CGRect(x: 0, y: 0, width: 40, height: 44)
+        backButton.backgroundColor = UIColor.red
+        backButton.titleEdgeInsets = UIEdgeInsetsMake(2, 0, -2, 5)
+        backButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        backButton.setTitle("取消", for: UIControlState.normal)
+        backButton.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
+        backButton.setTitleColor(kMainLightGrayColor(), for: UIControlState.highlighted)
+        self.navigationItem.leftBarButtonItem  = UIBarButtonItem(customView: backButton)
+        
+    }
+    
+    func setupEvent() -> Void
+    {
+        (backButton.rx.tap)
+            .subscribe(onNext:{[unowned self] in
+                self.dismiss(animated: true, completion: {
+                    
+                })
+            }).disposed(by: disposeBag)
     }
     
     // MARK: - 获取相册中全部照片数量
@@ -42,31 +66,22 @@ class MTTPhotosView: MTTView
         return assets.count
     }
     
-    override func layoutSubview()
-    {
-        super.layoutSubview()
-    }
-    
-
-    override func setupSubview()
+    func setupSubview() -> Void
     {
         let photoFlowLayout = UICollectionViewFlowLayout()
         photoFlowLayout.scrollDirection = UICollectionViewScrollDirection.vertical
         photoFlowLayout.minimumLineSpacing = 0
         photoFlowLayout.minimumInteritemSpacing = 0
         
-        photoLibraryCollectionView = UICollectionView(frame: self.bounds, collectionViewLayout: photoFlowLayout)
+        photoLibraryCollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: photoFlowLayout)
         photoLibraryCollectionView.register(MTTPhotosCell.self, forCellWithReuseIdentifier: reusedPhotoLibraryId)
         photoLibraryCollectionView.register(MTTPhotosIconCell.self, forCellWithReuseIdentifier: reusedPhotoLibraryIconId)
         photoLibraryCollectionView.backgroundColor = kMainChatBackgroundGrayColor()
         photoLibraryCollectionView.delegate = self
         photoLibraryCollectionView.dataSource = self
-        self.addSubview(photoLibraryCollectionView)
-    }
-    
-    override func layoutSubviews()
-    {
+        self.view.addSubview(photoLibraryCollectionView)
         
+        setupNavigationBar()
     }
     
     func getAllPictureFromPhotoLibrary(cell:MTTPhotosCell,index:Int) -> Void
@@ -94,72 +109,10 @@ class MTTPhotosView: MTTView
             })
         }
     }
-    
-    func setupGesture() -> Void
-    {
-        let panGes = UIPanGestureRecognizer(target: self, action: #selector(panGesAction(pan:)))
-            
-        self.addGestureRecognizer(panGes)
-    }
-    
-    func panGesAction(pan:UIPanGestureRecognizer) -> Void
-    {
-        if pan.state == UIGestureRecognizerState.changed
-        {
-            let offset = pan.translation(in: self)
-            if offset.y > 0
-            {
-                return
-            }
-            self.center.y = self.center.y + offset.y
-            pan.setTranslation(CGPoint(x: 0,y: 0), in: self)
-            
-            
-        }
-        
-        if pan.state == UIGestureRecognizerState.ended
-        {
-            if self.y > 250
-            {
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.y = self.originalY
-                })
-                
-            }else
-            {
-                self.delegate?.photosViewDragDelegate()
-            }
-        }
-        
-    }
-    
-    // MARK: - touch事件会被上层捕获 事件无法穿透
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-        print("开始被触摸:\(self)")
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-        let touch = touches.first
-        let currentPoint = touch?.location(in: self.photoLibraryCollectionView)
-        
-        let prePoint = touch?.previousLocation(in: self.photoLibraryCollectionView)
-        
-        let offSetY = (currentPoint?.y)! - (prePoint?.y)!
-        
-        self.transform = CGAffineTransform(translationX: 0, y: offSetY)
-        
-        
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
 }
 
-extension MTTPhotosView:
+extension MTTPhotosViewController:
 UICollectionViewDelegate,
 UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout
@@ -224,5 +177,3 @@ UICollectionViewDelegateFlowLayout
         return UIEdgeInsetsMake(1, 1, -1, -1)
     }
 }
-
-

@@ -69,19 +69,27 @@ MTTPhotosViewDelegate
     // photosView 拖动超过一定距离后的回调
     func photosViewDragDelegate()
     {
-        self.chatMessageToolbar.y = kScreenHeight - 50 - 44 - 5
-        self.photosView.isHidden = true
-        let homeVC = MTTHomeViewController()
-        self.navigationController?.pushViewController(homeVC, animated: false)
-        
+        let photosVC = MTTPhotosViewController()
+        let nav = UINavigationController(rootViewController: photosVC)
+        self.present(nav, animated: false) {
+            self.chatMessageToolbar.y = kScreenHeight - 50 - 44 - 5
+            self.photosView.isHidden = true
+            self.photosView.y = kScreenHeight - 150
+        }
     }
     
     // 图片按钮点击回调
     func tappedPictureButton()
     {
-        UIView.animate(withDuration: 0.3) {
-            self.chatMessageToolbar.y = kScreenHeight - 50 - 150
-            self.photosView.isHidden = false
+        UIView.animate(withDuration: 0.1) {
+            self.view.endEditing(true)
+            let timeInterval:TimeInterval = 0.3
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: {
+                self.chatMessageToolbar.y = kScreenHeight - 50 - 150
+                self.photosView.isHidden = false
+            })
+            
+            
         }
     }
     

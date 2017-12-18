@@ -183,7 +183,7 @@ UITableViewDataSource
             
         }
         print(contentOffset)
-        
+        self.delegate?.chatMessageViewDidScroll()
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)

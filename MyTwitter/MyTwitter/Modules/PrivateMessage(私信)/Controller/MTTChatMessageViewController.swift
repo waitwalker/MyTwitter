@@ -16,7 +16,12 @@ class MTTChatMessageViewController: MTTViewController {
     
     var photosView:MTTPhotosView!
     
+    var videosView:MTTVideosView!
+    
+    
     var pictureButtonIsSelected:Bool?
+    var addButtonIsSelected:Bool?
+    
     
     
     override func viewDidLoad()
@@ -30,14 +35,17 @@ class MTTChatMessageViewController: MTTViewController {
     func setupOriginal() -> Void
     {
         self.pictureButtonIsSelected = false
+        self.addButtonIsSelected = false
     }
     
     private func setupSubview() -> Void
     {
+        // 聊天视图
         chatMessageView = MTTChatMessageView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight - 50))
         chatMessageView.delegate = self
         self.view.addSubview(chatMessageView)
         
+        // 聊天toolBar
         chatMessageToolbar = MTTChatMessageToolBar(frame: CGRect(x: 0, y: kScreenHeight - 50 - 44 - 5, width: kScreenWidth, height: 50))
         chatMessageToolbar.delegate = self
         chatMessageToolbar.backgroundColor = UIColor.white
@@ -45,12 +53,17 @@ class MTTChatMessageViewController: MTTViewController {
         chatMessageToolbar.maxLines = 9
         self.view.addSubview(chatMessageToolbar)
         
+        // 选择图片
         photosView = MTTPhotosView(frame: CGRect(x: 0, y: kScreenHeight - 150, width: kScreenWidth, height: kScreenHeight))
         photosView.delegate = self
         photosView.isHidden = true
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
         appDelegate.window?.addSubview(photosView)
+        
+        // 选择视频
+        videosView = MTTVideosView(frame: CGRect(x: 0, y: kScreenHeight - 88, width: kScreenWidth, height: 87))
+        videosView.isHidden = true
+        appDelegate.window?.addSubview(videosView)
         
     }
     
@@ -88,6 +101,9 @@ MTTPhotosViewDelegate
     // 图片按钮点击回调
     func tappedPictureButton(button: UIButton)
     {
+        self.videosView.isHidden = true
+        self.chatMessageToolbar.addButton.isSelected = false
+        self.chatMessageToolbar.addButton.setImage(UIImage.imageNamed(name: "twitter_add_normal"), for: UIControlState.normal)
         button.isSelected = !button.isSelected
         button.setImage(UIImage.imageNamed(name: "twitter_pictures_selected"), for: UIControlState.selected)
         self.pictureButtonIsSelected = button.isSelected
@@ -108,9 +124,37 @@ MTTPhotosViewDelegate
                 self.photosView.isHidden = true
             })
         }
-        
-        
     }
+    
+    // 添加视频按钮
+    func tappedAddVideoButton(button: UIButton)
+    {
+        self.photosView.isHidden = true
+        self.chatMessageToolbar.pictureButton.isSelected = false
+        self.chatMessageToolbar.pictureButton.setImage(UIImage.imageNamed(name: "twitter_pictures_normal"), for: UIControlState.normal)
+        button.isSelected = !button.isSelected
+        button.setImage(UIImage.imageNamed(name: "twitter_add_selected"), for: UIControlState.selected)
+        self.addButtonIsSelected = button.isSelected
+        if button.isSelected
+        {
+            UIView.animate(withDuration: 0.1) {
+                self.view.endEditing(true)
+                let timeInterval:TimeInterval = 0.3
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: {
+                    self.chatMessageToolbar.y = kScreenHeight - 50 - 88
+                    self.videosView.isHidden = false
+                })
+            }
+        } else
+        {
+            UIView.animate(withDuration: 0.1, animations: {
+                self.chatMessageToolbar.inputTextView.becomeFirstResponder()
+                self.videosView.isHidden = true
+            })
+        }
+    }
+    
+    
     
     // 聊天页面滚动回调
     func chatMessageViewDidScroll()
@@ -121,11 +165,12 @@ MTTPhotosViewDelegate
             if self.pictureButtonIsSelected!
             {
                 self.photosView.isHidden = false
-            } else
+                self.videosView.isHidden = true
+            } else if self.addButtonIsSelected!
             {
+                self.videosView.isHidden = false
                 self.photosView.isHidden = true
             }
-            return
         }
     }
     

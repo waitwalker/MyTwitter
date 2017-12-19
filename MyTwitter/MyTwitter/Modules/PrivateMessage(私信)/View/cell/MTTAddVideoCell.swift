@@ -35,6 +35,8 @@ class MTTAddVideoCell: MTTCollectionViewCell
     
     func setupSubview() -> Void
     {
+        self.contentView.backgroundColor = UIColor.white
+        
         iconImageView = UIImageView()
         iconImageView.isUserInteractionEnabled = true
         self.contentView.addSubview(iconImageView)

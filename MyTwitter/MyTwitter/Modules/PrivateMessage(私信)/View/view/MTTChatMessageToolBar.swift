@@ -139,6 +139,11 @@ class MTTChatMessageToolBar: UIView
             self.pictureButton.sendActions(for: UIControlEvents.touchUpInside)
         }
         
+        if self.addButton.isSelected
+        {
+            self.addButton.sendActions(for: UIControlEvents.touchUpInside)
+        }
+        
         let keyboardFrame = notify.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
         
         keyboardHeight = keyboardFrame.size.height
@@ -194,6 +199,11 @@ class MTTChatMessageToolBar: UIView
         (pictureButton.rx.tap)
             .subscribe(onNext:{[unowned self] in
                 self.delegate?.tappedPictureButton(button: self.pictureButton)
+            }).disposed(by: disposeBag)
+        
+        (addButton.rx.tap)
+            .subscribe(onNext:{[unowned self] in
+                self.delegate?.tappedAddVideoButton(button: self.addButton)
             }).disposed(by: disposeBag)
         
     }

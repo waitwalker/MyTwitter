@@ -27,10 +27,9 @@ class MTTVideosView: MTTView {
         photoFlowLayout.minimumLineSpacing = 0
         photoFlowLayout.minimumInteritemSpacing = 0
         
-        addVideoCollectionView = UICollectionView()
-        addVideoCollectionView.collectionViewLayout = photoFlowLayout
+        addVideoCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: photoFlowLayout)
         addVideoCollectionView.register(MTTAddVideoCell.self, forCellWithReuseIdentifier: reusedAddVideoId)
-        addVideoCollectionView.backgroundColor = kMainChatBackgroundGrayColor()
+        addVideoCollectionView.backgroundColor = kMainLightGrayColor()
         addVideoCollectionView.delegate = self
         addVideoCollectionView.dataSource = self
         self.addSubview(addVideoCollectionView)
@@ -38,7 +37,10 @@ class MTTVideosView: MTTView {
     
     override func layoutSubview()
     {
-        
+        super.layoutSubview()
+        addVideoCollectionView.snp.makeConstraints { (make) in
+            make.left.right.top.bottom.equalTo(0)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,9 +58,9 @@ class MTTVideosView: MTTView {
 }
 
 extension MTTVideosView:
-    UICollectionViewDelegate,
-    UICollectionViewDataSource,
-    UICollectionViewDelegateFlowLayout
+UICollectionViewDelegate,
+UICollectionViewDataSource,
+UICollectionViewDelegateFlowLayout
 {
     // MARK: - collectionView DataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int

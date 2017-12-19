@@ -103,6 +103,7 @@ MTTPhotosViewDelegate
     {
         self.videosView.isHidden = true
         self.chatMessageToolbar.addButton.isSelected = false
+        self.addButtonIsSelected = false
         self.chatMessageToolbar.addButton.setImage(UIImage.imageNamed(name: "twitter_add_normal"), for: UIControlState.normal)
         button.isSelected = !button.isSelected
         button.setImage(UIImage.imageNamed(name: "twitter_pictures_selected"), for: UIControlState.selected)
@@ -122,6 +123,7 @@ MTTPhotosViewDelegate
             UIView.animate(withDuration: 0.1, animations: {
                 self.chatMessageToolbar.inputTextView.becomeFirstResponder()
                 self.photosView.isHidden = true
+                self.videosView.isHidden = true
             })
         }
     }
@@ -131,6 +133,7 @@ MTTPhotosViewDelegate
     {
         self.photosView.isHidden = true
         self.chatMessageToolbar.pictureButton.isSelected = false
+        self.pictureButtonIsSelected = false
         self.chatMessageToolbar.pictureButton.setImage(UIImage.imageNamed(name: "twitter_pictures_normal"), for: UIControlState.normal)
         button.isSelected = !button.isSelected
         button.setImage(UIImage.imageNamed(name: "twitter_add_selected"), for: UIControlState.selected)
@@ -150,6 +153,7 @@ MTTPhotosViewDelegate
             UIView.animate(withDuration: 0.1, animations: {
                 self.chatMessageToolbar.inputTextView.becomeFirstResponder()
                 self.videosView.isHidden = true
+                self.photosView.isHidden = true
             })
         }
     }
@@ -162,6 +166,8 @@ MTTPhotosViewDelegate
         if self.chatMessageToolbar.inputTextView.text.count == 0
         {
             self.chatMessageToolbar.inputTextView.resignFirstResponder()
+            self.videosView.isHidden = true
+            self.photosView.isHidden = true
             if self.pictureButtonIsSelected!
             {
                 self.photosView.isHidden = false

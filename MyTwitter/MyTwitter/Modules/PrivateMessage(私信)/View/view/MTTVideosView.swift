@@ -79,13 +79,13 @@ UICollectionViewDelegateFlowLayout
         switch indexPath.item {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusedAddVideoId, for: indexPath) as! MTTAddVideoCell
-            cell.iconImageView.image = UIImage.imageNamed(name: "twitter_pictures_selected")
+            cell.iconImageView.image = UIImage.imageNamed(name: "twitter_photo")
             cell.lineView.isHidden = true
             cell.vTitleLabel.text = "拍摄照片或视频"
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusedAddVideoId, for: indexPath) as! MTTAddVideoCell
-            cell.iconImageView.image = UIImage.imageNamed(name: "twitter_pictures_selected")
+            cell.iconImageView.image = UIImage.imageNamed(name: "twitter_gif")
             cell.lineView.isHidden = false
             cell.vTitleLabel.text = "发送一个 GIF"
             return cell

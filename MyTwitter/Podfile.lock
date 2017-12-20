@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.4.0)
+  - DateTools (2.0.0)
   - IQKeyboardManagerSwift (4.0.10)
   - MJRefresh (3.1.12)
   - ObjcExceptionBridging (1.0.1):
@@ -20,6 +21,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.4.0)
+  - DateTools (~> 2.0.0)
   - IQKeyboardManagerSwift (~> 4.0.10)
   - MJRefresh (~> 3.1.12)
   - RxCocoa (~> 4.0.0)
@@ -31,6 +33,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
@@ -41,6 +44,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
 
-PODFILE CHECKSUM: f039953ad998147c062a7c72bea1207a074b457d
+PODFILE CHECKSUM: d1fce320b0f74acb86248649019f4a6d54a1db76
 
 COCOAPODS: 1.3.1

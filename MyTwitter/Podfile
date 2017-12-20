@@ -16,6 +16,7 @@ target 'MyTwitter' do
   pod 'XCGLogger', '~> 5.0.1'
   pod 'MJRefresh', '~> 3.1.12'
   pod 'RxGesture', '~> 1.2.1'
+  pod 'DateTools', '~> 2.0.0'
 
 
   target 'MyTwitterTests' do

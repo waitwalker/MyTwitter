@@ -65,6 +65,13 @@ class MTTChatMessageViewController: MTTViewController {
         videosView.isHidden = true
         appDelegate.window?.addSubview(videosView)
         
+        let timeInterval = -2000000
+        
+        
+        let string = String.getSuitableDateHint(TimeInterval(timeInterval))
+        
+        print(string)
+        
     }
     
     private func layoutSubview() -> Void

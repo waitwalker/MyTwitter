@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DateTools
 
 // MARK: - String拓展
 extension String
@@ -245,6 +246,56 @@ extension String
         let options = UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue)
         let rect = attributeString.boundingRect(with: CGSize.init(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(options)), context: nil)
         return rect.size.height
+    }
+    
+    
+    /// 根据聊天内容时间戳 获取相应的时间提示
+    ///
+    /// - Parameter chatTimeStamp: 聊天时间戳
+    /// - Returns: 时间字符串提示
+    static func getSuitableDateHint(_ chatTimeStamp: TimeInterval) -> String
+    {
+        let tmpDate = Date() + chatTimeStamp as NSDate
+        
+        let yearLength = tmpDate.yearsAgo()
+        
+        let monthLength = tmpDate.monthsAgo()
+        
+        let weekLength = tmpDate.weeksAgo()
+        
+        let dayLength = tmpDate.daysAgo()
+        
+        let hourLenght = tmpDate.hoursAgo()
+        
+        let minuteLength = tmpDate.minutesAgo()
+        
+        let secondLength = tmpDate.secondsAgo()
+        
+        if yearLength >= 1
+        {
+            return String(format: "%d年前", yearLength)
+        } else if monthLength >= 1
+        {
+            return String(format: "%d个月前", monthLength)
+        } else if weekLength >= 1
+        {
+            return String(format: "%d周前", weekLength)
+        } else if dayLength >= 1
+        {
+            return String(format: "%d天前", dayLength)
+        } else if hourLenght >= 1
+        {
+            return String(format: "%d个小时前", hourLenght)
+        } else if minuteLength >= 1
+        {
+            return String(format: "%d分钟前", minuteLength)
+        } else if secondLength >= 1
+        {
+            return String(format: "%d秒前", secondLength)
+        } else
+        {
+            return "刚刚"
+        }
     }
     
 }

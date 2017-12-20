@@ -23,6 +23,10 @@ class MTTChatMessageModel: NSObject
     var contentVoiceHeight:CGFloat!
     var contentBackImageHeight:CGFloat!
     
+    // 聊天时间戳 
+    var chatDateStamp:Int!
+    
+    
     
     
     

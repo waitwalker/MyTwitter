@@ -6,6 +6,11 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - Realm (3.0.1):
+    - Realm/Headers (= 3.0.1)
+  - Realm/Headers (3.0.1)
+  - RealmSwift (3.0.1):
+    - Realm (= 3.0.1)
   - RxCocoa (4.0.0):
     - RxSwift (~> 4.0)
   - RxGesture (1.2.1):
@@ -24,6 +29,7 @@ DEPENDENCIES:
   - DateTools (~> 2.0.0)
   - IQKeyboardManagerSwift (~> 4.0.10)
   - MJRefresh (~> 3.1.12)
+  - RealmSwift (~> 3.0.1)
   - RxCocoa (~> 4.0.0)
   - RxGesture (~> 1.2.1)
   - RxSwift (~> 4.0.0)
@@ -37,6 +43,8 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  Realm: ba6144c74f835f7497791f6599d63a7755377b83
+  RealmSwift: 7d13b1ac4b6022a13f841e3143e7789c9e40ad0d
   RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
   RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
   RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
@@ -44,6 +52,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
 
-PODFILE CHECKSUM: d1fce320b0f74acb86248649019f4a6d54a1db76
+PODFILE CHECKSUM: e653ad6d0e60b47f64421397b7c957c58d49d4f9
 
 COCOAPODS: 1.3.1

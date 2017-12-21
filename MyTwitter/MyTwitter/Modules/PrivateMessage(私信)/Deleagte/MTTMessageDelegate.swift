@@ -28,6 +28,8 @@ protocol MTTChatMessageToolBarDelegate
     func tappedPictureButton(button:UIButton) -> Void
     
     func tappedAddVideoButton(button:UIButton) -> Void
+    
+    func tappedSendButton(text:String) -> Void
 }
 
 protocol MTTPhotosViewDelegate

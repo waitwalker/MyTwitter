@@ -206,6 +206,14 @@ class MTTChatMessageToolBar: UIView
                 self.delegate?.tappedAddVideoButton(button: self.addButton)
             }).disposed(by: disposeBag)
         
+        sendButton.rx.tap
+            .subscribe(onNext:{[unowned self] in
+                if self.inputTextView.text.count > 0
+                {
+                    self.delegate?.tappedSendButton(text: self.inputTextView.text)
+                }
+            }).disposed(by: disposeBag)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

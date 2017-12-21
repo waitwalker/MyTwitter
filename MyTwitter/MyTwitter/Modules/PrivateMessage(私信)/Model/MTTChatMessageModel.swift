@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import RealmSwift
 
-class MTTChatMessageModel: NSObject
+class MTTChatMessageModel: Object
 {
     var messageType:MTTChatMessageType!
     
@@ -24,12 +25,8 @@ class MTTChatMessageModel: NSObject
     var contentBackImageHeight:CGFloat!
     
     // 聊天时间戳 
-    var chatDateStamp:Int!
-    
-    
-    
-    
-    
+    var chatDateStamp:TimeInterval!
+    var chatDate:Date!
     
     
 }

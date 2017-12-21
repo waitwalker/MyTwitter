@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RealmSwift
+import Realm
 
 class MTTChatMessageViewController: MTTViewController {
 
@@ -93,6 +95,28 @@ MTTChatMessageViewDelegate,
 MTTChatMessageToolBarDelegate,
 MTTPhotosViewDelegate
 {
+    // 发送按钮的点击回调
+    func tappedSendButton(text: String)
+    {
+        let realm = try! Realm()
+        let model = MTTChatMessageModel()
+        model.messageFrom = MTTChatMessageFromType.My
+        model.messageType = MTTChatMessageType.text
+        model.chatDate = Date()
+        model.chatDateStamp = Date().timeIntervalSince1970
+        model.messageContent = text
+        model.contentTextHeight = model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220) > 30 ? model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220) : 40
+        model.contentBackImageHeight = 5 + model.contentTextHeight + 5
+        model.cellHeight = 10 + 20 + 10 + model.contentBackImageHeight
+        try! realm.write {
+            realm.add(model)
+        }
+        self.chatMessageView.dataSource.append(model)
+        self.chatMessageView.chatMessageTableView.reloadData()
+        print("realm数据库目录:\(realm.configuration.fileURL)")
+        
+    }
+    
     // photosView 拖动超过一定距离后的回调
     func photosViewDragDelegate()
     {

@@ -24,7 +24,7 @@ class MTTChatMessageView: MTTView {
     {
         super.init(frame: frame)
         
-        loadChatMessageData()
+        //loadChatMessageData()
     }
     
     override func setupSubview()

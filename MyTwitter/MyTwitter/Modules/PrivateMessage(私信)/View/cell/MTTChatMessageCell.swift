@@ -89,7 +89,7 @@ class MTTChatMessageCell: MTTTableViewCell
     {
         // 聊天时间
         timeLabel.frame = CGRect(x: kMargin, y: kMargin, width: kScreenWidth - 20, height: 20)
-        timeLabel.text = getTimeString()
+        timeLabel.text = String.getSuitableDateHint(model.chatDateStamp) + "  " + getTimeString(date: model.chatDate)
         contentTextLabel.text = model.messageContent
         if model.messageFrom == MTTChatMessageFromType.My
         {
@@ -168,7 +168,6 @@ class MTTChatMessageCell: MTTTableViewCell
         {
         case .text:
             
-            
             // 聊天文本
             contentTextLabel.frame = CGRect(x: 0, y: 5, width: kBaseWidth - 15, height: model.contentTextHeight)
             
@@ -207,16 +206,16 @@ class MTTChatMessageCell: MTTTableViewCell
         var contentBackImage = UIImage.imageNamed(name: "twitter_chat_message_my")
         contentBackImage = contentBackImage.resizableImage(withCapInsets: UIEdgeInsetsMake(35, 22, 10, 10), resizingMode: UIImageResizingMode.stretch)
         contentBackgroundImageView.image = contentBackImage
-        contentTextLabel.textAlignment = NSTextAlignment.right
+        contentTextLabel.textAlignment = NSTextAlignment.left
     }
     
     
     // MARK: - 获取当前时间string
-    func getTimeString() -> String
+    func getTimeString(date:Date) -> String
     {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy年MM月dd天 HH:mm:ss"
-        let dateStr = dateFormatter.string(from: Date.init(timeIntervalSinceNow: 0))
+        let dateStr = dateFormatter.string(from:date)
         return dateStr
     }
     

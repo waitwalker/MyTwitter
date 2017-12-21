@@ -298,5 +298,9 @@ extension String
         }
     }
     
+    static func getRandomValue(peakValue:Int) -> Int
+    {
+        return Int(arc4random_uniform(UInt32(peakValue)))
+    }
 }
 

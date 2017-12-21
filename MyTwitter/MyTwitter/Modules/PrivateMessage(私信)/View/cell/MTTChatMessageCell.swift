@@ -90,7 +90,6 @@ class MTTChatMessageCell: MTTTableViewCell
         // 聊天时间
         timeLabel.frame = CGRect(x: kMargin, y: kMargin, width: kScreenWidth - 20, height: 20)
         timeLabel.text = String.getSuitableDateHint(model.chatDateStamp) + "  " + getTimeString(date: model.chatDate)
-        contentTextLabel.text = model.messageContent
         if model.messageFrom == MTTChatMessageFromType.My
         {
            self.layoutMyMessageSubview(model: model)
@@ -113,6 +112,7 @@ class MTTChatMessageCell: MTTTableViewCell
         {
         case .text:
             
+            contentTextLabel.text = model.messageContent
             // 聊天文本
             contentTextLabel.frame = CGRect(x: 15, y: 5, width: kBaseWidth - 15, height: model.contentTextHeight)
             
@@ -124,7 +124,7 @@ class MTTChatMessageCell: MTTTableViewCell
         case .picture:
             // 聊天图片
             contentImageView.frame = CGRect(x: 15, y: 5, width: kBaseWidth - 15, height: model.contentPictureHeight)
-            
+            contentImageView.image = UIImage(data: model.pictureData)
             contentTextLabel.isHidden = true
             contentImageView.isHidden = false
             contentVoiceImageView.isHidden = true
@@ -167,7 +167,7 @@ class MTTChatMessageCell: MTTTableViewCell
         switch model.messageType
         {
         case .text:
-            
+            contentTextLabel.text = model.messageContent
             // 聊天文本
             contentTextLabel.frame = CGRect(x: 0, y: 5, width: kBaseWidth - 15, height: model.contentTextHeight)
             
@@ -206,7 +206,7 @@ class MTTChatMessageCell: MTTTableViewCell
         var contentBackImage = UIImage.imageNamed(name: "twitter_chat_message_my")
         contentBackImage = contentBackImage.resizableImage(withCapInsets: UIEdgeInsetsMake(35, 22, 10, 10), resizingMode: UIImageResizingMode.stretch)
         contentBackgroundImageView.image = contentBackImage
-        contentTextLabel.textAlignment = NSTextAlignment.left
+        contentTextLabel.textAlignment = model.contentTextHeight > 40 ? NSTextAlignment.left : NSTextAlignment.right
     }
     
     

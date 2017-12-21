@@ -28,5 +28,7 @@ class MTTChatMessageModel: Object
     var chatDateStamp:TimeInterval!
     var chatDate:Date!
     
+    var pictureData:Data!
+    
     
 }

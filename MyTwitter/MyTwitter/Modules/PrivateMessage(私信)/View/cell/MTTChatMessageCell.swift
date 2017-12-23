@@ -77,7 +77,6 @@ class MTTChatMessageCell: MTTTableViewCell
         contentTextLabel.textColor = kMainRandomColor()
         contentTextLabel.numberOfLines = 0
         contentTextLabel.sizeToFit()
-        contentTextLabel.backgroundColor = kMainGreenColor()
         contentBackgroundImageView.addSubview(contentTextLabel)
         
         contentImageView = UIImageView()
@@ -86,7 +85,6 @@ class MTTChatMessageCell: MTTTableViewCell
         contentBackgroundImageView.addSubview(contentImageView)
         
         contentVoiceImageView = UIImageView()
-        contentVoiceImageView.backgroundColor = kMainRandomColor()
         contentVoiceImageView.isUserInteractionEnabled = true
         contentBackgroundImageView.addSubview(contentVoiceImageView)
     }

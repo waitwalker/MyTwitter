@@ -8,6 +8,9 @@
 
 import UIKit
 import Foundation
+import Photos
+import AssetsLibrary
+import AVFoundation
 
 class MTTSingletonManager: NSObject 
 {
@@ -61,5 +64,26 @@ class MTTSingletonManager: NSObject
         {
             rootVC.tabBarController?.tabBar.isHidden = false
         }
+    }
+    
+    // MARK: - 获取相机相册权限状态
+    func getCameraAuthorizationStatus() -> Bool
+    {
+        let authStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        
+        if authStatus != AVAuthorizationStatus.denied
+        {
+            return true
+        }
+        return false
+    }
+    
+    func getPhotoLibraryAuthorizationStatus() -> Bool
+    {
+        if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.denied
+        {
+            return true
+        }
+        return false
     }
 }

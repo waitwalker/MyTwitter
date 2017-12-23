@@ -21,6 +21,7 @@
 		1A20C5421FC465FC00EAA0B6 /* MTTLikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A20C5411FC465FC00EAA0B6 /* MTTLikeViewController.swift */; };
 		1A234B581F8BB00E00D6C731 /* MTTLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A234B571F8BB00E00D6C731 /* MTTLocationViewController.swift */; };
 		1A234B5A1F8BB40D00D6C731 /* MTTLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A234B591F8BB40D00D6C731 /* MTTLocationCell.swift */; };
+		1A29C34A1FEE8F1B0041567A /* MTTPrivateAuthorityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29C3491FEE8F1B0041567A /* MTTPrivateAuthorityManager.swift */; };
 		1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C071F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift */; };
 		1A304C101F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C0F1F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift */; };
 		1A304C121F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A304C111F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift */; };
@@ -187,6 +188,7 @@
 		1A20C5411FC465FC00EAA0B6 /* MTTLikeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLikeViewController.swift; sourceTree = "<group>"; };
 		1A234B571F8BB00E00D6C731 /* MTTLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLocationViewController.swift; sourceTree = "<group>"; };
 		1A234B591F8BB40D00D6C731 /* MTTLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLocationCell.swift; sourceTree = "<group>"; };
+		1A29C3491FEE8F1B0041567A /* MTTPrivateAuthorityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPrivateAuthorityManager.swift; sourceTree = "<group>"; };
 		1A304C071F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterViewModelDelegate.swift; sourceTree = "<group>"; };
 		1A304C0F1F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTPhoneAreaCodeSectionHeaderView.swift; sourceTree = "<group>"; };
 		1A304C111F6D66CF00F366B9 /* MTTPhoneAreaCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTPhoneAreaCodeViewController.swift; sourceTree = "<group>"; };
@@ -695,6 +697,7 @@
 			isa = PBXGroup;
 			children = (
 				CA3058CC1F78FE2500742237 /* MTTHeader.swift */,
+				1A29C3491FEE8F1B0041567A /* MTTPrivateAuthorityManager.swift */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -1522,6 +1525,7 @@
 				1AB7E0111FE800080068B5D4 /* MTTVideosView.swift in Sources */,
 				1A20C5401FC465EF00EAA0B6 /* MTTMediaViewController.swift in Sources */,
 				1A20C53E1FC465D600EAA0B6 /* MTTTwitterTextAndReplyViewController.swift in Sources */,
+				1A29C34A1FEE8F1B0041567A /* MTTPrivateAuthorityManager.swift in Sources */,
 				1A82AEAA1F8FA4E60015EAC4 /* MTTSearchLabelCell.swift in Sources */,
 				1A20C5421FC465FC00EAA0B6 /* MTTLikeViewController.swift in Sources */,
 				CA3058C41F78CAE500742237 /* MTTHomeViewModel.swift in Sources */,

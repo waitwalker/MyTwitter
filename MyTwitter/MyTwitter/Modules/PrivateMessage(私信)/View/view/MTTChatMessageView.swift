@@ -34,7 +34,7 @@ class MTTChatMessageView: MTTView {
     override func setupSubview()
     {
         chatMessageTableView = UITableView()
-        chatMessageTableView.backgroundColor = kMainBlueColor()
+        chatMessageTableView.backgroundColor = UIColor.white
         chatMessageTableView.delegate = self
         chatMessageTableView.dataSource = self
         chatMessageTableView.register(UITableViewCell.self, forCellReuseIdentifier: reusedChatMessageNoneCellId)

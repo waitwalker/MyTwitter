@@ -123,6 +123,13 @@ class MTTChatMessageToolBar: UIView
         
         sendButton.frame = CGRect(x: kScreenWidth - 24 - 10, y: 13, width: 24, height: 24)
         
+        sendButton.isHidden = true
+        
+        pictureButton.isHidden = false
+        
+        expressionButton.isHidden = false
+        
+        addButton.isHidden = false
     }
     
     func setupNotification() -> Void

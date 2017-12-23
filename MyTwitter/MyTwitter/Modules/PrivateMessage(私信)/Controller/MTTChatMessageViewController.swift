@@ -50,6 +50,12 @@ class MTTChatMessageViewController: MTTViewController {
         layoutSubview()
     }
     
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        super.viewDidDisappear(animated)
+        self.sharedInstance.showTabbar()
+    }
+    
     func setupOriginal() -> Void
     {
         self.pictureButtonIsSelected = false
@@ -120,6 +126,7 @@ MTTPhotosViewDelegate
         self.chatMessageView.loadDataFromLocal()
         self.chatMessageToolbar.inputTextView.text = ""
         self.chatMessageToolbar.inputTextView.resignFirstResponder()
+        self.chatMessageToolbar.layoutSubview()
         self.messageFromOthers()
     }
     

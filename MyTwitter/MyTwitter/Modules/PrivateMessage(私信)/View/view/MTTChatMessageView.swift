@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Realm
+import RealmSwift
 
 class MTTChatMessageView: MTTView {
 
@@ -15,7 +17,7 @@ class MTTChatMessageView: MTTView {
     
     var chatMessageTableView:UITableView!
     
-    var dataSource:[MTTChatMessageModel] = []
+    var dataSource:Results<MTTChatMessageModel>?
     
     var delegate:MTTChatMessageViewDelegate?
     
@@ -25,6 +27,8 @@ class MTTChatMessageView: MTTView {
         super.init(frame: frame)
         
         //loadChatMessageData()
+        
+        loadDataFromLocal()
     }
     
     override func setupSubview()
@@ -45,72 +49,31 @@ class MTTChatMessageView: MTTView {
         chatMessageTableView.frame = self.bounds
     }
     
-    func loadChatMessageData() -> Void
+    public func loadDataFromLocal() -> Void
     {
-        let chatMessageArr = [
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?请问陈思诚，茄子是神马，香蕉，这个....都知道.网红问陈思诚的多大，有15CM么？陈思诚很自豪的告诉对方：我的很大好不......","messageType":MTTChatMessageType.text],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天有事吗?","messageType":MTTChatMessageType.picture],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"刚才你说的什么,没有收到,明天可能有时间,明天在过去吧","messageType":MTTChatMessageType.text],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.voice],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.text],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.picture],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.text],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.text],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.voice],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.voice],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.text],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.picture],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.My,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.text],
-            ["cellHeight":150,"messageFrom":MTTChatMessageFromType.Others,"messageContent":"今天过来吗?","messageType":MTTChatMessageType.voice]
-            
-            ]
-        
-        for dict in chatMessageArr
-        {
-            let model = MTTChatMessageModel()
-            model.messageFrom = dict["messageFrom"] as! MTTChatMessageFromType
-            model.messageContent = dict["messageContent"] as! String
-            model.contentTextHeight = model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220)
-            model.messageType = dict["messageType"] as! MTTChatMessageType
-            print("文本高度:\(model.contentTextHeight)")
-            
-            if model.contentTextHeight < 30
-            {
-                model.contentTextHeight = 40
-            }
-            
-            switch model.messageType
-            {
-            case .text:
-                model.contentBackImageHeight = 5 + model.contentTextHeight + 5
-                model.cellHeight = 10 + 20 + 10 + model.contentBackImageHeight
-                break
-            case .picture:
-                model.contentPictureHeight = 250
-                model.contentBackImageHeight = 5 + model.contentPictureHeight + 5
-                model.cellHeight = 10 + 20 + 10 + model.contentPictureHeight
-                break
-            case .voice:
-                model.contentVoiceHeight = 40
-                model.contentBackImageHeight = 5 + model.contentVoiceHeight + 5
-                model.cellHeight = 10 + 20 + 10 + model.contentBackImageHeight
-                break
-            case .expression:
-                break
-            case .file:
-                break
-            
-            default:
-                break
-                
-            }
-            
-            dataSource.append(model)
-        }
+        self.dataSource = MTTDataBaseManager.getAllCacheChatData()
         
         self.chatMessageTableView.reloadData()
+        if (self.dataSource?.count)! > Int(1)
+        {
+            self.chatMessageTableView.scrollToRow(at: IndexPath(item: (self.dataSource?.count)! - 1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
+        }
+        
+        let queue = DispatchQueue(label: "realmQueue", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
+        queue.async {
+            //let realm = try! Realm(configuration: MTTDataBaseManager.setDefaultRealmConfiguration())
+            
+            autoreleasepool {
+                
+            }
+//            DispatchQueue.main.async {
+//                self.chatMessageTableView.reloadData()
+//            }
+        }
         
     }
+    
+        
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -130,19 +93,21 @@ UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return dataSource.count
+        return self.dataSource!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        if dataSource.count > 0
+        if (self.dataSource?.count)! > Int(0)
         {
             var cell = tableView.dequeueReusableCell(withIdentifier: reusedChatMessageCellId) as? MTTChatMessageCell
             if cell == nil
             {
                 cell = MTTChatMessageCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedChatMessageCellId)
             }
-            cell?.chatMessageModel = dataSource[indexPath.item]
+            print(self.dataSource![indexPath.item])
+            //cell?.chatMessageModel = self.dataSource[indexPath.item]
+            cell?.setChatMessageModel(model: self.dataSource![indexPath.item])
             return cell!
         } else
         {
@@ -158,10 +123,10 @@ UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        if dataSource.count > 0
+        if (self.dataSource?.count)! > 0
         {
-            let model = dataSource[indexPath.item]
-            return model.cellHeight
+            let model = self.dataSource![indexPath.item]
+            return CGFloat(model.cellHeight)
         } else
         {
             return 20

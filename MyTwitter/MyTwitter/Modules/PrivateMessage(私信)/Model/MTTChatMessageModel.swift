@@ -11,24 +11,31 @@ import RealmSwift
 
 class MTTChatMessageModel: Object
 {
-    var messageType:MTTChatMessageType!
+    @objc dynamic var id = UUID().uuidString
     
-    var messageFrom:MTTChatMessageFromType!
-    var cellHeight:CGFloat!
-    var messageContent:String!
-    var messagePicture:String!
-    var messageVoice:String!
+    @objc dynamic var messageType = 0
     
-    var contentTextHeight:CGFloat!
-    var contentPictureHeight:CGFloat!
-    var contentVoiceHeight:CGFloat!
-    var contentBackImageHeight:CGFloat!
+    @objc dynamic var messageFrom = 0
+    
+    @objc dynamic var cellHeight = 0.0
+    @objc dynamic var messageContent = ""
+    @objc dynamic var messagePicture = ""
+    @objc dynamic var messageVoice = ""
+    
+    @objc dynamic var contentTextHeight = 0.0
+    @objc dynamic var contentPictureHeight = 0.0
+    @objc dynamic var contentVoiceHeight = 0.0
+    @objc dynamic var contentBackImageHeight = 0.0
     
     // 聊天时间戳 
-    var chatDateStamp:TimeInterval!
-    var chatDate:Date!
+    @objc dynamic var chatDateStamp = 0
+    @objc dynamic var chatDate = Date()
     
-    var pictureData:Data!
+    @objc dynamic var pictureData:Data!
     
+    override static func primaryKey() -> String?
+    {
+        return "id"
+    }
     
 }

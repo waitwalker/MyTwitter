@@ -115,24 +115,28 @@ MTTPhotosViewDelegate
     func tappedSendButton(text: String)
     {
         let model = MTTChatMessageModel()
-        model.messageFrom = MTTChatMessageFromType.My
-        model.messageType = MTTChatMessageType.text
+        model.messageFrom = MTTChatMessageFromType.My.rawValue
+        model.messageType = MTTChatMessageType.text.rawValue
         model.chatDate = Date()
-        model.chatDateStamp = Date().timeIntervalSince1970
+        model.chatDateStamp = Int(Date().timeIntervalSince1970)
         model.messageContent = text
-        model.contentTextHeight = model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220) > 30 ? model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220) : 40
-        model.contentBackImageHeight = 5 + model.contentTextHeight + 5
-        model.cellHeight = 10 + 20 + 10 + model.contentBackImageHeight
+        model.contentTextHeight = Double(model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220) > 30 ? Float(model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220.0)) : Float(40.0))
+        model.contentBackImageHeight = 5 + model.contentTextHeight + 5.0
+        model.cellHeight = 10 + 20 + 10.0 + model.contentBackImageHeight
         
-        let realm = try! Realm()
-        
-        try! realm.write {
-            realm.add(model)
-        }
-        self.chatMessageView.dataSource.append(model)
-        self.chatMessageView.chatMessageTableView.reloadData()
-        print("realm数据库目录:\(realm.configuration.fileURL)")
-        self.chatMessageView.chatMessageTableView.scrollToRow(at: IndexPath.init(item: self.chatMessageView.dataSource.count - 1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
+        // 实例化realm对象
+        //let realm = try! Realm(configuration: MTTDataBaseManager.setDefaultRealmConfiguration())
+//        let realm = try! Realm()
+//
+//
+//        print(realm.configuration.fileURL as Any)
+//
+//        // 插入数据库
+//        try! realm.write {
+//            realm.add(model)
+//        }
+        MTTDataBaseManager.saveChatMessageModel(with: model)
+        self.chatMessageView.loadDataFromLocal()
         self.chatMessageToolbar.inputTextView.text = ""
         self.chatMessageToolbar.inputTextView.resignFirstResponder()
         self.messageFromOthers()
@@ -244,33 +248,29 @@ extension MTTChatMessageViewController
         let mType = self.messageType[String.getRandomValue(peakValue: 5)]
         
         let model = MTTChatMessageModel()
-        model.messageFrom = MTTChatMessageFromType.Others
-        model.messageType = mType
+        model.messageFrom = MTTChatMessageFromType.Others.rawValue
+        model.messageType = mType.rawValue
         model.chatDate = Date()
-        model.chatDateStamp = Date().timeIntervalSince1970
+        model.chatDateStamp = Int(Date().timeIntervalSince1970)
         
         switch model.messageType
         {
-        case .text:
+        case 0:
             model.messageContent = messageText[String.getRandomValue(peakValue: 6)]
-            model.contentTextHeight = model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220) > 30 ? model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220) : 40
+            model.contentTextHeight = Double(model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220) > 30 ? Float(model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220)) : Float(40))
             model.contentBackImageHeight = 5 + model.contentTextHeight + 5
             model.cellHeight = 10 + 20 + 10 + model.contentBackImageHeight
             break
-        case .picture:
+        case 1:
             model.pictureData = UIImagePNGRepresentation(UIImage.imageNamed(name: imageString[String.getRandomValue(peakValue: 6)]))
             model.contentPictureHeight = 250
             model.contentBackImageHeight = 5 + model.contentPictureHeight + 5
             model.cellHeight = 10 + 20 + 10 + model.contentPictureHeight
             break
-        case .voice:
+        case 2:
             model.contentVoiceHeight = 40
             model.contentBackImageHeight = 5 + model.contentVoiceHeight + 5
             model.cellHeight = 10 + 20 + 10 + model.contentBackImageHeight
-            break
-        case .expression:
-            break
-        case .file:
             break
             
         default:
@@ -278,15 +278,17 @@ extension MTTChatMessageViewController
             
         }
         
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(model)
-        }
+        //let realm = try! Realm(configuration: MTTDataBaseManager.setDefaultRealmConfiguration())
+//        let realm = try! Realm()
+//
+//        print(realm.configuration.fileURL as Any)
+//        try! realm.write {
+//            realm.add(model)
+//        }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval[String.getRandomValue(peakValue: 8)]) {
-            self.chatMessageView.dataSource.append(model)
-            self.chatMessageView.chatMessageTableView.reloadData()
-            self.chatMessageView.chatMessageTableView.scrollToRow(at: IndexPath.init(item: self.chatMessageView.dataSource.count - 1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
+            MTTDataBaseManager.saveChatMessageModel(with: model)
+            self.chatMessageView.loadDataFromLocal()
         }
         
         

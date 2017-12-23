@@ -168,7 +168,7 @@ class MTTChatMessageToolBar: UIView
         
     }
     
-    private func setupEvent() -> Void
+    public func setupEvent() -> Void
     {
         let inputTextViewSequence = (inputTextView.rx.text)
             .orEmpty

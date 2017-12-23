@@ -35,8 +35,14 @@ class MTTChatMessageCell: MTTTableViewCell
     {
         didSet
         {
-            layoutSubview(model: chatMessageModel!)
+            //print(chatMessageModel?.messageFrom as Any)
+            
         }
+    }
+    
+    func setChatMessageModel(model:MTTChatMessageModel) -> Void
+    {
+        layoutSubview(model: model)
     }
     
     
@@ -89,8 +95,11 @@ class MTTChatMessageCell: MTTTableViewCell
     {
         // 聊天时间
         timeLabel.frame = CGRect(x: kMargin, y: kMargin, width: kScreenWidth - 20, height: 20)
-        timeLabel.text = String.getSuitableDateHint(model.chatDateStamp) + "  " + getTimeString(date: model.chatDate)
-        if model.messageFrom == MTTChatMessageFromType.My
+        timeLabel.text = String.getSuitableDateHint(TimeInterval(model.chatDateStamp)) + "  " + getTimeString(date: model.chatDate)
+        
+        print(model.messageFrom)
+        
+        if model.messageFrom == Int(0)
         {
            self.layoutMyMessageSubview(model: model)
         } else
@@ -106,41 +115,37 @@ class MTTChatMessageCell: MTTTableViewCell
         avatarImageView.frame = CGRect(x: kMargin, y: timeLabel.frame.maxY + kMargin / 2, width: kAvatarHeightWidth, height: kAvatarHeightWidth)
         
         // 聊天背景气泡
-        contentBackgroundImageView.frame = CGRect(x: kAvatarHeightWidth + kMargin * 2, y: timeLabel.frame.maxY + kMargin / 2, width: kBaseWidth, height: model.contentBackImageHeight)
+        contentBackgroundImageView.frame = CGRect(x: kAvatarHeightWidth + kMargin * 2, y: timeLabel.frame.maxY + kMargin / 2, width: kBaseWidth, height: CGFloat(model.contentBackImageHeight))
         
         switch model.messageType
         {
-        case .text:
+        case 0:
             
             contentTextLabel.text = model.messageContent
             // 聊天文本
-            contentTextLabel.frame = CGRect(x: 15, y: 5, width: kBaseWidth - 15, height: model.contentTextHeight)
+            contentTextLabel.frame = CGRect(x: 15, y: 5, width: kBaseWidth - 15, height: CGFloat(model.contentTextHeight))
             
             contentTextLabel.isHidden = false
             contentImageView.isHidden = true
             contentVoiceImageView.isHidden = true
             
             break
-        case .picture:
+        case 1:
             // 聊天图片
-            contentImageView.frame = CGRect(x: 15, y: 5, width: kBaseWidth - 15, height: model.contentPictureHeight)
+            contentImageView.frame = CGRect(x: 15, y: 5, width: kBaseWidth - 15, height: CGFloat(model.contentPictureHeight))
             contentImageView.image = UIImage(data: model.pictureData)
             contentTextLabel.isHidden = true
             contentImageView.isHidden = false
             contentVoiceImageView.isHidden = true
             
             break
-        case .voice:
+        case 2:
             // 聊天语音
-            contentVoiceImageView.frame = CGRect(x: 15, y: 5, width: kBaseWidth - 15, height: model.contentVoiceHeight)
+            contentVoiceImageView.frame = CGRect(x: 15, y: 5, width: kBaseWidth - 15, height: CGFloat(model.contentVoiceHeight))
             
             contentTextLabel.isHidden = true
             contentImageView.isHidden = true
             contentVoiceImageView.isHidden = false
-            break
-        case .expression:
-            break
-        case .file:
             break
             
         default:
@@ -162,41 +167,37 @@ class MTTChatMessageCell: MTTTableViewCell
         
         
         // 聊天背景气泡
-        contentBackgroundImageView.frame = CGRect(x: kScreenWidth - kBaseWidth - kAvatarHeightWidth - 15, y: timeLabel.frame.maxY + kMargin / 2, width: kBaseWidth, height: model.contentBackImageHeight)
+        contentBackgroundImageView.frame = CGRect(x: kScreenWidth - kBaseWidth - kAvatarHeightWidth - 15, y: timeLabel.frame.maxY + kMargin / 2, width: kBaseWidth, height: CGFloat(model.contentBackImageHeight))
         
         switch model.messageType
         {
-        case .text:
+        case 0:
             contentTextLabel.text = model.messageContent
             // 聊天文本
-            contentTextLabel.frame = CGRect(x: 0, y: 5, width: kBaseWidth - 15, height: model.contentTextHeight)
+            contentTextLabel.frame = CGRect(x: 0, y: 5, width: kBaseWidth - 15, height: CGFloat(model.contentTextHeight))
             
             contentTextLabel.isHidden = false
             contentImageView.isHidden = true
             contentVoiceImageView.isHidden = true
             
             break
-        case .picture:
+        case 1:
             
             // 聊天图片
-            contentImageView.frame = CGRect(x: 0, y: 5, width: kBaseWidth - 15, height: model.contentPictureHeight)
+            contentImageView.frame = CGRect(x: 0, y: 5, width: kBaseWidth - 15, height: CGFloat(model.contentPictureHeight))
             
             contentTextLabel.isHidden = true
             contentImageView.isHidden = false
             contentVoiceImageView.isHidden = true
             
             break
-        case .voice:
+        case 2:
             // 聊天语音
-            contentVoiceImageView.frame = CGRect(x: 0, y: 5, width: kBaseWidth - 15, height: model.contentVoiceHeight)
+            contentVoiceImageView.frame = CGRect(x: 0, y: 5, width: kBaseWidth - 15, height: CGFloat(model.contentVoiceHeight))
             
             contentTextLabel.isHidden = true
             contentImageView.isHidden = true
             contentVoiceImageView.isHidden = false
-            break
-        case .expression:
-            break
-        case .file:
             break
             
         default:

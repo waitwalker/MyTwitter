@@ -28,15 +28,23 @@ class MTTSingletonManager: NSObject
         super.init()
     }
     
-    // 隐藏 显示 tabBar
-    func getRootViewController() -> UIViewController
+    // MARK: - AppDelegate 相关
+    func getAppDelegate() -> AppDelegate
     {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let rootVC = appDelegate.window?.rootViewController
-        
-        return rootVC!
+        return UIApplication.shared.delegate as! AppDelegate
     }
     
+    func getKeyWindow() -> UIWindow
+    {
+        return getAppDelegate().window!
+    }
+    
+    func getRootViewController() -> UIViewController
+    {
+        return getKeyWindow().rootViewController!
+    }
+    
+    // MARK: - 隐藏 显示 tabBar
     func hideTabbar() -> Void
     {
         let rootVC = getRootViewController()
@@ -85,5 +93,28 @@ class MTTSingletonManager: NSObject
             return true
         }
         return false
+    }
+    
+    // MARK: - 授权失败弹框
+    func showAlter(with message: String) -> Void
+    {
+        let alertController = UIAlertController(title: "提示", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let confirmAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.default) { action in
+            UIApplication.shared.open(URL(string: "App-Prefs:root=Privacy")!, options: ["" : ""], completionHandler: { completed in
+                
+            })
+        }
+        
+        let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel) { action in
+            
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(confirmAction)
+        
+        getRootViewController().present(alertController, animated: true) {
+            
+        }
+        
     }
 }

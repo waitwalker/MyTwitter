@@ -39,11 +39,21 @@ class MTTPhotosView: MTTView
     // MARK: - 获取相册中全部照片数量
     func getAllPhotoCount() -> Int
     {
-        let fetchOptions = PHFetchOptions()
+        let photoAuthStatus = shardInstance.getPhotoLibraryAuthorizationStatus()
         
-        let assets = PHAsset.fetchAssets( with: fetchOptions)
+        if photoAuthStatus
+        {
+            let fetchOptions = PHFetchOptions()
+            
+            let assets = PHAsset.fetchAssets( with: fetchOptions)
+            
+            return assets.count
+        } else
+        {
+            shardInstance.showAlter(with: "您还没授权访问相册,请您先去授权")
+            return 0
+        }
         
-        return assets.count
     }
     
     override func layoutSubview()

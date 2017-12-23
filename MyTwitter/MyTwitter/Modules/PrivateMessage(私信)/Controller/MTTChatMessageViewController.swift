@@ -83,13 +83,6 @@ class MTTChatMessageViewController: MTTViewController {
         videosView.isHidden = true
         appDelegate.window?.addSubview(videosView)
         
-        let timeInterval = -2000000
-        
-        
-        let string = String.getSuitableDateHint(TimeInterval(timeInterval))
-        
-        print(string)
-        
     }
     
     private func layoutSubview() -> Void
@@ -124,17 +117,6 @@ MTTPhotosViewDelegate
         model.contentBackImageHeight = 5 + model.contentTextHeight + 5.0
         model.cellHeight = 10 + 20 + 10.0 + model.contentBackImageHeight
         
-        // 实例化realm对象
-        //let realm = try! Realm(configuration: MTTDataBaseManager.setDefaultRealmConfiguration())
-//        let realm = try! Realm()
-//
-//
-//        print(realm.configuration.fileURL as Any)
-//
-//        // 插入数据库
-//        try! realm.write {
-//            realm.add(model)
-//        }
         MTTDataBaseManager.saveChatMessageModel(with: model)
         self.chatMessageView.loadDataFromLocal()
         self.chatMessageToolbar.inputTextView.text = ""
@@ -277,14 +259,6 @@ extension MTTChatMessageViewController
             break
             
         }
-        
-        //let realm = try! Realm(configuration: MTTDataBaseManager.setDefaultRealmConfiguration())
-//        let realm = try! Realm()
-//
-//        print(realm.configuration.fileURL as Any)
-//        try! realm.write {
-//            realm.add(model)
-//        }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval[String.getRandomValue(peakValue: 8)]) {
             MTTDataBaseManager.saveChatMessageModel(with: model)

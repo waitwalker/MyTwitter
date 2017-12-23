@@ -255,7 +255,8 @@ extension String
     /// - Returns: 时间字符串提示
     static func getSuitableDateHint(_ chatTimeStamp: TimeInterval) -> String
     {
-        let tmpDate = Date() + chatTimeStamp as NSDate
+        
+        let tmpDate = Date(timeIntervalSince1970: chatTimeStamp) as NSDate
         
         let yearLength = tmpDate.yearsAgo()
         
@@ -273,29 +274,40 @@ extension String
         
         if yearLength >= 1
         {
-            return String(format: "%d年前", yearLength)
+            return String(format: "%.0f年前", yearLength)
         } else if monthLength >= 1
         {
-            return String(format: "%d个月前", monthLength)
+            return String(format: "%.0f个月前", monthLength)
         } else if weekLength >= 1
         {
-            return String(format: "%d周前", weekLength)
+            return String(format: "%.0f周前", weekLength)
         } else if dayLength >= 1
         {
-            return String(format: "%d天前", dayLength)
+            return String(format: "%.0f天前", dayLength)
         } else if hourLenght >= 1
         {
-            return String(format: "%d个小时前", hourLenght)
+            return String(format: "%.0f个小时前", hourLenght)
         } else if minuteLength >= 1
         {
-            return String(format: "%d分钟前", minuteLength)
+            return String(format: "%.0f分钟前", minuteLength)
         } else if secondLength >= 1
         {
-            return String(format: "%d秒前", secondLength)
+            return String(format: "%.0f秒前", secondLength)
         } else
         {
             return "刚刚"
         }
+    }
+    
+    
+    
+    // MARK: - 获取当前时间string
+    static func getTimeString(date:Date) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+        let dateStr = dateFormatter.string(from:date)
+        return dateStr
     }
     
     static func getRandomValue(peakValue:Int) -> Int

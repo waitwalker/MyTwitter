@@ -95,7 +95,7 @@ class MTTChatMessageCell: MTTTableViewCell
     {
         // 聊天时间
         timeLabel.frame = CGRect(x: kMargin, y: kMargin, width: kScreenWidth - 20, height: 20)
-        timeLabel.text = String.getSuitableDateHint(TimeInterval(model.chatDateStamp)) + "  " + getTimeString(date: model.chatDate)
+        timeLabel.text = String.getSuitableDateHint(TimeInterval(model.chatDateStamp)) + "  " + String.getTimeString(date: model.chatDate)
         
         print(model.messageFrom)
         
@@ -210,15 +210,6 @@ class MTTChatMessageCell: MTTTableViewCell
         contentTextLabel.textAlignment = model.contentTextHeight > 40 ? NSTextAlignment.left : NSTextAlignment.right
     }
     
-    
-    // MARK: - 获取当前时间string
-    func getTimeString(date:Date) -> String
-    {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy年MM月dd天 HH:mm:ss"
-        let dateStr = dateFormatter.string(from:date)
-        return dateStr
-    }
     
     
     required init?(coder aDecoder: NSCoder) {

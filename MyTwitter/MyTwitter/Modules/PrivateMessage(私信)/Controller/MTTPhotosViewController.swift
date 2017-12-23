@@ -36,7 +36,6 @@ class MTTPhotosViewController: MTTViewController {
     {
         backButton                             = UIButton()
         backButton.frame                       = CGRect(x: 0, y: 0, width: 40, height: 44)
-        backButton.backgroundColor = UIColor.red
         backButton.titleEdgeInsets = UIEdgeInsetsMake(2, 0, -2, 5)
         backButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         backButton.setTitle("取消", for: UIControlState.normal)

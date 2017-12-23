@@ -6,6 +6,10 @@
 //  Copyright © 2017年 waitWalker. All rights reserved.
 //
 
+/**********************
+ 选择照片滚动视图
+***********************/
+
 import UIKit
 import Photos
 
@@ -117,6 +121,7 @@ class MTTPhotosView: MTTView
             
         }
         
+        // 当滚动视图超过一定距离后 模态出控制器
         if pan.state == UIGestureRecognizerState.ended
         {
             if self.y > 250

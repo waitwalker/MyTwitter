@@ -75,13 +75,12 @@ class MTTChatMessageViewController: MTTViewController {
         photosView = MTTPhotosView(frame: CGRect(x: 0, y: kScreenHeight - 150, width: kScreenWidth, height: kScreenHeight))
         photosView.delegate = self
         photosView.isHidden = true
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.addSubview(photosView)
+        self.view.addSubview(photosView)
         
         // 选择视频
         videosView = MTTVideosView(frame: CGRect(x: 0, y: kScreenHeight - 88, width: kScreenWidth, height: 87))
         videosView.isHidden = true
-        appDelegate.window?.addSubview(videosView)
+        self.view.addSubview(videosView)
         
     }
     
@@ -133,6 +132,10 @@ MTTPhotosViewDelegate
             self.chatMessageToolbar.y = kScreenHeight - 50 - 44 - 5
             self.photosView.isHidden = true
             self.photosView.y = kScreenHeight - 150
+            
+            self.chatMessageToolbar.pictureButton.isSelected = false
+            self.chatMessageToolbar.pictureButton.setImage(UIImage.imageNamed(name: "twitter_pictures_normal"), for: UIControlState.normal)
+            self.sharedInstance.showTabbar()
         }
     }
     
@@ -150,10 +153,13 @@ MTTPhotosViewDelegate
         {
             UIView.animate(withDuration: 0.1) {
                 self.view.endEditing(true)
-                let timeInterval:TimeInterval = 0.3
+                let timeInterval:TimeInterval = 0.2
+                self.chatMessageToolbar.y = kScreenHeight - 50 - 150
+                self.photosView.isHidden = false
+                self.sharedInstance.hideTabbar()
+                self.view.bringSubview(toFront: self.photosView)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: {
-                    self.chatMessageToolbar.y = kScreenHeight - 50 - 150
-                    self.photosView.isHidden = false
+                    
                 })
             }
         } else
@@ -162,6 +168,7 @@ MTTPhotosViewDelegate
                 self.chatMessageToolbar.inputTextView.becomeFirstResponder()
                 self.photosView.isHidden = true
                 self.videosView.isHidden = true
+                self.sharedInstance.showTabbar()
             })
         }
     }
@@ -180,10 +187,13 @@ MTTPhotosViewDelegate
         {
             UIView.animate(withDuration: 0.1) {
                 self.view.endEditing(true)
-                let timeInterval:TimeInterval = 0.3
+                let timeInterval:TimeInterval = 0.2
+                self.sharedInstance.hideTabbar()
+                self.chatMessageToolbar.y = kScreenHeight - 50 - 88
+                self.videosView.isHidden = false
+                self.view.bringSubview(toFront: self.videosView)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: {
-                    self.chatMessageToolbar.y = kScreenHeight - 50 - 88
-                    self.videosView.isHidden = false
+                    
                 })
             }
         } else
@@ -192,6 +202,7 @@ MTTPhotosViewDelegate
                 self.chatMessageToolbar.inputTextView.becomeFirstResponder()
                 self.videosView.isHidden = true
                 self.photosView.isHidden = true
+                self.sharedInstance.showTabbar()
             })
         }
     }

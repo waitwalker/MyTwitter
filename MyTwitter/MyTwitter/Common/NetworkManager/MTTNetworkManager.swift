@@ -16,7 +16,7 @@ enum kMethodType {
 class MTTNetworkManager: NSObject 
 {
     
-    typealias kCallBack = (_ responseObject:AnyObject,_ error:Error)->()
+    typealias kCallBack        = (_ responseObject:AnyObject,_ error:Error)->()
     typealias kSuccessCallBack = (_ responseObject:AnyObject) -> ()
     typealias kFailureCallBack = (_ error:NSError) -> ()
     

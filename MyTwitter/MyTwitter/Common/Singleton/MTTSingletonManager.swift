@@ -14,13 +14,13 @@ import AVFoundation
 
 class MTTSingletonManager: NSObject 
 {
-    var user_name:String = ""
-    var email:String = ""
-    var phone_num:String = ""
-    var password:String = ""
+    var user_name:String     = ""
+    var email:String         = ""
+    var phone_num:String     = ""
+    var password:String      = ""
     var tappedImageIndex:Int = 0
-    
-    
+
+
     static let sharedInstance = MTTSingletonManager()
     
     private override init

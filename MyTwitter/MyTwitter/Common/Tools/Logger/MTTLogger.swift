@@ -49,8 +49,8 @@ public extension MTTLogger
     
     func fileLoggerWithName(name:String) -> XCGLogger
     {
-        let log = XCGLogger()
-        let logFileURL = urlForLogNamed(name: name)
+        let log             = XCGLogger()
+        let logFileURL      = urlForLogNamed(name: name)
         let fileDestination = FileDestination(owner: log, writeToFile: logFileURL, identifier: "cn.waitwalker.mytwitter.filelogger.\(name)", shouldAppend: false, appendMarker: nil)
         log.add(destination: fileDestination)
         return log

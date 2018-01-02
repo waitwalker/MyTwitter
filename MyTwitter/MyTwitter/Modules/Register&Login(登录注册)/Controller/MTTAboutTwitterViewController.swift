@@ -46,35 +46,35 @@ class MTTAboutTwitterViewController: MTTViewController,UITableViewDelegate,UITab
     func setupSubview() -> Void
     {
         self.setupNavigationBar()
-        self.view.backgroundColor = kMainLightGrayColor()
-        
+        self.view.backgroundColor       = kMainLightGrayColor()
+
         //aboutTableView
-        aboutTableView = UITableView()
-        aboutTableView?.delegate = self
-        aboutTableView?.dataSource = self
+        aboutTableView                  = UITableView()
+        aboutTableView?.delegate        = self
+        aboutTableView?.dataSource      = self
         aboutTableView?.register(MTTAboutNormalCell.self, forCellReuseIdentifier: reusedAbortNormalCellId)
         aboutTableView?.register(MTTAboutSwitchCell.self, forCellReuseIdentifier: reusedAbortSwitchCellId)
         aboutTableView?.backgroundColor = kMainLightGrayColor()
-        aboutTableView?.separatorStyle = UITableViewCellSeparatorStyle.none
+        aboutTableView?.separatorStyle  = UITableViewCellSeparatorStyle.none
         self.view.addSubview(aboutTableView!)
     }
     
     func setupNavigationBar() -> Void
     {
         //titleLabel
-        titleLabel = UILabel()
-        titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel?.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        titleLabel?.text = "关于 Twitter"
-        titleLabel?.textColor = UIColor.black
-        titleLabel?.textAlignment = NSTextAlignment.center
+        titleLabel                    = UILabel()
+        titleLabel?.font              = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel?.frame             = CGRect(x: 0, y: 0, width: 100, height: 40)
+        titleLabel?.text              = "关于 Twitter"
+        titleLabel?.textColor         = UIColor.black
+        titleLabel?.textAlignment     = NSTextAlignment.center
         self.navigationItem.titleView = titleLabel
-        
+
         //rightButton
-        rightButton = UIButton()
+        rightButton                   = UIButton()
         rightButton?.setImage(UIImage.init(named: "twitter_close"), for: UIControlState.normal)
-        rightButton?.imageEdgeInsets = UIEdgeInsetsMake(15, 11, 15, 11)
-        rightButton?.frame = CGRect(x: 0, y: 0, width: 40, height: 44)
+        rightButton?.imageEdgeInsets  = UIEdgeInsetsMake(15, 11, 15, 11)
+        rightButton?.frame            = CGRect(x: 0, y: 0, width: 40, height: 44)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightButton!)
     }
     

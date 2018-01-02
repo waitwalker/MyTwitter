@@ -24,26 +24,26 @@ class MTTLargeImagePreviewManager: NSObject
     
     private func setupSubView() -> Void 
     {
-        let appDelegate = UIApplication.shared.delegate
+        let appDelegate                                = UIApplication.shared.delegate
         appDelegate?.window??.isUserInteractionEnabled = true
-        imageBackgroundView = UIView()
-        imageBackgroundView?.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
+        imageBackgroundView                            = UIView()
+        imageBackgroundView?.frame                     = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
         appDelegate?.window??.addSubview(imageBackgroundView!)
-        
-        imageScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
-        imageScrollView?.isUserInteractionEnabled = true
-        imageScrollView?.contentSize = CGSize(width: kScreenWidth * CGFloat((imageArray?.count)!), height: 0)
-        imageScrollView?.isPagingEnabled = true
+
+        imageScrollView                                = UIScrollView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
+        imageScrollView?.isUserInteractionEnabled      = true
+        imageScrollView?.contentSize                   = CGSize(width: kScreenWidth * CGFloat((imageArray?.count)!), height: 0)
+        imageScrollView?.isPagingEnabled               = true
         imageBackgroundView?.addSubview(imageScrollView!)
         
         for i in 0...(self.imageArray?.count)! 
         {
             print("次数:",i)
             
-            let imageView = UIImageView()
+            let imageView                      = UIImageView()
             imageView.isUserInteractionEnabled = true
-            imageView.frame = CGRect(x: CGFloat(i) * kScreenWidth, y: 0, width: kScreenWidth, height: kScreenHeight)
-            imageView.backgroundColor = kMainRandomColor()
+            imageView.frame                    = CGRect(x: CGFloat(i) * kScreenWidth, y: 0, width: kScreenWidth, height: kScreenHeight)
+            imageView.backgroundColor          = kMainRandomColor()
             imageScrollView?.addSubview(imageView)
             
         }
@@ -55,7 +55,7 @@ class MTTLargeImagePreviewManager: NSObject
             subview.addGestureRecognizer(tap)
         }
         
-        let sharedInstance = MTTSingletonManager.sharedInstance
+        let sharedInstance             = MTTSingletonManager.sharedInstance
         imageScrollView?.contentOffset = CGPoint(x: kScreenWidth * CGFloat(sharedInstance.tappedImageIndex), y: (imageScrollView?.frame.origin.y)!)
         print(imageScrollView?.subviews as Any)
     }

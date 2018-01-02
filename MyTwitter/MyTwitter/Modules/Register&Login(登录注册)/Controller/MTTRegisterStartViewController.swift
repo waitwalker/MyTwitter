@@ -37,43 +37,43 @@ class MTTRegisterStartViewController: MTTViewController {
     func setupSubview() -> Void
     {
         //logo
-        logoImageView = UIImageView.init(image: UIImage.init(named: "twitter_logo"))
+        logoImageView                   = UIImageView.init(image: UIImage.init(named: "twitter_logo"))
         self.view.addSubview(logoImageView!)
-        
+
         //check
-        checkLabel = UILabel()
-        checkLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        checkLabel?.textAlignment = NSTextAlignment.left
-        checkLabel?.text = "查看世界当前正在发生的事情."
-        checkLabel?.numberOfLines = 2
+        checkLabel                      = UILabel()
+        checkLabel?.font                = UIFont.boldSystemFont(ofSize: 30)
+        checkLabel?.textAlignment       = NSTextAlignment.left
+        checkLabel?.text                = "查看世界当前正在发生的事情."
+        checkLabel?.numberOfLines       = 2
         checkLabel?.sizeToFit()
         self.view.addSubview(checkLabel!)
-        
+
         //start
-        startButton = UIButton()
+        startButton                     = UIButton()
         startButton?.setTitle("现在开始", for: UIControlState.normal)
         startButton?.layer.cornerRadius = 20
-        startButton?.clipsToBounds = true
+        startButton?.clipsToBounds      = true
         startButton?.setTitleColor(UIColor.white, for: UIControlState.normal)
         startButton?.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
         startButton?.setTitleColor(kRGBColor(r: 102, g: 102, b: 153), for: UIControlState.highlighted)
-        startButton?.backgroundColor = kMainBlueColor()
+        startButton?.backgroundColor    = kMainBlueColor()
         self.view.addSubview(startButton!)
-        
+
         //haveAccount
-        haveAccountLabel = UILabel()
-        haveAccountLabel?.text = "已有账号?"
+        haveAccountLabel                = UILabel()
+        haveAccountLabel?.text          = "已有账号?"
         haveAccountLabel?.textAlignment = NSTextAlignment.right
-        haveAccountLabel?.textColor = kRGBColor(r: 102, g: 102, b: 153)
-        haveAccountLabel?.font = UIFont.systemFont(ofSize: 15)
+        haveAccountLabel?.textColor     = kRGBColor(r: 102, g: 102, b: 153)
+        haveAccountLabel?.font          = UIFont.systemFont(ofSize: 15)
         self.view.addSubview(haveAccountLabel!)
-        
+
         //loginButton
-        loginButton = UIButton()
+        loginButton                     = UIButton()
         loginButton?.setTitle("登录", for: UIControlState.normal)
         loginButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
         loginButton?.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
-        loginButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        loginButton?.titleLabel?.font   = UIFont.systemFont(ofSize: 15)
         self.view.addSubview(loginButton!)
         
         

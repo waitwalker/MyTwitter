@@ -12,10 +12,10 @@ import XCGLogger
 
 open class MTTRollingFileLogger: XCGLogger 
 {
-    fileprivate static let TwoMBsInBytes:Int64 = 2 * 100000  //2MB
-    fileprivate var sizeLimit:Int64 = 0                      //大小
-    fileprivate var logDirectoryPath:String? = nil           //log路径
-    
+    fileprivate static let TwoMBsInBytes:Int64 = 2 * 100000//2MB
+    fileprivate var sizeLimit:Int64            = 0//大小
+    fileprivate var logDirectoryPath:String?   = nil//log路径
+
     let fileLogIdentifierPrefix = "cn.waitwalker.mytwitter.filelogger."
     
     fileprivate static let DateFormatter:DateFormatter = 

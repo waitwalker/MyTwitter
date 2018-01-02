@@ -222,81 +222,82 @@ class MTTRegisterNameViewController: MTTViewController {
                 self.view.endEditing(true)
                 self.dismiss(animated: true, completion: { 
                     
-                })
-            })
+                })})
             .disposed(by: disposeBag)
         
         //name 返回的是bool
         let nameObservable = nameTextField?.rx.text.share(replay: 1).map({($0?.count)! < 20})
-        nameObservable?.subscribe(onNext:({valid in 
-            if valid 
-            {
-                self.nameTextField?.textColor = kMainBlueColor()
-                self.errorHintLabel?.isHidden = true
-                if self.nameTextField?.text?.count == 0
+        nameObservable?
+            .subscribe(onNext:({valid in 
+                if valid
                 {
-                    self.nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
-                    self.nextButton?.isEnabled = false
-                    self.verifyImageView?.isHidden = true
+                    self.nameTextField?.textColor = kMainBlueColor()
+                    self.errorHintLabel?.isHidden = true
+                    if self.nameTextField?.text?.count == 0
+                    {
+                        self.nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
+                        self.nextButton?.isEnabled     = false
+                        self.verifyImageView?.isHidden = true
+                    } else
+                    {
+                        self.nextButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
+                        self.nextButton?.isEnabled     = true
+                        self.verifyImageView?.isHidden = false
+                        self.verifyImageView?.image    = UIImage.init(named: "name_valid")
+                        self.verifyImageView?.layer.borderColor = kMainGreenColor().cgColor
+                    }
+                    
                 } else
                 {
-                    self.nextButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
-                    self.nextButton?.isEnabled = true
-                    self.verifyImageView?.isHidden = false
-                    self.verifyImageView?.image = UIImage.init(named: "name_valid")
-                    self.verifyImageView?.layer.borderColor = kMainGreenColor().cgColor
-                }
-                
-            } else
-            {
-                self.nameTextField?.textColor = kMainRedColor()
-                self.verifyImageView?.isHidden = false
-                self.verifyImageView?.image = UIImage.init(named: "name_invalid")
-                self.verifyImageView?.layer.borderColor = kMainRedColor().cgColor
-                self.errorHintLabel?.isHidden = false
-                self.nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
-                self.nextButton?.isEnabled = false
-            }
-            
-        })).disposed(by: disposeBag)
+                    self.nameTextField?.textColor           = kMainRedColor()
+                    self.verifyImageView?.isHidden          = false
+                    self.verifyImageView?.image             = UIImage.init(named: "name_invalid")
+                    self.verifyImageView?.layer.borderColor = kMainRedColor().cgColor
+                    self.errorHintLabel?.isHidden           = false
+                    self.nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
+                    self.nextButton?.isEnabled              = false
+                }}))
+            .disposed(by: disposeBag)
         
         //nextButton
-        nextButton?.rx.tap.subscribe(onNext:({[unowned self] in 
+        nextButton?.rx.tap
+            .subscribe(onNext:({[unowned self] in 
             
-            self.sharedInstance.user_name = (self.nameTextField?.text)!
-            
-            let registerAccountVC = MTTRegisterAccountViewController()
-            self.navigationController?.pushViewController(registerAccountVC, animated: true)
-            
-        })).disposed(by: disposeBag)
+                self.sharedInstance.user_name = (self.nameTextField?.text)!
+                
+                let registerAccountVC         = MTTRegisterAccountViewController()
+                self.navigationController?.pushViewController(registerAccountVC, animated: true)}))
+            .disposed(by: disposeBag)
         
         //leftButton
-        leftButton?.rx.tap.subscribe(onNext:({[unowned self] in 
+        leftButton?.rx.tap
+            .subscribe(onNext:({[unowned self] in 
             
-            self.view.endEditing(true)
-            
-            self.dismiss(animated: true, completion: { 
+                self.view.endEditing(true)
                 
-            })
-            
-        })).disposed(by: disposeBag)
+                self.dismiss(animated: true, completion: { })}))
+            .disposed(by: disposeBag)
     }
     
     func addNotificationObserver() -> Void
     {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowAction(notify:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideAction(notify:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(keyboardWillShowAction(notify:)), 
+                                               name: NSNotification.Name.UIKeyboardWillShow, 
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(keyboardWillHideAction(notify:)), 
+                                               name: NSNotification.Name.UIKeyboardWillHide, 
+                                               object: nil)
     }
     
     @objc func keyboardWillShowAction(notify:Notification) -> Void
     {
-        let userInfo = notify.userInfo
+        let userInfo      = notify.userInfo
         let keyboardFrame = userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
         UIView.animate(withDuration: 0.5, animations: {
             self.contentView?.y = keyboardFrame.origin.y - 50
-        }) { (completed) in
-            
-        }
+        }) { (completed) in}
     }
     
     @objc func keyboardWillHideAction(notify:Notification) -> Void

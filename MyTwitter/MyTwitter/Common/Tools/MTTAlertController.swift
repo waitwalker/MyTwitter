@@ -74,44 +74,44 @@ class MTTAlertView: MTTView
     
     override func setupSubview()
     {
-        self.backgroundColor = UIColor.black.withAlphaComponent(0.45)
-        
-        secondContainerView = UIView()
-        secondContainerView.backgroundColor = UIColor.white
+        self.backgroundColor                   = UIColor.black.withAlphaComponent(0.45)
+
+        secondContainerView                    = UIView()
+        secondContainerView.backgroundColor    = UIColor.white
         secondContainerView.layer.cornerRadius = 15
-        secondContainerView.clipsToBounds = true
+        secondContainerView.clipsToBounds      = true
         self.addSubview(secondContainerView)
-        
-        cancelButton = UIButton()
+
+        cancelButton                           = UIButton()
         cancelButton.setTitle("取消", for: UIControlState.normal)
         cancelButton.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
         cancelButton.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
-        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        cancelButton.titleLabel?.font          = UIFont.systemFont(ofSize: 18)
         secondContainerView.addSubview(cancelButton)
-        
-        firstContainerView = UIView()
-        firstContainerView.backgroundColor = UIColor.white
-        firstContainerView.layer.cornerRadius = 15
-        firstContainerView.clipsToBounds = true
+
+        firstContainerView                     = UIView()
+        firstContainerView.backgroundColor     = UIColor.white
+        firstContainerView.layer.cornerRadius  = 15
+        firstContainerView.clipsToBounds       = true
         self.addSubview(firstContainerView)
-        
-        retwitterButton = UIButton()
+
+        retwitterButton                        = UIButton()
         retwitterButton.setTitle("转推", for: UIControlState.normal)
-        retwitterButton.backgroundColor = UIColor.white
+        retwitterButton.backgroundColor        = UIColor.white
         retwitterButton.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
         retwitterButton.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
-        retwitterButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        retwitterButton.titleLabel?.font       = UIFont.systemFont(ofSize: 18)
         firstContainerView.addSubview(retwitterButton)
-        
-        lineView = UIView()
-        lineView.backgroundColor = kMainGrayColor()
+
+        lineView                               = UIView()
+        lineView.backgroundColor               = kMainGrayColor()
         firstContainerView.addSubview(lineView)
-        
-        quoteTwitterButton = UIButton()
+
+        quoteTwitterButton                     = UIButton()
         quoteTwitterButton.setTitle("引用推文", for: UIControlState.normal)
         quoteTwitterButton.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
         quoteTwitterButton.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
-        quoteTwitterButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        quoteTwitterButton.titleLabel?.font    = UIFont.systemFont(ofSize: 18)
         firstContainerView.addSubview(quoteTwitterButton)
         
         
@@ -158,25 +158,25 @@ class MTTAlertView: MTTView
     {
         retwitterButton.rx.tap
             .subscribe(onNext:{ [unowned self] in
-                self.delegate?.tappedRetwitter(alertView: self, retwitterButton: self.retwitterButton)
-                }).disposed(by: disposeBag)
+                self.delegate?.tappedRetwitter(alertView: self, retwitterButton: self.retwitterButton)})
+            .disposed(by: disposeBag)
         
         quoteTwitterButton.rx.tap
             .subscribe(onNext:{[unowned self] in
-                self.delegate?.tappedQuoteTwitter(alertView: self, quoteTwitterButton: self.quoteTwitterButton)
-            }).disposed(by: disposeBag)
+                self.delegate?.tappedQuoteTwitter(alertView: self, quoteTwitterButton: self.quoteTwitterButton)})
+            .disposed(by: disposeBag)
         
         cancelButton.rx.tap
             .subscribe(onNext:{[unowned self] in
-                self.delegate?.tappedCancel(alertView: self, cancelButton: self.cancelButton)
-            }).disposed(by: disposeBag)
+                self.delegate?.tappedCancel(alertView: self, cancelButton: self.cancelButton)})
+            .disposed(by: disposeBag)
         
         self.rx
             .tapGesture()
             .when(UIGestureRecognizerState.recognized)
             .subscribe(onNext:{ _ in
-                self.isHidden = true
-            }).disposed(by: disposeBag)
+                self.isHidden = true})
+            .disposed(by: disposeBag)
         
     }
 }

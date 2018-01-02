@@ -353,13 +353,20 @@ class MTTLoginViewController: MTTViewController,MTTLoginViewModelDelegate {
     
     func addNotificationObserver() -> Void
     {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowAction(notify:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideAction(notify:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(keyboardWillShowAction(notify:)), 
+                                               name: NSNotification.Name.UIKeyboardWillShow, 
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(keyboardWillHideAction(notify:)), 
+                                               name: NSNotification.Name.UIKeyboardWillHide, 
+                                               object: nil)
     }
     
     @objc func keyboardWillShowAction(notify:Notification) -> Void
     {
-        let userInfo = notify.userInfo
+        let userInfo      = notify.userInfo
         let keyboardFrame = userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
         UIView.animate(withDuration: 0.5, animations: {
             self.contentView?.y = keyboardFrame.origin.y - 50

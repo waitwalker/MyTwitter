@@ -33,15 +33,15 @@ class MTTTabBarController: UITabBarController {
     
     func setupSubviewController() -> Void
     {
-        let homeVC = MTTHomeViewController()
+        let homeVC            = MTTHomeViewController()
         self.addChildViewControllers(childViewController: homeVC, image: UIImage.init(named: "tabbar_home_normal")!, selectedImage: UIImage.init(named: "tabbar_home_selected")!,tabBarTitle: "")
-        
-        let searchVC = MTTSearchViewController()
+
+        let searchVC          = MTTSearchViewController()
         self.addChildViewControllers(childViewController: searchVC, image: UIImage.init(named: "tabbar_search_normal")!, selectedImage: UIImage.init(named: "tabbar_search_selected")!,tabBarTitle: "")
-        
-        let notificationVC = MTTNotificationViewController()
+
+        let notificationVC    = MTTNotificationViewController()
         self.addChildViewControllers(childViewController: notificationVC, image: UIImage.init(named: "tabbar_notification_normal")!, selectedImage: UIImage.init(named: "tabbar_notification_selected")!,tabBarTitle: "")
-        
+
         let privateMesssageVC = MTTPrivateMessageViewController()
         self.addChildViewControllers(childViewController: privateMesssageVC, image: UIImage.init(named: "tabbar_message_normal")!, selectedImage: UIImage.init(named: "tabbar_message_selected")!,tabBarTitle: "")
     }

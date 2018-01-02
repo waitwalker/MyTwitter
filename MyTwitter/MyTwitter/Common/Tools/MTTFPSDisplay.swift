@@ -28,13 +28,13 @@ class MTTFPSDisplay: NSObject
     
     private func setupSubView() -> Void 
     {
-        FPSLable = UILabel()
-        FPSLable?.textAlignment = NSTextAlignment.center
+        FPSLable                     = UILabel()
+        FPSLable?.textAlignment      = NSTextAlignment.center
         FPSLable?.layer.cornerRadius = 5.0
-        FPSLable?.clipsToBounds = true
-        FPSLable?.backgroundColor = UIColor.black
-        
-        let appDelegate = UIApplication.shared.delegate
+        FPSLable?.clipsToBounds      = true
+        FPSLable?.backgroundColor    = UIColor.black
+
+        let appDelegate              = UIApplication.shared.delegate
         appDelegate?.window??.addSubview(FPSLable!)
         
     }
@@ -69,14 +69,14 @@ class MTTFPSDisplay: NSObject
         
         if delta > 1 
         {
-            lastTimeInterval = link.timestamp
-            
-            let deltaInt = NSInteger(delta)
-            
-            let fps = CGFloat(count / deltaInt)
-            
-            count = 0
-            
+            lastTimeInterval    = link.timestamp
+
+            let deltaInt        = NSInteger(delta)
+
+            let fps             = CGFloat(count / deltaInt)
+
+            count               = 0
+
             FPSLable?.textColor = UIColor.init(hue: 0.27 * (fps / 60.0), saturation: 1, brightness: 0.9, alpha: 1.0)
             FPSLable?.text = String.init(format: "%.0f FPS", fps)
             

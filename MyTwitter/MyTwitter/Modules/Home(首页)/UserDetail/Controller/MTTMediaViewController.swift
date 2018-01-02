@@ -14,9 +14,9 @@ class MTTMediaViewController: MTTViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = kMainRandomColor()
-        let label = UILabel()
-        label.frame = CGRect(x: 100, y: 20, width: 100, height: 100)
-        label.text = "第3页"
+        let label                 = UILabel()
+        label.frame               = CGRect(x: 100, y: 20, width: 100, height: 100)
+        label.text                = "第3页"
         self.view.addSubview(label)
     }
 

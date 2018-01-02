@@ -22,8 +22,8 @@ class MTTTwitterTextViewController: MTTViewController {
 //        label.text = "第1页"
 //        self.view.addSubview(label)
         
-        tableView = UITableView(frame: self.view.frame)
-        tableView.delegate = self
+        tableView            = UITableView(frame: self.view.frame)
+        tableView.delegate   = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.view.addSubview(tableView)
@@ -61,8 +61,6 @@ extension MTTTwitterTextViewController:
     
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     {
-        print(scrollView.contentOffset.y)
-        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUserDetailTableViewContentOffsetYNotification), object: ["contentOffsetY":scrollView.contentOffset.y])
     }
 }

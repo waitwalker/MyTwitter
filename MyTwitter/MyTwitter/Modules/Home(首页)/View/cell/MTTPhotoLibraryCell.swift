@@ -29,31 +29,31 @@ class MTTPhotoLibraryCell: MTTCollectionViewCell
     private func setupSubview() -> Void 
     {
         //photoBackgroundView
-        photoBackgroundView = UIView()
-        photoBackgroundView?.backgroundColor = kMainWhiteColor()
+        photoBackgroundView                                  = UIView()
+        photoBackgroundView?.backgroundColor                 = kMainWhiteColor()
         self.contentView.addSubview(photoBackgroundView!)
-        
+
         //photoBackgroundImageView
-        photoBackgroundImageView = UIImageView()
-        photoBackgroundImageView?.isUserInteractionEnabled = true
-        photoBackgroundImageView?.backgroundColor = kMainWhiteColor()
+        photoBackgroundImageView                             = UIImageView()
+        photoBackgroundImageView?.isUserInteractionEnabled   = true
+        photoBackgroundImageView?.backgroundColor            = kMainWhiteColor()
         photoBackgroundView?.addSubview(photoBackgroundImageView!)
-        
+
         //photoSelectedCoverView
-        photoSelectedCoverView = UIView()
-        let color = UIColor.black
-        photoSelectedCoverView?.backgroundColor = color.withAlphaComponent(0.3)
+        photoSelectedCoverView                               = UIView()
+        let color                                            = UIColor.black
+        photoSelectedCoverView?.backgroundColor              = color.withAlphaComponent(0.3)
         photoBackgroundImageView?.addSubview(photoSelectedCoverView!)
-        
+
         //photoSelectedIconImageView
-        photoSelectedIconImageView = UIImageView()
-        photoSelectedIconImageView?.image = UIImage(named: "twitter_check_large")
+        photoSelectedIconImageView                           = UIImageView()
+        photoSelectedIconImageView?.image                    = UIImage(named: "twitter_check_large")
         photoSelectedIconImageView?.isUserInteractionEnabled = true
         photoSelectedCoverView?.addSubview(photoSelectedIconImageView!)
-        
+
         //photoSelectedEditImageView
-        photoSelectedEditImageView = UIImageView()
-        photoSelectedEditImageView?.image = UIImage(named: "twitter_edit_large")
+        photoSelectedEditImageView                           = UIImageView()
+        photoSelectedEditImageView?.image                    = UIImage(named: "twitter_edit_large")
         photoSelectedEditImageView?.isUserInteractionEnabled = true
         photoSelectedCoverView?.addSubview(photoSelectedEditImageView!)
         

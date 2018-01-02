@@ -19,7 +19,7 @@ class MTTPersonalCell: MTTTableViewCell
         didSet
         {
             iconImageView?.image = UIImage(named: (personalModel?.iconImageString)!)
-            titleLabelP?.text = personalModel?.title
+            titleLabelP?.text    = personalModel?.title
         }
     }
     
@@ -34,14 +34,14 @@ class MTTPersonalCell: MTTTableViewCell
     
     private func setupSubview() -> Void 
     {
-        iconImageView = UIImageView()
+        iconImageView                           = UIImageView()
         iconImageView?.isUserInteractionEnabled = true
         self.contentView.addSubview(iconImageView!)
-        
-        titleLabelP = UILabel()
-        titleLabelP?.font = UIFont.systemFont(ofSize: 18)
-        titleLabelP?.textColor = kMainGrayColor()
-        titleLabelP?.textAlignment = NSTextAlignment.left
+
+        titleLabelP                             = UILabel()
+        titleLabelP?.font                       = UIFont.systemFont(ofSize: 18)
+        titleLabelP?.textColor                  = kMainGrayColor()
+        titleLabelP?.textAlignment              = NSTextAlignment.left
         self.contentView.addSubview(titleLabelP!)
     }
     

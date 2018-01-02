@@ -14,10 +14,10 @@ class MTTUserDetailContentView: MTTView
     var delegate:MTTUserDetailContentViewDelegate?
     
     
-    let twitterTextVC:MTTTwitterTextViewController = MTTTwitterTextViewController()
+    let twitterTextVC:MTTTwitterTextViewController                 = MTTTwitterTextViewController()
     let twitterTextAndReplyVC:MTTTwitterTextAndReplyViewController = MTTTwitterTextAndReplyViewController()
-    let mediaVC:MTTMediaViewController = MTTMediaViewController()
-    let likeVC:MTTLikeViewController = MTTLikeViewController()
+    let mediaVC:MTTMediaViewController                             = MTTMediaViewController()
+    let likeVC:MTTLikeViewController                               = MTTLikeViewController()
     
     
     
@@ -33,11 +33,11 @@ class MTTUserDetailContentView: MTTView
     
     override func setupSubview()
     {
-        userDetailContentScrollView = UIScrollView(frame: self.bounds)
+        userDetailContentScrollView                 = UIScrollView(frame: self.bounds)
         userDetailContentScrollView.isScrollEnabled = true
         userDetailContentScrollView.isPagingEnabled = true
-        userDetailContentScrollView.delegate = self
-        userDetailContentScrollView.contentSize = CGSize(width: 4 * kScreenWidth, height: 0)
+        userDetailContentScrollView.delegate        = self
+        userDetailContentScrollView.contentSize     = CGSize(width: 4 * kScreenWidth, height: 0)
         userDetailContentScrollView.backgroundColor = kMainRandomColor()
         self.addSubview(userDetailContentScrollView)
         
@@ -81,9 +81,12 @@ class MTTUserDetailContentView: MTTView
     func setupNotification() -> Void
     {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(kUserDetailTopButtonTappedIndex(notify:)), name: NSNotification.Name(rawValue: kUserDetailTopButtonTappedIndexNotification),
+                                               selector: #selector(kUserDetailTopButtonTappedIndex(notify:)), 
+                                               name: NSNotification.Name(rawValue: kUserDetailTopButtonTappedIndexNotification),
                                                object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(userDetailTableViewContentOffset(notify:)),
+        
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(userDetailTableViewContentOffset(notify:)),
                                                name: NSNotification.Name(rawValue: kUserDetailTableViewContentOffsetYNotification),
                                                object: nil)
     }
@@ -91,10 +94,10 @@ class MTTUserDetailContentView: MTTView
     @objc func kUserDetailTopButtonTappedIndex(notify:Notification) -> Void
     {
         let userInfo = notify.object as! NSDictionary
-        
-        let index = userInfo.object(forKey: "index") as! Int
-        
-        let subview = userDetailContentScrollView.subviews[index];
+
+        let index    = userInfo.object(forKey: "index") as! Int
+
+        let subview  = userDetailContentScrollView.subviews[index];
         userDetailContentScrollView.contentOffset = CGPoint(x: subview.frame.origin.x, y: subview.frame.origin.y);
     }
     
@@ -110,11 +113,11 @@ class MTTUserDetailContentView: MTTView
 //        userDetailContentView.frame.origin.y = 500 - offsetY;
         
         userDetailContentScrollView.frame.size.height = kScreenHeight - 300 + offsetY;
-        twitterTextVC.view.frame.size.height = userDetailContentScrollView.frame.size.height
-        twitterTextAndReplyVC.view.frame.size.height = userDetailContentScrollView.frame.size.height
-        mediaVC.view.frame.size.height = userDetailContentScrollView.frame.size.height
-        likeVC.view.frame.size.height = userDetailContentScrollView.frame.size.height
-        userDetailContentScrollView.contentSize = CGSize(width: 4 * kScreenWidth, height: 0)
+        twitterTextVC.view.frame.size.height          = userDetailContentScrollView.frame.size.height
+        twitterTextAndReplyVC.view.frame.size.height  = userDetailContentScrollView.frame.size.height
+        mediaVC.view.frame.size.height                = userDetailContentScrollView.frame.size.height
+        likeVC.view.frame.size.height                 = userDetailContentScrollView.frame.size.height
+        userDetailContentScrollView.contentSize       = CGSize(width: 4 * kScreenWidth, height: 0)
     }
     
     deinit

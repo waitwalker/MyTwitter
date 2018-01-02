@@ -26,9 +26,6 @@ class MTTLocationViewController: MTTViewController,UITableViewDelegate,UITableVi
     var rightButton:UIButton?
     
     
-    
-    
-    
     var places:[String]?
     var latitude:Double?
     var longitude:Double?
@@ -41,12 +38,8 @@ class MTTLocationViewController: MTTViewController,UITableViewDelegate,UITableVi
     
     
     
-    let reusedLocationId = "reusedLocationId"
+    let reusedLocationId       = "reusedLocationId"
     let reusedLocationSearchId = "reusedLocationSearchId" 
-    
-    
-    
-    
     
     
     override func viewDidLoad()
@@ -60,41 +53,41 @@ class MTTLocationViewController: MTTViewController,UITableViewDelegate,UITableVi
     
     private func setupSubview() -> Void
     {
-        locationTableView = UITableView()
-        locationTableView?.delegate = self
-        locationTableView?.dataSource = self
+        locationTableView                             = UITableView()
+        locationTableView?.delegate                   = self
+        locationTableView?.dataSource                 = self
         locationTableView?.register(
             MTTLocationCell.self, forCellReuseIdentifier: reusedLocationId)
         locationTableView?.register(MTTLocationSearchCell.self, forCellReuseIdentifier: reusedLocationSearchId)
-        locationTableView?.separatorStyle = UITableViewCellSeparatorStyle.none
+        locationTableView?.separatorStyle             = UITableViewCellSeparatorStyle.none
         self.view.addSubview(locationTableView!)
-        
-        locationBottomContainerView = UIView()
+
+        locationBottomContainerView                   = UIView()
         self.view.addSubview(locationBottomContainerView!)
-        
-        locationLineView = UIView()
-        locationLineView?.backgroundColor = kMainGrayColor()
+
+        locationLineView                              = UIView()
+        locationLineView?.backgroundColor             = kMainGrayColor()
         locationBottomContainerView?.addSubview(locationLineView!)
-        
-        locationShareLabel = UILabel()
-        locationShareLabel?.text = "分享准确位置"
-        locationShareLabel?.textColor = UIColor.black
-        locationShareLabel?.textAlignment = NSTextAlignment.left
-        locationShareLabel?.font = UIFont.systemFont(ofSize: 15)
+
+        locationShareLabel                            = UILabel()
+        locationShareLabel?.text                      = "分享准确位置"
+        locationShareLabel?.textColor                 = UIColor.black
+        locationShareLabel?.textAlignment             = NSTextAlignment.left
+        locationShareLabel?.font                      = UIFont.systemFont(ofSize: 15)
         locationBottomContainerView?.addSubview(locationShareLabel!)
-        
-        locationLatitudeLongitudeLabel = UILabel()
+
+        locationLatitudeLongitudeLabel                = UILabel()
         locationLatitudeLongitudeLabel?.textAlignment = NSTextAlignment.left
-        locationLatitudeLongitudeLabel?.font = UIFont.systemFont(ofSize: 14)
-        locationLatitudeLongitudeLabel?.textColor = kMainGrayColor()
-        locationLatitudeLongitudeLabel?.text = latitudelongitudeString
+        locationLatitudeLongitudeLabel?.font          = UIFont.systemFont(ofSize: 14)
+        locationLatitudeLongitudeLabel?.textColor     = kMainGrayColor()
+        locationLatitudeLongitudeLabel?.text          = latitudelongitudeString
         locationBottomContainerView?.addSubview(locationLatitudeLongitudeLabel!)
-        
-        locationSwitch = UISwitch()
+
+        locationSwitch                                = UISwitch()
         locationSwitch?.addTarget(self, action: #selector(locationSwitchAction(locationSwitch:)), for: UIControlEvents.touchUpInside)
-        locationSwitch?.isOn = false
+        locationSwitch?.isOn                          = false
         locationBottomContainerView?.addSubview(locationSwitch!)
-        
+
         setupNavigationBar()
     }
     
@@ -171,20 +164,20 @@ class MTTLocationViewController: MTTViewController,UITableViewDelegate,UITableVi
     
     private func setupNavigationBar() -> Void 
     {
-        leftButton = UIButton()
+        leftButton                             = UIButton()
         leftButton?.setTitle("移除", for: UIControlState.normal)
         leftButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
-        leftButton?.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        leftButton?.frame = CGRect(x: 0, y: 0, width: 40, height: 44)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftButton!)
-        
-        rightButton = UIButton()
+        leftButton?.titleLabel?.font           = UIFont.systemFont(ofSize: 16)
+        leftButton?.frame                      = CGRect(x: 0, y: 0, width: 40, height: 44)
+        self.navigationItem.leftBarButtonItem  = UIBarButtonItem.init(customView: leftButton!)
+
+        rightButton                            = UIButton()
         rightButton?.setTitle("完成", for: UIControlState.normal)
-        rightButton?.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        rightButton?.titleLabel?.font          = UIFont.boldSystemFont(ofSize: 16)
         rightButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
-        rightButton?.frame = CGRect(x: 0, y: 0, width: 40, height: 44)
+        rightButton?.frame                     = CGRect(x: 0, y: 0, width: 40, height: 44)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightButton!)
-        
+
         self.navigationItem.title = "标记位置"
     }
     
@@ -237,10 +230,10 @@ class MTTLocationViewController: MTTViewController,UITableViewDelegate,UITableVi
     {
         if indexPath.item > 0 
         {
-            let cell = tableView.cellForRow(at: indexPath) as! MTTLocationCell
-            placeString = cell.locationTitleLabel?.text
+            let cell                         = tableView.cellForRow(at: indexPath) as! MTTLocationCell
+            placeString                      = cell.locationTitleLabel?.text
             cell.locationImageView?.isHidden = false
-            selectedIndexPath = indexPath
+            selectedIndexPath                = indexPath
             tableView.reloadData()
         }
         
@@ -251,7 +244,7 @@ class MTTLocationViewController: MTTViewController,UITableViewDelegate,UITableVi
     {
         if indexPath.item > 0 
         {
-            let cell = tableView.cellForRow(at: indexPath) as! MTTLocationCell
+            let cell                         = tableView.cellForRow(at: indexPath) as! MTTLocationCell
             cell.locationImageView?.isHidden = true
         }
     }

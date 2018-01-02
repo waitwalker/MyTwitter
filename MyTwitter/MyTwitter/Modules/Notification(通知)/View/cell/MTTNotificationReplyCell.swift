@@ -44,13 +44,13 @@ class MTTNotificationReplyCell: MTTTableViewCell
         didSet
         {
             self.layoutSubview(notificationModel: notificationModel!)
-            
-            avatarImageView?.image = UIImage(named: String(format: "head%@.jpg", (notificationModel?.avatarImage)!))
-            accountLabel?.text = notificationModel?.account
-            nickNameLabel?.text = notificationModel?.nickName
+
+            avatarImageView?.image   = UIImage(named: String(format: "head%@.jpg", (notificationModel?.avatarImage)!))
+            accountLabel?.text       = notificationModel?.account
+            nickNameLabel?.text      = notificationModel?.nickName
             replyNickNameLabel?.text = notificationModel?.replyNickName
-            contentLabel?.text = notificationModel?.content
-            timeLabel?.text = notificationModel?.time
+            contentLabel?.text       = notificationModel?.content
+            timeLabel?.text          = notificationModel?.time
             var notificationImages:[String] = []
             
             for _ in Int(0)...(notificationModel?.contentImages?.count)!
@@ -87,125 +87,125 @@ class MTTNotificationReplyCell: MTTTableViewCell
     private func setupSubview() -> Void 
     {
         //分割线
-        topLineView = UIView()
-        topLineView?.backgroundColor = kMainGrayColor()
+        topLineView                                = UIView()
+        topLineView?.backgroundColor               = kMainGrayColor()
         self.contentView.addSubview(topLineView!)
-        
+
         //原创容器
-        originalContainerView = UIView()
+        originalContainerView                      = UIView()
         self.contentView.addSubview(originalContainerView!)
-        
+
         //头像
-        avatarImageView = UIImageView()
-        avatarImageView?.isUserInteractionEnabled = true
-        avatarImageView?.layer.cornerRadius = 30
-        avatarImageView?.clipsToBounds = true
+        avatarImageView                            = UIImageView()
+        avatarImageView?.isUserInteractionEnabled  = true
+        avatarImageView?.layer.cornerRadius        = 30
+        avatarImageView?.clipsToBounds             = true
         originalContainerView?.addSubview(avatarImageView!)
-        
+
         //账号相关容器
-        accountContainerView = UIView()
+        accountContainerView                       = UIView()
         originalContainerView?.addSubview(accountContainerView!)
-        
+
         //账号
-        accountLabel = UILabel()
-        accountLabel?.text = "Oliver Halligon"
-        accountLabel?.textColor = UIColor.black
-        accountLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        accountLabel?.textAlignment = NSTextAlignment.left
+        accountLabel                               = UILabel()
+        accountLabel?.text                         = "Oliver Halligon"
+        accountLabel?.textColor                    = UIColor.black
+        accountLabel?.font                         = UIFont.boldSystemFont(ofSize: 14)
+        accountLabel?.textAlignment                = NSTextAlignment.left
         accountLabel?.sizeToFit()
         accountContainerView?.addSubview(accountLabel!)
-        
+
         //昵称
-        nickNameLabel = UILabel()
-        nickNameLabel?.text = "@oliverhalligon"
-        nickNameLabel?.textColor = kMainGrayColor()
-        nickNameLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        nickNameLabel?.textAlignment = NSTextAlignment.left
+        nickNameLabel                              = UILabel()
+        nickNameLabel?.text                        = "@oliverhalligon"
+        nickNameLabel?.textColor                   = kMainGrayColor()
+        nickNameLabel?.font                        = UIFont.boldSystemFont(ofSize: 12)
+        nickNameLabel?.textAlignment               = NSTextAlignment.left
         nickNameLabel?.sizeToFit()
         accountContainerView?.addSubview(nickNameLabel!)
-        
+
         //原点
-        dotImageView = UIImageView()
-        dotImageView?.isUserInteractionEnabled = true
-        dotImageView?.backgroundColor = kMainGrayColor()
-        dotImageView?.layer.cornerRadius = 1.5
-        dotImageView?.clipsToBounds = true
+        dotImageView                               = UIImageView()
+        dotImageView?.isUserInteractionEnabled     = true
+        dotImageView?.backgroundColor              = kMainGrayColor()
+        dotImageView?.layer.cornerRadius           = 1.5
+        dotImageView?.clipsToBounds                = true
         accountContainerView?.addSubview(dotImageView!)
-        
+
         //时间
-        timeLabel = UILabel()
-        timeLabel?.text = "12分"
-        timeLabel?.textColor = kMainGrayColor()
-        timeLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        timeLabel?.textAlignment = NSTextAlignment.left
+        timeLabel                                  = UILabel()
+        timeLabel?.text                            = "12分"
+        timeLabel?.textColor                       = kMainGrayColor()
+        timeLabel?.font                            = UIFont.boldSystemFont(ofSize: 12)
+        timeLabel?.textAlignment                   = NSTextAlignment.left
         timeLabel?.sizeToFit()
         accountContainerView?.addSubview(timeLabel!)
-        
+
         //向下箭头
-        downImageView = UIImageView()
-        downImageView?.isUserInteractionEnabled = true
-        downImageView?.image = UIImage(named: "twitter_down_arrow")
+        downImageView                              = UIImageView()
+        downImageView?.isUserInteractionEnabled    = true
+        downImageView?.image                       = UIImage(named: "twitter_down_arrow")
         accountContainerView?.addSubview(downImageView!)
-        
+
         //内容容器
-        contentContainerView = UIView()
+        contentContainerView                       = UIView()
         originalContainerView?.addSubview(contentContainerView!)
-        
+
         //回复的昵称账号
-        replyNickNameLabel = UILabel()
-        replyNickNameLabel?.textAlignment = NSTextAlignment.left
-        replyNickNameLabel?.textColor = kMainBlueColor()
-        replyNickNameLabel?.font = UIFont.systemFont(ofSize: 15)
+        replyNickNameLabel                         = UILabel()
+        replyNickNameLabel?.textAlignment          = NSTextAlignment.left
+        replyNickNameLabel?.textColor              = kMainBlueColor()
+        replyNickNameLabel?.font                   = UIFont.systemFont(ofSize: 15)
         originalContainerView?.addSubview(replyNickNameLabel!)
-        
+
         //contentLabel
-        contentLabel = UILabel()
-        contentLabel?.numberOfLines = 0
-        contentLabel?.font = UIFont.systemFont(ofSize: 14)
-        contentLabel?.textAlignment = NSTextAlignment.left
-        contentLabel?.textColor = UIColor.black
+        contentLabel                               = UILabel()
+        contentLabel?.numberOfLines                = 0
+        contentLabel?.font                         = UIFont.systemFont(ofSize: 14)
+        contentLabel?.textAlignment                = NSTextAlignment.left
+        contentLabel?.textColor                    = UIColor.black
         contentContainerView?.addSubview(contentLabel!)
-        
+
         //图片容器
-        contentImageContainerView = MTTHomeImageContainerView()
+        contentImageContainerView                  = MTTHomeImageContainerView()
         contentImageContainerView?.backgroundColor = UIColor.white
         contentContainerView?.addSubview(contentImageContainerView!)
-        
+
         //tool bar 容器
-        toolBarContainerView = UIView()
+        toolBarContainerView                       = UIView()
         originalContainerView?.addSubview(toolBarContainerView!)
-        
+
         //评论
-        commentButton = UIButton()
+        commentButton                              = UIButton()
         commentButton?.setImage(UIImage.init(named: "twitter_comment"), for: UIControlState.normal)
-        commentButton?.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        commentButton?.titleLabel?.font            = UIFont.systemFont(ofSize: 12)
         commentButton?.setTitle("5899", for: UIControlState.normal)
         commentButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
         commentButton?.setImageWithPosition(postion: MTTButtonImagePostion.Left, spacing: 5)
         toolBarContainerView?.addSubview(commentButton!)
-        
+
         //转推
-        retwitterButton = UIButton()
+        retwitterButton                            = UIButton()
         retwitterButton?.setImage(UIImage.init(named: "twitter_retwitter"), for: UIControlState.normal)
-        retwitterButton?.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        retwitterButton?.titleLabel?.font          = UIFont.systemFont(ofSize: 12)
         retwitterButton?.setTitle(" ", for: UIControlState.normal)
         retwitterButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
         retwitterButton?.setImageWithPosition(postion: MTTButtonImagePostion.Left, spacing: 5)
         toolBarContainerView?.addSubview(retwitterButton!)
-        
+
         //喜欢
-        likeButton = UIButton()
+        likeButton                                 = UIButton()
         likeButton?.setImage(UIImage.init(named: "twitter_like"), for: UIControlState.normal)
-        likeButton?.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        likeButton?.titleLabel?.font               = UIFont.systemFont(ofSize: 12)
         likeButton?.setTitle(" ", for: UIControlState.normal)
         likeButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
         likeButton?.setImageWithPosition(postion: MTTButtonImagePostion.Left, spacing: 5)
         toolBarContainerView?.addSubview(likeButton!)
-        
+
         //私信
-        privateMessageButton = UIButton()
+        privateMessageButton                       = UIButton()
         privateMessageButton?.setImage(UIImage.init(named: "twitter_private_message"), for: UIControlState.normal)
-        privateMessageButton?.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        privateMessageButton?.titleLabel?.font     = UIFont.systemFont(ofSize: 12)
         privateMessageButton?.setTitle(" ", for: UIControlState.normal)
         privateMessageButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
         privateMessageButton?.setImageWithPosition(postion: MTTButtonImagePostion.Left, spacing: 5)

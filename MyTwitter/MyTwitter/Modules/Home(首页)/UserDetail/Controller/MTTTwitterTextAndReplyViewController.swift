@@ -13,9 +13,9 @@ class MTTTwitterTextAndReplyViewController: MTTViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = kMainRandomColor()
-        let label = UILabel()
-        label.frame = CGRect(x: 100, y: 20, width: 100, height: 100)
-        label.text = "第2页"
+        let label                 = UILabel()
+        label.frame               = CGRect(x: 100, y: 20, width: 100, height: 100)
+        label.text                = "第2页"
         self.view.addSubview(label)
     }
 

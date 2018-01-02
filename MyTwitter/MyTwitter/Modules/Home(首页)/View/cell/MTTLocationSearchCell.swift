@@ -29,23 +29,23 @@ class MTTLocationSearchCell: MTTTableViewCell
     
     private func setupSubview() -> Void
     {
-        locationSearchContainerView = UIView()
-        locationSearchContainerView?.backgroundColor = kMainLightGrayColor()
+        locationSearchContainerView                     = UIView()
+        locationSearchContainerView?.backgroundColor    = kMainLightGrayColor()
         locationSearchContainerView?.layer.cornerRadius = 15
-        locationSearchContainerView?.clipsToBounds = true
+        locationSearchContainerView?.clipsToBounds      = true
         self.contentView.addSubview(locationSearchContainerView!)
-        
-        locationSearchButton = UIButton()
+
+        locationSearchButton                            = UIButton()
         locationSearchButton?.setImage(UIImage(named: "search_normal"), for: UIControlState.normal)
         locationSearchButton?.setTitle("搜索位置", for: UIControlState.normal)
         locationSearchButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
-        
-        locationSearchButton?.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+
+        locationSearchButton?.titleLabel?.font          = UIFont.systemFont(ofSize: 13)
         locationSearchButton?.addTarget(self, action: #selector(locationSearchButtonAction(searchButton:)), for: UIControlEvents.touchUpInside)
         locationSearchContainerView?.addSubview(locationSearchButton!)
-        
-        locationLineView = UIView()
-        locationLineView?.backgroundColor = kMainGrayColor()
+
+        locationLineView                                = UIView()
+        locationLineView?.backgroundColor               = kMainGrayColor()
         self.contentView.addSubview(locationLineView!)
         
     }

@@ -31,9 +31,6 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
     let reusedPersonalId = "personalTableViewId"
     
     
-    
-    
-    
     override func viewDidLoad() 
     {
         super.viewDidLoad()
@@ -53,66 +50,66 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
     
     func setupSubview() -> Void 
     {
-        logoutButton = UIButton()
+        logoutButton                            = UIButton()
         logoutButton?.setTitle("退出", for: UIControlState.normal)
         logoutButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
-        logoutButton?.backgroundColor = kMainBlueColor()
+        logoutButton?.backgroundColor           = kMainBlueColor()
         self.view.addSubview(logoutButton!)
-        
-        headerContainerView = UIView()
-        headerContainerView?.backgroundColor = kMainBlueColor()
+
+        headerContainerView                     = UIView()
+        headerContainerView?.backgroundColor    = kMainBlueColor()
         self.view.addSubview(headerContainerView!)
-        
-        logoImageView = UIImageView()
-        logoImageView?.image = UIImage(named: "my_head.jpg")
+
+        logoImageView                           = UIImageView()
+        logoImageView?.image                    = UIImage(named: "my_head.jpg")
         logoImageView?.isUserInteractionEnabled = true
-        logoImageView?.layer.cornerRadius = 30
-        logoImageView?.clipsToBounds = true
+        logoImageView?.layer.cornerRadius       = 30
+        logoImageView?.clipsToBounds            = true
         headerContainerView?.addSubview(logoImageView!)
-        
-        accountButton = UIButton()
+
+        accountButton                           = UIButton()
         accountButton?.setTitle("偶尔登南山", for: UIControlState.normal)
         accountButton?.setTitleColor(UIColor.black, for: UIControlState.normal)
-        accountButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        accountButton?.titleLabel?.font         = UIFont.systemFont(ofSize: 15)
         headerContainerView?.addSubview(accountButton!)
-        
-        nickNameButton = UIButton()
+
+        nickNameButton                          = UIButton()
         nickNameButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
         nickNameButton?.setTitle("@284485487", for: UIControlState.normal)
-        nickNameButton?.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        nickNameButton?.titleLabel?.font        = UIFont.systemFont(ofSize: 12)
         headerContainerView?.addSubview(nickNameButton!)
-        
-        followedButton = UIButton()
+
+        followedButton                          = UIButton()
         followedButton?.setTitle("1,632关注", for: UIControlState.normal)
-        followedButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        followedButton?.titleLabel?.font        = UIFont.systemFont(ofSize: 15)
         followedButton?.setTitleColor(UIColor.black, for: UIControlState.normal)
         followedButton?.setTitleColor(kMainBlueColor(), for: UIControlState.highlighted)
         followedButton?.sizeToFit()
         headerContainerView?.addSubview(followedButton!)
-        
-        followingButton = UIButton()
+
+        followingButton                         = UIButton()
         followingButton?.setTitle("390关注者", for: UIControlState.normal)
         followingButton?.setTitleColor(UIColor.black, for: UIControlState.normal)
         followingButton?.setTitleColor(kMainBlueColor(), for: UIControlState.highlighted)
-        followingButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        followingButton?.titleLabel?.font       = UIFont.systemFont(ofSize: 15)
         followingButton?.sizeToFit()
         headerContainerView?.addSubview(followingButton!)
-        
-        personalTableView = UITableView()
+
+        personalTableView                       = UITableView()
         personalTableView?.register(MTTPersonalCell.self, forCellReuseIdentifier: reusedPersonalId)
-        personalTableView?.delegate = self
-        personalTableView?.dataSource = self
-        personalTableView?.separatorStyle = UITableViewCellSeparatorStyle.none
+        personalTableView?.delegate             = self
+        personalTableView?.dataSource           = self
+        personalTableView?.separatorStyle       = UITableViewCellSeparatorStyle.none
         self.view.addSubview(personalTableView!)
-        
-        bottomContainerView = UIView()
+
+        bottomContainerView                     = UIView()
         self.view.addSubview(bottomContainerView!)
-        
-        dayNightButton = UIButton()
+
+        dayNightButton                          = UIButton()
         dayNightButton?.setImage(UIImage(named: "twitter_day_night"), for: UIControlState.normal)
         bottomContainerView?.addSubview(dayNightButton!)
-        
-        QRCodeButton = UIButton()
+
+        QRCodeButton                            = UIButton()
         QRCodeButton?.setImage(UIImage(named: "twitter_QRCode"), for: UIControlState.normal)
         bottomContainerView?.addSubview(QRCodeButton!)
         
@@ -191,10 +188,9 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
     func setupEvent() -> Void 
     {
         (logoutButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
-            let loginVC = MTTLoginViewController()
-            let appDelegate = UIApplication.shared.delegate! as UIApplicationDelegate
-            appDelegate.window??.rootViewController = loginVC
-            appDelegate.window??.makeKeyAndVisible()
+            let loginVC                                           = MTTLoginViewController()
+            self.sharedInstance.getKeyWindow().rootViewController = loginVC
+            self.sharedInstance.getKeyWindow().makeKeyAndVisible()
             print(self)
         }).disposed(by: disposeBag)
         
@@ -203,10 +199,12 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
             self.dayNightButton?.isSelected = !(self.dayNightButton?.isSelected)!
             if (self.dayNightButton?.isSelected)!
             {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kDayNotificationString), object: nil)
+                NotificationCenter.default.post(
+                    name: NSNotification.Name(rawValue: kDayNotificationString), object: nil)
             } else
             {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNightNotificationString), object: nil)
+                NotificationCenter.default.post(
+                    name: NSNotification.Name(rawValue: kNightNotificationString), object: nil)
             }
             
         }).disposed(by: disposeBag)
@@ -246,9 +244,9 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
             var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
             if cell == nil
             {
-                cell = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+                cell                           = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
                 cell?.textLabel?.textAlignment = NSTextAlignment.left
-                cell?.textLabel?.textColor = kMainGrayColor()
+                cell?.textLabel?.textColor     = kMainGrayColor()
             }
             cell?.textLabel?.text = cellTitle[indexPath.item]
             return cell!
@@ -278,8 +276,8 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
         case 0:
             return UIView()
         default:
-            let view = UIView()
-            view.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 1)
+            let view             = UIView()
+            view.frame           = CGRect(x: 0, y: 0, width: kScreenWidth, height: 1)
             view.backgroundColor = kMainGrayColor()
             return view
         }

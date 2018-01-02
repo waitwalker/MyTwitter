@@ -26,20 +26,20 @@ class MTTLocationCell: MTTTableViewCell {
     
     private func setupSubview() -> Void
     {
-        locationTitleLabel = UILabel()
-        locationTitleLabel?.textColor = UIColor.black
-        locationTitleLabel?.textAlignment = NSTextAlignment.left
-        locationTitleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        locationTitleLabel                          = UILabel()
+        locationTitleLabel?.textColor               = UIColor.black
+        locationTitleLabel?.textAlignment           = NSTextAlignment.left
+        locationTitleLabel?.font                    = UIFont.boldSystemFont(ofSize: 16)
         self.contentView.addSubview(locationTitleLabel!)
-        
-        locationImageView = UIImageView()
-        locationImageView?.isHidden = true
+
+        locationImageView                           = UIImageView()
+        locationImageView?.isHidden                 = true
         locationImageView?.isUserInteractionEnabled = true
-        locationImageView?.image = UIImage(named: "twitter_check_mark")
+        locationImageView?.image                    = UIImage(named: "twitter_check_mark")
         self.contentView.addSubview(locationImageView!)
-        
-        locationLineView = UIView()
-        locationLineView?.backgroundColor = kMainGrayColor()
+
+        locationLineView                            = UIView()
+        locationLineView?.backgroundColor           = kMainGrayColor()
         self.contentView.addSubview(locationLineView!)
     }
     

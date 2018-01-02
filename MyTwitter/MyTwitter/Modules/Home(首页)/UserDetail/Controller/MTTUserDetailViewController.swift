@@ -69,12 +69,12 @@ class MTTUserDetailViewController: MTTViewController
         
         setupEvent()
         
-        userTopView = MTTUserDetailTopView()
-        userTopView.frame = CGRect(x: 0, y: 250, width: kScreenWidth, height: 50)
-        userTopView.delegate = self
+        userTopView                    = MTTUserDetailTopView()
+        userTopView.frame              = CGRect(x: 0, y: 250, width: kScreenWidth, height: 50)
+        userTopView.delegate           = self
         self.view.addSubview(userTopView)
-        
-        userDetailContentView = MTTUserDetailContentView(frame: CGRect(x: 0, y: 300, width: kScreenWidth, height: kScreenHeight - 64))
+
+        userDetailContentView          = MTTUserDetailContentView(frame: CGRect(x: 0, y: 300, width: kScreenWidth, height: kScreenHeight - 64))
         userDetailContentView.delegate = self
         self.view.addSubview(userDetailContentView)
         
@@ -84,45 +84,45 @@ class MTTUserDetailViewController: MTTViewController
     func setupSubview() -> Void
     {
         setupNavigationBar()
-        
-        isFirstTime = true
-        
-        userDetailTableView = UITableView()
-        userDetailTableView.delegate = self
-        userDetailTableView.dataSource = self
-        userDetailTableView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
+
+        isFirstTime                                        = true
+
+        userDetailTableView                                = UITableView()
+        userDetailTableView.delegate                       = self
+        userDetailTableView.dataSource                     = self
+        userDetailTableView.frame                          = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
         userDetailTableView.register(UITableViewCell.self, forCellReuseIdentifier: reusedUserDetailId)
         userDetailTableView.register(MTTUserDetailHeaderCell.self, forCellReuseIdentifier: reusedUserHeaderId)
-        userDetailTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        userDetailTableView.backgroundColor = kMainBlueColor()
-        userDetailTableView.contentInset = UIEdgeInsetsMake(kHeaderBackgroundImageViewHeight + kHeaderContainerViewHeight, 0, 0, 0)
-        self.automaticallyAdjustsScrollViewInsets = false
+        userDetailTableView.separatorStyle                 = UITableViewCellSeparatorStyle.none
+        userDetailTableView.backgroundColor                = kMainBlueColor()
+        userDetailTableView.contentInset                   = UIEdgeInsetsMake(kHeaderBackgroundImageViewHeight + kHeaderContainerViewHeight, 0, 0, 0)
+        self.automaticallyAdjustsScrollViewInsets          = false
 //        self.view.addSubview(userDetailTableView)
-        
-        headerBackgroundImageView = UIImageView()
-        headerBackgroundImageView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kHeaderBackgroundImageViewHeight)
-        headerBackgroundImageView.image = UIImage.imageNamed(name: "user_detail_header_background")
+
+        headerBackgroundImageView                          = UIImageView()
+        headerBackgroundImageView.frame                    = CGRect(x: 0, y: 0, width: kScreenWidth, height: kHeaderBackgroundImageViewHeight)
+        headerBackgroundImageView.image                    = UIImage.imageNamed(name: "user_detail_header_background")
         headerBackgroundImageView.isUserInteractionEnabled = true
         self.view.addSubview(headerBackgroundImageView)
-        
-        headerContainerView = UIView()
-        headerContainerView.backgroundColor = kMainRandomColor()
-        headerContainerView.frame = CGRect(x: 0, y: kHeaderBackgroundImageViewHeight, width: kScreenWidth, height: kHeaderContainerViewHeight)
+
+        headerContainerView                                = UIView()
+        headerContainerView.backgroundColor                = kMainRandomColor()
+        headerContainerView.frame                          = CGRect(x: 0, y: kHeaderBackgroundImageViewHeight, width: kScreenWidth, height: kHeaderContainerViewHeight)
         self.view.addSubview(headerContainerView)
-        
-        avatarContainerView = UIView()
-        avatarContainerView.backgroundColor = UIColor.white
-        avatarContainerView.layer.cornerRadius = 40
-        avatarContainerView.frame = CGRect(x: 30, y: -30, width: 80, height: 80)
+
+        avatarContainerView                                = UIView()
+        avatarContainerView.backgroundColor                = UIColor.white
+        avatarContainerView.layer.cornerRadius             = 40
+        avatarContainerView.frame                          = CGRect(x: 30, y: -30, width: 80, height: 80)
         headerContainerView.addSubview(avatarContainerView)
-        
-        avatarImageView = UIImageView()
-        avatarImageView.isUserInteractionEnabled = true
-        avatarImageView.backgroundColor = kMainRandomColor()
-        avatarImageView.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
-        avatarImageView.center = avatarContainerView.center
-        avatarImageView.layer.cornerRadius = 35
-        avatarImageView.clipsToBounds = true
+
+        avatarImageView                                    = UIImageView()
+        avatarImageView.isUserInteractionEnabled           = true
+        avatarImageView.backgroundColor                    = kMainRandomColor()
+        avatarImageView.frame                              = CGRect(x: 0, y: 0, width: 70, height: 70)
+        avatarImageView.center                             = avatarContainerView.center
+        avatarImageView.layer.cornerRadius                 = 35
+        avatarImageView.clipsToBounds                      = true
         headerContainerView.addSubview(avatarImageView)
         
         
@@ -157,8 +157,8 @@ class MTTUserDetailViewController: MTTViewController
     {
         backButton.rx.tap
             .subscribe(onNext:{[unowned self] in
-                self.navigationController?.popViewController(animated: true)
-            }).disposed(by: disposeBag)
+                self.navigationController?.popViewController(animated: true)})
+            .disposed(by: disposeBag)
     }
     
     
@@ -277,21 +277,21 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
     
     func setupNotification() -> Void
     {
-        NotificationCenter.default.addObserver(self, selector: #selector(userDetailTableViewContentOffset(notify:)), name: NSNotification.Name(rawValue: kUserDetailTableViewContentOffsetYNotification), object: nil)
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(userDetailTableViewContentOffset(notify:)), 
+                                               name: NSNotification.Name(rawValue: kUserDetailTableViewContentOffsetYNotification), 
+                                               object: nil)
     }
     
     
     @objc func userDetailTableViewContentOffset(notify:Notification) -> Void
     {
-        let userInfo = notify.object as! NSDictionary
-        
-        let offsetY = userInfo.object(forKey: "contentOffsetY") as! CGFloat
-        
-        print(offsetY)
-        
-        userTopView.frame.origin.y = 250 - offsetY;
-        userDetailContentView.frame.origin.y = 300 - offsetY;
-        
+        let userInfo                            = notify.object as! NSDictionary
+
+        let offsetY                             = userInfo.object(forKey: "contentOffsetY") as! CGFloat
+        userTopView.frame.origin.y              = 250 - offsetY;
+        userDetailContentView.frame.origin.y    = 300 - offsetY;
+
         userDetailContentView.frame.size.height = kScreenHeight - 300 + offsetY;
     }
 }

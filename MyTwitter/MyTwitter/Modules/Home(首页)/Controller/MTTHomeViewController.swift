@@ -100,23 +100,23 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     
     private func setupSubview() -> Void 
     {
-        homeTableView = UITableView()
-        homeTableView?.delegate = self
-        homeTableView?.dataSource = self
+        homeTableView                 = UITableView()
+        homeTableView?.delegate       = self
+        homeTableView?.dataSource     = self
         homeTableView?.register(MTTHomeCell.self, forCellReuseIdentifier: reusedHomeCellId)
         homeTableView?.separatorStyle = UITableViewCellSeparatorStyle.none
         self.view.addSubview(homeTableView!)
         setupNavBar()
-        
-        tableViewHeader = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(loadNewData))
-        homeTableView?.mj_header = tableViewHeader
-        
-        let appDelegate = UIApplication.shared.delegate
-        
-        alertView = MTTAlertView()
-        alertView.isHidden = true
-        alertView.delegate = self
-        alertView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
+
+        tableViewHeader               = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(loadNewData))
+        homeTableView?.mj_header      = tableViewHeader
+
+        let appDelegate               = UIApplication.shared.delegate
+
+        alertView                     = MTTAlertView()
+        alertView.isHidden            = true
+        alertView.delegate            = self
+        alertView.frame               = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
         appDelegate?.window??.addSubview(alertView)
     }
     
@@ -143,18 +143,18 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     
     func setupNavBar() -> Void
     {
-        self.navigationItem.title = "主页"
-        rightButton = UIButton()
+        self.navigationItem.title              = "主页"
+        rightButton                            = UIButton()
         rightButton?.setImage(UIImage.init(named: "twitter_push"), for: UIControlState.normal)
-        rightButton?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        rightButton?.frame                     = CGRect(x: 0, y: 0, width: 30, height: 30)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightButton!)
-        
-        leftButton = UIButton()
+
+        leftButton                             = UIButton()
         leftButton?.setImage(UIImage.init(named: "my_head.jpg"), for: UIControlState.normal)
-        leftButton?.layer.cornerRadius = 20
-        leftButton?.clipsToBounds = true
-        leftButton?.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftButton!)
+        leftButton?.layer.cornerRadius         = 20
+        leftButton?.clipsToBounds              = true
+        leftButton?.frame                      = CGRect(x: 0, y: 0, width: 40, height: 40)
+        self.navigationItem.leftBarButtonItem  = UIBarButtonItem.init(customView: leftButton!)
         
     }
     
@@ -162,9 +162,8 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
     {
         rightButton?.rx.tap.subscribe(onNext:{
             print("发推按钮被点击了")
-            
             let pushVC = MTTPushTwitterViewController()
-            let nav = MTTNavigationController.init(rootViewController: pushVC)
+            let nav    = MTTNavigationController.init(rootViewController: pushVC)
             
             self.present(nav, animated: true, completion: {
                 
@@ -173,14 +172,13 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
             
         }).disposed(by: disposeBag)
         
-        (leftButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
-            print("发送头像被点击",self)
-            
-            let personalVC = MTTPersonalViewController()
-            personalVC.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(personalVC, animated: true)
-            
-        }).disposed(by: disposeBag)
+        (leftButton?.rx.tap)?
+            .subscribe(onNext:{ [unowned self] in
+                print("发送头像被点击",self)
+                let personalVC = MTTPersonalViewController()
+                personalVC.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(personalVC, animated: true)})
+            .disposed(by: disposeBag)
     }
     
     // MARK: - tableView dataSource 数据源回调
@@ -213,12 +211,12 @@ class MTTHomeViewController: MTTViewController ,UITableViewDataSource,UITableVie
             {
                 homeCell = MTTHomeCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedHomeCellId)
             }
-            homeCell?.delegate = self
-            homeCell?.commentButton?.indexPath = indexPath
-            homeCell?.retwitterButton?.indexPath = indexPath
-            homeCell?.likeButton?.indexPath = indexPath
+            homeCell?.delegate                        = self
+            homeCell?.commentButton?.indexPath        = indexPath
+            homeCell?.retwitterButton?.indexPath      = indexPath
+            homeCell?.likeButton?.indexPath           = indexPath
             homeCell?.privateMessageButton?.indexPath = indexPath
-            homeCell?.homeModel = homeDataArray?[indexPath.item]
+            homeCell?.homeModel                       = homeDataArray?[indexPath.item]
             return homeCell!  
         }
     }

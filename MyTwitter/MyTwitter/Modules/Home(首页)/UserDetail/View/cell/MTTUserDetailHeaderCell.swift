@@ -25,11 +25,11 @@ class MTTUserDetailHeaderCell: MTTTableViewCell {
     
     func setupSubview() -> Void 
     {
-        avatarImageView = UIImageView()
+        avatarImageView                          = UIImageView()
         avatarImageView.isUserInteractionEnabled = true
-        avatarImageView.layer.cornerRadius = 25
-        avatarImageView.clipsToBounds = true
-        avatarImageView.backgroundColor = kMainRandomColor()
+        avatarImageView.layer.cornerRadius       = 25
+        avatarImageView.clipsToBounds            = true
+        avatarImageView.backgroundColor          = kMainRandomColor()
         self.contentView.addSubview(avatarImageView)
     }
     

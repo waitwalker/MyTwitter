@@ -38,15 +38,15 @@ class MTTUserDetailTopView: MTTView
     {
         super.setupSubview()
         
-        topScrollView = UIScrollView()
-        topScrollView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 50)
-        topScrollView.contentSize = CGSize(width: kScreenWidth, height: 0)
-        topScrollView.backgroundColor = UIColor.orange
-        topScrollView.isPagingEnabled = true
-        topScrollView.isScrollEnabled = true
+        topScrollView                        = UIScrollView()
+        topScrollView.frame                  = CGRect(x: 0, y: 0, width: kScreenWidth, height: 50)
+        topScrollView.contentSize            = CGSize(width: kScreenWidth, height: 0)
+        topScrollView.backgroundColor        = UIColor.orange
+        topScrollView.isPagingEnabled        = true
+        topScrollView.isScrollEnabled        = true
         self.addSubview(topScrollView)
-        
-        buttonBottomLineView = UIView()
+
+        buttonBottomLineView                 = UIView()
         buttonBottomLineView.backgroundColor = kMainBlueColor()
         self.addSubview(buttonBottomLineView)
         
@@ -101,10 +101,10 @@ class MTTUserDetailTopView: MTTView
     
     @objc func titleButtonAction(button:UIButton) -> Void
     {
-        button.isSelected = true;
-        var rect = buttonBottomLineView.frame
-        rect.origin.x = button.frame.origin.x
-        rect.size.width = button.frame.size.width
+        button.isSelected          = true;
+        var rect                   = buttonBottomLineView.frame
+        rect.origin.x              = button.frame.origin.x
+        rect.size.width            = button.frame.size.width
         buttonBottomLineView.frame = rect
         
         for (_,btn) in buttonsArray.enumerated() {
@@ -119,15 +119,18 @@ class MTTUserDetailTopView: MTTView
     
     func setupNotification() -> Void
     {
-        NotificationCenter.default.addObserver(self, selector: #selector(userDetailContentScrollToPage(notify:)), name: NSNotification.Name(rawValue: kUserDetailContentScrollToPageNotification), object: nil)
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(userDetailContentScrollToPage(notify:)), 
+                                               name: NSNotification.Name(rawValue: kUserDetailContentScrollToPageNotification),
+                                               object: nil)
     }
     
     @objc func userDetailContentScrollToPage(notify:Notification) -> Void
     {
         let userInfo = notify.object as! NSDictionary
-        
-        let page = userInfo.object(forKey: "page") as! Int
-        
+
+        let page     = userInfo.object(forKey: "page") as! Int
+
         scrollToPage(page: page)
     }
     
@@ -149,15 +152,15 @@ class MTTUserDetailTopView: MTTView
                     options:                UIViewAnimationOptions.curveEaseOut,
                     animations: {
                     
-                    var lineViewFrame = self.buttonBottomLineView.frame
-                    lineViewFrame.origin.x = button.frame.origin.x
-                    lineViewFrame.size.width = button.frame.size.width
+                    var lineViewFrame               = self.buttonBottomLineView.frame
+                    lineViewFrame.origin.x          = button.frame.origin.x
+                    lineViewFrame.size.width        = button.frame.size.width
                     self.buttonBottomLineView.frame = lineViewFrame
-                    
-                    let toRight:CGFloat = button.frame.origin.x + button.frame.size.width;
-                    let toLeft:CGFloat = button.frame.origin.x
-                    let minX:CGFloat = (self.topScrollView?.contentOffset.x)!
-                    let maxX:CGFloat = (self.topScrollView?.contentOffset.x)! + (self.topScrollView?.frame.size.width)!
+
+                    let toRight:CGFloat             = button.frame.origin.x + button.frame.size.width;
+                    let toLeft:CGFloat              = button.frame.origin.x
+                    let minX:CGFloat                = (self.topScrollView?.contentOffset.x)!
+                    let maxX:CGFloat                = (self.topScrollView?.contentOffset.x)! + (self.topScrollView?.frame.size.width)!
                     if toRight > maxX
                     {
                         self.topScrollView?.setContentOffset(CGPoint(x: self.topScrollView!.contentOffset.x + (toRight - maxX), y: self.topScrollView!.contentOffset.y), animated: true)
@@ -175,7 +178,7 @@ class MTTUserDetailTopView: MTTView
             } else
             {
                 let button:UIButton = buttonsArray[index]
-                button.isSelected = false
+                button.isSelected   = false
                 button.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
             }
         }

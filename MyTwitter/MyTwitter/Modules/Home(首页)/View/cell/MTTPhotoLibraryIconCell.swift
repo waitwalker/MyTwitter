@@ -29,31 +29,31 @@ class MTTPhotoLibraryIconCell: MTTCollectionViewCell
     private func setupSubview() -> Void 
     {
         //photoBackgroundView
-        photoBackgroundView = UIView()
-        photoBackgroundView?.backgroundColor = kMainLightGrayColor()
+        photoBackgroundView                                = UIView()
+        photoBackgroundView?.backgroundColor               = kMainLightGrayColor()
         self.contentView.addSubview(photoBackgroundView!)
-        
+
         //photoBackgroundImageView
-        photoBackgroundImageView = UIImageView()
+        photoBackgroundImageView                           = UIImageView()
         photoBackgroundImageView?.isUserInteractionEnabled = true
-        photoBackgroundImageView?.backgroundColor = kMainWhiteColor()
+        photoBackgroundImageView?.backgroundColor          = kMainWhiteColor()
         photoBackgroundView?.addSubview(photoBackgroundImageView!)
-        
+
         //photoIconContainerView
-        photoIconContainerView = UIView()
+        photoIconContainerView                             = UIView()
         photoBackgroundView?.addSubview(photoIconContainerView!)
-        
+
         //photoIconImageView
-        photoIconImageView = UIImageView()
-        photoIconImageView?.isUserInteractionEnabled = true
+        photoIconImageView                                 = UIImageView()
+        photoIconImageView?.isUserInteractionEnabled       = true
         photoIconContainerView?.addSubview(photoIconImageView!)
-        
+
         //photoTitleLabel
-        photoTitleLabel = UILabel()
-        photoTitleLabel?.textColor = kMainBlueColor()
-        photoTitleLabel?.text = "照片"
-        photoTitleLabel?.textAlignment = NSTextAlignment.center
-        photoTitleLabel?.font = UIFont.systemFont(ofSize: 14)
+        photoTitleLabel                                    = UILabel()
+        photoTitleLabel?.textColor                         = kMainBlueColor()
+        photoTitleLabel?.text                              = "照片"
+        photoTitleLabel?.textAlignment                     = NSTextAlignment.center
+        photoTitleLabel?.font                              = UIFont.systemFont(ofSize: 14)
         photoIconContainerView?.addSubview(photoTitleLabel!)
         
         

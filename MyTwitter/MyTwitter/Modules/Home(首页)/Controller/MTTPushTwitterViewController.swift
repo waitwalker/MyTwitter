@@ -72,10 +72,10 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     // MARK: - 从相机获取照片
     func getImageFromCamera() -> Void 
     {
-        let imagePickerVC = UIImagePickerController()
+        let imagePickerVC           = UIImagePickerController()
         imagePickerVC.allowsEditing = true
-        imagePickerVC.sourceType = UIImagePickerControllerSourceType.camera
-        imagePickerVC.delegate = self
+        imagePickerVC.sourceType    = UIImagePickerControllerSourceType.camera
+        imagePickerVC.delegate      = self
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
         {
             self.present(imagePickerVC, animated: true) { 
@@ -102,9 +102,9 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         
         if mediaType == "public.image"
         {
-            let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+            let image                        = info[UIImagePickerControllerOriginalImage] as! UIImage
             imageViewContainerView?.isHidden = false
-            pushSingleImageView?.image = image
+            pushSingleImageView?.image       = image
             picker.dismiss(animated: true, completion: { 
                 
                 if self.locationContainerView?.isHidden == false
@@ -119,14 +119,14 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     func getPhotosImage(cell:MTTPushBottomCell, index:Int, isOriginal:Bool, isSelected:Bool) -> Void
     {
         let fetchOptions = PHFetchOptions()
-        let assets = PHAsset.fetchAssets( with: fetchOptions)
+        let assets       = PHAsset.fetchAssets( with: fetchOptions)
         print(assets.count)
-        
-        let manager = PHImageManager.default()
-        
-        let options = PHImageRequestOptions()
-        
-        let size = isOriginal ? PHImageManagerMaximumSize : CGSize.zero
+
+        let manager      = PHImageManager.default()
+
+        let options      = PHImageRequestOptions()
+
+        let size         = isOriginal ? PHImageManagerMaximumSize : CGSize.zero
         
         manager.requestImage(for: assets.object(at: index), targetSize: size, contentMode: PHImageContentMode.aspectFit, options: options) { (image, hashable) in
             if isSelected
@@ -143,15 +143,20 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     func getAllPictureFromPhotoLibrary() -> Void 
     {
         //开一个后台线程用于处理相册照片
-        let photoQueue = DispatchQueue(label: "photoQueue", qos: DispatchQoS.background, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: DispatchQueue?.none)
+        let photoQueue = DispatchQueue(
+            label: "photoQueue", 
+            qos: DispatchQoS.background, 
+            attributes: DispatchQueue.Attributes.concurrent, 
+            autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, 
+            target: DispatchQueue?.none)
         photoQueue.async {
             let fetchOptions = PHFetchOptions()
-            
-            let assets = PHAsset.fetchAssets( with: fetchOptions)
-            
-            let manager = PHImageManager.default()
-            
-            let options = PHImageRequestOptions()
+
+            let assets       = PHAsset.fetchAssets( with: fetchOptions)
+
+            let manager      = PHImageManager.default()
+
+            let options      = PHImageRequestOptions()
             
             for index in 0...assets.count - 1 
             {
@@ -166,156 +171,156 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     func setupSubview() -> Void
     {
         setupNavBar()
-        
-        self.locationTimes = 0
-        
+
+        self.locationTimes                                    = 0
+
         //pushScrollContainerView
-        pushScrollContainerView = UIScrollView()
-        pushScrollContainerView?.isUserInteractionEnabled = true
-        pushScrollContainerView?.isPagingEnabled = true
+        pushScrollContainerView                               = UIScrollView()
+        pushScrollContainerView?.isUserInteractionEnabled     = true
+        pushScrollContainerView?.isPagingEnabled              = true
         pushScrollContainerView?.showsVerticalScrollIndicator = false
-        pushScrollContainerView?.contentSize = CGSize(width: 0, height: kScreenHeight - 59 - 50)
-        pushScrollContainerView?.isScrollEnabled = true
+        pushScrollContainerView?.contentSize                  = CGSize(width: 0, height: kScreenHeight - 59 - 50)
+        pushScrollContainerView?.isScrollEnabled              = true
         self.view.addSubview(pushScrollContainerView!)
-        
+
         //pushTextView
-        pushTextView = UITextView()
-        pushTextView.placeholderText = "有什么新鲜事?"
-        pushTextView.textColor = kMainGrayColor()
-        pushTextView.text = ""
-        pushTextView.backgroundColor = kMainWhiteColor()
-        pushTextView.font = UIFont.systemFont(ofSize: 20)
-        pushTextView.delegate = self
-        pushTextView.frame = CGRect(x: 20, y: 5, width: kScreenWidth - 40, height: 40)
+        pushTextView                                          = UITextView()
+        pushTextView.placeholderText                          = "有什么新鲜事?"
+        pushTextView.textColor                                = kMainGrayColor()
+        pushTextView.text                                     = ""
+        pushTextView.backgroundColor                          = kMainWhiteColor()
+        pushTextView.font                                     = UIFont.systemFont(ofSize: 20)
+        pushTextView.delegate                                 = self
+        pushTextView.frame                                    = CGRect(x: 20, y: 5, width: kScreenWidth - 40, height: 40)
         pushScrollContainerView?.addSubview(pushTextView)
-        
+
         //placeHolderLabel
-        placeHolderLabel = UILabel()
-        placeHolderLabel?.text = "有什么新鲜事?"
-        placeHolderLabel?.textAlignment = NSTextAlignment.left
-        placeHolderLabel?.textColor = kMainGrayColor()
-        placeHolderLabel?.frame = CGRect(x: 3, y: 0, width: kScreenWidth - 5, height: 40)
-        placeHolderLabel?.font = UIFont.systemFont(ofSize: 20)
+        placeHolderLabel                                      = UILabel()
+        placeHolderLabel?.text                                = "有什么新鲜事?"
+        placeHolderLabel?.textAlignment                       = NSTextAlignment.left
+        placeHolderLabel?.textColor                           = kMainGrayColor()
+        placeHolderLabel?.frame                               = CGRect(x: 3, y: 0, width: kScreenWidth - 5, height: 40)
+        placeHolderLabel?.font                                = UIFont.systemFont(ofSize: 20)
         pushTextView.addSubview(placeHolderLabel!)
-        
+
         //locationContainerView
-        locationContainerView = UIView()
-        locationContainerView?.isHidden = true
-        locationContainerView?.frame = CGRect(x: 0, y: pushTextView.frame.maxY + 10, width: kScreenWidth, height: 20);
-        locationContainerView?.isUserInteractionEnabled = true
+        locationContainerView                                 = UIView()
+        locationContainerView?.isHidden                       = true
+        locationContainerView?.frame                          = CGRect(x: 0, y: pushTextView.frame.maxY + 10, width: kScreenWidth, height: 20);
+        locationContainerView?.isUserInteractionEnabled       = true
         pushScrollContainerView?.addSubview(locationContainerView!)
-        
+
         //locationImageView
-        locationImageView = UIImageView()
-        locationImageView?.image = UIImage(named: "twitter_location_normal")
-        locationImageView?.frame = CGRect(x: 20, y: 2.5, width: 20, height: 15);
-        locationImageView?.isUserInteractionEnabled = true
+        locationImageView                                     = UIImageView()
+        locationImageView?.image                              = UIImage(named: "twitter_location_normal")
+        locationImageView?.frame                              = CGRect(x: 20, y: 2.5, width: 20, height: 15);
+        locationImageView?.isUserInteractionEnabled           = true
         locationContainerView?.addSubview(locationImageView!)
-        
+
         //locationLabel
-        locationLabel = UILabel()
-        locationLabel?.font = UIFont.systemFont(ofSize: 15)
-        locationLabel?.textColor = kMainGrayColor()
-        locationLabel?.textAlignment = NSTextAlignment.left
-        locationLabel?.isUserInteractionEnabled = true
-        locationLabel?.frame = CGRect(x: (locationImageView?.frame.maxX)! + 10, y: 0, width: 200, height: 20)
+        locationLabel                                         = UILabel()
+        locationLabel?.font                                   = UIFont.systemFont(ofSize: 15)
+        locationLabel?.textColor                              = kMainGrayColor()
+        locationLabel?.textAlignment                          = NSTextAlignment.left
+        locationLabel?.isUserInteractionEnabled               = true
+        locationLabel?.frame                                  = CGRect(x: (locationImageView?.frame.maxX)! + 10, y: 0, width: 200, height: 20)
         locationContainerView?.addSubview(locationLabel!)
-        
+
         //imageViewContainerView
-        imageViewContainerView = UIView()
-        imageViewContainerView?.frame = CGRect(x: 0, y: pushTextView.frame.maxY + 10, width: kScreenWidth, height: 330)
-        imageViewContainerView?.isHidden = true
+        imageViewContainerView                                = UIView()
+        imageViewContainerView?.frame                         = CGRect(x: 0, y: pushTextView.frame.maxY + 10, width: kScreenWidth, height: 330)
+        imageViewContainerView?.isHidden                      = true
         pushScrollContainerView?.addSubview(imageViewContainerView!)
-        
+
         //pushSingleImageView
-        pushSingleImageView = MTTPushImageView(frame: CGRect(x: 20, y: 0, width: kScreenWidth - 40, height: 300))
-        pushSingleImageView?.delegate = self
-        pushSingleImageView?.backgroundColor = kMainRandomColor()
+        pushSingleImageView                                   = MTTPushImageView(frame: CGRect(x: 20, y: 0, width: kScreenWidth - 40, height: 300))
+        pushSingleImageView?.delegate                         = self
+        pushSingleImageView?.backgroundColor                  = kMainRandomColor()
         imageViewContainerView?.addSubview(pushSingleImageView!)
-        
+
         //whoExistImageView
-        whoExistImageView = UIImageView()
-        whoExistImageView?.image = UIImage(named: "man-user")
-        whoExistImageView?.isUserInteractionEnabled = true
-        whoExistImageView?.frame = CGRect(x: 20, y: (pushSingleImageView?.frame.maxY)! + 10, width: 20, height: 20)
+        whoExistImageView                                     = UIImageView()
+        whoExistImageView?.image                              = UIImage(named: "man-user")
+        whoExistImageView?.isUserInteractionEnabled           = true
+        whoExistImageView?.frame                              = CGRect(x: 20, y: (pushSingleImageView?.frame.maxY)! + 10, width: 20, height: 20)
         imageViewContainerView?.addSubview(whoExistImageView!)
-        
+
         //whoExistLabel
-        whoExistLabel = UILabel()
-        whoExistLabel?.text = "谁在这张照片里?"
-        whoExistLabel?.font = UIFont.systemFont(ofSize: 12)
-        whoExistLabel?.textAlignment = NSTextAlignment.left
-        whoExistLabel?.textColor = kMainBlueColor()
-        whoExistLabel?.isUserInteractionEnabled = true
-        whoExistLabel?.frame = CGRect(x: (whoExistImageView?.frame.maxX)! + 10, y: (pushSingleImageView?.frame.maxY)! + 10, width: 200, height: 20)
+        whoExistLabel                                         = UILabel()
+        whoExistLabel?.text                                   = "谁在这张照片里?"
+        whoExistLabel?.font                                   = UIFont.systemFont(ofSize: 12)
+        whoExistLabel?.textAlignment                          = NSTextAlignment.left
+        whoExistLabel?.textColor                              = kMainBlueColor()
+        whoExistLabel?.isUserInteractionEnabled               = true
+        whoExistLabel?.frame                                  = CGRect(x: (whoExistImageView?.frame.maxX)! + 10, y: (pushSingleImageView?.frame.maxY)! + 10, width: 200, height: 20)
         imageViewContainerView?.addSubview(whoExistLabel!)
-        
+
         //contentView
-        contentView = UIView()
-        contentView?.backgroundColor = kMainWhiteColor()
+        contentView                                           = UIView()
+        contentView?.backgroundColor                          = kMainWhiteColor()
         self.view.addSubview(contentView!)
-        
+
         //secondLine
-        secondLine = UIView()
-        secondLine?.backgroundColor = kMainGrayColor()
+        secondLine                                            = UIView()
+        secondLine?.backgroundColor                           = kMainGrayColor()
         contentView?.addSubview(secondLine!)
-        
+
         //pictureButton
-        pictureButton = UIButton()
+        pictureButton                                         = UIButton()
         pictureButton?.setImage(UIImage.init(named: "twitter_photo"), for: UIControlState.normal)
-        pictureButton?.layer.cornerRadius = 2
-        pictureButton?.clipsToBounds = true
+        pictureButton?.layer.cornerRadius                     = 2
+        pictureButton?.clipsToBounds                          = true
         contentView?.addSubview(pictureButton!)
-        
+
         //gifButton
-        gifButton = UIButton()
+        gifButton                                             = UIButton()
         gifButton?.setImage(UIImage.init(named: "twitter_gif"), for: UIControlState.normal)
-        gifButton?.layer.cornerRadius = 2
-        gifButton?.clipsToBounds = true
+        gifButton?.layer.cornerRadius                         = 2
+        gifButton?.clipsToBounds                              = true
         contentView?.addSubview(gifButton!)
-        
+
         //voteButton
-        voteButton = UIButton()
+        voteButton                                            = UIButton()
         voteButton?.setImage(UIImage.init(named: "twitter_vote"), for: UIControlState.normal)
-        voteButton?.layer.cornerRadius = 2
-        voteButton?.clipsToBounds = true
+        voteButton?.layer.cornerRadius                        = 2
+        voteButton?.clipsToBounds                             = true
         contentView?.addSubview(voteButton!)
-        
+
         //locationButton
-        locationButton = UIButton()
+        locationButton                                        = UIButton()
         locationButton?.setImage(UIImage.init(named: "twitter_location"), for: UIControlState.normal)
-        locationButton?.layer.cornerRadius = 2
-        locationButton?.clipsToBounds = true
+        locationButton?.layer.cornerRadius                    = 2
+        locationButton?.clipsToBounds                         = true
         contentView?.addSubview(locationButton!)
-        
+
         //pushButton
-        pushButton = UIButton()
+        pushButton                                            = UIButton()
         pushButton?.setTitle("发推", for: UIControlState.normal)
         pushButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
-        pushButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        pushButton?.backgroundColor = kMainBlueColor()
-        pushButton?.layer.cornerRadius = 17.5
-        pushButton?.clipsToBounds = true
+        pushButton?.titleLabel?.font                          = UIFont.systemFont(ofSize: 15)
+        pushButton?.backgroundColor                           = kMainBlueColor()
+        pushButton?.layer.cornerRadius                        = 17.5
+        pushButton?.clipsToBounds                             = true
         contentView?.addSubview(pushButton!)
-        
+
         //textCountLabel
-        textCountLabel = UILabel()
-        textCountLabel?.textColor = kMainGrayColor()
-        textCountLabel?.textAlignment = NSTextAlignment.right
-        textCountLabel?.font = UIFont.systemFont(ofSize: 15)
-        textCountLabel?.text = "140"
+        textCountLabel                                        = UILabel()
+        textCountLabel?.textColor                             = kMainGrayColor()
+        textCountLabel?.textAlignment                         = NSTextAlignment.right
+        textCountLabel?.font                                  = UIFont.systemFont(ofSize: 15)
+        textCountLabel?.text                                  = "140"
         contentView?.addSubview(textCountLabel!)
-        
+
         //bottomCollectionView
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
-        flowLayout.itemSize = CGSize(width: 70, height: 70)
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5)
-        bottomCollectionView = UICollectionView(frame: CGRect.init(x: 0, y: kScreenHeight - 50 - 90, width: kScreenWidth, height: 80), collectionViewLayout: flowLayout)
-        bottomCollectionView?.delegate = self
-        bottomCollectionView?.dataSource = self
-        bottomCollectionView?.showsHorizontalScrollIndicator = false
-        bottomCollectionView?.backgroundColor = kMainWhiteColor()
+        let flowLayout                                        = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection                            = UICollectionViewScrollDirection.horizontal
+        flowLayout.itemSize                                   = CGSize(width: 70, height: 70)
+        flowLayout.sectionInset                               = UIEdgeInsetsMake(0, 5, 0, 5)
+        bottomCollectionView                                  = UICollectionView(frame: CGRect.init(x: 0, y: kScreenHeight - 50 - 90, width: kScreenWidth, height: 80), collectionViewLayout: flowLayout)
+        bottomCollectionView?.delegate                        = self
+        bottomCollectionView?.dataSource                      = self
+        bottomCollectionView?.showsHorizontalScrollIndicator  = false
+        bottomCollectionView?.backgroundColor                 = kMainWhiteColor()
         bottomCollectionView?.register(MTTPushBottomCell.self, forCellWithReuseIdentifier: reusedPushBottomId)
         self.view.addSubview(bottomCollectionView!)
         
@@ -396,17 +401,17 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     
     func setupNavBar() -> Void
     {
-        rightButton = UIButton()
+        rightButton                            = UIButton()
         rightButton?.setImage(UIImage.init(named: "twitter_close"), for: UIControlState.normal)
-        rightButton?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        rightButton?.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
+        rightButton?.frame                     = CGRect(x: 0, y: 0, width: 30, height: 30)
+        rightButton?.imageEdgeInsets           = UIEdgeInsetsMake(5, 5, 5, 5)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightButton!)
-        
-        leftButton = UIButton()
+
+        leftButton                             = UIButton()
         leftButton?.setImage(UIImage.init(named: "my_head.jpg"), for: UIControlState.normal)
-        leftButton?.layer.cornerRadius = 20
-        leftButton?.clipsToBounds = true
-        leftButton?.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        leftButton?.layer.cornerRadius         = 20
+        leftButton?.clipsToBounds              = true
+        leftButton?.frame                      = CGRect(x: 0, y: 0, width: 40, height: 40)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftButton!)
     }
     
@@ -433,33 +438,29 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         }).disposed(by: disposeBag)
         
         //pictureButton
-        (pictureButton?.rx.tap)?.subscribe(onNext:{ [unowned self] in
+        (pictureButton?.rx.tap)?
+            .subscribe(onNext:{ [unowned self] in
             
-            let photoLibraryVC = MTTPhotoLibraryViewController()
-            let nav = MTTNavigationController(rootViewController: photoLibraryVC)
-            photoLibraryVC.addCallBack = { (addedImage) in
-                
-                self.imageViewContainerView?.isHidden = false
-                self.pushSingleImageView?.image = addedImage
-                if self.locationContainerView?.isHidden == false
-                {
-                    self.locationContainerView?.frame = CGRect(x: 0, y: (self.imageViewContainerView?.frame.maxY)! + 10, width: kScreenWidth, height: 20)
+                let photoLibraryVC = MTTPhotoLibraryViewController()
+                let nav            = MTTNavigationController(rootViewController: photoLibraryVC)
+                photoLibraryVC.addCallBack = { (addedImage) in
+                    self.imageViewContainerView?.isHidden = false
+                    self.pushSingleImageView?.image       = addedImage
+                    if self.locationContainerView?.isHidden == false
+                    {
+                        self.locationContainerView?.frame = CGRect(x: 0, y: (self.imageViewContainerView?.frame.maxY)! + 10, width: kScreenWidth, height: 20)
+                    }
                 }
-            }
-            
-            self.present(nav, animated: true, completion: { 
-                
-            })
-            
-        }).disposed(by: disposeBag)
+                self.present(nav, animated: true, completion: { })})
+            .disposed(by: disposeBag)
         
-        pushTextView.rx.text.map({($0?.count)! > 0})
+        pushTextView.rx.text
+            .map({($0?.count)! > 0})
             .subscribe(onNext:{ isTrue in
-                
                 if isTrue
                 {
                     self.placeHolderLabel?.isHidden = true
-                    self.textCountLabel?.text = String.init(format: "%d", 140 - self.pushTextView.text.count)
+                    self.textCountLabel?.text       = String.init(format: "%d", 140 - self.pushTextView.text.count)
                     
                     if self.pushTextView.text.count >= Int(120)
                     {
@@ -494,42 +495,41 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
                     self.bottomCollectionView?.isHidden = false
                     self.pushButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
                     self.pushButton?.isEnabled = false
-                }
-            }).disposed(by: disposeBag)
+                }})
+            .disposed(by: disposeBag)
         
         //pushButton
-        pushButton?.rx.tap.subscribe(onNext:{ [unowned self] in
-            print("发推按钮被点击了",self)
-            
-            let retwitterArray = ["1","like","3","retwitter","2","5"]
-            let retwitterType = retwitterArray[self.getRandomNum()]
-            let avatarImage = String(format: "%d", self.getRandomNum())
-            let retwitterAccountArray = ["Javascript🔥TOP Q&A‏","The Guardian‏","Brightwater Recruit‏","TheTimesofLondon‏","ABS-CBNNewsChannel‏","朝日新聞(asahi shimbun）"]
-            let retwitterAccount = retwitterAccountArray[self.getRandomNum()]
-            let nickName = "@" + retwitterAccount
-            let accountArray = ["The Guardian‏","Javascript🔥TOP Q&A‏","Brightwater Recruit‏","朝日新聞(asahi shimbun）","TheTimesofLondon‏","ABS-CBNNewsChannel‏"]
-            let account = accountArray[self.getRandomNum()]
-            
-            let parameter = ["retwitterType":retwitterType,
-                             "retwitterAccount":retwitterAccount,
-                             "avatarImage":avatarImage,
-                             "account":account,
-                             "nickName":nickName,
-                             "time":"20171024 12:20:22",
-                             "content":self.pushTextView.text,
-                             "contentImages":"contentImages",
-                             "contentVideo":"contentVideo",
-                             "commentCount":self.getRandomNum222(),
-                             "retwitterCount":self.getRandomNum222(),
-                             "likeCount":self.getRandomNum222(),
-                             "privateMessageCount":self.getRandomNum222()] as [String : Any]
-            
-            let pushViewModel = MTTPushTwitterViewModel()
-            pushViewModel.delegate = self
-            pushViewModel.getPushTwitterStatus(parameters: parameter as NSDictionary)
-            
-            
-        }).disposed(by: disposeBag)
+        pushButton?.rx.tap
+            .subscribe(onNext:{ [unowned self] in
+                print("发推按钮被点击了",self)
+                
+                let retwitterArray        = ["1","like","3","retwitter","2","5"]
+                let retwitterType         = retwitterArray[self.getRandomNum()]
+                let avatarImage           = String(format: "%d", self.getRandomNum())
+                let retwitterAccountArray = ["Javascript🔥TOP Q&A‏","The Guardian‏","Brightwater Recruit‏","TheTimesofLondon‏","ABS-CBNNewsChannel‏","朝日新聞(asahi shimbun）"]
+                let retwitterAccount      = retwitterAccountArray[self.getRandomNum()]
+                let nickName              = "@" + retwitterAccount
+                let accountArray          = ["The Guardian‏","Javascript🔥TOP Q&A‏","Brightwater Recruit‏","朝日新聞(asahi shimbun）","TheTimesofLondon‏","ABS-CBNNewsChannel‏"]
+                let account = accountArray[self.getRandomNum()]
+                
+                let parameter = ["retwitterType":retwitterType,
+                                 "retwitterAccount":retwitterAccount,
+                                 "avatarImage":avatarImage,
+                                 "account":account,
+                                 "nickName":nickName,
+                                 "time":"20171024 12:20:22",
+                                 "content":self.pushTextView.text,
+                                 "contentImages":"contentImages",
+                                 "contentVideo":"contentVideo",
+                                 "commentCount":self.getRandomNum222(),
+                                 "retwitterCount":self.getRandomNum222(),
+                                 "likeCount":self.getRandomNum222(),
+                                 "privateMessageCount":self.getRandomNum222()] as [String : Any]
+                
+                let pushViewModel      = MTTPushTwitterViewModel()
+                pushViewModel.delegate = self
+                pushViewModel.getPushTwitterStatus(parameters: parameter as NSDictionary)})
+            .disposed(by: disposeBag)
         
     }
     
@@ -562,13 +562,20 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     // MARK: - 处理键盘
     func addNotificationObserver() -> Void
     {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowAction(notify:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideAction(notify:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(keyboardWillShowAction(notify:)),
+                                               name: NSNotification.Name.UIKeyboardWillShow, 
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(keyboardWillHideAction(notify:)), 
+                                               name: NSNotification.Name.UIKeyboardWillHide, 
+                                               object: nil)
     }
     
     @objc func keyboardWillShowAction(notify:Notification) -> Void
     {
-        let userInfo = notify.userInfo
+        let userInfo      = notify.userInfo
         let keyboardFrame = userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
         UIView.animate(withDuration: 0.5, animations: {
             self.bottomCollectionView?.y = keyboardFrame.origin.y - 50 - 90
@@ -584,7 +591,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
             self.bottomCollectionView?.y = kScreenHeight - 50 - 90
             
             //contentView
-            self.contentView?.frame = CGRect(x: 0, y: kScreenHeight - 50, width: kScreenWidth, height: 50)
+            self.contentView?.frame      = CGRect(x: 0, y: kScreenHeight - 50, width: kScreenWidth, height: 50)
         }) { (completed) in
             
         }
@@ -593,11 +600,11 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     // MARK: - 处理手势
     func addGesture() -> Void
     {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(pushScrollContainerViewTapAction))
+        let tap         = UITapGestureRecognizer(target: self, action: #selector(pushScrollContainerViewTapAction))
         pushScrollContainerView?.addGestureRecognizer(tap)
-        
+
         let locationTap = UITapGestureRecognizer.init(target: self, action: #selector(locationTapAction(locationTap:)))
-        
+
         locationContainerView?.addGestureRecognizer(locationTap)
     }
     
@@ -615,12 +622,12 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     func textViewDidChange(_ textView: UITextView)
     {
         let maxHeight:CGFloat = kScreenHeight - 50 - 236 - 64 - 10
-        
-        let frame = textView.frame
-        
-        let constraintSize = CGSize(width: frame.size.width, height: CGFloat(MAXFLOAT))
-        
-        let size = textView.sizeThatFits(constraintSize)
+
+        let frame             = textView.frame
+
+        let constraintSize    = CGSize(width: frame.size.width, height: CGFloat(MAXFLOAT))
+
+        let size              = textView.sizeThatFits(constraintSize)
         
         if size.height >= maxHeight
         {
@@ -655,25 +662,25 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusedPushBottomId, for: indexPath) as? MTTPushBottomCell
-        cell?.innerImageView?.isHidden = false
+        let cell                        = collectionView.dequeueReusableCell(withReuseIdentifier: reusedPushBottomId, for: indexPath) as? MTTPushBottomCell
+        cell?.innerImageView?.isHidden  = false
         cell?.innerTitleLabel?.isHidden = false
         switch indexPath.item {
         case 0:
-            cell?.innerImageView?.image = UIImage.init(named: "twitter_camera")
-            cell?.innerTitleLabel?.text = "相机"
+            cell?.innerImageView?.image      = UIImage.init(named: "twitter_camera")
+            cell?.innerTitleLabel?.text      = "相机"
             cell?.backgroundImageView?.image = UIImage()
         case 1:
-            cell?.innerImageView?.image = UIImage.init(named: "twitter_live")
-            cell?.innerTitleLabel?.text = "直播"
+            cell?.innerImageView?.image      = UIImage.init(named: "twitter_live")
+            cell?.innerTitleLabel?.text      = "直播"
             cell?.backgroundImageView?.image = UIImage()
         case 19:
-            cell?.innerImageView?.image = UIImage.init(named: "twitter_photo")
-            cell?.innerTitleLabel?.text = "库"
+            cell?.innerImageView?.image      = UIImage.init(named: "twitter_photo")
+            cell?.innerTitleLabel?.text      = "库"
             cell?.backgroundImageView?.image = UIImage()
         default:
             //getPhotosImage(cell: cell!, index: indexPath.item - 2, isOriginal: false, isSelected: false)
-            cell?.innerImageView?.isHidden = true
+            cell?.innerImageView?.isHidden  = true
             cell?.innerTitleLabel?.isHidden = true
             
         }
@@ -698,7 +705,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         } else
         {
             let photoLibraryVC = MTTPhotoLibraryViewController()
-            let nav = MTTNavigationController(rootViewController: photoLibraryVC)
+            let nav            = MTTNavigationController(rootViewController: photoLibraryVC)
             
             self.present(nav, animated: true, completion: { 
                 
@@ -711,7 +718,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     func tappedCloseImageView(closeImageView: UIImageView)
     {
         imageViewContainerView?.isHidden = true
-        pushSingleImageView?.image = UIImage()
+        pushSingleImageView?.image       = UIImage()
         
         if locationContainerView?.isHidden == false
         {
@@ -736,12 +743,12 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         
         if CLLocationManager.locationServicesEnabled()
         {
-            locationManager = CLLocationManager()
-            locationManager?.delegate = self
+            locationManager                  = CLLocationManager()
+            locationManager?.delegate        = self
             locationManager?.requestAlwaysAuthorization()
             locationManager?.requestWhenInUseAuthorization()
             locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager?.distanceFilter = 5.0
+            locationManager?.distanceFilter  = 5.0
             locationManager?.startUpdatingLocation()
         } else
         {
@@ -753,7 +760,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     {
         locationManager?.stopUpdatingLocation()
         let currentLocation = locations.last
-        let geoCoder = CLGeocoder()
+        let geoCoder        = CLGeocoder()
         print("当前经纬度:",currentLocation?.coordinate.latitude as Any,currentLocation?.coordinate.longitude as Any)
         
         if locationTimes != 0
@@ -784,12 +791,12 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
                     {
                         places.insert(place, at: 0)
                         
-                        let locationVC = MTTLocationViewController()
-                        locationVC.places = places
+                        let locationVC                     = MTTLocationViewController()
+                        locationVC.places                  = places
                         locationVC.latitudelongitudeString = latitudelongitudeString
-                        let nav = MTTNavigationController(rootViewController: locationVC)
+                        let nav                            = MTTNavigationController(rootViewController: locationVC)
                         self.present(nav, animated: true, completion: {
-                            
+
                         })
                         locationVC.finishCallBack = { (placeString) in
                             self.locationContainerView?.isHidden = false
@@ -838,7 +845,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
     
     func showAlertWithoutMessage() -> Void
     {
-        let alert = UIAlertController.init(title: "提示", message: "无法定位,请先在设置中打开定位功能", preferredStyle: UIAlertControllerStyle.alert)
+        let alert    = UIAlertController.init(title: "提示", message: "无法定位,请先在设置中打开定位功能", preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction.init(title: "确定", style: UIAlertActionStyle.default) { (action) in
             let settingURL = NSURL.init(string: UIApplicationOpenSettingsURLString)
             UIApplication.shared.open(settingURL! as URL, options: [:], completionHandler: { (completed) in

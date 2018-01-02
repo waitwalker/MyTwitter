@@ -59,33 +59,33 @@ class MTTChatMessageViewController: MTTViewController {
     func setupOriginal() -> Void
     {
         self.pictureButtonIsSelected = false
-        self.addButtonIsSelected = false
+        self.addButtonIsSelected     = false
     }
     
     private func setupSubview() -> Void
     {
         // 聊天视图
-        chatMessageView = MTTChatMessageView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight - 50))
-        chatMessageView.delegate = self
+        chatMessageView                    = MTTChatMessageView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight - 50))
+        chatMessageView.delegate           = self
         self.view.addSubview(chatMessageView)
-        
+
         // 聊天toolBar
-        chatMessageToolbar = MTTChatMessageToolBar(frame: CGRect(x: 0, y: kScreenHeight - 50 - 44 - 5, width: kScreenWidth, height: 50))
-        chatMessageToolbar.delegate = self
+        chatMessageToolbar                 = MTTChatMessageToolBar(frame: CGRect(x: 0, y: kScreenHeight - 50 - 44 - 5, width: kScreenWidth, height: 50))
+        chatMessageToolbar.delegate        = self
         chatMessageToolbar.backgroundColor = UIColor.white
-        
-        chatMessageToolbar.maxLines = 9
+
+        chatMessageToolbar.maxLines        = 9
         self.view.addSubview(chatMessageToolbar)
-        
+
         // 选择图片
-        photosView = MTTPhotosView(frame: CGRect(x: 0, y: kScreenHeight - 150, width: kScreenWidth, height: kScreenHeight))
-        photosView.delegate = self
-        photosView.isHidden = true
+        photosView                         = MTTPhotosView(frame: CGRect(x: 0, y: kScreenHeight - 150, width: kScreenWidth, height: kScreenHeight))
+        photosView.delegate                = self
+        photosView.isHidden                = true
         self.view.addSubview(photosView)
-        
+
         // 选择视频
-        videosView = MTTVideosView(frame: CGRect(x: 0, y: kScreenHeight - 88, width: kScreenWidth, height: 87))
-        videosView.isHidden = true
+        videosView                         = MTTVideosView(frame: CGRect(x: 0, y: kScreenHeight - 88, width: kScreenWidth, height: 87))
+        videosView.isHidden                = true
         self.view.addSubview(videosView)
         
     }
@@ -112,16 +112,16 @@ MTTPhotosViewDelegate
     // 发送按钮的点击回调
     func tappedSendButton(text: String)
     {
-        let model = MTTChatMessageModel()
-        model.messageFrom = MTTChatMessageFromType.My.rawValue
-        model.messageType = MTTChatMessageType.text.rawValue
-        model.chatDate = Date()
-        model.chatDateStamp = Int(Date().timeIntervalSince1970)
-        model.messageContent = text
-        model.contentTextHeight = Double(model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220) > 30 ? Float(model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220.0)) : Float(40.0))
-        model.contentBackImageHeight = 5 + model.contentTextHeight + 5.0
-        model.cellHeight = 10 + 20 + 10.0 + model.contentBackImageHeight
-        
+        let model                                  = MTTChatMessageModel()
+        model.messageFrom                          = MTTChatMessageFromType.My.rawValue
+        model.messageType                          = MTTChatMessageType.text.rawValue
+        model.chatDate                             = Date()
+        model.chatDateStamp                        = Int(Date().timeIntervalSince1970)
+        model.messageContent                       = text
+        model.contentTextHeight                    = Double(model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220) > 30 ? Float(model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220.0)) : Float(40.0))
+        model.contentBackImageHeight               = 5 + model.contentTextHeight + 5.0
+        model.cellHeight                           = 10 + 20 + 10.0 + model.contentBackImageHeight
+
         MTTDataBaseManager.saveChatMessageModel(with: model)
         self.chatMessageView.loadDataFromLocal()
         self.chatMessageToolbar.inputTextView.text = ""
@@ -149,11 +149,11 @@ MTTPhotosViewDelegate
     // 图片按钮点击回调
     func tappedPictureButton(button: UIButton)
     {
-        self.videosView.isHidden = true
+        self.videosView.isHidden                     = true
         self.chatMessageToolbar.addButton.isSelected = false
-        self.addButtonIsSelected = false
+        self.addButtonIsSelected                     = false
         self.chatMessageToolbar.addButton.setImage(UIImage.imageNamed(name: "twitter_add_normal"), for: UIControlState.normal)
-        button.isSelected = !button.isSelected
+        button.isSelected                            = !button.isSelected
         button.setImage(UIImage.imageNamed(name: "twitter_pictures_selected"), for: UIControlState.selected)
         self.pictureButtonIsSelected = button.isSelected
         if button.isSelected
@@ -161,8 +161,8 @@ MTTPhotosViewDelegate
             UIView.animate(withDuration: 0.1) {
                 self.view.endEditing(true)
                 let timeInterval:TimeInterval = 0.2
-                self.chatMessageToolbar.y = kScreenHeight - 50 - 150
-                self.photosView.isHidden = false
+                self.chatMessageToolbar.y     = kScreenHeight - 50 - 150
+                self.photosView.isHidden      = false
                 self.sharedInstance.hideTabbar()
                 self.view.bringSubview(toFront: self.photosView)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: {
@@ -183,11 +183,11 @@ MTTPhotosViewDelegate
     // 添加视频按钮
     func tappedAddVideoButton(button: UIButton)
     {
-        self.photosView.isHidden = true
+        self.photosView.isHidden                         = true
         self.chatMessageToolbar.pictureButton.isSelected = false
-        self.pictureButtonIsSelected = false
+        self.pictureButtonIsSelected                     = false
         self.chatMessageToolbar.pictureButton.setImage(UIImage.imageNamed(name: "twitter_pictures_normal"), for: UIControlState.normal)
-        button.isSelected = !button.isSelected
+        button.isSelected                                = !button.isSelected
         button.setImage(UIImage.imageNamed(name: "twitter_add_selected"), for: UIControlState.selected)
         self.addButtonIsSelected = button.isSelected
         if button.isSelected
@@ -196,8 +196,8 @@ MTTPhotosViewDelegate
                 self.view.endEditing(true)
                 let timeInterval:TimeInterval = 0.2
                 self.sharedInstance.hideTabbar()
-                self.chatMessageToolbar.y = kScreenHeight - 50 - 88
-                self.videosView.isHidden = false
+                self.chatMessageToolbar.y     = kScreenHeight - 50 - 88
+                self.videosView.isHidden      = false
                 self.view.bringSubview(toFront: self.videosView)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: {
                     
@@ -245,30 +245,30 @@ extension MTTChatMessageViewController
     
     func messageFromOthers() -> Void
     {
-        let mType = self.messageType[String.getRandomValue(peakValue: 5)]
-        
-        let model = MTTChatMessageModel()
+        let mType         = self.messageType[String.getRandomValue(peakValue: 5)]
+
+        let model         = MTTChatMessageModel()
         model.messageFrom = MTTChatMessageFromType.Others.rawValue
         model.messageType = mType.rawValue
-        model.chatDate = Date()
+        model.chatDate    = Date()
         model.chatDateStamp = Int(Date().timeIntervalSince1970)
         
         switch model.messageType
         {
         case 0:
-            model.messageContent = messageText[String.getRandomValue(peakValue: 6)]
-            model.contentTextHeight = Double(model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220) > 30 ? Float(model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220)) : Float(40))
+            model.messageContent         = messageText[String.getRandomValue(peakValue: 6)]
+            model.contentTextHeight      = Double(model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220) > 30 ? Float(model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220)) : Float(40))
             model.contentBackImageHeight = 5 + model.contentTextHeight + 5
             model.cellHeight = 10 + 20 + 10 + model.contentBackImageHeight
             break
         case 1:
-            model.pictureData = UIImagePNGRepresentation(UIImage.imageNamed(name: imageString[String.getRandomValue(peakValue: 6)]))
-            model.contentPictureHeight = 250
+            model.pictureData            = UIImagePNGRepresentation(UIImage.imageNamed(name: imageString[String.getRandomValue(peakValue: 6)]))
+            model.contentPictureHeight   = 250
             model.contentBackImageHeight = 5 + model.contentPictureHeight + 5
             model.cellHeight = 10 + 20 + 10 + model.contentPictureHeight
             break
         case 2:
-            model.contentVoiceHeight = 40
+            model.contentVoiceHeight     = 40
             model.contentBackImageHeight = 5 + model.contentVoiceHeight + 5
             model.cellHeight = 10 + 20 + 10 + model.contentBackImageHeight
             break

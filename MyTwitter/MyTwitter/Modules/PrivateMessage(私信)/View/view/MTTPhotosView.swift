@@ -17,8 +17,8 @@ class MTTPhotosView: MTTView
 {
     
     var photoLibraryCollectionView:UICollectionView!
-    let photoIcons:[String] = ["twitter_camera_large","twittwer_video_large","twittwer_live_large"]
-    let titles:[String] = ["照片","视频","直播"]
+    let photoIcons:[String]         = ["twitter_camera_large","twittwer_video_large","twittwer_live_large"]
+    let titles:[String]             = ["照片","视频","直播"]
     let reusedPhotoLibraryId:String = "reusedPhotoLibraryId"
     let reusedPhotoLibraryIconId:String = "reusedPhotoLibraryIconId"
     
@@ -44,9 +44,7 @@ class MTTPhotosView: MTTView
         if photoAuthStatus
         {
             let fetchOptions = PHFetchOptions()
-            
-            let assets = PHAsset.fetchAssets( with: fetchOptions)
-            
+            let assets       = PHAsset.fetchAssets( with: fetchOptions)
             return assets.count
         } else
         {
@@ -64,17 +62,17 @@ class MTTPhotosView: MTTView
 
     override func setupSubview()
     {
-        let photoFlowLayout = UICollectionViewFlowLayout()
-        photoFlowLayout.scrollDirection = UICollectionViewScrollDirection.vertical
-        photoFlowLayout.minimumLineSpacing = 0
-        photoFlowLayout.minimumInteritemSpacing = 0
-        
-        photoLibraryCollectionView = UICollectionView(frame: self.bounds, collectionViewLayout: photoFlowLayout)
+        let photoFlowLayout                        = UICollectionViewFlowLayout()
+        photoFlowLayout.scrollDirection            = UICollectionViewScrollDirection.vertical
+        photoFlowLayout.minimumLineSpacing         = 0
+        photoFlowLayout.minimumInteritemSpacing    = 0
+
+        photoLibraryCollectionView                 = UICollectionView(frame: self.bounds, collectionViewLayout: photoFlowLayout)
         photoLibraryCollectionView.register(MTTPhotosCell.self, forCellWithReuseIdentifier: reusedPhotoLibraryId)
         photoLibraryCollectionView.register(MTTPhotosIconCell.self, forCellWithReuseIdentifier: reusedPhotoLibraryIconId)
         photoLibraryCollectionView.backgroundColor = kMainChatBackgroundGrayColor()
-        photoLibraryCollectionView.delegate = self
-        photoLibraryCollectionView.dataSource = self
+        photoLibraryCollectionView.delegate        = self
+        photoLibraryCollectionView.dataSource      = self
         self.addSubview(photoLibraryCollectionView)
     }
     
@@ -86,15 +84,17 @@ class MTTPhotosView: MTTView
     func getAllPictureFromPhotoLibrary(cell:MTTPhotosCell,index:Int) -> Void
     {
         //开一个后台线程用于处理相册照片
-        let photoQueue = DispatchQueue(label: "photoQueue", qos: DispatchQoS.background, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: DispatchQueue?.none)
+        let photoQueue = DispatchQueue(
+            label: "photoQueue", 
+            qos: DispatchQoS.background, 
+            attributes: DispatchQueue.Attributes.concurrent, 
+            autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, 
+            target: DispatchQueue?.none)
         photoQueue.async {
             let fetchOptions = PHFetchOptions()
-            
-            let assets = PHAsset.fetchAssets( with: fetchOptions)
-            
-            let manager = PHImageManager.default()
-            
-            let options = PHImageRequestOptions()
+            let assets       = PHAsset.fetchAssets( with: fetchOptions)
+            let manager      = PHImageManager.default()
+            let options      = PHImageRequestOptions()
             
             manager.requestImage(for: assets.object(at: index), targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.aspectFit, options: options, resultHandler: { (image, hashable) in
                 
@@ -194,8 +194,8 @@ UICollectionViewDelegateFlowLayout
     {
         if indexPath.item <= 2
         {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusedPhotoLibraryIconId, for: indexPath) as! MTTPhotosIconCell
-            cell.photoTitleLabel.text = titles[indexPath.item]
+            let cell                      = collectionView.dequeueReusableCell(withReuseIdentifier: reusedPhotoLibraryIconId, for: indexPath) as! MTTPhotosIconCell
+            cell.photoTitleLabel.text     = titles[indexPath.item]
             cell.photoIconImageView.image = UIImage(named: photoIcons[indexPath.item])
             return cell
             

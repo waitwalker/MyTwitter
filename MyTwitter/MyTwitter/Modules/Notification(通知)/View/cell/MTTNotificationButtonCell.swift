@@ -34,26 +34,26 @@ class MTTNotificationButtonCell: MTTTableViewCell
     
     private func setupSubview() -> Void 
     {
-        buttonContainerView = UIView()
-        buttonContainerView?.layer.borderWidth = 1
-        buttonContainerView?.layer.borderColor = kMainBlueColor().cgColor
+        buttonContainerView                     = UIView()
+        buttonContainerView?.layer.borderWidth  = 1
+        buttonContainerView?.layer.borderColor  = kMainBlueColor().cgColor
         buttonContainerView?.layer.cornerRadius = 12.5
-        buttonContainerView?.clipsToBounds = true
+        buttonContainerView?.clipsToBounds      = true
         self.contentView.addSubview(buttonContainerView!)
-        
-        allButton = UIButton()
+
+        allButton                               = UIButton()
         allButton?.setTitle("全部", for: UIControlState.normal)
         allButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
-        allButton?.backgroundColor = kMainBlueColor()
-        allButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        allButton?.backgroundColor              = kMainBlueColor()
+        allButton?.titleLabel?.font             = UIFont.systemFont(ofSize: 15)
         allButton?.addTarget(self, action: #selector(allButtonAction(button:)), for: UIControlEvents.touchUpInside)
         buttonContainerView?.addSubview(allButton!)
-        
-        mentionButtion = UIButton()
+
+        mentionButtion                          = UIButton()
         mentionButtion?.setTitle("提及", for: UIControlState.normal)
         mentionButtion?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
-        mentionButtion?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        mentionButtion?.backgroundColor = kMainWhiteColor()
+        mentionButtion?.titleLabel?.font        = UIFont.systemFont(ofSize: 15)
+        mentionButtion?.backgroundColor         = kMainWhiteColor()
         mentionButtion?.addTarget(self, action: #selector(mentionButtonAction(button:)), for: UIControlEvents.touchUpInside)
         buttonContainerView?.addSubview(mentionButtion!)
     }

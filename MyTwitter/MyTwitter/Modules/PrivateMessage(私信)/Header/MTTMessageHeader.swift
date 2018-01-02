@@ -17,14 +17,14 @@ enum MTTMessageDataSourceType
 
 enum MTTChatMessageType:Int
 {
-    case text = 0         //文本
-    case picture = 1      //图片
-    case voice = 2        //语音
-    case expression = 3   //表情
-    case file  = 4        //文件
+    case text       = 0//文本
+    case picture    = 1//图片
+    case voice      = 2//语音
+    case expression = 3//表情
+    case file       = 4//文件
 }
 
 enum MTTChatMessageFromType:Int {
-    case My = 0     //自己发的
-    case Others = 1 //别人发的
+    case My     = 0//自己发的
+    case Others = 1//别人发的
 }

@@ -21,10 +21,10 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
     var mailBoxArray:[MTTMessageModel] = []
     var requestArray:[MTTMessageModel] = []
     
-    let reusedMessageButtonId = "reusedMessageButtonId"
+    let reusedMessageButtonId  = "reusedMessageButtonId"
     let reusedMessageMailBoxId = "reusedMessageMailBoxId"
     let reusedMessageRequestId = "reusedMessageRequestId"
-    let reusedMessageHintId = "reusedMessageHintId"
+    let reusedMessageHintId    = "reusedMessageHintId"
 
     override func viewDidLoad()
     {
@@ -40,8 +40,13 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
     {
         if self.mailBoxArray.count == 0
         {
-            dataSourceType = MTTMessageDataSourceType.mailBoxType
-            let mailBoxQueue = DispatchQueue(label: "mailBoxQueue", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
+            dataSourceType   = MTTMessageDataSourceType.mailBoxType
+            let mailBoxQueue = DispatchQueue(
+                label: "mailBoxQueue", 
+                qos: DispatchQoS.default, 
+                attributes: DispatchQueue.Attributes.concurrent, 
+                autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, 
+                target: nil)
             mailBoxQueue.async {
                 MTTMessageViewModel.getMailBoxData(callBack: { (dataArray) in
                     self.mailBoxArray = dataArray
@@ -57,7 +62,12 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
     {
         if self.requestArray.count == 0
         {
-            let requestQueue = DispatchQueue(label: "requestQueue", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
+            let requestQueue = DispatchQueue(
+                label: "requestQueue", 
+                qos: DispatchQoS.default, 
+                attributes: DispatchQueue.Attributes.concurrent, 
+                autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, 
+                target: nil)
             requestQueue.async {
                 MTTMessageViewModel.getRequestData(callBack: { (dataArray) in
                     self.requestArray = dataArray
@@ -68,9 +78,9 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
     
     private func setupSubview() -> Void
     {
-        messageTableView = UITableView()
-        messageTableView?.delegate = self
-        messageTableView?.dataSource = self
+        messageTableView                 = UITableView()
+        messageTableView?.delegate       = self
+        messageTableView?.dataSource     = self
         messageTableView?.register(MTTMessageButtonCell.self, forCellReuseIdentifier: reusedMessageButtonId)
         messageTableView?.register(MTTMessageCell.self, forCellReuseIdentifier: reusedMessageMailBoxId)
         messageTableView?.register(MTTMessageCell.self, forCellReuseIdentifier: reusedMessageRequestId)
@@ -95,19 +105,19 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
     
     func setupNavBar() -> Void
     {
-        self.navigationItem.title = "私信"
-        rightButton = UIButton()
+        self.navigationItem.title              = "私信"
+        rightButton                            = UIButton()
         rightButton?.setImage(UIImage.init(named: "send-mail"), for: UIControlState.normal)
-        rightButton?.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
-        rightButton?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        rightButton?.imageEdgeInsets           = UIEdgeInsetsMake(5, 5, 5, 5)
+        rightButton?.frame                     = CGRect(x: 0, y: 0, width: 30, height: 30)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightButton!)
-        
-        leftButton = UIButton()
+
+        leftButton                             = UIButton()
         leftButton?.setImage(UIImage.init(named: "my_head.jpg"), for: UIControlState.normal)
-        leftButton?.layer.cornerRadius = 20
-        leftButton?.clipsToBounds = true
-        leftButton?.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftButton!)
+        leftButton?.layer.cornerRadius         = 20
+        leftButton?.clipsToBounds              = true
+        leftButton?.frame                      = CGRect(x: 0, y: 0, width: 40, height: 40)
+        self.navigationItem.leftBarButtonItem  = UIBarButtonItem.init(customView: leftButton!)
         
     }
     
@@ -191,7 +201,7 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
     func tappedMailBoxButton(mailBoxButton: UIButton, cell: MTTMessageButtonCell)
     {
         mailBoxButton.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
-        mailBoxButton.backgroundColor = kMainBlueColor()
+        mailBoxButton.backgroundColor        = kMainBlueColor()
         cell.requestButtion?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
         cell.requestButtion?.backgroundColor = kMainWhiteColor()
         dataSourceType = MTTMessageDataSourceType.mailBoxType
@@ -209,7 +219,7 @@ class MTTPrivateMessageViewController: MTTViewController,UITableViewDelegate,UIT
     func tappedRequestButton(requestButton: UIButton, cell: MTTMessageButtonCell)
     {
         requestButton.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
-        requestButton.backgroundColor = kMainBlueColor()
+        requestButton.backgroundColor       = kMainBlueColor()
         cell.mailBoxButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
         cell.mailBoxButton?.backgroundColor = kMainWhiteColor()
         dataSourceType = MTTMessageDataSourceType.requestType

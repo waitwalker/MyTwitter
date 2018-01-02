@@ -11,26 +11,26 @@ import RealmSwift
 
 class MTTChatMessageModel: Object
 {
-    @objc dynamic var id = UUID().uuidString
-    
-    @objc dynamic var messageType = 0
-    
-    @objc dynamic var messageFrom = 0
-    
-    @objc dynamic var cellHeight = 0.0
-    @objc dynamic var messageContent = ""
-    @objc dynamic var messagePicture = ""
-    @objc dynamic var messageVoice = ""
-    
-    @objc dynamic var contentTextHeight = 0.0
-    @objc dynamic var contentPictureHeight = 0.0
-    @objc dynamic var contentVoiceHeight = 0.0
+    @objc dynamic var id                     = UUID().uuidString
+
+    @objc dynamic var messageType            = 0
+
+    @objc dynamic var messageFrom            = 0
+
+    @objc dynamic var cellHeight             = 0.0
+    @objc dynamic var messageContent         = ""
+    @objc dynamic var messagePicture         = ""
+    @objc dynamic var messageVoice           = ""
+
+    @objc dynamic var contentTextHeight      = 0.0
+    @objc dynamic var contentPictureHeight   = 0.0
+    @objc dynamic var contentVoiceHeight     = 0.0
     @objc dynamic var contentBackImageHeight = 0.0
-    
-    // 聊天时间戳 
-    @objc dynamic var chatDateStamp = 0
-    @objc dynamic var chatDate = Date()
-    
+
+    // 聊天时间戳
+    @objc dynamic var chatDateStamp          = 0
+    @objc dynamic var chatDate               = Date()
+
     @objc dynamic var pictureData:Data!
     
     override static func primaryKey() -> String?

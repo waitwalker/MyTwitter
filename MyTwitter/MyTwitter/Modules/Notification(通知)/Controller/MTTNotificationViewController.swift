@@ -18,11 +18,11 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
     
     var dataSourceType:MTTNotificationDataSourceType = MTTNotificationDataSourceType.all
     
-    let reusedNotificationButtonId = "reusedNotificationButtonId"
-    let reusedNotificationFollowId = "reusedNotificationFollowId"
-    let reusedNotificationReplyId = "reusedNotificationReplyId"
+    let reusedNotificationButtonId  = "reusedNotificationButtonId"
+    let reusedNotificationFollowId  = "reusedNotificationFollowId"
+    let reusedNotificationReplyId   = "reusedNotificationReplyId"
     let reusedNotificationMentionId = "reusedNotificationMentionId"
-    let reusedNotificationMultiId = "reusedNotificationMultiId"
+    let reusedNotificationMultiId   = "reusedNotificationMultiId"
     
     
     var allDataArray:[MTTNotificationModel] = []
@@ -49,7 +49,12 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
         
         if self.allDataArray.count == Int(0)
         {
-            let queue = DispatchQueue(label: "queuesssss", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
+            let queue = DispatchQueue(
+                label: "queuesssss", 
+                qos: DispatchQoS.default, 
+                attributes: DispatchQueue.Attributes.concurrent, 
+                autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, 
+                target: nil)
             queue.async {
                 
                 MTTNotificationViewModel.getNotificationAllData { (dataArray) in
@@ -71,7 +76,12 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
         if self.mentionDataArray.count == Int(0) 
         {
             //开启一个后台线程处理提及数据
-            let notificationQueue = DispatchQueue(label: "notificationQueue", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
+            let notificationQueue = DispatchQueue(
+                label: "notificationQueue", 
+                qos: DispatchQoS.default, 
+                attributes: DispatchQueue.Attributes.concurrent, 
+                autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, 
+                target: nil)
             notificationQueue.async {
                 MTTNotificationViewModel.getNotificationMentionData(callBack: { (dataArray) in
                     self.mentionDataArray = dataArray
@@ -82,15 +92,15 @@ class MTTNotificationViewController: MTTViewController ,UITableViewDelegate,UITa
     
     private func setupSubview() -> Void 
     {
-        notificationTableView = UITableView()
-        notificationTableView?.delegate = self
-        notificationTableView?.dataSource = self
+        notificationTableView                 = UITableView()
+        notificationTableView?.delegate       = self
+        notificationTableView?.dataSource     = self
         notificationTableView?.register(MTTNotificationButtonCell.self, forCellReuseIdentifier: reusedNotificationButtonId)
         notificationTableView?.register(MTTNotificationFollowCell.self, forCellReuseIdentifier: reusedNotificationFollowId)
         notificationTableView?.register(MTTNotificationMentionCell.self, forCellReuseIdentifier: reusedNotificationMentionId)
         notificationTableView?.register(MTTNotificationReplyCell.self, forCellReuseIdentifier: reusedNotificationReplyId)
         notificationTableView?.register(MTTNotificationMultiTypeCell.self, forCellReuseIdentifier: reusedNotificationMultiId)
-        
+
         notificationTableView?.separatorStyle = UITableViewCellSeparatorStyle.none
         self.view.addSubview(notificationTableView!)
         

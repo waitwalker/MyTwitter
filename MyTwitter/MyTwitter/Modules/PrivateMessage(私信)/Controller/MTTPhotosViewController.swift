@@ -14,9 +14,9 @@ import RxSwift
 class MTTPhotosViewController: MTTViewController {
 
     var photoLibraryCollectionView:UICollectionView!
-    let photoIcons:[String] = ["twitter_camera_large","twittwer_video_large","twittwer_live_large"]
-    let titles:[String] = ["照片","视频","直播"]
-    let reusedPhotoLibraryId:String = "reusedPhotoLibraryId"
+    let photoIcons:[String]             = ["twitter_camera_large","twittwer_video_large","twittwer_live_large"]
+    let titles:[String]                 = ["照片","视频","直播"]
+    let reusedPhotoLibraryId:String     = "reusedPhotoLibraryId"
     let reusedPhotoLibraryIconId:String = "reusedPhotoLibraryIconId"
     var backButton:UIButton!
     var disposeBag = DisposeBag()
@@ -67,34 +67,39 @@ class MTTPhotosViewController: MTTViewController {
     
     func setupSubview() -> Void
     {
-        let photoFlowLayout = UICollectionViewFlowLayout()
-        photoFlowLayout.scrollDirection = UICollectionViewScrollDirection.vertical
-        photoFlowLayout.minimumLineSpacing = 0
-        photoFlowLayout.minimumInteritemSpacing = 0
-        
-        photoLibraryCollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: photoFlowLayout)
+        let photoFlowLayout                        = UICollectionViewFlowLayout()
+        photoFlowLayout.scrollDirection            = UICollectionViewScrollDirection.vertical
+        photoFlowLayout.minimumLineSpacing         = 0
+        photoFlowLayout.minimumInteritemSpacing    = 0
+
+        photoLibraryCollectionView                 = UICollectionView(frame: self.view.bounds, collectionViewLayout: photoFlowLayout)
         photoLibraryCollectionView.register(MTTPhotosCell.self, forCellWithReuseIdentifier: reusedPhotoLibraryId)
         photoLibraryCollectionView.register(MTTPhotosIconCell.self, forCellWithReuseIdentifier: reusedPhotoLibraryIconId)
         photoLibraryCollectionView.backgroundColor = kMainChatBackgroundGrayColor()
-        photoLibraryCollectionView.delegate = self
-        photoLibraryCollectionView.dataSource = self
+        photoLibraryCollectionView.delegate        = self
+        photoLibraryCollectionView.dataSource      = self
         self.view.addSubview(photoLibraryCollectionView)
-        
+
         setupNavigationBar()
     }
     
     func getAllPictureFromPhotoLibrary(cell:MTTPhotosCell,index:Int) -> Void
     {
         //开一个后台线程用于处理相册照片
-        let photoQueue = DispatchQueue(label: "photoQueue", qos: DispatchQoS.background, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: DispatchQueue?.none)
+        let photoQueue = DispatchQueue(
+            label: "photoQueue", 
+            qos: DispatchQoS.background, 
+            attributes: DispatchQueue.Attributes.concurrent, 
+            autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, 
+            target: DispatchQueue?.none)
         photoQueue.async {
             let fetchOptions = PHFetchOptions()
-            
-            let assets = PHAsset.fetchAssets( with: fetchOptions)
-            
-            let manager = PHImageManager.default()
-            
-            let options = PHImageRequestOptions()
+
+            let assets       = PHAsset.fetchAssets( with: fetchOptions)
+
+            let manager      = PHImageManager.default()
+
+            let options      = PHImageRequestOptions()
             
             manager.requestImage(for: assets.object(at: index), targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.aspectFit, options: options, resultHandler: { (image, hashable) in
                 
@@ -131,8 +136,8 @@ UICollectionViewDelegateFlowLayout
     {
         if indexPath.item <= 2
         {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusedPhotoLibraryIconId, for: indexPath) as! MTTPhotosIconCell
-            cell.photoTitleLabel.text = titles[indexPath.item]
+            let cell                      = collectionView.dequeueReusableCell(withReuseIdentifier: reusedPhotoLibraryIconId, for: indexPath) as! MTTPhotosIconCell
+            cell.photoTitleLabel.text     = titles[indexPath.item]
             cell.photoIconImageView.image = UIImage(named: photoIcons[indexPath.item])
             return cell
             
@@ -156,22 +161,30 @@ UICollectionViewDelegateFlowLayout
     
     
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    func collectionView(_ collectionView: UICollectionView, 
+                        layout collectionViewLayout: UICollectionViewLayout, 
+                        sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         return CGSize(width: kScreenWidth / 3 - 4, height: kScreenWidth / 3 - 4)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
+    func collectionView(_ collectionView: UICollectionView, 
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat
     {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat
+    func collectionView(_ collectionView: UICollectionView, 
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat
     {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
+    func collectionView(_ collectionView: UICollectionView, 
+                        layout collectionViewLayout: UICollectionViewLayout, 
+                        insetForSectionAt section: Int) -> UIEdgeInsets
     {
         return UIEdgeInsetsMake(1, 1, -1, -1)
     }

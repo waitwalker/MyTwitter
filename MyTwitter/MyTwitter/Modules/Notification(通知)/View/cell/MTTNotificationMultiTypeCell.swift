@@ -60,29 +60,29 @@ class MTTNotificationMultiTypeCell: MTTTableViewCell
     
     private func setupSubview() -> Void 
     {
-        lineView = UIView()
-        lineView?.backgroundColor = kMainGrayColor()
+        lineView                                   = UIView()
+        lineView?.backgroundColor                  = kMainGrayColor()
         self.contentView.addSubview(lineView!)
-        
-        iconImageView = UIImageView()
-        iconImageView?.isUserInteractionEnabled = true
+
+        iconImageView                              = UIImageView()
+        iconImageView?.isUserInteractionEnabled    = true
         self.contentView.addSubview(iconImageView!)
-        
-        avatarImageViews = MTTAvatarImagesView()
+
+        avatarImageViews                           = MTTAvatarImagesView()
         avatarImageViews?.isUserInteractionEnabled = true
         self.contentView.addSubview(avatarImageViews!)
-        
-        multiTitleLabel = UILabel()
-        multiTitleLabel?.textColor = UIColor.black
-        multiTitleLabel?.font = UIFont.systemFont(ofSize: 15)
-        multiTitleLabel?.textAlignment = NSTextAlignment.left
+
+        multiTitleLabel                            = UILabel()
+        multiTitleLabel?.textColor                 = UIColor.black
+        multiTitleLabel?.font                      = UIFont.systemFont(ofSize: 15)
+        multiTitleLabel?.textAlignment             = NSTextAlignment.left
         self.contentView.addSubview(multiTitleLabel!)
-        
-        multiContentLabel = UILabel()
-        multiContentLabel?.textAlignment = NSTextAlignment.left
-        multiContentLabel?.textColor = kMainGrayColor()
-        multiContentLabel?.font = UIFont.systemFont(ofSize: 15)
-        multiContentLabel?.numberOfLines = 0
+
+        multiContentLabel                          = UILabel()
+        multiContentLabel?.textAlignment           = NSTextAlignment.left
+        multiContentLabel?.textColor               = kMainGrayColor()
+        multiContentLabel?.font                    = UIFont.systemFont(ofSize: 15)
+        multiContentLabel?.numberOfLines           = 0
         self.contentView.addSubview(multiContentLabel!)
     }
     

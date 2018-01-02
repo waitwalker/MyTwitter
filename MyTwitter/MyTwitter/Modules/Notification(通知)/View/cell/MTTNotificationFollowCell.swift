@@ -56,23 +56,23 @@ class MTTNotificationFollowCell: MTTTableViewCell
     
     private func setupSubview() -> Void 
     {
-        lineView = UIView()
-        lineView?.backgroundColor = kMainLightGrayColor()
+        lineView                                = UIView()
+        lineView?.backgroundColor               = kMainLightGrayColor()
         self.contentView.addSubview(lineView!)
-        
-        iconImageView = UIImageView()
+
+        iconImageView                           = UIImageView()
         iconImageView?.isUserInteractionEnabled = true
-        iconImageView?.layer.cornerRadius = 10
-        iconImageView?.clipsToBounds = true
+        iconImageView?.layer.cornerRadius       = 10
+        iconImageView?.clipsToBounds            = true
         self.contentView.addSubview(iconImageView!)
-        
-        avatarImageViews = MTTAvatarImagesView()
+
+        avatarImageViews                        = MTTAvatarImagesView()
         self.contentView.addSubview(avatarImageViews!)
-        
-        followLabel = UILabel()
-        followLabel?.textColor = UIColor.black
-        followLabel?.font = UIFont.systemFont(ofSize: 18)
-        followLabel?.textAlignment = NSTextAlignment.left
+
+        followLabel                             = UILabel()
+        followLabel?.textColor                  = UIColor.black
+        followLabel?.font                       = UIFont.systemFont(ofSize: 18)
+        followLabel?.textAlignment              = NSTextAlignment.left
         self.contentView.addSubview(followLabel!)
         
     }

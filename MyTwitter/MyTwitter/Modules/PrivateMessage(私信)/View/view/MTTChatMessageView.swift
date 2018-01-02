@@ -13,7 +13,7 @@ import RealmSwift
 class MTTChatMessageView: MTTView {
 
     var reusedChatMessageNoneCellId:String = "reusedChatMessageNoneCellId"
-    var reusedChatMessageCellId:String = "reusedChatMessageCellId"
+    var reusedChatMessageCellId:String     = "reusedChatMessageCellId"
     
     var chatMessageTableView:UITableView!
     
@@ -33,13 +33,13 @@ class MTTChatMessageView: MTTView {
     
     override func setupSubview()
     {
-        chatMessageTableView = UITableView()
+        chatMessageTableView                 = UITableView()
         chatMessageTableView.backgroundColor = UIColor.white
-        chatMessageTableView.delegate = self
-        chatMessageTableView.dataSource = self
+        chatMessageTableView.delegate        = self
+        chatMessageTableView.dataSource      = self
         chatMessageTableView.register(UITableViewCell.self, forCellReuseIdentifier: reusedChatMessageNoneCellId)
         chatMessageTableView.register(MTTChatMessageCell.self, forCellReuseIdentifier: reusedChatMessageCellId)
-        chatMessageTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        chatMessageTableView.separatorStyle  = UITableViewCellSeparatorStyle.none
         self.addSubview(chatMessageTableView)
     }
     
@@ -59,7 +59,12 @@ class MTTChatMessageView: MTTView {
             self.chatMessageTableView.scrollToRow(at: IndexPath(item: (self.dataSource?.count)! - 1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
         }
         
-        let queue = DispatchQueue(label: "realmQueue", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
+        let queue = DispatchQueue(
+            label: "realmQueue", 
+            qos: DispatchQoS.default, 
+            attributes: DispatchQueue.Attributes.concurrent, 
+            autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, 
+            target: nil)
         queue.async {
             //let realm = try! Realm(configuration: MTTDataBaseManager.setDefaultRealmConfiguration())
             

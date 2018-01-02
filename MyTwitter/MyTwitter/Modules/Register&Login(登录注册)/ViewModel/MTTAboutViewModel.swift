@@ -24,13 +24,12 @@ class MTTAboutViewModel: NSObject
         }
         
         
-        var typeOneArray:[MTTAboutModel] = []
-        var typeTwoArray:[MTTAboutModel] = []
+        var typeOneArray:[MTTAboutModel]   = []
+        var typeTwoArray:[MTTAboutModel]   = []
         var typeThreeArray:[MTTAboutModel] = []
-        var dataSource:[[MTTAboutModel]] = [[]]
-        
-        let json = JSON.init(data: data!)
-        
+        var dataSource:[[MTTAboutModel]]   = [[]]
+
+        let json                           = JSON.init(data: data!)
         let result = json["result"].intValue
         
         if result == 1
@@ -39,11 +38,11 @@ class MTTAboutViewModel: NSObject
             {
                 for(subjson) in dataArray
                 {
-                    let aboutModel = MTTAboutModel()
-                    aboutModel.title = subjson["title"].string
+                    let aboutModel       = MTTAboutModel()
+                    aboutModel.title     = subjson["title"].string
                     aboutModel.urlString = subjson["urlString"].string
-                    aboutModel.type = subjson["type"].intValue
-                    aboutModel.subType = subjson["subType"].intValue
+                    aboutModel.type      = subjson["type"].intValue
+                    aboutModel.subType   = subjson["subType"].intValue
                     if aboutModel.type == 0
                     {
                         typeOneArray.append(aboutModel)
@@ -78,25 +77,25 @@ class MTTAboutViewModel: NSObject
             switch responseData.result
             {
                 case .success:
-                    let value = responseData.result.value
+                    let value                           = responseData.result.value
                     print(value as Any)
-                    let json = JSON(value as Any)
-                    let result = json["result"].intValue
-                    var typeOneArrays:[MTTAboutModel] = []
-                    var typeTwoArrays:[MTTAboutModel] = []
+                    let json                            = JSON(value as Any)
+                    let result                          = json["result"].intValue
+                    var typeOneArrays:[MTTAboutModel]   = []
+                    var typeTwoArrays:[MTTAboutModel]   = []
                     var typeThreeArrays:[MTTAboutModel] = []
-                    var dataSources:[[MTTAboutModel]] = [[]]
+                    var dataSources:[[MTTAboutModel]]   = [[]]
                     if result == 200
                     {
                         if let dataArrays = json["data"].array
                         {
                             for(subjson) in dataArrays
                             {
-                                let aboutModel = MTTAboutModel()
-                                aboutModel.title = subjson["title"].string
+                                let aboutModel       = MTTAboutModel()
+                                aboutModel.title     = subjson["title"].string
                                 aboutModel.urlString = subjson["urlString"].string
-                                aboutModel.type = subjson["type"].intValue
-                                aboutModel.subType = subjson["subType"].intValue
+                                aboutModel.type      = subjson["type"].intValue
+                                aboutModel.subType   = subjson["subType"].intValue
                                 if aboutModel.type == 0
                                 {
                                     typeOneArrays.append(aboutModel)

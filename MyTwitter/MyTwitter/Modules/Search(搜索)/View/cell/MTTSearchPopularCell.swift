@@ -22,11 +22,11 @@ class MTTSearchPopularCell: MTTTableViewCell {
     {
         didSet
         {
-            websiteLabel?.text = searchModel?.website
-            titleLabel?.text = searchModel?.title
+            websiteLabel?.text     = searchModel?.website
+            titleLabel?.text       = searchModel?.title
             avatarImageView?.image = UIImage(named: String(format: "%@", (searchModel?.avatarImage)!))
-            twitterLabel?.text = searchModel?.twitter
-            iconImageView?.image = UIImage(named: String(format: "%@", (searchModel?.iconImage)!))
+            twitterLabel?.text     = searchModel?.twitter
+            iconImageView?.image   = UIImage(named: String(format: "%@", (searchModel?.iconImage)!))
         }
     }
     
@@ -46,37 +46,37 @@ class MTTSearchPopularCell: MTTTableViewCell {
     
     private func setupSubview() -> Void
     {
-        lineView = UIView()
-        lineView?.backgroundColor = kMainLightGrayColor()
+        lineView                                  = UIView()
+        lineView?.backgroundColor                 = kMainLightGrayColor()
         self.contentView.addSubview(lineView!)
-        
-        websiteLabel = UILabel()
-        websiteLabel?.textColor = kMainGrayColor()
-        websiteLabel?.textAlignment = NSTextAlignment.left
-        websiteLabel?.font = UIFont.systemFont(ofSize: 10)
+
+        websiteLabel                              = UILabel()
+        websiteLabel?.textColor                   = kMainGrayColor()
+        websiteLabel?.textAlignment               = NSTextAlignment.left
+        websiteLabel?.font                        = UIFont.systemFont(ofSize: 10)
         self.contentView.addSubview(websiteLabel!)
-        
-        titleLabel = UILabel()
-        titleLabel?.textAlignment = NSTextAlignment.left
-        titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        titleLabel?.textColor = UIColor.black
-        titleLabel?.numberOfLines = 0
+
+        titleLabel                                = UILabel()
+        titleLabel?.textAlignment                 = NSTextAlignment.left
+        titleLabel?.font                          = UIFont.systemFont(ofSize: 18)
+        titleLabel?.textColor                     = UIColor.black
+        titleLabel?.numberOfLines                 = 0
         self.contentView.addSubview(titleLabel!)
-        
-        avatarImageView = UIImageView()
+
+        avatarImageView                           = UIImageView()
         avatarImageView?.isUserInteractionEnabled = true
-        avatarImageView?.layer.cornerRadius = 7.5
-        avatarImageView?.clipsToBounds = true
+        avatarImageView?.layer.cornerRadius       = 7.5
+        avatarImageView?.clipsToBounds            = true
         self.contentView.addSubview(avatarImageView!)
-        
-        twitterLabel = UILabel()
-        twitterLabel?.textColor = kMainGrayColor()
-        twitterLabel?.font = UIFont.systemFont(ofSize: 15)
-        twitterLabel?.textAlignment = NSTextAlignment.left
+
+        twitterLabel                              = UILabel()
+        twitterLabel?.textColor                   = kMainGrayColor()
+        twitterLabel?.font                        = UIFont.systemFont(ofSize: 15)
+        twitterLabel?.textAlignment               = NSTextAlignment.left
         self.contentView.addSubview(twitterLabel!)
-        
-        iconImageView = UIImageView()
-        iconImageView?.isUserInteractionEnabled = true
+
+        iconImageView                             = UIImageView()
+        iconImageView?.isUserInteractionEnabled   = true
         self.contentView.addSubview(iconImageView!)
     }
     

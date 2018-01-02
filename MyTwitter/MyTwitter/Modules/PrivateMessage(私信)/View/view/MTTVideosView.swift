@@ -22,16 +22,16 @@ class MTTVideosView: MTTView {
     
     override func setupSubview()
     {
-        let photoFlowLayout = UICollectionViewFlowLayout()
-        photoFlowLayout.scrollDirection = UICollectionViewScrollDirection.vertical
-        photoFlowLayout.minimumLineSpacing = 0
+        let photoFlowLayout                     = UICollectionViewFlowLayout()
+        photoFlowLayout.scrollDirection         = UICollectionViewScrollDirection.vertical
+        photoFlowLayout.minimumLineSpacing      = 0
         photoFlowLayout.minimumInteritemSpacing = 0
-        
-        addVideoCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: photoFlowLayout)
+
+        addVideoCollectionView                  = UICollectionView(frame: CGRect.zero, collectionViewLayout: photoFlowLayout)
         addVideoCollectionView.register(MTTAddVideoCell.self, forCellWithReuseIdentifier: reusedAddVideoId)
-        addVideoCollectionView.backgroundColor = kMainLightGrayColor()
-        addVideoCollectionView.delegate = self
-        addVideoCollectionView.dataSource = self
+        addVideoCollectionView.backgroundColor  = kMainLightGrayColor()
+        addVideoCollectionView.delegate         = self
+        addVideoCollectionView.dataSource       = self
         self.addSubview(addVideoCollectionView)
     }
     
@@ -78,16 +78,16 @@ UICollectionViewDelegateFlowLayout
         
         switch indexPath.item {
         case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusedAddVideoId, for: indexPath) as! MTTAddVideoCell
+            let cell                 = collectionView.dequeueReusableCell(withReuseIdentifier: reusedAddVideoId, for: indexPath) as! MTTAddVideoCell
             cell.iconImageView.image = UIImage.imageNamed(name: "twitter_photo")
-            cell.lineView.isHidden = true
-            cell.vTitleLabel.text = "拍摄照片或视频"
+            cell.lineView.isHidden   = true
+            cell.vTitleLabel.text    = "拍摄照片或视频"
             return cell
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusedAddVideoId, for: indexPath) as! MTTAddVideoCell
+            let cell                 = collectionView.dequeueReusableCell(withReuseIdentifier: reusedAddVideoId, for: indexPath) as! MTTAddVideoCell
             cell.iconImageView.image = UIImage.imageNamed(name: "twitter_gif")
-            cell.lineView.isHidden = false
-            cell.vTitleLabel.text = "发送一个 GIF"
+            cell.lineView.isHidden   = false
+            cell.vTitleLabel.text    = "发送一个 GIF"
             return cell
         default: break
             

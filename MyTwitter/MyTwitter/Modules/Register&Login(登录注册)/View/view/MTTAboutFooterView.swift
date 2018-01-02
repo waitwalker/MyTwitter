@@ -25,11 +25,11 @@ class MTTAboutFooterView: MTTView {
     
     internal override func setupSubview() 
     {
-        titleLabel = UILabel()
+        titleLabel                = UILabel()
         titleLabel?.textAlignment = NSTextAlignment.center
-        titleLabel?.text = "版权所有 © 2017 Twitter,Inc."
-        titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        titleLabel?.textColor = kMainTextGrayColor()
+        titleLabel?.text          = "版权所有 © 2017 Twitter,Inc."
+        titleLabel?.font          = UIFont.systemFont(ofSize: 15)
+        titleLabel?.textColor     = kMainTextGrayColor()
         self.addSubview(titleLabel!)
     }
     

@@ -35,20 +35,20 @@ class MTTAddVideoCell: MTTCollectionViewCell
     
     func setupSubview() -> Void
     {
-        self.contentView.backgroundColor = UIColor.white
-        
-        iconImageView = UIImageView()
+        self.contentView.backgroundColor       = UIColor.white
+
+        iconImageView                          = UIImageView()
         iconImageView.isUserInteractionEnabled = true
         self.contentView.addSubview(iconImageView)
-        
-        lineView = UIView()
-        lineView.backgroundColor = kMainLightGrayColor()
+
+        lineView                               = UIView()
+        lineView.backgroundColor               = kMainLightGrayColor()
         self.contentView.addSubview(lineView)
-        
-        vTitleLabel = UILabel()
-        vTitleLabel.textColor = UIColor.black
-        vTitleLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        vTitleLabel.textAlignment = NSTextAlignment.left
+
+        vTitleLabel                            = UILabel()
+        vTitleLabel.textColor                  = UIColor.black
+        vTitleLabel.font                       = UIFont.boldSystemFont(ofSize: 18)
+        vTitleLabel.textAlignment              = NSTextAlignment.left
         vTitleLabel.sizeToFit()
         self.contentView.addSubview(vTitleLabel)
     }

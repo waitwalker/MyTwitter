@@ -48,89 +48,89 @@ class MTTRegisterNameViewController: MTTViewController {
     func setupSubview() -> Void 
     {
         //cancelButton
-        cancelButton = UIButton()
+        cancelButton                              = UIButton()
         cancelButton?.setTitle("取消", for: UIControlState.normal)
         cancelButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
-        cancelButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15.0)
-        cancelButton?.isHidden = true
+        cancelButton?.titleLabel?.font            = UIFont.systemFont(ofSize: 15.0)
+        cancelButton?.isHidden                    = true
         self.view.addSubview(cancelButton!)
-        
+
         //logo
-        logoImageView = UIImageView()
-        logoImageView?.image = UIImage.init(named: "twitter_logo")
-        logoImageView?.isUserInteractionEnabled = true
+        logoImageView                             = UIImageView()
+        logoImageView?.image                      = UIImage.init(named: "twitter_logo")
+        logoImageView?.isUserInteractionEnabled   = true
         self.view.addSubview(logoImageView!)
-        
+
         //nameLabel
-        nameLabel = UILabel()
-        nameLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        nameLabel?.text = "你好,请问你的姓名是什么?"
-        nameLabel?.textColor = UIColor.black
+        nameLabel                                 = UILabel()
+        nameLabel?.font                           = UIFont.boldSystemFont(ofSize: 20)
+        nameLabel?.text                           = "你好,请问你的姓名是什么?"
+        nameLabel?.textColor                      = UIColor.black
         self.view.addSubview(nameLabel!)
-        
+
         //nameTextField
-        nameTextField = UITextField()
-        nameTextField?.placeholder = "全名"
-        nameTextField?.textColor = kMainBlueColor()
-        nameTextField?.font = UIFont.systemFont(ofSize: 18)
-        
+        nameTextField                             = UITextField()
+        nameTextField?.placeholder                = "全名"
+        nameTextField?.textColor                  = kMainBlueColor()
+        nameTextField?.font                       = UIFont.systemFont(ofSize: 18)
+
         //milliseconds毫秒 microseconds微秒
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(100)) { 
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(100)) {
             self.nameTextField?.becomeFirstResponder()
         }
         self.view.addSubview(nameTextField!)
-        
+
         //verifyImageView
-        verifyImageView = UIImageView()
+        verifyImageView                           = UIImageView()
         verifyImageView?.isUserInteractionEnabled = true
-        verifyImageView?.layer.borderWidth = 2
-        verifyImageView?.layer.cornerRadius = 12.5
-        verifyImageView?.clipsToBounds = true
-        verifyImageView?.isHidden = true
+        verifyImageView?.layer.borderWidth        = 2
+        verifyImageView?.layer.cornerRadius       = 12.5
+        verifyImageView?.clipsToBounds            = true
+        verifyImageView?.isHidden                 = true
         self.view.addSubview(verifyImageView!)
-        
+
         //firstLine
-        firstLine = UIView()
-        firstLine?.backgroundColor = kMainGrayColor()
+        firstLine                                 = UIView()
+        firstLine?.backgroundColor                = kMainGrayColor()
         self.view.addSubview(firstLine!)
-        
+
         //errorHintLabel
-        errorHintLabel = UILabel()
-        errorHintLabel?.textColor = kMainWhiteColor()
-        errorHintLabel?.text = "    你的全名不能多于20个字符."
-        errorHintLabel?.backgroundColor = kMainRedColor()
-        errorHintLabel?.textAlignment = NSTextAlignment.left
-        errorHintLabel?.font = UIFont.systemFont(ofSize: 15)
-        errorHintLabel?.isHidden = true
+        errorHintLabel                            = UILabel()
+        errorHintLabel?.textColor                 = kMainWhiteColor()
+        errorHintLabel?.text                      = "    你的全名不能多于20个字符."
+        errorHintLabel?.backgroundColor           = kMainRedColor()
+        errorHintLabel?.textAlignment             = NSTextAlignment.left
+        errorHintLabel?.font                      = UIFont.systemFont(ofSize: 15)
+        errorHintLabel?.isHidden                  = true
         self.view.addSubview(errorHintLabel!)
-        
+
         //contentView
-        contentView = UIView()
+        contentView                               = UIView()
         self.view.addSubview(contentView!)
-        
+
         //secondLine
-        secondLine = UIView()
-        secondLine?.backgroundColor = kMainGrayColor()
+        secondLine                                = UIView()
+        secondLine?.backgroundColor               = kMainGrayColor()
         contentView?.addSubview(secondLine!)
-        
+
         //nextButton
-        nextButton = UIButton()
+        nextButton                                = UIButton()
         nextButton?.setTitle("下一步", for: UIControlState.normal)
         nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
-        nextButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        nextButton?.backgroundColor = kMainBlueColor()
-        nextButton?.layer.cornerRadius = 17.5
-        nextButton?.clipsToBounds = true
+        nextButton?.titleLabel?.font              = UIFont.systemFont(ofSize: 15)
+        nextButton?.backgroundColor               = kMainBlueColor()
+        nextButton?.layer.cornerRadius            = 17.5
+        nextButton?.clipsToBounds                 = true
         contentView?.addSubview(nextButton!)
-        
+
         //左边返回
-        leftButton = UIButton()
-        leftButton?.frame = CGRect(x: -20, y: 0, width: 50, height: 44)
-        leftButton?.titleEdgeInsets = UIEdgeInsetsMake(10, 0, 10, 15)
+        leftButton                                = UIButton()
+        leftButton?.frame                         = CGRect(x: -20, y: 0, width: 50, height: 44)
+        leftButton?.titleEdgeInsets               = UIEdgeInsetsMake(10, 0, 10, 15)
         leftButton?.setTitle("取消", for: UIControlState.normal)
         leftButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
-        leftButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15.0)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftButton!)
+        leftButton?.titleLabel?.font              = UIFont.systemFont(ofSize: 15.0)
+        self.navigationItem.leftBarButtonItem     = UIBarButtonItem.init(customView: leftButton!)
     }
     
     // MARK: - 布局控件

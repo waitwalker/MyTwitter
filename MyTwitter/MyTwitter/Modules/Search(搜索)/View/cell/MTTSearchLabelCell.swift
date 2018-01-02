@@ -19,7 +19,7 @@ class MTTSearchLabelCell: MTTTableViewCell {
     {
         didSet
         {
-            STitleLabel?.text = searchModel?.title
+            STitleLabel?.text    = searchModel?.title
             SSubTitleLabel?.text = searchModel?.subTitle
         }
     }

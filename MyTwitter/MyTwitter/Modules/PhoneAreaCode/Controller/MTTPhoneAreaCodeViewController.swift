@@ -22,16 +22,16 @@ class MTTPhoneAreaCodeViewController : MTTViewController,UITableViewDelegate,UIT
 {
     var originalTabelView:UITableView?
     var sectionTitlesSet:NSMutableSet?
-    var sectionTitlesArray:[String] = []
-    var allCodes:[MTTPhoneAreaCodeModel] = []
-    var codesArray:[MTTPhoneAreaCodeModel] = []
+    var sectionTitlesArray:[String]               = []
+    var allCodes:[MTTPhoneAreaCodeModel]          = []
+    var codesArray:[MTTPhoneAreaCodeModel]        = []
     var tableView:UITableView?
     var codeModelsArray:[[MTTPhoneAreaCodeModel]] = []
     var cancelButton:UIButton?
     var logoImageView:UIImageView?
-    typealias completion = (_ areaName:String,_ areaCodeName:String) -> Void
-    
-    let reusedCellId:String = "reusedCellId"
+    typealias completion                          = (_ areaName:String,_ areaCodeName:String) -> Void
+
+    let reusedCellId:String                       = "reusedCellId"
     var searchCompletion:completion?
     
     
@@ -41,13 +41,13 @@ class MTTPhoneAreaCodeViewController : MTTViewController,UITableViewDelegate,UIT
     {
         sectionTitlesSet = NSMutableSet()
         
-        let codePathURL = Bundle.main.resourceURL?.appendingPathComponent("evt_phone_area_code_zh.txt")
+        let codePathURL  = Bundle.main.resourceURL?.appendingPathComponent("evt_phone_area_code_zh.txt")
         
         var codeSource:String = String.init()
         
         do {
             let codeSources = try String.init(contentsOf: codePathURL!, encoding: String.Encoding.utf8)
-            codeSource = codeSources
+            codeSource      = codeSources
         } catch
         {
             codeSource = ""
@@ -58,15 +58,15 @@ class MTTPhoneAreaCodeViewController : MTTViewController,UITableViewDelegate,UIT
         for line in linesArray
         {
             let parts =  line.components(separatedBy: "=")
-            let code = MTTPhoneAreaCodeModel()
+            let code  = MTTPhoneAreaCodeModel()
             if parts.count == 3
             {
-                code.areaName = parts[0]
+                code.areaName      = parts[0]
                 code.areaAlphaName = parts[1]
-                code.areaCodeName = parts[2]
+                code.areaCodeName  = parts[2]
             }
             
-            let stringIndex = code.areaAlphaName?.index((code.areaAlphaName?.startIndex)!, offsetBy: 1)
+            let stringIndex    = code.areaAlphaName?.index((code.areaAlphaName?.startIndex)!, offsetBy: 1)
             code.areaFirstChar = code.areaAlphaName?.substring(to: stringIndex!)
             sectionTitlesSet?.add(code.areaFirstChar as Any)
             allCodes.append(code)
@@ -122,23 +122,23 @@ class MTTPhoneAreaCodeViewController : MTTViewController,UITableViewDelegate,UIT
     func setupSubview() -> Void
     {
         //cancelButton
-        cancelButton = UIButton()
+        cancelButton                            = UIButton()
         cancelButton?.setTitle("取消", for: UIControlState.normal)
         cancelButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
-        cancelButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15.0)
+        cancelButton?.titleLabel?.font          = UIFont.systemFont(ofSize: 15.0)
         self.view.addSubview(cancelButton!)
-        
+
         //logo
-        logoImageView = UIImageView()
-        logoImageView?.image = UIImage.init(named: "twitter_logo")
+        logoImageView                           = UIImageView()
+        logoImageView?.image                    = UIImage.init(named: "twitter_logo")
         logoImageView?.isUserInteractionEnabled = true
         self.view.addSubview(logoImageView!)
-        
-        tableView = UITableView.init()
-        tableView?.delegate = self
-        tableView?.dataSource = self
+
+        tableView                               = UITableView.init()
+        tableView?.delegate                     = self
+        tableView?.dataSource                   = self
         tableView?.register(UITableViewCell.self, forCellReuseIdentifier: reusedCellId)
-        tableView?.backgroundColor = kRGBColor(r: 230, g: 236, b: 240)
+        tableView?.backgroundColor              = kRGBColor(r: 230, g: 236, b: 240)
         self.view.addSubview(tableView!)
     }
     
@@ -174,9 +174,7 @@ class MTTPhoneAreaCodeViewController : MTTViewController,UITableViewDelegate,UIT
         //cancel
         cancelButton?.rx.tap
             .subscribe(onNext: { [unowned self] in
-                self.dismiss(animated: true, completion: {
-                    
-                })
+                self.dismiss(animated: true, completion: {})
             })
             .disposed(by: disposeBag)
     }
@@ -200,8 +198,8 @@ class MTTPhoneAreaCodeViewController : MTTViewController,UITableViewDelegate,UIT
             cell = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: reusedCellId)
         }
         let codeModel:MTTPhoneAreaCodeModel = codeModelsArray[indexPath.section][indexPath.item]
-        cell?.textLabel?.text = String.init(format: "%@ +%@", codeModel.areaName!,codeModel.areaCodeName!)
-        cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        cell?.textLabel?.text               = String.init(format: "%@ +%@", codeModel.areaName!,codeModel.areaCodeName!)
+        cell?.textLabel?.font               = UIFont.boldSystemFont(ofSize: 15)
         return cell!
     }
     
@@ -217,8 +215,8 @@ class MTTPhoneAreaCodeViewController : MTTViewController,UITableViewDelegate,UIT
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
-        let searchSectionHeaderView = MTTPhoneAreaCodeSectionHeaderView()
-        searchSectionHeaderView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 50)
+        let searchSectionHeaderView              = MTTPhoneAreaCodeSectionHeaderView()
+        searchSectionHeaderView.frame            = CGRect(x: 0, y: 0, width: kScreenWidth, height: 50)
         searchSectionHeaderView.titleLabel?.text = sectionTitlesArray[section]
         return searchSectionHeaderView
     }
@@ -236,9 +234,7 @@ class MTTPhoneAreaCodeViewController : MTTViewController,UITableViewDelegate,UIT
         
         searchCompletion!(codeModel.areaName!,codeModel.areaCodeName!)
         
-        self.dismiss(animated: true) {
-            
-        }
+        self.dismiss(animated: true) {}
     }
     
 }

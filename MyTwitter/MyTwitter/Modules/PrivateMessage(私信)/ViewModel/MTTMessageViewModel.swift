@@ -34,12 +34,12 @@ class MTTMessageViewModel: NSObject
             {
                 for subjson in dataArr
                 {
-                    let messageModel = MTTMessageModel()
-                    messageModel.account = subjson["account"].stringValue
-                    messageModel.nickName = subjson["nickName"].stringValue
+                    let messageModel         = MTTMessageModel()
+                    messageModel.account     = subjson["account"].stringValue
+                    messageModel.nickName    = subjson["nickName"].stringValue
                     messageModel.avatarImage = subjson["avatarImage"].stringValue
-                    messageModel.time = subjson["time"].stringValue
-                    messageModel.content = subjson["content"].stringValue
+                    messageModel.time        = subjson["time"].stringValue
+                    messageModel.content     = subjson["content"].stringValue
                     dataArray.append(messageModel)
                 }
             }
@@ -67,12 +67,12 @@ class MTTMessageViewModel: NSObject
             {
                 for subjson in dataArr
                 {
-                    let messageModel = MTTMessageModel()
-                    messageModel.account = subjson["account"].stringValue
-                    messageModel.nickName = subjson["nickName"].stringValue
+                    let messageModel         = MTTMessageModel()
+                    messageModel.account     = subjson["account"].stringValue
+                    messageModel.nickName    = subjson["nickName"].stringValue
                     messageModel.avatarImage = subjson["avatarImage"].stringValue
-                    messageModel.time = subjson["time"].stringValue
-                    messageModel.content = subjson["content"].stringValue
+                    messageModel.time        = subjson["time"].stringValue
+                    messageModel.content     = subjson["content"].stringValue
                     dataArray.append(messageModel)
                 }
             }

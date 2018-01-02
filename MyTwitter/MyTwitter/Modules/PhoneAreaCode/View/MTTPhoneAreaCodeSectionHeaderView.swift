@@ -32,9 +32,9 @@ class MTTPhoneAreaCodeSectionHeaderView: MTTView {
     
     override func setupSubview() -> Void
     {
-        titleLabel = UILabel()
-        titleLabel?.textColor = kRGBColor(r: 92, g: 112, b: 127)
-        titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel                = UILabel()
+        titleLabel?.textColor     = kRGBColor(r: 92, g: 112, b: 127)
+        titleLabel?.font          = UIFont.boldSystemFont(ofSize: 20)
         titleLabel?.textAlignment = NSTextAlignment.left
         self.addSubview(titleLabel!)
     }

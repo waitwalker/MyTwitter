@@ -26,10 +26,10 @@ class MTTMessageCell: MTTTableViewCell
         {
             layoutSubview()
             avatarImageView?.image = UIImage(named: String(format: "head%@", self.getRandomNum()))
-            accountLabel?.text = messageModel?.account
-            nickNameLabel?.text = messageModel?.nickName
-            timeLabel?.text = messageModel?.time
-            contentLabel?.text = messageModel?.content
+            accountLabel?.text     = messageModel?.account
+            nickNameLabel?.text    = messageModel?.nickName
+            timeLabel?.text        = messageModel?.time
+            contentLabel?.text     = messageModel?.content
         }
     }
     
@@ -53,41 +53,41 @@ class MTTMessageCell: MTTTableViewCell
     
     private func setupSubview() -> Void
     {
-        lineView = UIView()
-        lineView?.backgroundColor = kMainGrayColor()
+        lineView                                  = UIView()
+        lineView?.backgroundColor                 = kMainGrayColor()
         self.contentView.addSubview(lineView!)
-        
-        avatarImageView = UIImageView()
+
+        avatarImageView                           = UIImageView()
         avatarImageView?.isUserInteractionEnabled = true
-        avatarImageView?.layer.cornerRadius = 30
-        avatarImageView?.clipsToBounds = true
+        avatarImageView?.layer.cornerRadius       = 30
+        avatarImageView?.clipsToBounds            = true
         self.contentView.addSubview(avatarImageView!)
-        
-        accountLabel = UILabel()
-        accountLabel?.textColor = UIColor.black
-        accountLabel?.font = UIFont.systemFont(ofSize: 14)
+
+        accountLabel                              = UILabel()
+        accountLabel?.textColor                   = UIColor.black
+        accountLabel?.font                        = UIFont.systemFont(ofSize: 14)
         accountLabel?.sizeToFit()
-        accountLabel?.textAlignment = NSTextAlignment.left
+        accountLabel?.textAlignment               = NSTextAlignment.left
         self.contentView.addSubview(accountLabel!)
-        
-        nickNameLabel = UILabel()
-        nickNameLabel?.textColor = kMainGrayColor()
-        nickNameLabel?.font = UIFont.systemFont(ofSize: 14)
-        nickNameLabel?.textAlignment = NSTextAlignment.left
+
+        nickNameLabel                             = UILabel()
+        nickNameLabel?.textColor                  = kMainGrayColor()
+        nickNameLabel?.font                       = UIFont.systemFont(ofSize: 14)
+        nickNameLabel?.textAlignment              = NSTextAlignment.left
         nickNameLabel?.sizeToFit()
         self.contentView.addSubview(nickNameLabel!)
-        
-        timeLabel = UILabel()
-        timeLabel?.textColor = kMainGrayColor()
-        timeLabel?.font = UIFont.systemFont(ofSize: 14)
-        timeLabel?.textAlignment = NSTextAlignment.left
+
+        timeLabel                                 = UILabel()
+        timeLabel?.textColor                      = kMainGrayColor()
+        timeLabel?.font                           = UIFont.systemFont(ofSize: 14)
+        timeLabel?.textAlignment                  = NSTextAlignment.left
         self.contentView.addSubview(timeLabel!)
-        
-        contentLabel = UILabel()
-        contentLabel?.textColor = kMainGrayColor()
-        contentLabel?.textAlignment = NSTextAlignment.left
-        contentLabel?.font = UIFont.systemFont(ofSize: 15)
-        contentLabel?.numberOfLines = 2
+
+        contentLabel                              = UILabel()
+        contentLabel?.textColor                   = kMainGrayColor()
+        contentLabel?.textAlignment               = NSTextAlignment.left
+        contentLabel?.font                        = UIFont.systemFont(ofSize: 15)
+        contentLabel?.numberOfLines               = 2
         self.contentView.addSubview(contentLabel!)
     }
     

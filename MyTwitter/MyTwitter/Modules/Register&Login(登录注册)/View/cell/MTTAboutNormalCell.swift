@@ -46,29 +46,29 @@ class MTTAboutNormalCell: MTTTableViewCell {
     private func setupSubview() -> Void
     {
         //lineView
-        lineView = UIView()
-        lineView?.backgroundColor = kMainGrayColor()
+        lineView                                 = UIView()
+        lineView?.backgroundColor                = kMainGrayColor()
         self.contentView.addSubview(lineView!)
-        
+
         //titleLable
-        titleLable = UILabel()
-        titleLable?.font = UIFont.boldSystemFont(ofSize: 15)
-        titleLable?.textColor = UIColor.black
-        titleLable?.textAlignment = NSTextAlignment.left
+        titleLable                               = UILabel()
+        titleLable?.font                         = UIFont.boldSystemFont(ofSize: 15)
+        titleLable?.textColor                    = UIColor.black
+        titleLable?.textAlignment                = NSTextAlignment.left
         self.contentView.addSubview(titleLable!)
-        
+
         //versionLabel
-        versionLabel = UILabel()
-        versionLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        versionLabel?.textColor = kMainGrayColor()
-        versionLabel?.text = "7.6"
-        versionLabel?.textAlignment = NSTextAlignment.right
+        versionLabel                             = UILabel()
+        versionLabel?.font                       = UIFont.boldSystemFont(ofSize: 15)
+        versionLabel?.textColor                  = kMainGrayColor()
+        versionLabel?.text                       = "7.6"
+        versionLabel?.textAlignment              = NSTextAlignment.right
         self.contentView.addSubview(versionLabel!)
-        
+
         //arrowImageView
-        arrowImageView = UIImageView()
+        arrowImageView                           = UIImageView()
         arrowImageView?.isUserInteractionEnabled = true
-        arrowImageView?.image = UIImage.init(named: "twitter_right_arrow")
+        arrowImageView?.image                    = UIImage.init(named: "twitter_right_arrow")
         self.contentView.addSubview(arrowImageView!)
     }
     

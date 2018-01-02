@@ -33,26 +33,26 @@ class MTTMessageButtonCell: MTTTableViewCell {
     
     private func setupSubview() -> Void
     {
-        buttonContainerView = UIView()
-        buttonContainerView?.layer.borderWidth = 1
-        buttonContainerView?.layer.borderColor = kMainBlueColor().cgColor
+        buttonContainerView                     = UIView()
+        buttonContainerView?.layer.borderWidth  = 1
+        buttonContainerView?.layer.borderColor  = kMainBlueColor().cgColor
         buttonContainerView?.layer.cornerRadius = 12.5
-        buttonContainerView?.clipsToBounds = true
+        buttonContainerView?.clipsToBounds      = true
         self.contentView.addSubview(buttonContainerView!)
-        
-        mailBoxButton = UIButton()
+
+        mailBoxButton                           = UIButton()
         mailBoxButton?.setTitle("信箱", for: UIControlState.normal)
         mailBoxButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
-        mailBoxButton?.backgroundColor = kMainBlueColor()
-        mailBoxButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        mailBoxButton?.backgroundColor          = kMainBlueColor()
+        mailBoxButton?.titleLabel?.font         = UIFont.systemFont(ofSize: 15)
         mailBoxButton?.addTarget(self, action: #selector(mailBoxButtonAction(button:)), for: UIControlEvents.touchUpInside)
         buttonContainerView?.addSubview(mailBoxButton!)
-        
-        requestButtion = UIButton()
+
+        requestButtion                          = UIButton()
         requestButtion?.setTitle("请求", for: UIControlState.normal)
         requestButtion?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
-        requestButtion?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        requestButtion?.backgroundColor = kMainWhiteColor()
+        requestButtion?.titleLabel?.font        = UIFont.systemFont(ofSize: 15)
+        requestButtion?.backgroundColor         = kMainWhiteColor()
         requestButtion?.addTarget(self, action: #selector(requestButtonAction(button:)), for: UIControlEvents.touchUpInside)
         buttonContainerView?.addSubview(requestButtion!)
     }

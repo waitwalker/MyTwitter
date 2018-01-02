@@ -25,20 +25,20 @@ class MTTSearchShowMoreCell: MTTTableViewCell
     
     private func setupSubview() -> Void
     {
-        SLineView = UIView()
-        SLineView?.backgroundColor = kMainGrayColor()
+        SLineView                                      = UIView()
+        SLineView?.backgroundColor                     = kMainGrayColor()
         self.contentView.addSubview(SLineView!)
-        
-        SShowMoreLabel = UILabel()
-        SShowMoreLabel?.text = "显示更多"
-        SShowMoreLabel?.textColor = kMainBlueColor()
-        SShowMoreLabel?.textAlignment = NSTextAlignment.left
-        SShowMoreLabel?.font = UIFont.systemFont(ofSize: 18)
+
+        SShowMoreLabel                                 = UILabel()
+        SShowMoreLabel?.text                           = "显示更多"
+        SShowMoreLabel?.textColor                      = kMainBlueColor()
+        SShowMoreLabel?.textAlignment                  = NSTextAlignment.left
+        SShowMoreLabel?.font                           = UIFont.systemFont(ofSize: 18)
         self.contentView.addSubview(SShowMoreLabel!)
-        
-        SRightArrowImageView = UIImageView()
+
+        SRightArrowImageView                           = UIImageView()
         SRightArrowImageView?.isUserInteractionEnabled = true
-        SRightArrowImageView?.image = UIImage(named: "twitter_right_arrow")
+        SRightArrowImageView?.image                    = UIImage(named: "twitter_right_arrow")
         self.contentView.addSubview(SRightArrowImageView!)
     }
     

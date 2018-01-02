@@ -59,11 +59,11 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
     {
         let beginValue = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as! NSValue!
         let beginFrame = beginValue?.cgRectValue
-        
-        let endValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue!
-        let endFrame = endValue?.cgRectValue
-        
-        let deltaY = (endFrame?.origin.y)! - (beginFrame?.origin.y)!
+
+        let endValue   = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue!
+        let endFrame   = endValue?.cgRectValue
+
+        let deltaY     = (endFrame?.origin.y)! - (beginFrame?.origin.y)!
         
         UIView.animate(withDuration: 0.25) {
             self.contentView?.frame = CGRect(x: (self.contentView?.frame.origin.x)!, y: (self.contentView?.frame.origin.y)! + deltaY, width: (self.contentView?.frame.origin.x)!, height: (self.contentView?.frame.size.height)!)
@@ -75,177 +75,177 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
     {
         
         //back
-        leftBackButton = UIButton()
-        leftBackButton?.frame = CGRect(x: -20, y: 0, width: 50, height: 44)
+        leftBackButton                                 = UIButton()
+        leftBackButton?.frame                          = CGRect(x: -20, y: 0, width: 50, height: 44)
         leftBackButton?.setImage(UIImage.init(named: "twitter_back"), for: UIControlState.normal)
-        leftBackButton?.imageEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 28)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftBackButton!)
-        
+        leftBackButton?.imageEdgeInsets                = UIEdgeInsetsMake(12, 0, 12, 28)
+        self.navigationItem.leftBarButtonItem          = UIBarButtonItem.init(customView: leftBackButton!)
+
         //logo
-        logoImageView = UIImageView()
-        logoImageView?.image = UIImage.init(named: "twitter_logo")
-        logoImageView?.isUserInteractionEnabled = true
+        logoImageView                                  = UIImageView()
+        logoImageView?.image                           = UIImage.init(named: "twitter_logo")
+        logoImageView?.isUserInteractionEnabled        = true
         self.view.addSubview(logoImageView!)
-        
+
         //phoneOrEmailLabel
-        phoneOrEmailLabel = UILabel()
-        phoneOrEmailLabel?.font = UIFont.boldSystemFont(ofSize: 25)
-        phoneOrEmailLabel?.textAlignment = NSTextAlignment.left
-        phoneOrEmailLabel?.text = "你的电话号码是什么?"
-        phoneOrEmailLabel?.numberOfLines = 1
+        phoneOrEmailLabel                              = UILabel()
+        phoneOrEmailLabel?.font                        = UIFont.boldSystemFont(ofSize: 25)
+        phoneOrEmailLabel?.textAlignment               = NSTextAlignment.left
+        phoneOrEmailLabel?.text                        = "你的电话号码是什么?"
+        phoneOrEmailLabel?.numberOfLines               = 1
         phoneOrEmailLabel?.sizeToFit()
         self.view.addSubview(phoneOrEmailLabel!)
-        
+
         //phoneOrEmailHintLabel
-        phoneOrEmailHintLabel = UILabel()
-        phoneOrEmailHintLabel?.font = UIFont.systemFont(ofSize: 15)
-        phoneOrEmailHintLabel?.textAlignment = NSTextAlignment.left
-        phoneOrEmailHintLabel?.text = "不用担心,我们不会公开显示."
-        phoneOrEmailHintLabel?.numberOfLines = 1
+        phoneOrEmailHintLabel                          = UILabel()
+        phoneOrEmailHintLabel?.font                    = UIFont.systemFont(ofSize: 15)
+        phoneOrEmailHintLabel?.textAlignment           = NSTextAlignment.left
+        phoneOrEmailHintLabel?.text                    = "不用担心,我们不会公开显示."
+        phoneOrEmailHintLabel?.numberOfLines           = 1
         phoneOrEmailHintLabel?.sizeToFit()
         self.view.addSubview(phoneOrEmailHintLabel!)
-        
+
         //phoneContentView
-        phoneContentView = UIView()
-        phoneContentView?.isHidden = false
+        phoneContentView                               = UIView()
+        phoneContentView?.isHidden                     = false
         self.view.addSubview(phoneContentView!)
-        
+
         //phoneAreaCodeButton
-        phoneAreaCodeButton = UIButton()
+        phoneAreaCodeButton                            = UIButton()
         phoneAreaCodeButton?.setTitle("中国 +86", for: UIControlState.normal)
-        phoneAreaCodeButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        phoneAreaCodeButton?.titleLabel?.font          = UIFont.systemFont(ofSize: 15)
         phoneAreaCodeButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
         phoneAreaCodeButton?.setBackgroundImage(self.imageWithColor(color: kRGBColor(r: 236, g: 238, b: 240)), for: UIControlState.highlighted)
-        phoneAreaCodeButton?.titleEdgeInsets = UIEdgeInsetsMake(10, 20, 10, kScreenWidth - 100)
+        phoneAreaCodeButton?.titleEdgeInsets           = UIEdgeInsetsMake(10, 20, 10, kScreenWidth - 100)
         phoneContentView?.addSubview(phoneAreaCodeButton!)
-        
+
         //phoneBottomLineView
-        phoneBottomLineView = UIView()
-        phoneBottomLineView?.backgroundColor = kMainGrayColor()
+        phoneBottomLineView                            = UIView()
+        phoneBottomLineView?.backgroundColor           = kMainGrayColor()
         phoneAreaCodeButton?.addSubview(phoneBottomLineView!)
-        
+
         //phoneDownImageView
-        phoneDownImageView = UIImageView()
-        phoneDownImageView?.isUserInteractionEnabled = true
-        phoneDownImageView?.image = UIImage(named: "twitter_down_arrow")
+        phoneDownImageView                             = UIImageView()
+        phoneDownImageView?.isUserInteractionEnabled   = true
+        phoneDownImageView?.image                      = UIImage(named: "twitter_down_arrow")
         phoneAreaCodeButton?.addSubview(phoneDownImageView!)
-        
+
         //phoneTextField
-        phoneTextField = UITextField()
-        phoneTextField?.placeholder = "手机号码"
-        phoneTextField?.keyboardType = UIKeyboardType.numberPad
-        phoneTextField?.font = UIFont.systemFont(ofSize: 15)
-        phoneTextField?.textColor = kMainBlueColor()
+        phoneTextField                                 = UITextField()
+        phoneTextField?.placeholder                    = "手机号码"
+        phoneTextField?.keyboardType                   = UIKeyboardType.numberPad
+        phoneTextField?.font                           = UIFont.systemFont(ofSize: 15)
+        phoneTextField?.textColor                      = kMainBlueColor()
         phoneContentView?.addSubview(phoneTextField!)
-        
+
         //verifyImageView
-        verifyImageView = UIImageView()
-        verifyImageView?.isUserInteractionEnabled = true
-        verifyImageView?.layer.borderWidth = 2
-        verifyImageView?.layer.cornerRadius = 12.5
-        verifyImageView?.layer.borderColor = kMainRedColor().cgColor
-        verifyImageView?.clipsToBounds = true
-        verifyImageView?.isHidden = true
+        verifyImageView                                = UIImageView()
+        verifyImageView?.isUserInteractionEnabled      = true
+        verifyImageView?.layer.borderWidth             = 2
+        verifyImageView?.layer.cornerRadius            = 12.5
+        verifyImageView?.layer.borderColor             = kMainRedColor().cgColor
+        verifyImageView?.clipsToBounds                 = true
+        verifyImageView?.isHidden                      = true
         phoneContentView?.addSubview(verifyImageView!)
-        
+
         //phoneSecondLineView
-        phoneSecondLineView = UIView()
-        phoneSecondLineView?.backgroundColor = kMainGrayColor()
+        phoneSecondLineView                            = UIView()
+        phoneSecondLineView?.backgroundColor           = kMainGrayColor()
         phoneContentView?.addSubview(phoneSecondLineView!)
-        
+
         //emailContentView
-        emailContentView = UIView()
-        emailContentView?.isHidden = true
+        emailContentView                               = UIView()
+        emailContentView?.isHidden                     = true
         self.view.addSubview(emailContentView!)
-        
+
         //emailTextField
-        emailTextField = UITextField()
-        emailTextField?.placeholder = "邮件地址"
-        emailTextField?.keyboardType = UIKeyboardType.emailAddress
-        emailTextField?.font = UIFont.systemFont(ofSize: 15)
-        emailTextField?.textColor = kMainBlueColor()
+        emailTextField                                 = UITextField()
+        emailTextField?.placeholder                    = "邮件地址"
+        emailTextField?.keyboardType                   = UIKeyboardType.emailAddress
+        emailTextField?.font                           = UIFont.systemFont(ofSize: 15)
+        emailTextField?.textColor                      = kMainBlueColor()
         emailContentView?.addSubview(emailTextField!)
-        
+
         //emailVerifyImageView
-        emailVerifyImageView = UIImageView()
+        emailVerifyImageView                           = UIImageView()
         emailVerifyImageView?.isUserInteractionEnabled = true
-        emailVerifyImageView?.layer.borderWidth = 2
-        emailVerifyImageView?.layer.cornerRadius = 12.5
-        emailVerifyImageView?.clipsToBounds = true
-        emailVerifyImageView?.isHidden = true
+        emailVerifyImageView?.layer.borderWidth        = 2
+        emailVerifyImageView?.layer.cornerRadius       = 12.5
+        emailVerifyImageView?.clipsToBounds            = true
+        emailVerifyImageView?.isHidden                 = true
         emailContentView?.addSubview(emailVerifyImageView!)
-        
+
         //emailLineView
-        emailLineView = UIView()
-        emailLineView?.backgroundColor = kMainGrayColor()
+        emailLineView                                  = UIView()
+        emailLineView?.backgroundColor                 = kMainGrayColor()
         emailContentView?.addSubview(emailLineView!)
-        
+
         //errorHintLabel
-        errorHintLabel = UILabel()
-        errorHintLabel?.textColor = kMainWhiteColor()
-        errorHintLabel?.text = "    请输入有效的手机号码."
-        errorHintLabel?.backgroundColor = kMainRedColor()
-        errorHintLabel?.textAlignment = NSTextAlignment.left
-        errorHintLabel?.font = UIFont.systemFont(ofSize: 15)
-        errorHintLabel?.isHidden = true
+        errorHintLabel                                 = UILabel()
+        errorHintLabel?.textColor                      = kMainWhiteColor()
+        errorHintLabel?.text                           = "    请输入有效的手机号码."
+        errorHintLabel?.backgroundColor                = kMainRedColor()
+        errorHintLabel?.textAlignment                  = NSTextAlignment.left
+        errorHintLabel?.font                           = UIFont.systemFont(ofSize: 15)
+        errorHintLabel?.isHidden                       = true
         self.view.addSubview(errorHintLabel!)
-        
+
         //serviceContentView
-        serviceContentView = UIView()
+        serviceContentView                             = UIView()
         self.view.addSubview(serviceContentView!)
-        
+
         //serviceTextView
-        serviceTextView = UITextView()
-        let allString:NSString = "注册意味着你同意服务条款与隐私政策,包括Cookie使用政策.其他用户将可以通过你所提供的邮件地址或手机号码找到你."
-        serviceTextView?.attributedText = UITextView.addLinkToString(allString: allString, changedStrings: ["服务条款","隐私政策","Cookie使用政策"], changedStringColor: kMainBlueColor(), stringStyle: NSUnderlineStyle.styleNone.rawValue)
-        serviceTextView?.dataDetectorTypes = UIDataDetectorTypes.link
-        serviceTextView?.delegate = self
-        serviceTextView?.isSelectable = true
-        serviceTextView?.isEditable = false
-        serviceTextView?.font = UIFont.systemFont(ofSize: 15)
+        serviceTextView                                = UITextView()
+        let allString:NSString                         = "注册意味着你同意服务条款与隐私政策,包括Cookie使用政策.其他用户将可以通过你所提供的邮件地址或手机号码找到你."
+        serviceTextView?.attributedText                = UITextView.addLinkToString(allString: allString, changedStrings: ["服务条款","隐私政策","Cookie使用政策"], changedStringColor: kMainBlueColor(), stringStyle: NSUnderlineStyle.styleNone.rawValue)
+        serviceTextView?.dataDetectorTypes             = UIDataDetectorTypes.link
+        serviceTextView?.delegate                      = self
+        serviceTextView?.isSelectable                  = true
+        serviceTextView?.isEditable                    = false
+        serviceTextView?.font                          = UIFont.systemFont(ofSize: 15)
         serviceContentView?.addSubview(serviceTextView!)
-        
+
         //privateOptionButton
-        privateOptionButton = UIButton()
+        privateOptionButton                            = UIButton()
         privateOptionButton?.setTitle("隐私选项", for: UIControlState.normal)
         privateOptionButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
-        privateOptionButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        privateOptionButton?.titleLabel?.font          = UIFont.systemFont(ofSize: 15)
         privateOptionButton?.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
         serviceContentView?.addSubview(privateOptionButton!)
-        
+
         //serviceDotView
-        serviceDotView = UIView()
-        serviceDotView?.backgroundColor = kRGBColor(r: 145, g: 161, b: 173)
-        serviceDotView?.layer.cornerRadius = 2.5
-        serviceDotView?.clipsToBounds = true
+        serviceDotView                                 = UIView()
+        serviceDotView?.backgroundColor                = kRGBColor(r: 145, g: 161, b: 173)
+        serviceDotView?.layer.cornerRadius             = 2.5
+        serviceDotView?.clipsToBounds                  = true
         serviceContentView?.addSubview(serviceDotView!)
-        
+
         //changeButton
-        changeButton = UIButton()
+        changeButton                                   = UIButton()
         changeButton?.setTitle("改为使用邮件", for: UIControlState.normal)
         changeButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
-        changeButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        changeButton?.titleLabel?.font                 = UIFont.systemFont(ofSize: 15)
         changeButton?.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
-        changeButton?.isSelected = true
+        changeButton?.isSelected                       = true
         serviceContentView?.addSubview(changeButton!)
-        
+
         //contentView
-        contentView = UIView()
+        contentView                                    = UIView()
         self.view.addSubview(contentView!)
-        
+
         //secondLine
-        secondLine = UIView()
-        secondLine?.backgroundColor = kMainGrayColor()
+        secondLine                                     = UIView()
+        secondLine?.backgroundColor                    = kMainGrayColor()
         contentView?.addSubview(secondLine!)
-        
+
         //nextButton
-        nextButton = UIButton()
+        nextButton                                     = UIButton()
         nextButton?.setTitle("下一步", for: UIControlState.normal)
         nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
-        nextButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        nextButton?.backgroundColor = kMainBlueColor()
-        nextButton?.layer.cornerRadius = 17.5
-        nextButton?.clipsToBounds = true
+        nextButton?.titleLabel?.font                   = UIFont.systemFont(ofSize: 15)
+        nextButton?.backgroundColor                    = kMainBlueColor()
+        nextButton?.layer.cornerRadius                 = 17.5
+        nextButton?.clipsToBounds                      = true
         contentView?.addSubview(nextButton!)
     }
     
@@ -438,9 +438,7 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
                 self.phoneAreaCodeButton?.setTitle(String.init(format: "+%@", areaCodeName), for: UIControlState.normal)
             }               
             
-            self.present(phoneAreaCodeVC, animated: true, completion: {
-                
-            })
+            self.present(phoneAreaCodeVC, animated: true, completion: {})
             
         }).disposed(by: disposeBag)
         
@@ -457,24 +455,24 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
                     {
                         if element
                         {
-                            self.errorHintLabel?.isHidden = true
-                            self.verifyImageView?.image = UIImage(named: "name_valid")
+                            self.errorHintLabel?.isHidden           = true
+                            self.verifyImageView?.image             = UIImage(named: "name_valid")
                             self.verifyImageView?.layer.borderColor = kMainGreenColor().cgColor
-                            self.serviceContentView?.frame = CGRect(x: 0, y: 271, width: kScreenWidth, height: 100)
-                            
+                            self.serviceContentView?.frame          = CGRect(x: 0, y: 271, width: kScreenWidth, height: 100)
+
                             self.nextButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
-                            self.nextButton?.isEnabled = true
+                            self.nextButton?.isEnabled              = true
                             self.view.endEditing(true)
                             
                         } else
                         {
-                            self.errorHintLabel?.isHidden = false
-                            self.errorHintLabel?.text = "    请输入有效的手机号码."
-                            self.verifyImageView?.image = UIImage(named: "name_invalid")
+                            self.errorHintLabel?.isHidden           = false
+                            self.errorHintLabel?.text               = "    请输入有效的手机号码."
+                            self.verifyImageView?.image             = UIImage(named: "name_invalid")
                             self.verifyImageView?.layer.borderColor = kMainRedColor().cgColor
-                            self.errorHintLabel?.frame = CGRect(x: 0, y: 266, width: kScreenWidth, height: 50)
-                            self.serviceContentView?.frame = CGRect(x: 0, y: 321, width: kScreenWidth, height: 100)
-                            
+                            self.errorHintLabel?.frame              = CGRect(x: 0, y: 266, width: kScreenWidth, height: 50)
+                            self.serviceContentView?.frame          = CGRect(x: 0, y: 321, width: kScreenWidth, height: 100)
+
                             self.nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
                             self.nextButton?.isEnabled = false
                         }
@@ -492,79 +490,77 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
                 {
                     if element 
                     {
-                        self.errorHintLabel?.isHidden = true
-                        self.emailVerifyImageView?.image = UIImage(named: "name_valid")
+                        self.errorHintLabel?.isHidden                = true
+                        self.emailVerifyImageView?.image             = UIImage(named: "name_valid")
                         self.emailVerifyImageView?.layer.borderColor = kMainGreenColor().cgColor
-                        self.serviceContentView?.frame = CGRect(x: 0, y: 226, width: kScreenWidth, height: 100)
-                        
+                        self.serviceContentView?.frame               = CGRect(x: 0, y: 226, width: kScreenWidth, height: 100)
+
                         self.nextButton?.setTitleColor(kMainWhiteColor(), for: UIControlState.normal)
-                        self.nextButton?.isEnabled = true
+                        self.nextButton?.isEnabled                   = true
                         self.view.endEditing(true)
                     } else
                     {
-                        self.errorHintLabel?.isHidden = false
-                        self.errorHintLabel?.text = "    邮件地址无效."
-                        self.emailVerifyImageView?.image = UIImage(named: "name_invalid")
+                        self.errorHintLabel?.isHidden                = false
+                        self.errorHintLabel?.text                    = "    邮件地址无效."
+                        self.emailVerifyImageView?.image             = UIImage(named: "name_invalid")
                         self.emailVerifyImageView?.layer.borderColor = kMainRedColor().cgColor
-                        self.errorHintLabel?.frame = CGRect(x: 0, y: 221, width: kScreenWidth, height: 50)
-                        self.serviceContentView?.frame = CGRect(x: 0, y: 276, width: kScreenWidth, height: 100)
-                        
+                        self.errorHintLabel?.frame                   = CGRect(x: 0, y: 221, width: kScreenWidth, height: 50)
+                        self.serviceContentView?.frame               = CGRect(x: 0, y: 276, width: kScreenWidth, height: 100)
+
                         self.nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
-                        self.nextButton?.isEnabled = false
+                        self.nextButton?.isEnabled                   = false
                     }
-                } 
-                
-            }).disposed(by: disposeBag)
+                } })
+            .disposed(by: disposeBag)
             
         //changeButton
-        changeButton?.rx.tap.subscribe(onNext:{ [unowned self] in
+        changeButton?.rx.tap
+            .subscribe(onNext:{ [unowned self] in
             
-            self.changeButton?.isSelected = !(self.changeButton?.isSelected)!
-            self.errorHintLabel?.isHidden = true
-            self.verifyImageView?.isHidden = true
-            
-            if (self.changeButton?.isSelected)!
-            {
-                self.changeButton?.setTitle("改为使用邮件", for: UIControlState.normal)
-                self.phoneOrEmailLabel?.text = "你的电话号码是什么?"
-                self.phoneOrEmailHintLabel?.text = "不用担心,我们不会公开显示."
+                self.changeButton?.isSelected  = !(self.changeButton?.isSelected)!
+                self.errorHintLabel?.isHidden  = true
+                self.verifyImageView?.isHidden = true
                 
-                self.phoneContentView?.isHidden = false
-                self.emailContentView?.isHidden = true
-                
-                self.serviceContentView?.frame = CGRect(x: 0, y: 271, width: kScreenWidth, height: 100)
-                
-            } else
-            {
-                self.changeButton?.setTitle("改为使用手机", for: UIControlState.normal)
-                self.phoneOrEmailLabel?.text = "你的邮箱地址是什么?"
-                self.phoneOrEmailHintLabel?.text = "我们不会给你发送垃圾邮件."
-                
-                self.emailContentView?.isHidden = false
-                self.phoneContentView?.isHidden = true
-                self.serviceContentView?.frame = CGRect(x: 0, y: 226, width: kScreenWidth, height: 100)
-            }
-            
-        }).disposed(by: disposeBag)
+                if (self.changeButton?.isSelected)!
+                {
+                    self.changeButton?.setTitle("改为使用邮件", for: UIControlState.normal)
+                    self.phoneOrEmailLabel?.text     = "你的电话号码是什么?"
+                    self.phoneOrEmailHintLabel?.text = "不用担心,我们不会公开显示."
+
+                    self.phoneContentView?.isHidden  = false
+                    self.emailContentView?.isHidden  = true
+                    self.serviceContentView?.frame   = CGRect(x: 0, y: 271, width: kScreenWidth, height: 100)
+                    
+                } else
+                {
+                    self.changeButton?.setTitle("改为使用手机", for: UIControlState.normal)
+                    self.phoneOrEmailLabel?.text     = "你的邮箱地址是什么?"
+                    self.phoneOrEmailHintLabel?.text = "我们不会给你发送垃圾邮件."
+
+                    self.emailContentView?.isHidden  = false
+                    self.phoneContentView?.isHidden  = true
+                    self.serviceContentView?.frame   = CGRect(x: 0, y: 226, width: kScreenWidth, height: 100)
+                }})
+            .disposed(by: disposeBag)
         
         //nextButton
-        (nextButton?.rx.tap)?.subscribe(onNext:({[unowned self] in
+        (nextButton?.rx.tap)?
+            .subscribe(onNext:({[unowned self] in
             
-            if (self.phoneContentView?.isHidden)!
-            {
-                print(self.emailTextField?.text as Any)
-            } else
-            {
-                //显示alert
-                self.showAlertController(message: (self.phoneTextField?.text)!)
-            }
-            
-            self.sharedInstance.email = (self.emailTextField?.text)!
-            
-            let registerPasswordVC = MTTRegisterPasswordViewController()
-            self.navigationController?.pushViewController(registerPasswordVC, animated: true)
-            
-        })).disposed(by: disposeBag)
+                if (self.phoneContentView?.isHidden)!
+                {
+                    print(self.emailTextField?.text as Any)
+                } else
+                {
+                    //显示alert
+                    self.showAlertController(message: (self.phoneTextField?.text)!)
+                }
+
+                self.sharedInstance.email = (self.emailTextField?.text)!
+
+                let registerPasswordVC    = MTTRegisterPasswordViewController()
+                self.navigationController?.pushViewController(registerPasswordVC, animated: true)}))
+            .disposed(by: disposeBag)
             
     }
     
@@ -591,13 +587,20 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
     
     func addNotificationObserver() -> Void
     {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowAction(notify:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideAction(notify:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(keyboardWillShowAction(notify:)),
+                                               name: NSNotification.Name.UIKeyboardWillShow, 
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(keyboardWillHideAction(notify:)), 
+                                               name: NSNotification.Name.UIKeyboardWillHide, 
+                                               object: nil)
     }
     
     @objc func keyboardWillShowAction(notify:Notification) -> Void
     {
-        let userInfo = notify.userInfo
+        let userInfo      = notify.userInfo
         let keyboardFrame = userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
         UIView.animate(withDuration: 0.5, animations: {
             self.contentView?.y = keyboardFrame.origin.y - 50
@@ -619,12 +622,12 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
     // MARK: - private
     func imageWithColor(color:UIColor) -> UIImage 
     {
-        let rect = CGRect(x: 0, y: 0, width: 1.0, height: 1.0)
+        let rect    = CGRect(x: 0, y: 0, width: 1.0, height: 1.0)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
         context?.setFillColor(color.cgColor)
         context?.fill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        let image   = UIGraphicsGetImageFromCurrentImageContext()
         return image!
     }
     

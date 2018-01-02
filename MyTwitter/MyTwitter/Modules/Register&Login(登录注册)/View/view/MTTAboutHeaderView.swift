@@ -26,10 +26,10 @@ class MTTAboutHeaderView: MTTView
     
     internal override func setupSubview() 
     {
-        headerTitleLabel = UILabel()
-        headerTitleLabel?.textColor = kMainTextGrayColor()
+        headerTitleLabel                = UILabel()
+        headerTitleLabel?.textColor     = kMainTextGrayColor()
         headerTitleLabel?.textAlignment = NSTextAlignment.left
-        headerTitleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        headerTitleLabel?.font          = UIFont.boldSystemFont(ofSize: 18)
         self.addSubview(headerTitleLabel!)
     }
     

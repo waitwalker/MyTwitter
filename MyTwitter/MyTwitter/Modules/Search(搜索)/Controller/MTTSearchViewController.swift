@@ -19,14 +19,14 @@ class MTTSearchViewController: MTTViewController ,UITableViewDelegate,UITableVie
     
     
     
-    let reusedSearchLabelId = "reusedSearchLabelId"
+    let reusedSearchLabelId    = "reusedSearchLabelId"
     let reusedSearchShowMoreId = "reusedSearchShowMoreId"
-    let reusedSearchTwitterId = "reusedSearchTwitterId"
-    let reusedSearchPopularId = "reusedSearchPopularId"
-    
-    
-    var searchTitles:[String] = ["你的趋势","Pelicans","流行文章","搜索全部"]
-    
+    let reusedSearchTwitterId  = "reusedSearchTwitterId"
+    let reusedSearchPopularId  = "reusedSearchPopularId"
+
+
+    var searchTitles:[String]  = ["你的趋势","Pelicans","流行文章","搜索全部"]
+
     var searchDataArray:[[MTTSearchModel]] = []
     
     
@@ -42,17 +42,17 @@ class MTTSearchViewController: MTTViewController ,UITableViewDelegate,UITableVie
 
     private func setupSubview() -> Void
     {
-        searchTableView = UITableView()
+        searchTableView                  = UITableView()
         searchTableView?.backgroundColor = kMainLightGrayColor()
-        searchTableView?.delegate = self
-        searchTableView?.dataSource = self
-        searchTableView?.separatorStyle = UITableViewCellSeparatorStyle.none
+        searchTableView?.delegate        = self
+        searchTableView?.dataSource      = self
+        searchTableView?.separatorStyle  = UITableViewCellSeparatorStyle.none
         searchTableView?.register(MTTSearchLabelCell.self, forCellReuseIdentifier: reusedSearchLabelId)
         searchTableView?.register(MTTSearchShowMoreCell.self, forCellReuseIdentifier: reusedSearchShowMoreId)
         searchTableView?.register(MTTSearchTwitterCell.self, forCellReuseIdentifier: reusedSearchTwitterId)
         searchTableView?.register(MTTSearchPopularCell.self, forCellReuseIdentifier: reusedSearchPopularId)
         self.view.addSubview(searchTableView!)
-        
+
         setupNavBar()
     }
     
@@ -70,28 +70,28 @@ class MTTSearchViewController: MTTViewController ,UITableViewDelegate,UITableVie
     
     func setupNavBar() -> Void
     {
-        rightButton = UIButton()
+        rightButton                            = UIButton()
         rightButton?.setImage(UIImage.init(named: "add-user"), for: UIControlState.normal)
-        rightButton?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        rightButton?.imageEdgeInsets = UIEdgeInsetsMake(2.5, 2.5, 2.5, 2.5)
+        rightButton?.frame                     = CGRect(x: 0, y: 0, width: 30, height: 30)
+        rightButton?.imageEdgeInsets           = UIEdgeInsetsMake(2.5, 2.5, 2.5, 2.5)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightButton!)
-        
-        leftButton = UIButton()
+
+        leftButton                             = UIButton()
         leftButton?.setImage(UIImage.init(named: "my_head.jpg"), for: UIControlState.normal)
-        leftButton?.layer.cornerRadius = 20
-        leftButton?.clipsToBounds = true
-        leftButton?.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftButton!)
-        
-        titleButton = UIButton()
+        leftButton?.layer.cornerRadius         = 20
+        leftButton?.clipsToBounds              = true
+        leftButton?.frame                      = CGRect(x: 0, y: 0, width: 40, height: 40)
+        self.navigationItem.leftBarButtonItem  = UIBarButtonItem.init(customView: leftButton!)
+
+        titleButton                            = UIButton()
         titleButton?.setImage(UIImage(named: "twitter_search"), for: UIControlState.normal)
         titleButton?.setTitle("搜索 Twitter", for: UIControlState.normal)
         titleButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
-        titleButton?.backgroundColor = kMainLightGrayColor()
+        titleButton?.backgroundColor           = kMainLightGrayColor()
         titleButton?.setImageWithPosition(postion: MTTButtonImagePostion.Left, spacing: 5)
-        titleButton?.frame = CGRect(x: 0, y: 0, width: kScreenWidth - 120, height: 30)
-        titleButton?.layer.cornerRadius = 15
-        titleButton?.clipsToBounds = true
+        titleButton?.frame                     = CGRect(x: 0, y: 0, width: kScreenWidth - 120, height: 30)
+        titleButton?.layer.cornerRadius        = 15
+        titleButton?.clipsToBounds             = true
         self.navigationItem.titleView = titleButton
         
     }
@@ -209,7 +209,7 @@ class MTTSearchViewController: MTTViewController ,UITableViewDelegate,UITableVie
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? 
     {
-        let searchHeaderView = MTTSearchHeaderView()
+        let searchHeaderView              = MTTSearchHeaderView()
         searchHeaderView.titleLabel?.text = searchTitles[section]
         return searchHeaderView
     }

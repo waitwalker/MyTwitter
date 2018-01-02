@@ -40,88 +40,88 @@ class MTTRegisterPasswordViewController: MTTViewController ,MTTRegitserViewModel
     func setupSubview() -> Void 
     {
         //back
-        let leftBackButton = UIButton()
-        leftBackButton.frame = CGRect(x: -20, y: 0, width: 0, height: 0)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftBackButton)
-        
+        let leftBackButton                                = UIButton()
+        leftBackButton.frame                              = CGRect(x: -20, y: 0, width: 0, height: 0)
+        self.navigationItem.leftBarButtonItem             = UIBarButtonItem.init(customView: leftBackButton)
+
         //logo
-        logoImageView = UIImageView()
-        logoImageView?.image = UIImage.init(named: "twitter_logo")
-        logoImageView?.isUserInteractionEnabled = true
+        logoImageView                                     = UIImageView()
+        logoImageView?.image                              = UIImage.init(named: "twitter_logo")
+        logoImageView?.isUserInteractionEnabled           = true
         self.view.addSubview(logoImageView!)
-        
+
         //passwordLabel
-        passwordLabel = UILabel()
-        passwordLabel?.font = UIFont.boldSystemFont(ofSize: 25)
-        passwordLabel?.textAlignment = NSTextAlignment.left
-        passwordLabel?.text = "你需要设置一个密码?"
-        passwordLabel?.numberOfLines = 1
+        passwordLabel                                     = UILabel()
+        passwordLabel?.font                               = UIFont.boldSystemFont(ofSize: 25)
+        passwordLabel?.textAlignment                      = NSTextAlignment.left
+        passwordLabel?.text                               = "你需要设置一个密码?"
+        passwordLabel?.numberOfLines                      = 1
         passwordLabel?.sizeToFit()
         self.view.addSubview(passwordLabel!)
-        
+
         //passwordHintLabel
-        passwordHintLabel = UILabel()
-        passwordHintLabel?.font = UIFont.systemFont(ofSize: 15)
-        passwordHintLabel?.textAlignment = NSTextAlignment.left
-        passwordHintLabel?.text = "请确保密码至少有6个字符"
-        passwordHintLabel?.numberOfLines = 1
+        passwordHintLabel                                 = UILabel()
+        passwordHintLabel?.font                           = UIFont.systemFont(ofSize: 15)
+        passwordHintLabel?.textAlignment                  = NSTextAlignment.left
+        passwordHintLabel?.text                           = "请确保密码至少有6个字符"
+        passwordHintLabel?.numberOfLines                  = 1
         passwordHintLabel?.sizeToFit()
         self.view.addSubview(passwordHintLabel!)
-        
+
         //passwordContentView
-        passwordContentView = UIView()
+        passwordContentView                               = UIView()
         self.view.addSubview(passwordContentView!)
-        
+
         //passwordTextField
-        passwordTextField = UITextField()
-        passwordTextField?.placeholder = "密码"
-        passwordTextField?.isSecureTextEntry = true
-        passwordTextField?.font = UIFont.systemFont(ofSize: 15)
-        passwordTextField?.textColor = kMainBlueColor()
+        passwordTextField                                 = UITextField()
+        passwordTextField?.placeholder                    = "密码"
+        passwordTextField?.isSecureTextEntry              = true
+        passwordTextField?.font                           = UIFont.systemFont(ofSize: 15)
+        passwordTextField?.textColor                      = kMainBlueColor()
         passwordContentView?.addSubview(passwordTextField!)
-        
+
         //passwordVerifyImageView
-        passwordVerifyImageView = UIImageView()
+        passwordVerifyImageView                           = UIImageView()
         passwordVerifyImageView?.isUserInteractionEnabled = true
-        passwordVerifyImageView?.layer.borderWidth = 2
-        passwordVerifyImageView?.layer.cornerRadius = 12.5
-        passwordVerifyImageView?.clipsToBounds = true
-        passwordVerifyImageView?.isHidden = true
+        passwordVerifyImageView?.layer.borderWidth        = 2
+        passwordVerifyImageView?.layer.cornerRadius       = 12.5
+        passwordVerifyImageView?.clipsToBounds            = true
+        passwordVerifyImageView?.isHidden                 = true
         passwordContentView?.addSubview(passwordVerifyImageView!)
-        
+
         //passwordLineView
-        passwordLineView = UIView()
-        passwordLineView?.backgroundColor = kMainGrayColor()
+        passwordLineView                                  = UIView()
+        passwordLineView?.backgroundColor                 = kMainGrayColor()
         passwordContentView?.addSubview(passwordLineView!)
-        
+
         //showPasswordButton
-        showPasswordButton = UIButton()
+        showPasswordButton                                = UIButton()
         showPasswordButton?.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
         showPasswordButton?.setTitle("显示密码", for: UIControlState.normal)
-        showPasswordButton?.titleEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 10)
-        showPasswordButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        showPasswordButton?.isHidden = true
+        showPasswordButton?.titleEdgeInsets               = UIEdgeInsetsMake(5, 0, 5, 10)
+        showPasswordButton?.titleLabel?.font              = UIFont.systemFont(ofSize: 15)
+        showPasswordButton?.isHidden                      = true
         self.view.addSubview(showPasswordButton!)
-        
-        
+
+
         //contentView
-        contentView = UIView()
+        contentView                                       = UIView()
         self.view.addSubview(contentView!)
-        
+
         //secondLine
-        secondLine = UIView()
-        secondLine?.backgroundColor = kMainGrayColor()
+        secondLine                                        = UIView()
+        secondLine?.backgroundColor                       = kMainGrayColor()
         contentView?.addSubview(secondLine!)
-        
+
         //nextButton
-        nextButton = UIButton()
+        nextButton                                        = UIButton()
         nextButton?.setTitle("下一步", for: UIControlState.normal)
         nextButton?.setTitleColor(kMainRedColor(), for: UIControlState.highlighted)
         nextButton?.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
-        nextButton?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        nextButton?.backgroundColor = kMainBlueColor()
-        nextButton?.layer.cornerRadius = 17.5
-        nextButton?.clipsToBounds = true
+        nextButton?.titleLabel?.font                      = UIFont.systemFont(ofSize: 15)
+        nextButton?.backgroundColor                       = kMainBlueColor()
+        nextButton?.layer.cornerRadius                    = 17.5
+        nextButton?.clipsToBounds                         = true
         contentView?.addSubview(nextButton!)
     }
     

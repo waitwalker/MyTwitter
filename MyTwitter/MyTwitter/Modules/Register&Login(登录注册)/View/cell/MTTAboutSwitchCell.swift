@@ -37,28 +37,28 @@ class MTTAboutSwitchCell: MTTTableViewCell {
     private func setupSubview() -> Void
     {
         //lineView
-        lineView = UIView()
-        lineView?.backgroundColor = kMainGrayColor()
+        lineView                   = UIView()
+        lineView?.backgroundColor  = kMainGrayColor()
         self.contentView.addSubview(lineView!)
-        
+
         //titleLable
-        titleLable = UILabel()
-        titleLable?.font = UIFont.boldSystemFont(ofSize: 15)
-        titleLable?.textColor = UIColor.black
-        titleLable?.textAlignment = NSTextAlignment.left
+        titleLable                 = UILabel()
+        titleLable?.font           = UIFont.boldSystemFont(ofSize: 15)
+        titleLable?.textColor      = UIColor.black
+        titleLable?.textAlignment  = NSTextAlignment.left
         self.contentView.addSubview(titleLable!)
-        
+
         //sendErrorSwitch
-        sendErrorSwitch = UISwitch.init()
+        sendErrorSwitch            = UISwitch.init()
         sendErrorSwitch?.addTarget(self, action: #selector(sendErrorSwitch(errorSwitch:)), for: UIControlEvents.valueChanged)
         self.contentView.addSubview(sendErrorSwitch!)
-        
+
         //detailLabel
-        detailLabel = UILabel()
-        detailLabel?.textColor = kMainGrayColor()
+        detailLabel                = UILabel()
+        detailLabel?.textColor     = kMainGrayColor()
         detailLabel?.textAlignment = NSTextAlignment.left
-        detailLabel?.text = "自动想 Twitter 的服务提供商发送崩溃报告以帮助改善此应用程序"
-        detailLabel?.font = UIFont.systemFont(ofSize: 14)
+        detailLabel?.text          = "自动想 Twitter 的服务提供商发送崩溃报告以帮助改善此应用程序"
+        detailLabel?.font          = UIFont.systemFont(ofSize: 14)
         detailLabel?.numberOfLines = 2
         self.contentView.addSubview(detailLabel!)
         

@@ -20,13 +20,13 @@ class MTTTabBarController: UITabBarController {
     func addChildViewControllers(childViewController:MTTViewController,image:UIImage,selectedImage:UIImage,tabBarTitle:String) -> Void
     {
         
-        childViewController.tabBarItem.title = tabBarTitle
-        childViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 2, -6, -2)
-        childViewController.tabBarItem.image = image
+        childViewController.tabBarItem.title         = tabBarTitle
+        childViewController.tabBarItem.imageInsets   = UIEdgeInsetsMake(6, 2, -6, -2)
+        childViewController.tabBarItem.image         = image
         childViewController.tabBarItem.selectedImage = selectedImage
         childViewController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:kMainGrayColor()], for: UIControlState.normal)
         childViewController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:kMainBlueColor()], for: UIControlState.selected)
-        let navigationController = MTTNavigationController.init(rootViewController: childViewController)
+        let navigationController                     = MTTNavigationController.init(rootViewController: childViewController)
         self.addChildViewController(navigationController)
         
     }

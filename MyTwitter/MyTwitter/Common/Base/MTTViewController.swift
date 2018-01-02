@@ -25,9 +25,15 @@ class MTTViewController: UIViewController {
     
     func addNotification() -> Void 
     {
-        NotificationCenter.default.addObserver(self, selector: #selector(dayNotificationAction(notify:)), name: NSNotification.Name(rawValue: kDayNotificationString), object: nil)
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(dayNotificationAction(notify:)), 
+                                               name: NSNotification.Name(rawValue: kDayNotificationString),
+                                               object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(nightNotificationAction(notify:)), name: NSNotification.Name(rawValue: kNightNotificationString), object: nil)
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(nightNotificationAction(notify:)), 
+                                               name: NSNotification.Name(rawValue: kNightNotificationString), 
+                                               object: nil)
     }
     
     @objc func dayNotificationAction(notify:Notification) -> Void 

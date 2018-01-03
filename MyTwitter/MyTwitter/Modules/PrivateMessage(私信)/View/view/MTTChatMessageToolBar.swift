@@ -111,10 +111,13 @@ class MTTChatMessageToolBar: UIView
         
         // 录音按钮 
         recorderButton = UIButton()
+        recorderButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         recorderButton.setTitle("长按录音", for: UIControlState.normal)
-        recorderButton.setTitleColor(UIColor.black, for: UIControlState.normal)
-        recorderButton.layer.borderColor = UIColor.orange.cgColor
+        recorderButton.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
+        recorderButton.layer.borderColor = kMainBlueColor().cgColor
         recorderButton.layer.borderWidth = 1.0
+        recorderButton.cornerRadius = 5
+        recorderButton.clipsToBounds = true
         self.addSubview(recorderButton)
     }
     

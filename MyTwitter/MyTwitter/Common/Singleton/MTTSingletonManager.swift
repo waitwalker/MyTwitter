@@ -19,7 +19,9 @@ class MTTSingletonManager: NSObject
     var phone_num:String     = ""
     var password:String      = ""
     var tappedImageIndex:Int = 0
-
+    
+    var audioRecorder:AVAudioRecorder!
+    
 
     static let sharedInstance = MTTSingletonManager()
     
@@ -115,6 +117,47 @@ class MTTSingletonManager: NSObject
         getRootViewController().present(alertController, animated: true) {
             
         }
+    }
+    
+    // MARK: - recorder 相关 
+    func startRecorder(with path:String,view:UIView) -> Void 
+    {
+        
+    }
+    
+    private func startRecorder(with path:String) -> Void 
+    {
+        if self.audioRecorder == nil 
+        {
+            // 设置recorder会话类型 
+            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+            
+            self.audioRecorder = try! AVAudioRecorder(url: URL(string: path)!, settings: setupSettings())
+            //self.audioRecorder.delegate = self
+            //self.audioRecorder.
+        }
+    }
+    
+    private func setupSettings() -> [String:Any] 
+    {
+        var setting:[String:Any] = [:]
+        
+        // 设置编码格式
+        setting.updateValue(kAudioFormatLinearPCM, forKey: AVFormatIDKey)
+        
+        // 设置采样率 
+        setting.updateValue(11025.0, forKey: AVSampleRateKey)
+        
+        // 设置通道数 
+        setting.updateValue(1, forKey: AVNumberOfChannelsKey)
+        
+        // 设置音频质量,采样质量 
+        setting.updateValue(AVAudioQuality.high, forKey: AVEncoderAudioQualityKey)
+        
+        // 设置每个采样点位数,分为8,16,24,32
+        setting.updateValue(8, forKey: AVLinearPCMBitDepthKey)
+        
+        return setting
         
     }
 }

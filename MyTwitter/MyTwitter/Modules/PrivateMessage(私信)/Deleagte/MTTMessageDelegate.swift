@@ -32,7 +32,15 @@ protocol MTTChatMessageToolBarDelegate
     func tappedSendButton(text:String) -> Void
 }
 
+// MARK: - 聊天相片相关 delegate 
 protocol MTTPhotosViewDelegate
 {
     func photosViewDragDelegate() -> Void
+}
+
+// MARK: - 聊天音视频滚动视图相关 delegate     
+protocol MTTVideosViewDelegate 
+{
+    // 选中录音 
+    func selectMicroRecorderAction(with view:MTTVideosView) -> Void
 }

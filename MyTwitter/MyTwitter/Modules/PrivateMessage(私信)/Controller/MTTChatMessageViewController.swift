@@ -84,8 +84,9 @@ class MTTChatMessageViewController: MTTViewController {
         self.view.addSubview(photosView)
 
         // 选择视频
-        videosView                         = MTTVideosView(frame: CGRect(x: 0, y: kScreenHeight - 88, width: kScreenWidth, height: 87))
+        videosView                         = MTTVideosView(frame: CGRect(x: 0, y: kScreenHeight - 88, width: kScreenWidth, height: 88))
         videosView.isHidden                = true
+        videosView.delegate                = self
         self.view.addSubview(videosView)
         
     }
@@ -100,6 +101,21 @@ class MTTChatMessageViewController: MTTViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    // MARK: - 显示与隐藏相关控件 
+    func showSubview() -> Void 
+    {
+        self.chatMessageToolbar.inputTextView.isHidden = false
+        self.chatMessageToolbar.placeLabel.isHidden = self.chatMessageToolbar.inputTextView.isHidden
+        self.chatMessageToolbar.recorderButton.isHidden = true
+    }
+    
+    func hideSubview() -> Void 
+    {
+        self.chatMessageToolbar.inputTextView.isHidden = true
+        self.chatMessageToolbar.placeLabel.isHidden = self.chatMessageToolbar.inputTextView.isHidden
+        self.chatMessageToolbar.recorderButton.isHidden = false
     }
 
 }
@@ -133,6 +149,7 @@ MTTPhotosViewDelegate
     // photosView 拖动超过一定距离后的回调
     func photosViewDragDelegate()
     {
+        self.showSubview()
         let photosVC = MTTPhotosViewController()
         let nav = UINavigationController(rootViewController: photosVC)
         self.present(nav, animated: false) {
@@ -149,6 +166,7 @@ MTTPhotosViewDelegate
     // 图片按钮点击回调
     func tappedPictureButton(button: UIButton)
     {
+        self.showSubview()
         self.videosView.isHidden                     = true
         self.chatMessageToolbar.addButton.isSelected = false
         self.addButtonIsSelected                     = false
@@ -183,6 +201,7 @@ MTTPhotosViewDelegate
     // 添加视频按钮
     func tappedAddVideoButton(button: UIButton)
     {
+        self.showSubview()
         self.photosView.isHidden                         = true
         self.chatMessageToolbar.pictureButton.isSelected = false
         self.pictureButtonIsSelected                     = false
@@ -241,8 +260,6 @@ MTTPhotosViewDelegate
 
 extension MTTChatMessageViewController
 {
-    
-    
     func messageFromOthers() -> Void
     {
         let mType         = self.messageType[String.getRandomValue(peakValue: 5)]
@@ -282,8 +299,24 @@ extension MTTChatMessageViewController
             MTTDataBaseManager.saveChatMessageModel(with: model)
             self.chatMessageView.loadDataFromLocal()
         }
-        
-        
     }
+}
+
+// MARK: - videosViewDelegate
+extension MTTChatMessageViewController:
+MTTVideosViewDelegate
+{
+    func selectMicroRecorderAction(with view: MTTVideosView) 
+    {
+        self.videosView.isHidden = true
+        self.chatMessageToolbar.frame = CGRect(x: 0, y: kScreenHeight - 50 - 44 - 5, width: kScreenWidth, height: 50)
+        self.hideSubview()
+        self.chatMessageToolbar.addButton.isSelected = false
+        self.chatMessageToolbar.addButton.setImage(UIImage.imageNamed(name: "twitter_add_normal"), for: UIControlState.normal)
+        self.addButtonIsSelected = false
+        self.sharedInstance.showTabbar()
+    }
+    
+    
 }
 

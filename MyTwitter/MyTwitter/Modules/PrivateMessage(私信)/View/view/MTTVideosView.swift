@@ -14,6 +14,9 @@ class MTTVideosView: MTTView {
     
     let reusedAddVideoId:String = "reusedAddVideoId"
     
+    var delegate:MTTVideosViewDelegate?
+    
+    
     override init(frame: CGRect)
     {
         super.init(frame: frame)
@@ -70,7 +73,7 @@ UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return 2
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
@@ -79,11 +82,18 @@ UICollectionViewDelegateFlowLayout
         switch indexPath.item {
         case 0:
             let cell                 = collectionView.dequeueReusableCell(withReuseIdentifier: reusedAddVideoId, for: indexPath) as! MTTAddVideoCell
-            cell.iconImageView.image = UIImage.imageNamed(name: "twitter_photo")
+            cell.iconImageView.image = UIImage.imageNamed(name: "twitter_micro_recorder")
             cell.lineView.isHidden   = true
+            cell.vTitleLabel.text    = "录音"
+            return cell
+            
+        case 1:
+            let cell                 = collectionView.dequeueReusableCell(withReuseIdentifier: reusedAddVideoId, for: indexPath) as! MTTAddVideoCell
+            cell.iconImageView.image = UIImage.imageNamed(name: "twitter_photo")
+            cell.lineView.isHidden   = false
             cell.vTitleLabel.text    = "拍摄照片或视频"
             return cell
-        case 1:
+        case 2:
             let cell                 = collectionView.dequeueReusableCell(withReuseIdentifier: reusedAddVideoId, for: indexPath) as! MTTAddVideoCell
             cell.iconImageView.image = UIImage.imageNamed(name: "twitter_gif")
             cell.lineView.isHidden   = false
@@ -98,10 +108,25 @@ UICollectionViewDelegateFlowLayout
     // MARK: - collectionView Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        
+        switch indexPath.item 
+        {
+        case 0:
+            handleSelectMicroRecorder()
+            break
+        case 1:
+            break
+        case 2:
+            break
+        default: break
+            
+        }
     }
     
-    
+    // MARK: - 处理cell选中相关操作 
+    func handleSelectMicroRecorder() -> Void 
+    {
+        self.delegate?.selectMicroRecorderAction(with: self)
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {

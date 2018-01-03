@@ -5,6 +5,9 @@
 //  Created by WangJunZi on 1017/11/28.
 //  Copyright © 1017年 waitWalker. All rights reserved.
 //
+/**
+    聊天底部工具栏 
+ */
 
 import UIKit
 import RxCocoa
@@ -30,6 +33,7 @@ class MTTChatMessageToolBar: UIView
     var original_y:CGFloat?
     var textInputMaxHeight:CGFloat?
     var textInputHeight:CGFloat?
+    var recorderButton:UIButton!
     
     
     
@@ -104,32 +108,37 @@ class MTTChatMessageToolBar: UIView
         sendButton.isHidden = true
         sendButton.setImage(UIImage.imageNamed(name: "twitter_send_normal"), for: UIControlState.normal)
         self.addSubview(sendButton)
+        
+        // 录音按钮 
+        recorderButton = UIButton()
+        recorderButton.setTitle("长按录音", for: UIControlState.normal)
+        recorderButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        recorderButton.layer.borderColor = UIColor.orange.cgColor
+        recorderButton.layer.borderWidth = 1.0
+        self.addSubview(recorderButton)
     }
     
     
     func layoutSubview()
     {
-        lineView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 1)
+        lineView.frame            = CGRect(x: 0, y: 0, width: kScreenWidth, height: 1)
+        addButton.frame           = CGRect(x: 10, y: 13, width: 24, height: 24)
+        placeLabel.frame          = CGRect(x: 48, y: 5, width: 180, height: 40)
+        inputTextView.frame       = CGRect(x: 44, y: 5, width: kScreenWidth - 44 - 78, height: 40)
+        pictureButton.frame       = CGRect(x: inputTextView.frame.maxX + 10, y: 13, width: 24, height: 24)
+        expressionButton.frame    = CGRect(x: pictureButton.frame.maxX + 10, y: 13, width: 24, height: 24)
+        sendButton.frame          = CGRect(x: kScreenWidth - 24 - 10, y: 13, width: 24, height: 24)
+        recorderButton.frame      = CGRect(x: 44, y: 5, width: kScreenWidth - 44 - 78, height: 40)
         
-        addButton.frame = CGRect(x: 10, y: 13, width: 24, height: 24)
-        
-        placeLabel.frame = CGRect(x: 48, y: 5, width: 180, height: 40)
-        
-        inputTextView.frame = CGRect(x: 44, y: 5, width: kScreenWidth - 44 - 78, height: 40)
-        
-        pictureButton.frame = CGRect(x: inputTextView.frame.maxX + 10, y: 13, width: 24, height: 24)
-        
-        expressionButton.frame = CGRect(x: pictureButton.frame.maxX + 10, y: 13, width: 24, height: 24)
-        
-        sendButton.frame = CGRect(x: kScreenWidth - 24 - 10, y: 13, width: 24, height: 24)
-        
-        sendButton.isHidden = true
-        
-        pictureButton.isHidden = false
-        
+        sendButton.isHidden       = true
+
+        pictureButton.isHidden    = false
+
         expressionButton.isHidden = false
+
+        addButton.isHidden        = false
         
-        addButton.isHidden = false
+        recorderButton.isHidden   = true
     }
     
     func setupNotification() -> Void
@@ -253,10 +262,10 @@ extension MTTChatMessageToolBar:UITextViewDelegate
             UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: 7)!)
             
             self.inputTextView.height = 5 + textInputMaxHeight!
-            self.y = kScreenHeight - keyboardHeight! - self.inputTextView.height - 10
-            self.height = self.inputTextView.height + 10
-            self.sendButton.y = self.height - 24 - 13
-            self.addButton.y = self.sendButton.y
+            self.y                    = kScreenHeight - keyboardHeight! - self.inputTextView.height - 10
+            self.height               = self.inputTextView.height + 10
+            self.sendButton.y         = self.height - 24 - 13
+            self.addButton.y          = self.sendButton.y
             UIView.commitAnimations()
         } else
         {
@@ -265,11 +274,11 @@ extension MTTChatMessageToolBar:UITextViewDelegate
             UIView.setAnimationDuration(0.3)
             UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: 7)!)
             self.inputTextView.height = textInputHeight!
-            
-            self.y = kScreenHeight - keyboardHeight! - self.inputTextView.height - 10
-            self.height = self.inputTextView.height + 10
-            self.sendButton.y = self.height - 24 - 13
-            self.addButton.y = self.sendButton.y
+
+            self.y                    = kScreenHeight - keyboardHeight! - self.inputTextView.height - 10
+            self.height               = self.inputTextView.height + 10
+            self.sendButton.y         = self.height - 24 - 13
+            self.addButton.y          = self.sendButton.y
             UIView.commitAnimations()
         }
         lineView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 1)

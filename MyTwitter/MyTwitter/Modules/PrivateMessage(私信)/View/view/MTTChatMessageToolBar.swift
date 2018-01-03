@@ -12,6 +12,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import AVFoundation
 
 class MTTChatMessageToolBar: UIView
 {
@@ -112,8 +113,13 @@ class MTTChatMessageToolBar: UIView
         // 录音按钮 
         recorderButton = UIButton()
         recorderButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        recorderButton.setTitleColor(kMainBlueColor(), for: UIControlState.normal)
+        recorderButton.setTitleColor(kMainBlueColor(), for: UIControlState.selected)
         recorderButton.setTitle("长按录音", for: UIControlState.normal)
+        recorderButton.setTitle("松手结束", for: UIControlState.selected)
         recorderButton.setTitleColor(kMainGrayColor(), for: UIControlState.normal)
+        recorderButton.setBackgroundImage(UIImage.imageNamed(name: "twitter_recorder_background_selected").resizableImage(withCapInsets: UIEdgeInsetsMake(10, 10, 10, 10)), for: UIControlState.selected)
+        recorderButton.setBackgroundImage(UIImage.imageNamed(name: "twitter_recorder_background_normal").resizableImage(withCapInsets: UIEdgeInsetsMake(10, 10, 10, 10)), for: UIControlState.normal)
         recorderButton.layer.borderColor = kMainBlueColor().cgColor
         recorderButton.layer.borderWidth = 1.0
         recorderButton.cornerRadius = 5
@@ -126,26 +132,43 @@ class MTTChatMessageToolBar: UIView
         self.addSubview(recorderButton)
     }
     
+    // 开始录音
     @objc func recorderTouchDownAction(with button:UIButton) -> Void
     {
+        button.setTitle("松手结束", for: UIControlState.normal)
+        AVAudioSession.sharedInstance().requestRecordPermission { isPerssion in
+            
+            if isPerssion
+            {
+                
+            } else
+            {
+                shardInstance.showAlter(with: "还没有授权麦克风,是否现在授权?")
+            }
+            
+        }
         
     }
     
+    // 取消录音
     @objc func recorderTouchUpOutsideAction(with button:UIButton) -> Void
     {
         
     }
     
+    // 录音成功 发送录音 按钮恢复状态
     @objc func recorderTouchUpInsideAction(with button:UIButton) -> Void
     {
         
     }
     
+    // 移除范围 准备取消录音
     @objc func recorderTouchDragExitAction(with button:UIButton) -> Void
     {
         
     }
     
+    // 移入范围 准备继续录音
     @objc func recorderTouchDragEnterAction(with button:UIButton) -> Void
     {
         

@@ -118,7 +118,37 @@ class MTTChatMessageToolBar: UIView
         recorderButton.layer.borderWidth = 1.0
         recorderButton.cornerRadius = 5
         recorderButton.clipsToBounds = true
+        recorderButton.addTarget(self, action: #selector(recorderTouchDownAction(with:)), for: UIControlEvents.touchDown)
+        recorderButton.addTarget(self, action: #selector(recorderTouchUpOutsideAction(with:)), for: UIControlEvents.touchDown)
+        recorderButton.addTarget(self, action: #selector(recorderTouchUpInsideAction(with:)), for: UIControlEvents.touchDown)
+        recorderButton.addTarget(self, action: #selector(recorderTouchDragExitAction(with:)), for: UIControlEvents.touchDown)
+        recorderButton.addTarget(self, action: #selector(recorderTouchDragEnterAction(with:)), for: UIControlEvents.touchDown)
         self.addSubview(recorderButton)
+    }
+    
+    @objc func recorderTouchDownAction(with button:UIButton) -> Void
+    {
+        
+    }
+    
+    @objc func recorderTouchUpOutsideAction(with button:UIButton) -> Void
+    {
+        
+    }
+    
+    @objc func recorderTouchUpInsideAction(with button:UIButton) -> Void
+    {
+        
+    }
+    
+    @objc func recorderTouchDragExitAction(with button:UIButton) -> Void
+    {
+        
+    }
+    
+    @objc func recorderTouchDragEnterAction(with button:UIButton) -> Void
+    {
+        
     }
     
     

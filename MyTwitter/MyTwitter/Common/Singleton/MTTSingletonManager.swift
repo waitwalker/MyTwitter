@@ -31,8 +31,8 @@ class MTTSingletonManager: NSObject
     var recordCancelImageView:UIImageView!
     var recordShotTimeImageView:UIImageView!
     var recordHintTextLabel:UILabel!
+    dynamic var recorderButtonEnabled:Bool = true
     
-    var count:Int! = 0
     
     
     
@@ -150,16 +150,14 @@ class MTTSingletonManager: NSObject
     
     func cancelRecorder() -> Void 
     {
-        recorder.stop()
-        recorderTimer.invalidate()
-        recorderTimer = nil
-        recorderContainerView.removeFromSuperview()
+        stopRecorder()
     }
     
     func finishRecorder() -> Void 
     {
         if recorder.currentTime < 1.0
         {
+            recorderButtonEnabled = false
             showShotTimeView()
             return
         }
@@ -186,10 +184,21 @@ class MTTSingletonManager: NSObject
     
     func stopRecorder() -> Void 
     {
-        recorderTimer.invalidate()
-        recorderTimer = nil
+        recorderButtonEnabled = true
+        if recorderTimer != nil
+        {
+            recorderTimer.invalidate()
+            recorderTimer = nil
+        }
+        
+        if recorderContainerView != nil
+        {
+            recorderContainerView.removeFromSuperview()
+            recorderContainerView = nil
+        }
+        
         recorder.stop()
-        recorderContainerView.removeFromSuperview()
+        
     }
     
     private func setupRecorder() -> Void 

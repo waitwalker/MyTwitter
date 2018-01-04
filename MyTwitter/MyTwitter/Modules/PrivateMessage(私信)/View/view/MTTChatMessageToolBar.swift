@@ -130,6 +130,8 @@ class MTTChatMessageToolBar: UIView
         recorderButton.addTarget(self, action: #selector(recorderTouchDragExitAction(with:)), for: UIControlEvents.touchDragExit)
         recorderButton.addTarget(self, action: #selector(recorderTouchDragEnterAction(with:)), for: UIControlEvents.touchDragEnter)
         self.addSubview(recorderButton)
+        
+        shardInstance.addObserver(self, forKeyPath: "recorderButtonEnabled", options: NSKeyValueObservingOptions.new, context: nil)
     }
     
     // 开始录音
@@ -287,6 +289,22 @@ class MTTChatMessageToolBar: UIView
                 }
             }).disposed(by: disposeBag)
         
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
+    {
+        print("keyPath:\(keyPath)")
+        
+        if keyPath == "recorderButtonEnabled"
+        {
+            recorderButton.isEnabled = (change![NSKeyValueChangeKey.newKey] as! Bool)
+            print(change![NSKeyValueChangeKey.newKey] as Any) 
+        }
+        
+    }
+    
+    deinit {
+        shardInstance.removeObserver(self, forKeyPath: "recorderButtonEnabled")
     }
     
     required init?(coder aDecoder: NSCoder) {

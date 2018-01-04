@@ -11,6 +11,7 @@ import Foundation
 import Photos
 import AssetsLibrary
 import AVFoundation
+import MBProgressHUD
 
 class MTTSingletonManager: NSObject 
 {
@@ -20,7 +21,24 @@ class MTTSingletonManager: NSObject
     var password:String      = ""
     var tappedImageIndex:Int = 0
     
-    var audioRecorder:AVAudioRecorder!
+    // 录音相关 
+    var recorder:AVAudioRecorder!
+    var currentRecorderPath:String!
+    var recorderTimer:Timer!
+    var recorderHUD:MBProgressHUD!
+    var recorderContainerView:UIView!
+    var recordingAnimationImageView:UIImageView!
+    var recordingMicroImageView:UIImageView!
+    var recordCancelImageView:UIImageView!
+    var recordShotTimeImageView:UIImageView!
+    var recordHintTextLabel:UILabel!
+    
+    var count:Int! = 0
+    
+    
+    
+    
+    
     
 
     static let sharedInstance = MTTSingletonManager()
@@ -119,45 +137,183 @@ class MTTSingletonManager: NSObject
         }
     }
     
+    
+    
+    
+    
+    /***************************************/
     // MARK: - recorder 相关 
-    func startRecorder(with path:String,view:UIView) -> Void 
+    func startRecorder() -> Void 
     {
-        
+        setupSubview()
+        setupRecorder()
     }
     
-    private func startRecorder(with path:String) -> Void 
+    private func setupRecorder() -> Void 
     {
-        if self.audioRecorder == nil 
+        //初始化录音器
+        let session:AVAudioSession = AVAudioSession.sharedInstance()
+        
+        //设置录音类型
+        try! session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        
+        //设置支持后台
+        try! session.setActive(true)
+        
+        //组合录音文件路径
+        self.currentRecorderPath = getDocumentPath() + String(format: "/voice-%.0f.aac", Date().timeIntervalSince1970)
+        
+        //初始化字典并添加设置参数
+        let recorderSeetingsDic = setupSettings()
+        
+        //初始化录音器
+        recorder = try! AVAudioRecorder(url: URL(string: self.currentRecorderPath)!, settings: recorderSeetingsDic)
+        
+        if recorder != nil 
         {
-            // 设置recorder会话类型 
-            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+            //开启仪表计数功能
+            recorder!.isMeteringEnabled = true
+            //准备录音
+            recorder!.prepareToRecord()
+            //开始录音
+            recorder!.record()
             
-            self.audioRecorder = try! AVAudioRecorder(url: URL(string: path)!, settings: setupSettings())
-            //self.audioRecorder.delegate = self
-            //self.audioRecorder.
+            recorder.delegate = self
+            
+            //启动定时器，定时更新录音音量
+            recorderTimer = Timer.scheduledTimer(timeInterval: 0.001, 
+                                                 target: self,
+                                                 selector: #selector(recorderTimerAction),
+                                                 userInfo: nil, 
+                                                 repeats: true)
         }
+    }
+    
+    @objc func recorderTimerAction() -> Void 
+    {
+        recorder!.updateMeters() // 刷新音量数据
+        var averageV:Float = recorder!.averagePower(forChannel: 0) //获取音量的平均值
+        print("声波:\(averageV)")
+        averageV = averageV + 75.0
+        
+        if averageV > 0.0 && averageV <= 10.0 
+        {
+            recordingAnimationImageView.image = UIImage.imageNamed(name: "twitter_record_vol_1")
+        } else if averageV > 10.0 && averageV <= 20.0
+        {
+            recordingAnimationImageView.image = UIImage.imageNamed(name: "twitter_record_vol_2")
+        } else if averageV > 20.0 && averageV <= 30.0
+        {
+            recordingAnimationImageView.image = UIImage.imageNamed(name: "twitter_record_vol_3")
+        } else if averageV > 30.0 && averageV <= 40.0
+        {
+            recordingAnimationImageView.image = UIImage.imageNamed(name: "twitter_record_vol_4")
+        } else if averageV > 40.0 && averageV <= 50.0
+        {
+            recordingAnimationImageView.image = UIImage.imageNamed(name: "twitter_record_vol_5")
+        } else if averageV > 50.0 && averageV <= 60.0
+        {
+            recordingAnimationImageView.image = UIImage.imageNamed(name: "twitter_record_vol_6")
+        } else if averageV > 60.0 && averageV <= 70.0
+        {
+            recordingAnimationImageView.image = UIImage.imageNamed(name: "twitter_record_vol_7")
+        }  else
+        {
+            recordingAnimationImageView.image = UIImage.imageNamed(name: "twitter_record_vol_7")
+        }
+        
     }
     
     private func setupSettings() -> [String:Any] 
     {
-        var setting:[String:Any] = [:]
-        
-        // 设置编码格式
-        setting.updateValue(kAudioFormatLinearPCM, forKey: AVFormatIDKey)
-        
-        // 设置采样率 
-        setting.updateValue(11025.0, forKey: AVSampleRateKey)
-        
-        // 设置通道数 
-        setting.updateValue(1, forKey: AVNumberOfChannelsKey)
-        
-        // 设置音频质量,采样质量 
-        setting.updateValue(AVAudioQuality.high, forKey: AVEncoderAudioQualityKey)
-        
-        // 设置每个采样点位数,分为8,16,24,32
-        setting.updateValue(8, forKey: AVLinearPCMBitDepthKey)
+        let setting = 
+            [
+                AVFormatIDKey: NSNumber(value: kAudioFormatMPEG4AAC),
+                AVNumberOfChannelsKey: 2, //录音的声道数，立体声为双声道
+                AVEncoderAudioQualityKey : AVAudioQuality.max.rawValue,
+                AVEncoderBitRateKey : 320000,
+                AVSampleRateKey : 44100.0 //录音器每秒采集的录音样本数
+            ] as [String : Any]
         
         return setting
+        
+    }
+    
+    // 录音缓存路径 
+    private func getRecorderFilePath() -> String 
+    {
+        let filePath = getDocumentPath().appendingFormat("&@", "/recorderFile")
+        return filePath
+    }
+    
+    
+    func setupSubview() -> Void 
+    {
+        if recorderContainerView == nil 
+        {
+            recorderContainerView = UIView(frame: CGRect(x: (kScreenWidth - 160) / 2, y: (kScreenHeight - 140) / 2, width: 160, height: 140))
+            recorderContainerView.layer.cornerRadius = 15
+            recorderContainerView.clipsToBounds = true
+            recorderContainerView.backgroundColor = UIColor.orange.withAlphaComponent(0.4)
+            self.getKeyWindow().addSubview(recorderContainerView)
+            
+            recordingMicroImageView = UIImageView(frame: CGRect(x: 40, y: 25, width: 37, height: 70))
+            recordingMicroImageView.image = UIImage.imageNamed(name: "twitter_record_micro")
+            recorderContainerView.addSubview(recordingMicroImageView)
+            
+            recordingAnimationImageView = UIImageView(frame: CGRect(x: recordingMicroImageView.frame.maxX + 16, y: 30, width: 29, height: 64))
+            recordingAnimationImageView.image = UIImage.imageNamed(name: "twitter_record_vol_5")
+            recorderContainerView.addSubview(recordingAnimationImageView)
+            
+            recordHintTextLabel = UILabel()
+            recordHintTextLabel.frame = CGRect(x: 0, y: recordingAnimationImageView.frame.maxY + 10, width: recorderContainerView.frame.size.width, height: 20)
+            recordHintTextLabel.backgroundColor = UIColor.clear
+            recordHintTextLabel.textColor = UIColor.white
+            recordHintTextLabel.textAlignment = NSTextAlignment.center
+            recordHintTextLabel.font = UIFont.systemFont(ofSize: 14.0)
+            recordHintTextLabel.text = "手指上滑,取消发送"
+            recorderContainerView.addSubview(recordHintTextLabel)
+            
+            recordCancelImageView = UIImageView(frame: CGRect(x: 45, y: 20, width: 60, height: 75))
+            recordCancelImageView.image = UIImage.imageNamed(name: "twitter_record_cancel")
+            recorderContainerView.addSubview(recordCancelImageView)
+            
+            recordShotTimeImageView = UIImageView(frame: CGRect(x: 70, y: 20, width: 20, height: 75))
+            recordShotTimeImageView.image = UIImage.imageNamed(name: "twitter_record_shot_time")
+            recorderContainerView.addSubview(recordShotTimeImageView)
+        }
+        
+        recordingAnimationImageView.isHidden = false
+        recordingMicroImageView.isHidden = false
+        recordCancelImageView.isHidden = true
+        recordShotTimeImageView.isHidden = true
+    }
+    
+    /***********************************************************/
+    
+    
+    
+    /**工具相关**/
+    func getDocumentPath() -> String 
+    {
+        let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
+        return path!
+    }
+}
+
+// MARK: - recorderDelegate
+extension MTTSingletonManager:
+AVAudioRecorderDelegate
+{
+    
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) 
+    {
+        
+    }
+    
+    
+    func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) 
+    {
         
     }
 }

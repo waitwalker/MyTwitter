@@ -18,6 +18,7 @@ target 'MyTwitter' do
   pod 'RxGesture', '~> 1.2.1'
   pod 'DateTools', '~> 2.0.0'
   pod 'RealmSwift', '~> 3.0.1'
+  pod 'MBProgressHUD', '~> 1.0.0'
 
 
   target 'MyTwitterTests' do

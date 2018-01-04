@@ -140,7 +140,7 @@ class MTTChatMessageToolBar: UIView
             
             if isPerssion
             {
-                
+                shardInstance.startRecorder()
             } else
             {
                 shardInstance.showAlter(with: "还没有授权麦克风,是否现在授权?")

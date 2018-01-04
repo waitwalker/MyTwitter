@@ -20,7 +20,7 @@ class MTTChatMessageModel: Object
     @objc dynamic var cellHeight             = 0.0
     @objc dynamic var messageContent         = ""
     @objc dynamic var messagePicture         = ""
-    @objc dynamic var messageVoice           = ""
+    @objc dynamic var messageVoiceName       = ""
 
     @objc dynamic var contentTextHeight      = 0.0
     @objc dynamic var contentPictureHeight   = 0.0

@@ -24,6 +24,7 @@ class MTTSingletonManager: NSObject
     // 录音相关 
     var recorder:AVAudioRecorder!
     var currentRecorderPath:String!
+    var currentRecorderFileName:String!
     var recorderTimer:Timer!
     var recorderContainerView:UIView!
     var recordingAnimationImageView:UIImageView!
@@ -150,18 +151,25 @@ class MTTSingletonManager: NSObject
     
     func cancelRecorder() -> Void 
     {
-        stopRecorder()
+        if recorder != nil
+        {
+            stopRecorder()
+        }
     }
     
     func finishRecorder() -> Void 
     {
-        if recorder.currentTime < 1.0
+        if recorder != nil
         {
-            recorderButtonEnabled = false
-            showShotTimeView()
-            return
+            if recorder.currentTime < 1.0
+            {
+                recorderButtonEnabled = false
+                showShotTimeView()
+                return
+            }
+            stopRecorder()
         }
-        stopRecorder()
+        
     }
     
     func readyToCancelRecorder() -> Void 
@@ -212,14 +220,17 @@ class MTTSingletonManager: NSObject
         //设置支持后台
         try! session.setActive(true)
         
+        // 文件名称
+        currentRecorderFileName = String(format: "/voice-%.0f.aac", Date().timeIntervalSince1970)
+        
         //组合录音文件路径
-        self.currentRecorderPath = getDocumentPath() + String(format: "/voice-%.0f.aac", Date().timeIntervalSince1970)
+        currentRecorderPath = getRecorderFilePath() + currentRecorderFileName
         
         //初始化字典并添加设置参数
         let recorderSeetingsDic = setupSettings()
         
         //初始化录音器
-        recorder = try! AVAudioRecorder(url: URL(string: self.currentRecorderPath)!, settings: recorderSeetingsDic)
+        recorder = try! AVAudioRecorder(url: URL(string: currentRecorderPath)!, settings: recorderSeetingsDic)
         
         if recorder != nil 
         {
@@ -233,7 +244,7 @@ class MTTSingletonManager: NSObject
             recorder.delegate = self
             
             //启动定时器，定时更新录音音量
-            recorderTimer = Timer.scheduledTimer(timeInterval: 0.001, 
+            recorderTimer = Timer.scheduledTimer(timeInterval: 0.01, 
                                                  target: self,
                                                  selector: #selector(recorderTimerAction),
                                                  userInfo: nil, 
@@ -292,10 +303,22 @@ class MTTSingletonManager: NSObject
     }
     
     // 录音缓存路径 
-    private func getRecorderFilePath() -> String 
+    func getRecorderFilePath() -> String 
     {
-        let filePath = getDocumentPath().appendingFormat("&@", "/recorderFile")
-        return filePath
+        let filePath = getDocumentPath() + "/recorderFile"
+        if FileManager.default.fileExists(atPath: filePath)
+        {
+            return filePath
+        }
+        
+        do {
+            try FileManager.default.createDirectory(atPath: filePath, withIntermediateDirectories: true, attributes: nil)
+            return filePath
+        } catch
+        {
+            return getDocumentPath()
+        }
+        
     }
     
     
@@ -306,7 +329,7 @@ class MTTSingletonManager: NSObject
             recorderContainerView = UIView(frame: CGRect(x: (kScreenWidth - 160) / 2, y: (kScreenHeight - 140) / 2, width: 160, height: 140))
             recorderContainerView.layer.cornerRadius = 15
             recorderContainerView.clipsToBounds = true
-            recorderContainerView.backgroundColor = UIColor.orange.withAlphaComponent(0.4)
+            recorderContainerView.backgroundColor = kMainBlueColor().withAlphaComponent(0.5)
             self.getKeyWindow().addSubview(recorderContainerView)
             
             recordingMicroImageView = UIImageView(frame: CGRect(x: 40, y: 25, width: 37, height: 70))
@@ -341,7 +364,7 @@ class MTTSingletonManager: NSObject
         recordShotTimeImageView.isHidden     = true
     }
     
-    private func showShotTimeView() -> Void 
+    func showShotTimeView() -> Void 
     {
         recordingAnimationImageView.isHidden = true
         recordingMicroImageView.isHidden     = true
@@ -353,8 +376,6 @@ class MTTSingletonManager: NSObject
             self.stopRecorder()
         }
     }
-    
-    
     
     /***********************************************************/
     
@@ -375,7 +396,7 @@ AVAudioRecorderDelegate
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) 
     {
-        
+        print("finish recorder \(self)")
     }
     
     

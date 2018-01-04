@@ -121,9 +121,7 @@ class MTTChatMessageViewController: MTTViewController {
 }
 
 extension MTTChatMessageViewController:
-MTTChatMessageViewDelegate,
-MTTChatMessageToolBarDelegate,
-MTTPhotosViewDelegate
+MTTChatMessageToolBarDelegate
 {
     // 发送按钮的点击回调
     func tappedSendButton(text: String)
@@ -137,30 +135,13 @@ MTTPhotosViewDelegate
         model.contentTextHeight                    = Double(model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220) > 30 ? Float(model.messageContent.heightWithFont(fontSize: 18, fixedWidth: 220.0)) : Float(40.0))
         model.contentBackImageHeight               = 5 + model.contentTextHeight + 5.0
         model.cellHeight                           = 10 + 20 + 10.0 + model.contentBackImageHeight
-
+        
         MTTDataBaseManager.saveChatMessageModel(with: model)
         self.chatMessageView.loadDataFromLocal()
         self.chatMessageToolbar.inputTextView.text = ""
         self.chatMessageToolbar.inputTextView.resignFirstResponder()
         self.chatMessageToolbar.layoutSubview()
         self.messageFromOthers()
-    }
-    
-    // photosView 拖动超过一定距离后的回调
-    func photosViewDragDelegate()
-    {
-        self.showSubview()
-        let photosVC = MTTPhotosViewController()
-        let nav = UINavigationController(rootViewController: photosVC)
-        self.present(nav, animated: false) {
-            self.chatMessageToolbar.y = kScreenHeight - 50 - 44 - 5
-            self.photosView.isHidden = true
-            self.photosView.y = kScreenHeight - 150
-            
-            self.chatMessageToolbar.pictureButton.isSelected = false
-            self.chatMessageToolbar.pictureButton.setImage(UIImage.imageNamed(name: "twitter_pictures_normal"), for: UIControlState.normal)
-            self.sharedInstance.showTabbar()
-        }
     }
     
     // 图片按钮点击回调
@@ -233,6 +214,48 @@ MTTPhotosViewDelegate
         }
     }
     
+    // 录音结束
+    func finishRecordVoice()
+    {
+        let model                                  = MTTChatMessageModel()
+        model.messageFrom                          = MTTChatMessageFromType.My.rawValue
+        model.messageType                          = MTTChatMessageType.text.rawValue
+        model.chatDate                             = Date()
+        model.chatDateStamp                        = Int(Date().timeIntervalSince1970)
+        model.messageVoiceName                     = shardInstance.currentRecorderFileName
+        model.contentVoiceHeight                   = 40
+        model.contentBackImageHeight = 5 + model.contentVoiceHeight + 5
+        model.cellHeight = 10 + 20 + 10 + model.contentBackImageHeight
+        
+        MTTDataBaseManager.saveChatMessageModel(with: model)
+        self.chatMessageView.loadDataFromLocal()
+        self.chatMessageToolbar.inputTextView.text = ""
+        self.chatMessageToolbar.inputTextView.resignFirstResponder()
+        self.chatMessageToolbar.layoutSubview()
+        self.messageFromOthers()
+    }
+    
+}
+extension MTTChatMessageViewController:
+MTTChatMessageViewDelegate,
+MTTPhotosViewDelegate
+{
+    // photosView 拖动超过一定距离后的回调
+    func photosViewDragDelegate()
+    {
+        self.showSubview()
+        let photosVC = MTTPhotosViewController()
+        let nav = UINavigationController(rootViewController: photosVC)
+        self.present(nav, animated: false) {
+            self.chatMessageToolbar.y = kScreenHeight - 50 - 44 - 5
+            self.photosView.isHidden = true
+            self.photosView.y = kScreenHeight - 150
+            
+            self.chatMessageToolbar.pictureButton.isSelected = false
+            self.chatMessageToolbar.pictureButton.setImage(UIImage.imageNamed(name: "twitter_pictures_normal"), for: UIControlState.normal)
+            self.sharedInstance.showTabbar()
+        }
+    }
     
     
     // 聊天页面滚动回调

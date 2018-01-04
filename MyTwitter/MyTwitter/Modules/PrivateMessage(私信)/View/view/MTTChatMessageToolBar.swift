@@ -160,9 +160,22 @@ class MTTChatMessageToolBar: UIView
     // 录音成功 发送录音 按钮恢复状态
     @objc func recorderTouchUpInsideAction(with button:UIButton) -> Void
     {
-        shardInstance.finishRecorder()
+        if shardInstance.recorder != nil
+        {
+            if shardInstance.recorder.currentTime < 1.0
+            {
+                shardInstance.recorderButtonEnabled = false
+                shardInstance.showShotTimeView()
+                return
+            }
+            shardInstance.stopRecorder()
+            
+            // 发送录音
+            self.delegate?.finishRecordVoice()
+            
+            recorderButton.isHidden   = false
+        }
         
-        // 发送录音 
     }
     
     // 移除范围 准备取消录音
@@ -291,10 +304,9 @@ class MTTChatMessageToolBar: UIView
         
     }
     
+    // MARK: - KVO 键值观察 监听属性
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
     {
-        print("keyPath:\(keyPath)")
-        
         if keyPath == "recorderButtonEnabled"
         {
             recorderButton.isEnabled = (change![NSKeyValueChangeKey.newKey] as! Bool)
@@ -303,7 +315,8 @@ class MTTChatMessageToolBar: UIView
         
     }
     
-    deinit {
+    deinit
+    {
         shardInstance.removeObserver(self, forKeyPath: "recorderButtonEnabled")
     }
     

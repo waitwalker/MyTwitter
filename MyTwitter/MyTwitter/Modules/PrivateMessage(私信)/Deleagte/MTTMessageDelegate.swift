@@ -30,6 +30,8 @@ protocol MTTChatMessageToolBarDelegate
     func tappedAddVideoButton(button:UIButton) -> Void
     
     func tappedSendButton(text:String) -> Void
+    
+    func finishRecordVoice() -> Void 
 }
 
 // MARK: - 聊天相片相关 delegate 

@@ -25,7 +25,6 @@ class MTTSingletonManager: NSObject
     var recorder:AVAudioRecorder!
     var currentRecorderPath:String!
     var recorderTimer:Timer!
-    var recorderHUD:MBProgressHUD!
     var recorderContainerView:UIView!
     var recordingAnimationImageView:UIImageView!
     var recordingMicroImageView:UIImageView!
@@ -147,6 +146,50 @@ class MTTSingletonManager: NSObject
     {
         setupSubview()
         setupRecorder()
+    }
+    
+    func cancelRecorder() -> Void 
+    {
+        recorder.stop()
+        recorderTimer.invalidate()
+        recorderTimer = nil
+        recorderContainerView.removeFromSuperview()
+    }
+    
+    func finishRecorder() -> Void 
+    {
+        if recorder.currentTime < 1.0
+        {
+            showShotTimeView()
+            return
+        }
+        stopRecorder()
+    }
+    
+    func readyToCancelRecorder() -> Void 
+    {
+        recordingAnimationImageView.isHidden = true
+        recordingMicroImageView.isHidden     = true
+        recordCancelImageView.isHidden       = false
+        recordShotTimeImageView.isHidden     = true
+        recordHintTextLabel.text = "手指松开，取消发送"
+    }
+    
+    func readyToResumeRecorder() -> Void 
+    {
+        recordingAnimationImageView.isHidden = false
+        recordingMicroImageView.isHidden     = false
+        recordCancelImageView.isHidden       = true
+        recordShotTimeImageView.isHidden     = true
+        recordHintTextLabel.text = "手指松开，取消发送"
+    }
+    
+    func stopRecorder() -> Void 
+    {
+        recorderTimer.invalidate()
+        recorderTimer = nil
+        recorder.stop()
+        recorderContainerView.removeFromSuperview()
     }
     
     private func setupRecorder() -> Void 
@@ -288,6 +331,21 @@ class MTTSingletonManager: NSObject
         recordCancelImageView.isHidden       = true
         recordShotTimeImageView.isHidden     = true
     }
+    
+    private func showShotTimeView() -> Void 
+    {
+        recordingAnimationImageView.isHidden = true
+        recordingMicroImageView.isHidden     = true
+        recordCancelImageView.isHidden       = true
+        recordShotTimeImageView.isHidden     = false
+        recordHintTextLabel.text             = "说话时间太短"
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) { 
+            self.stopRecorder()
+        }
+    }
+    
+    
     
     /***********************************************************/
     

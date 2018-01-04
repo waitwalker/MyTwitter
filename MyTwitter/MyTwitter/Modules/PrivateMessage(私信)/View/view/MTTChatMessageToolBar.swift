@@ -125,10 +125,10 @@ class MTTChatMessageToolBar: UIView
         recorderButton.cornerRadius = 5
         recorderButton.clipsToBounds = true
         recorderButton.addTarget(self, action: #selector(recorderTouchDownAction(with:)), for: UIControlEvents.touchDown)
-        recorderButton.addTarget(self, action: #selector(recorderTouchUpOutsideAction(with:)), for: UIControlEvents.touchDown)
-        recorderButton.addTarget(self, action: #selector(recorderTouchUpInsideAction(with:)), for: UIControlEvents.touchDown)
-        recorderButton.addTarget(self, action: #selector(recorderTouchDragExitAction(with:)), for: UIControlEvents.touchDown)
-        recorderButton.addTarget(self, action: #selector(recorderTouchDragEnterAction(with:)), for: UIControlEvents.touchDown)
+        recorderButton.addTarget(self, action: #selector(recorderTouchUpOutsideAction(with:)), for: UIControlEvents.touchUpOutside)
+        recorderButton.addTarget(self, action: #selector(recorderTouchUpInsideAction(with:)), for: UIControlEvents.touchUpInside)
+        recorderButton.addTarget(self, action: #selector(recorderTouchDragExitAction(with:)), for: UIControlEvents.touchDragExit)
+        recorderButton.addTarget(self, action: #selector(recorderTouchDragEnterAction(with:)), for: UIControlEvents.touchDragEnter)
         self.addSubview(recorderButton)
     }
     
@@ -145,7 +145,6 @@ class MTTChatMessageToolBar: UIView
             {
                 shardInstance.showAlter(with: "还没有授权麦克风,是否现在授权?")
             }
-            
         }
         
     }
@@ -153,25 +152,27 @@ class MTTChatMessageToolBar: UIView
     // 取消录音
     @objc func recorderTouchUpOutsideAction(with button:UIButton) -> Void
     {
-        
+        shardInstance.cancelRecorder()
     }
     
     // 录音成功 发送录音 按钮恢复状态
     @objc func recorderTouchUpInsideAction(with button:UIButton) -> Void
     {
+        shardInstance.finishRecorder()
         
+        // 发送录音 
     }
     
     // 移除范围 准备取消录音
     @objc func recorderTouchDragExitAction(with button:UIButton) -> Void
     {
-        
+        shardInstance.readyToCancelRecorder()
     }
     
     // 移入范围 准备继续录音
     @objc func recorderTouchDragEnterAction(with button:UIButton) -> Void
     {
-        
+        shardInstance.readyToResumeRecorder()
     }
     
     

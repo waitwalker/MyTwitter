@@ -284,9 +284,9 @@ class MTTSingletonManager: NSObject
         }
         
         recordingAnimationImageView.isHidden = false
-        recordingMicroImageView.isHidden = false
-        recordCancelImageView.isHidden = true
-        recordShotTimeImageView.isHidden = true
+        recordingMicroImageView.isHidden     = false
+        recordCancelImageView.isHidden       = true
+        recordShotTimeImageView.isHidden     = true
     }
     
     /***********************************************************/

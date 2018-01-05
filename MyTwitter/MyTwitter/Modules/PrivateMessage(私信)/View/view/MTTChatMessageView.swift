@@ -215,11 +215,18 @@ UITableViewDataSource
                     {
                         model.contentVoiceIsPlaying = 0
                     }
-                    try! realm.write {
-                        realm.add(model, update: true)
-                    }
+                    try! realm.commitWrite()
                 } else
                 {
+                    if shardInstance.player != nil
+                    {
+                        if shardInstance.player.isPlaying
+                        {
+                            shardInstance.player.stop()
+                            shardInstance.freePlayer()
+                        }
+                    }
+                    
                     self.resetData()
                     
                     self.currentSelectIndexPath = indexPath
@@ -227,9 +234,6 @@ UITableViewDataSource
                 }
                 self.chatMessageTableView.reloadData()
                 
-                print("model.contentVoiceIsPlaying:\(model.contentVoiceIsPlaying)")
-                
-                print("model.contentVoiceIsPlaying:\(model.contentVoiceIsPlaying)")
                 
                 break
                 

@@ -233,7 +233,7 @@ MTTChatMessageToolBarDelegate
         self.chatMessageToolbar.inputTextView.text = ""
         self.chatMessageToolbar.inputTextView.resignFirstResponder()
         self.chatMessageToolbar.layoutSubview()
-        self.messageFromOthers()
+        //self.messageFromOthers()
     }
     
 }

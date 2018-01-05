@@ -138,7 +138,7 @@ class MTTChatMessageCell: MTTTableViewCell
             contentTextLabel.text     = model.messageContent
             // 聊天文本
             contentTextLabel.frame    = CGRect(x: 15, y: 5, width: kBaseWidth - 15, height: CGFloat(model.contentTextHeight))
-
+            contentVoiceTotalTimeLabel.isHidden = true
             contentTextLabel.isHidden = false
             contentImageView.isHidden = true
             contentVoiceImageView.isHidden = true
@@ -148,6 +148,7 @@ class MTTChatMessageCell: MTTTableViewCell
             // 聊天图片
             contentImageView.frame         = CGRect(x: 15, y: 5, width: kBaseWidth - 15, height: CGFloat(model.contentPictureHeight))
             contentImageView.image         = UIImage(data: model.pictureData)
+            contentVoiceTotalTimeLabel.isHidden = true
             contentTextLabel.isHidden      = true
             contentImageView.isHidden      = false
             contentVoiceImageView.isHidden = true
@@ -163,6 +164,7 @@ class MTTChatMessageCell: MTTTableViewCell
             contentVoiceImageView.animationDuration = 1.5
             contentVoiceImageView.animationRepeatCount = Int(MAXFLOAT)
             contentVoiceImageView.startAnimating()
+            contentVoiceTotalTimeLabel.isHidden = false
             contentTextLabel.isHidden      = true
             contentImageView.isHidden      = true
             contentVoiceImageView.isHidden = false
@@ -203,7 +205,7 @@ class MTTChatMessageCell: MTTTableViewCell
             contentTextLabel.text          = model.messageContent
             // 聊天文本
             contentTextLabel.frame         = CGRect(x: 0, y: 5, width: kBaseWidth - 15, height: CGFloat(model.contentTextHeight))
-
+            contentVoiceTotalTimeLabel.isHidden = true
             contentTextLabel.isHidden      = false
             contentImageView.isHidden      = true
             contentVoiceImageView.isHidden = true
@@ -213,7 +215,7 @@ class MTTChatMessageCell: MTTTableViewCell
             
             // 聊天图片
             contentImageView.frame         = CGRect(x: 0, y: 5, width: kBaseWidth - 15, height: CGFloat(model.contentPictureHeight))
-
+            contentVoiceTotalTimeLabel.isHidden = true
             contentTextLabel.isHidden      = true
             contentImageView.isHidden      = false
             contentVoiceImageView.isHidden = true
@@ -241,7 +243,7 @@ class MTTChatMessageCell: MTTTableViewCell
                 contentVoiceImageView.isHighlighted = false
                 contentVoiceImageView.stopAnimating()
             }
-            
+            contentVoiceTotalTimeLabel.isHidden = false
             contentTextLabel.isHidden      = true
             contentImageView.isHidden      = true
             contentVoiceImageView.isHidden = false

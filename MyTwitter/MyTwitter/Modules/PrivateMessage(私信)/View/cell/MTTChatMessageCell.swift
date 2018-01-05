@@ -234,6 +234,8 @@ class MTTChatMessageCell: MTTTableViewCell
             {
                 contentVoiceImageView.isHighlighted = true
                 contentVoiceImageView.startAnimating()
+                let fileString = shardInstance.getRecorderFilePath() + model.messageVoiceName
+                shardInstance.playerVoice(with: fileString)
             } else
             {
                 contentVoiceImageView.isHighlighted = false

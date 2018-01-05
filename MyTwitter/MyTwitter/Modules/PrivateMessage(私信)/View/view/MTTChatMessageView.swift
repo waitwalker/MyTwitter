@@ -21,6 +21,11 @@ class MTTChatMessageView: MTTView {
     
     var delegate:MTTChatMessageViewDelegate?
     
+    var currentSelectId:String = "bb"
+    var currentSelectIndexPath:IndexPath = IndexPath(item: 1, section: 100)
+    
+    
+    
     
     override init(frame: CGRect)
     {
@@ -140,6 +145,75 @@ UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        if (self.dataSource?.count)! > 0 
+        {
+            let model = self.dataSource![indexPath.item]
+            
+            switch model.messageType
+            {
+                // 文本
+            case 0:
+                break
+                
+                // 图片 
+            case 1:
+                break
+                
+                // 语音 
+            case 2:
+                
+                if self.currentSelectIndexPath == indexPath
+                {
+                    
+                    let realm = try! Realm()
+                    
+                    if model.contentVoiceIsPlaying == 0
+                    {
+                        model.contentVoiceIsPlaying = 1
+                    } else
+                    {
+                        model.contentVoiceIsPlaying = 0
+                    }
+                    try! realm.write {
+                        realm.add(model, update: true)
+                    }
+                } else
+                {
+                    
+                    let realm = try! Realm()
+                    let predicate = NSPredicate(format: "id == %@", self.currentSelectId)
+                    
+                    let theModels = realm.objects(MTTChatMessageModel.self).filter(predicate)
+                    let theModel = theModels.first
+                    
+                    if theModel?.contentVoiceIsPlaying == 0
+                    {
+                        theModel?.contentVoiceIsPlaying = 1
+                    } else
+                    {
+                        theModel?.contentVoiceIsPlaying = 0
+                    }
+                    try! realm.write {
+                        realm.add(theModel!, update: true)
+                    }
+                    self.currentSelectIndexPath = indexPath
+                    
+                }
+                
+                self.currentSelectId = model.id
+                print("model.contentVoiceIsPlaying:\(model.contentVoiceIsPlaying)")
+                
+                print("model.contentVoiceIsPlaying:\(model.contentVoiceIsPlaying)")
+                
+                break
+                
+            default:
+                break
+            }
+            
+            
+        }
+        
         print("选中行数:\(indexPath.item)")
         
     }

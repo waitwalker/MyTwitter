@@ -34,6 +34,8 @@ class MTTChatMessageView: MTTView {
         //loadChatMessageData()
         
         loadDataFromLocal()
+        
+        setupNotification()
     }
     
     override func setupSubview()
@@ -87,6 +89,42 @@ class MTTChatMessageView: MTTView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupNotification() -> Void
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRecorderPlayFinish), name: NSNotification.Name(rawValue: kRecorderPlayFinishNotificationString), object: nil)
+    }
+    
+    func handleRecorderPlayFinish() -> Void
+    {
+        resetData()
+        self.chatMessageTableView.reloadData()
+    }
+    
+    func resetData() -> Void
+    {
+        let realm = try! Realm()
+        realm.beginWrite()
+        let predicate = NSPredicate(format: "id = %@", self.currentSelectId)
+        
+        let theModels = realm.objects(MTTChatMessageModel.self).filter(predicate)
+        let theModel = theModels.first
+        
+        if theModel?.contentVoiceIsPlaying == 0
+        {
+            theModel?.contentVoiceIsPlaying = 1
+        } else
+        {
+            theModel?.contentVoiceIsPlaying = 0
+        }
+        
+        try! realm.commitWrite()
+    }
+    
+    deinit
+    {
+        NotificationCenter.default.removeObserver(self)
     }
     
 
@@ -162,10 +200,13 @@ UITableViewDataSource
                 // 语音 
             case 2:
                 
+                
+                self.currentSelectId = model.id
                 if self.currentSelectIndexPath == indexPath
                 {
                     
                     let realm = try! Realm()
+                    realm.beginWrite()
                     
                     if model.contentVoiceIsPlaying == 0
                     {
@@ -179,28 +220,13 @@ UITableViewDataSource
                     }
                 } else
                 {
+                    self.resetData()
                     
-                    let realm = try! Realm()
-                    let predicate = NSPredicate(format: "id == %@", self.currentSelectId)
-                    
-                    let theModels = realm.objects(MTTChatMessageModel.self).filter(predicate)
-                    let theModel = theModels.first
-                    
-                    if theModel?.contentVoiceIsPlaying == 0
-                    {
-                        theModel?.contentVoiceIsPlaying = 1
-                    } else
-                    {
-                        theModel?.contentVoiceIsPlaying = 0
-                    }
-                    try! realm.write {
-                        realm.add(theModel!, update: true)
-                    }
                     self.currentSelectIndexPath = indexPath
                     
                 }
+                self.chatMessageTableView.reloadData()
                 
-                self.currentSelectId = model.id
                 print("model.contentVoiceIsPlaying:\(model.contentVoiceIsPlaying)")
                 
                 print("model.contentVoiceIsPlaying:\(model.contentVoiceIsPlaying)")

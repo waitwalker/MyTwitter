@@ -169,7 +169,6 @@ class MTTChatMessageToolBar: UIView
                 return
             }
             
-            
             shardInstance.recorderTotalTime = Int(shardInstance.recorder.currentTime)
             
             shardInstance.stopRecorder()

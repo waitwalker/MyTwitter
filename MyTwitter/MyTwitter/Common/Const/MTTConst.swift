@@ -47,6 +47,9 @@ let kDayNotificationString:String = "kDayNotificationString"
 //夜晚通知
 let kNightNotificationString:String = "kNightNotificationString"
 
+//录音播放结束通知
+let kRecorderPlayFinishNotificationString:String = "kRecorderPlayFinishNotificationString"
+
 // 个人详情滚到到某页
 let kUserDetailContentScrollToPageNotification:String = "kUserDetailContentScrollToPageNotification"
 

@@ -471,5 +471,6 @@ AVAudioPlayerDelegate
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) 
     {
         self.freePlayer()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kRecorderPlayFinishNotificationString), object: nil)
     }
 }

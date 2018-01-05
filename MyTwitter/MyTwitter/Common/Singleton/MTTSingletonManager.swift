@@ -35,6 +35,8 @@ class MTTSingletonManager: NSObject
     dynamic var recorderButtonEnabled:Bool = true
     var recorderTotalTime:Int = 0
     
+    // 播放相关 
+    var player:AVAudioPlayer!
     
     
     
@@ -381,7 +383,61 @@ class MTTSingletonManager: NSObject
     
     /***********************************************************/
     
+    /***********************************************************/
+    // MARK: - 播放相关 
+    func playerVoice(with fileString:String) -> Void 
+    {
+        setupPlayer(fileString: fileString)
+    }
     
+    private func setupPlayer(fileString:String) -> Void 
+    {
+        //初始化录音器
+        let session:AVAudioSession = AVAudioSession.sharedInstance()
+        
+        //设置录音类型
+        try! session.setCategory(AVAudioSessionCategoryPlayback)
+        
+        player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: fileString))
+        
+        if player.isPlaying 
+        {
+            player.stop()
+        }
+        
+        UIDevice.current.isProximityMonitoringEnabled = true
+        NotificationCenter.default.addObserver(self, selector: #selector(proximityMonitoringAction), name: NSNotification.Name.UIDeviceProximityStateDidChange, object: nil)
+        
+        player.volume = 1.0
+        player.delegate = self
+        player.prepareToPlay()
+        player.play()
+    }
+    
+    func freePlayer() -> Void 
+    {
+        if player != nil 
+        {
+            player.stop()
+            player.delegate = nil
+            player = nil
+        }
+        
+    }
+    
+    @objc func proximityMonitoringAction() -> Void 
+    {
+        if UIDevice.current.proximityState 
+        {
+            try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+        } else
+        {
+            try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        }
+    }
+    
+    
+    /***********************************************************/
     
     /**工具相关**/
     func getDocumentPath() -> String 
@@ -405,5 +461,15 @@ AVAudioRecorderDelegate
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) 
     {
         
+    }
+}
+
+// MARK: - playerDelegate
+extension MTTSingletonManager:
+AVAudioPlayerDelegate
+{
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) 
+    {
+        self.freePlayer()
     }
 }

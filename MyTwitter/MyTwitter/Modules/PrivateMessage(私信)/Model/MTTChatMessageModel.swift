@@ -16,6 +16,8 @@ class MTTChatMessageModel: Object
     @objc dynamic var messageType            = 0
 
     @objc dynamic var messageFrom            = 0
+    @objc dynamic var contentVoiceIsPlaying  = 0
+    @objc dynamic var contentVoiceTotalTime  = 0
 
     @objc dynamic var cellHeight             = 0.0
     @objc dynamic var messageContent         = ""

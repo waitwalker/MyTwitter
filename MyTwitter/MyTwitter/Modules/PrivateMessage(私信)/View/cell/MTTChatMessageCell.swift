@@ -17,7 +17,9 @@ class MTTChatMessageCell: MTTTableViewCell
 
     let kAvatarHeightWidth:CGFloat = 50
 
-
+    let image1 = UIImage.imageNamed(name: "twitter_voice_play_1")
+    let image2 = UIImage.imageNamed(name: "twitter_voice_play_2")
+    let image3 = UIImage.imageNamed(name: "twitter_voice_play_3")
     var contentBackgroundImageView:UIImageView!
     
     var avatarImageView:UIImageView!
@@ -28,6 +30,7 @@ class MTTChatMessageCell: MTTTableViewCell
     
     var contentVoiceImageView:UIImageView!
     
+    var contentVoiceTotalTimeLabel:UILabel!
     
     
     
@@ -87,6 +90,11 @@ class MTTChatMessageCell: MTTTableViewCell
         contentVoiceImageView                               = UIImageView()
         contentVoiceImageView.isUserInteractionEnabled      = true
         contentBackgroundImageView.addSubview(contentVoiceImageView)
+        
+        contentVoiceTotalTimeLabel = UILabel()
+        contentVoiceTotalTimeLabel.textColor = UIColor.black
+        contentVoiceTotalTimeLabel.font = UIFont.systemFont(ofSize: 18)
+        contentBackgroundImageView.addSubview(contentVoiceTotalTimeLabel)
     }
     
     func layoutSubview(model:MTTChatMessageModel) -> Void
@@ -147,8 +155,14 @@ class MTTChatMessageCell: MTTTableViewCell
             break
         case 2:
             // 聊天语音
+            //contentVoiceTotalTimeLabel.frame = CGRect(x: <#T##CGFloat#>, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>)
+            
             contentVoiceImageView.frame    = CGRect(x: 15, y: 5, width: kBaseWidth - 15, height: CGFloat(model.contentVoiceHeight))
-
+            
+            contentVoiceImageView.highlightedAnimationImages = [image1,image2,image3]
+            contentVoiceImageView.animationDuration = 1.5
+            contentVoiceImageView.animationRepeatCount = Int(MAXFLOAT)
+            contentVoiceImageView.startAnimating()
             contentTextLabel.isHidden      = true
             contentImageView.isHidden      = true
             contentVoiceImageView.isHidden = false
@@ -207,8 +221,25 @@ class MTTChatMessageCell: MTTTableViewCell
             break
         case 2:
             // 聊天语音
-            contentVoiceImageView.frame    = CGRect(x: 0, y: 5, width: kBaseWidth - 15, height: CGFloat(model.contentVoiceHeight))
-
+            contentVoiceTotalTimeLabel.frame = CGRect(x: 20, y: 0, width: 45, height: 50)
+            contentVoiceTotalTimeLabel.textAlignment = NSTextAlignment.right
+            contentVoiceTotalTimeLabel.text = String(format: "%d''", model.contentVoiceTotalTime)
+            
+            contentVoiceImageView.frame    = CGRect(x: 70, y: 12, width: 18, height: 27)
+            contentVoiceImageView.image = image3
+            contentVoiceImageView.highlightedAnimationImages = [image1,image2,image3]
+            contentVoiceImageView.animationDuration = 1.5
+            contentVoiceImageView.animationRepeatCount = 0
+            if model.contentVoiceIsPlaying == 1
+            {
+                contentVoiceImageView.isHighlighted = true
+                contentVoiceImageView.startAnimating()
+            } else
+            {
+                contentVoiceImageView.isHighlighted = false
+                contentVoiceImageView.stopAnimating()
+            }
+            
             contentTextLabel.isHidden      = true
             contentImageView.isHidden      = true
             contentVoiceImageView.isHidden = false

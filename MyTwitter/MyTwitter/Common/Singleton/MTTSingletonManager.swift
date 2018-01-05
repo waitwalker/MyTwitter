@@ -33,6 +33,8 @@ class MTTSingletonManager: NSObject
     var recordShotTimeImageView:UIImageView!
     var recordHintTextLabel:UILabel!
     dynamic var recorderButtonEnabled:Bool = true
+    var recorderTotalTime:Int = 0
+    
     
     
     

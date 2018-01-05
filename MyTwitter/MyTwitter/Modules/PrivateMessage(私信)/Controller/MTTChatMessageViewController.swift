@@ -219,10 +219,11 @@ MTTChatMessageToolBarDelegate
     {
         let model                                  = MTTChatMessageModel()
         model.messageFrom                          = MTTChatMessageFromType.My.rawValue
-        model.messageType                          = MTTChatMessageType.text.rawValue
+        model.messageType                          = MTTChatMessageType.voice.rawValue
         model.chatDate                             = Date()
         model.chatDateStamp                        = Int(Date().timeIntervalSince1970)
         model.messageVoiceName                     = shardInstance.currentRecorderFileName
+        model.contentVoiceTotalTime                = shardInstance.recorderTotalTime
         model.contentVoiceHeight                   = 40
         model.contentBackImageHeight = 5 + model.contentVoiceHeight + 5
         model.cellHeight = 10 + 20 + 10 + model.contentBackImageHeight

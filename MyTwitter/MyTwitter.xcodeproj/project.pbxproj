@@ -70,6 +70,7 @@
 		1AB9D1561FCCD4A000CA0DA0 /* MTTChatMessageToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9D1551FCCD4A000CA0DA0 /* MTTChatMessageToolBar.swift */; };
 		1ABFD4BC1F84BE48004DF174 /* MTTCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFD4BB1F84BE48004DF174 /* MTTCollectionViewCell.swift */; };
 		1ABFD4BE1F84BE84004DF174 /* MTTPushBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFD4BD1F84BE84004DF174 /* MTTPushBottomCell.swift */; };
+		1ACC9AD220039BBC000A3F5E /* MTTUserStatisticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC9AD120039BBB000A3F5E /* MTTUserStatisticsManager.swift */; };
 		1ADE78221F84E83F009D8CB9 /* MTTPushImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADE78211F84E83F009D8CB9 /* MTTPushImageView.swift */; };
 		1ADE78241F8505C4009D8CB9 /* MTTPushImageViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADE78231F8505C4009D8CB9 /* MTTPushImageViewDelegate.swift */; };
 		1AF53C6A1F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF53C691F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift */; };
@@ -237,6 +238,7 @@
 		1AB9D1551FCCD4A000CA0DA0 /* MTTChatMessageToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTChatMessageToolBar.swift; sourceTree = "<group>"; };
 		1ABFD4BB1F84BE48004DF174 /* MTTCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTCollectionViewCell.swift; sourceTree = "<group>"; };
 		1ABFD4BD1F84BE84004DF174 /* MTTPushBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPushBottomCell.swift; sourceTree = "<group>"; };
+		1ACC9AD120039BBB000A3F5E /* MTTUserStatisticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTUserStatisticsManager.swift; sourceTree = "<group>"; };
 		1ADE78211F84E83F009D8CB9 /* MTTPushImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPushImageView.swift; sourceTree = "<group>"; };
 		1ADE78231F8505C4009D8CB9 /* MTTPushImageViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPushImageViewDelegate.swift; sourceTree = "<group>"; };
 		1AF53C691F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPushTwitterViewController.swift; sourceTree = "<group>"; };
@@ -628,6 +630,14 @@
 			path = DataBase;
 			sourceTree = "<group>";
 		};
+		1ACC9AD0200399C6000A3F5E /* UserStatistics */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC9AD120039BBB000A3F5E /* MTTUserStatisticsManager.swift */,
+			);
+			path = UserStatistics;
+			sourceTree = "<group>";
+		};
 		1AFC059B1F5ECF90006EAC9F /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -651,6 +661,7 @@
 		1AFE6FDB1F6376F000006381 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				1ACC9AD0200399C6000A3F5E /* UserStatistics */,
 				CAE674231F7F83E400C1093E /* Logger */,
 				1A0C10F31F66C44C00B6AD18 /* MTTRegularMatchManager.swift */,
 				CA3058C11F78B6B300742237 /* MTTFPSDisplay.swift */,
@@ -1574,6 +1585,7 @@
 				CADECBFA1F5FC9030027E15F /* MTTRegisterStartViewController.swift in Sources */,
 				CA6ADD601F98AA4D00A25646 /* MTTNotificationHeader.swift in Sources */,
 				1ADE78221F84E83F009D8CB9 /* MTTPushImageView.swift in Sources */,
+				1ACC9AD220039BBC000A3F5E /* MTTUserStatisticsManager.swift in Sources */,
 				CADECC4D1F6222D10027E15F /* MTTView.swift in Sources */,
 				CA36DE281F73631B0077B44F /* MTTAboutSendErrorDelegate.swift in Sources */,
 				1A8B5D901F981BE300A6D6D0 /* MTTNotificationViewModel.swift in Sources */,

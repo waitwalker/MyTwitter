@@ -97,7 +97,14 @@ extension UIViewController
     func swizzled_viewDidLoad() -> Void
     {
         // 埋点插入
-        
+        userStatistics()
         swizzled_viewDidLoad()
+    }
+    
+    func userStatistics() -> Void
+    {
+        let className = NSStringFromClass(UIViewController.self)
+        print(self.navigationItem.title as Any)
+        print(className)
     }
 }

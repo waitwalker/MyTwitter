@@ -10,7 +10,7 @@ import UIKit
 
 class MTTUserStatisticsManager: NSObject
 {
-    func swizzledSelector(theClass:AnyClass,originalSelector:Selector,swizzledSelector:Selector) -> Void
+    class func swizzledSelector(theClass:AnyClass,originalSelector:Selector,swizzledSelector:Selector) -> Void
     {
         let originalMethod = class_getInstanceMethod(theClass, originalSelector)
         let swizzledMethod = class_getInstanceMethod(theClass, swizzledSelector)

@@ -74,6 +74,8 @@
 		1ACC9AD42003B5A6000A3F5E /* MTTDispatchExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC9AD32003B5A6000A3F5E /* MTTDispatchExtension.swift */; };
 		1ADE78221F84E83F009D8CB9 /* MTTPushImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADE78211F84E83F009D8CB9 /* MTTPushImageView.swift */; };
 		1ADE78241F8505C4009D8CB9 /* MTTPushImageViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADE78231F8505C4009D8CB9 /* MTTPushImageViewDelegate.swift */; };
+		1AEC488A2004F8F1000BEB8A /* MTTUserStatisticsBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEC48892004F8F1000BEB8A /* MTTUserStatisticsBase.m */; };
+		1AEC488D2004FEC5000BEB8A /* UIViewController+UserStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEC488C2004FEC5000BEB8A /* UIViewController+UserStatistics.m */; };
 		1AF53C6A1F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF53C691F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift */; };
 		1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC059C1F5ED2B7006EAC9F /* Service.swift */; };
 		1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */; };
@@ -243,6 +245,11 @@
 		1ACC9AD32003B5A6000A3F5E /* MTTDispatchExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTDispatchExtension.swift; sourceTree = "<group>"; };
 		1ADE78211F84E83F009D8CB9 /* MTTPushImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPushImageView.swift; sourceTree = "<group>"; };
 		1ADE78231F8505C4009D8CB9 /* MTTPushImageViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPushImageViewDelegate.swift; sourceTree = "<group>"; };
+		1AEC48872004F8F1000BEB8A /* MyTwitter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyTwitter-Bridging-Header.h"; sourceTree = "<group>"; };
+		1AEC48882004F8F1000BEB8A /* MTTUserStatisticsBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTUserStatisticsBase.h; sourceTree = "<group>"; };
+		1AEC48892004F8F1000BEB8A /* MTTUserStatisticsBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTUserStatisticsBase.m; sourceTree = "<group>"; };
+		1AEC488B2004FEC5000BEB8A /* UIViewController+UserStatistics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+UserStatistics.h"; sourceTree = "<group>"; };
+		1AEC488C2004FEC5000BEB8A /* UIViewController+UserStatistics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+UserStatistics.m"; sourceTree = "<group>"; };
 		1AF53C691F7D2D3C00A9C08C /* MTTPushTwitterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPushTwitterViewController.swift; sourceTree = "<group>"; };
 		1AFC059C1F5ED2B7006EAC9F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		1AFC05A01F5EE3B2006EAC9F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -636,6 +643,11 @@
 			isa = PBXGroup;
 			children = (
 				1ACC9AD120039BBB000A3F5E /* MTTUserStatisticsManager.swift */,
+				1AEC48882004F8F1000BEB8A /* MTTUserStatisticsBase.h */,
+				1AEC48892004F8F1000BEB8A /* MTTUserStatisticsBase.m */,
+				1AEC48872004F8F1000BEB8A /* MyTwitter-Bridging-Header.h */,
+				1AEC488B2004FEC5000BEB8A /* UIViewController+UserStatistics.h */,
+				1AEC488C2004FEC5000BEB8A /* UIViewController+UserStatistics.m */,
 			);
 			path = UserStatistics;
 			sourceTree = "<group>";
@@ -1253,7 +1265,7 @@
 					CADECB931F5E4E3A0027E15F = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = N5ZJ5W7ZL3;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					CADECBA71F5E4E3A0027E15F = {
@@ -1514,10 +1526,12 @@
 				CA0994BD1F8F459D00D79775 /* MTTPhotoLibraryModel.swift in Sources */,
 				CAC789EE1FB6C29B001A5A7D /* MTTUIColorExtension.swift in Sources */,
 				CAF065541F986DB7002F28F8 /* MTTNotificationMentionCell.swift in Sources */,
+				1AEC488A2004F8F1000BEB8A /* MTTUserStatisticsBase.m in Sources */,
 				1ACC9AD42003B5A6000A3F5E /* MTTDispatchExtension.swift in Sources */,
 				1A5395971FD6DB4A000CEEE4 /* MTTChatMessageModel.swift in Sources */,
 				1A5395951FD6DABA000CEEE4 /* MTTChatMessageCell.swift in Sources */,
 				CA66B4F01F90C0BB001CD140 /* MTTSearchViewModel.swift in Sources */,
+				1AEC488D2004FEC5000BEB8A /* UIViewController+UserStatistics.m in Sources */,
 				1A0C10F41F66C44C00B6AD18 /* MTTRegularMatchManager.swift in Sources */,
 				1AB7E0131FE8018C0068B5D4 /* MTTAddVideoCell.swift in Sources */,
 				CADECBCD1F5E4FE30027E15F /* MTTNavigationController.swift in Sources */,
@@ -1799,7 +1813,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.etiantian.MyTwitter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyTwitter/Common/Tools/UserStatistics/MyTwitter-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1818,7 +1832,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.etiantian.MyTwitter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyTwitter/Common/Tools/UserStatistics/MyTwitter-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

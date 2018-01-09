@@ -72,39 +72,39 @@ class MTTViewController: UIViewController {
 
 extension UIViewController
 {
-    open override static func initialize()
-    {
-        struct Static {
-            static var token = NSUUID().uuidString
-        }
-        
-        if self != UIViewController.self
-        {
-            return
-        }
-        
-        DispatchQueue.once(Static.token) {
-            
-            let originalSelector = #selector(viewDidLoad)
-            
-            let swizzledSelector = #selector(swizzled_viewDidLoad)
-            
-            MTTUserStatisticsManager.swizzledSelector(theClass: self, originalSelector: originalSelector, swizzledSelector: swizzledSelector)
-            
-        }
-    }
-    
-    func swizzled_viewDidLoad() -> Void
-    {
-        // 埋点插入
-        userStatistics()
-        swizzled_viewDidLoad()
-    }
-    
-    func userStatistics() -> Void
-    {
-        let className = NSStringFromClass(UIViewController.self)
-        print(self.navigationItem.title as Any)
-        print(className)
-    }
+//    open override static func initialize()
+//    {
+//        struct Static {
+//            static var token = NSUUID().uuidString
+//        }
+//        
+//        if self != UIViewController.self
+//        {
+//            return
+//        }
+//        
+//        DispatchQueue.once(Static.token) {
+//            
+//            let originalSelector = #selector(viewDidLoad)
+//            
+//            let swizzledSelector = #selector(swizzled_viewDidLoad)
+//            
+//            MTTUserStatisticsManager.swizzledSelector(theClass: self, originalSelector: originalSelector, swizzledSelector: swizzledSelector)
+//            
+//        }
+//    }
+//    
+//    func swizzled_viewDidLoad() -> Void
+//    {
+//        // 埋点插入
+//        userStatistics()
+//        swizzled_viewDidLoad()
+//    }
+//    
+//    func userStatistics() -> Void
+//    {
+//        let className = NSStringFromClass(UIViewController.self)
+//        print(self.navigationItem.title as Any)
+//        print(className)
+//    }
 }

@@ -162,7 +162,7 @@ class MTTChatMessageCell: MTTTableViewCell
             
             contentVoiceImageView.highlightedAnimationImages = [image1,image2,image3]
             contentVoiceImageView.animationDuration = 1.5
-            contentVoiceImageView.animationRepeatCount = Int(MAXFLOAT)
+            contentVoiceImageView.animationRepeatCount = 0
             contentVoiceImageView.startAnimating()
             contentVoiceTotalTimeLabel.isHidden = false
             contentTextLabel.isHidden      = true

@@ -37,6 +37,7 @@ class MTTSingletonManager: NSObject
     
     // 播放相关 
     var player:AVAudioPlayer!
+    var autoStopPlaying:Bool = true
     
     
     
@@ -415,6 +416,7 @@ class MTTSingletonManager: NSObject
         player.delegate = self
         player.prepareToPlay()
         player.play()
+        self.autoStopPlaying = true
     }
     
     func freePlayer() -> Void 
@@ -474,6 +476,10 @@ AVAudioPlayerDelegate
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) 
     {
         self.freePlayer()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kRecorderPlayFinishNotificationString), object: nil)
+        
+        if self.autoStopPlaying
+        {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kRecorderPlayFinishNotificationString), object: nil)
+        }
     }
 }

@@ -22,6 +22,7 @@ class MTTChatMessageView: MTTView {
     var delegate:MTTChatMessageViewDelegate?
     
     var currentSelectId:String = "bb"
+    var lastSelectId:String = "bb"
     var currentSelectIndexPath:IndexPath = IndexPath(item: 1, section: 100)
     
     
@@ -106,7 +107,7 @@ class MTTChatMessageView: MTTView {
     {
         let realm = try! Realm()
         realm.beginWrite()
-        let predicate = NSPredicate(format: "id = %@", self.currentSelectId)
+        let predicate = NSPredicate(format: "id = %@", self.lastSelectId)
         
         let theModels = realm.objects(MTTChatMessageModel.self).filter(predicate)
         let theModel = theModels.first
@@ -200,38 +201,48 @@ UITableViewDataSource
                 // 语音 
             case 2:
                 
-                
-                self.currentSelectId = model.id
-                if self.currentSelectIndexPath == indexPath
+                if model.id == self.lastSelectId
                 {
-                    
                     let realm = try! Realm()
                     realm.beginWrite()
                     
+                    // 没有播放
                     if model.contentVoiceIsPlaying == 0
                     {
                         model.contentVoiceIsPlaying = 1
                     } else
                     {
+                        // 正在播放
+                        if shardInstance.player != nil
+                        {
+                            shardInstance.autoStopPlaying = false
+                            shardInstance.player.stop()
+                            shardInstance.freePlayer()
+                        }
                         model.contentVoiceIsPlaying = 0
                     }
                     try! realm.commitWrite()
                 } else
                 {
+                    if self.lastSelectId != "bb"
+                    {
+                        
+                        self.resetData()
+                    }
+                    
+                    self.lastSelectId = model.id
                     if shardInstance.player != nil
                     {
                         if shardInstance.player.isPlaying
                         {
+                            shardInstance.autoStopPlaying = false
                             shardInstance.player.stop()
                             shardInstance.freePlayer()
                         }
                     }
-                    
                     self.resetData()
-                    
-                    self.currentSelectIndexPath = indexPath
-                    
                 }
+                
                 self.chatMessageTableView.reloadData()
                 
                 

@@ -85,6 +85,9 @@ class MTTChatMessageCell: MTTTableViewCell
         contentImageView                                    = UIImageView()
         contentImageView.backgroundColor                    = kMainRandomColor()
         contentImageView.isUserInteractionEnabled           = true
+        contentImageView.contentMode = UIViewContentMode.scaleAspectFit
+        contentImageView.autoresizesSubviews = true
+        contentImageView.autoresizingMask = UIViewAutoresizing(rawValue: UIViewAutoresizing.RawValue(UInt8(UIViewAutoresizing.flexibleLeftMargin.rawValue) | UInt8(UIViewAutoresizing.flexibleTopMargin.rawValue) | UInt8(UIViewAutoresizing.flexibleHeight.rawValue) | UInt8(UIViewAutoresizing.flexibleWidth.rawValue)))
         contentBackgroundImageView.addSubview(contentImageView)
 
         contentVoiceImageView                               = UIImageView()

@@ -149,7 +149,10 @@ class MTTSingletonManager: NSObject
     // MARK: - recorder 相关 
     func startRecorder() -> Void 
     {
-        setupSubview()
+        DispatchQueue.main.async {
+            self.setupSubview()
+        }
+        
         setupRecorder()
     }
     
@@ -291,7 +294,7 @@ class MTTSingletonManager: NSObject
         
     }
     
-    private func setupSettings() -> [String:Any] 
+    public func setupSettings() -> [String:Any]
     {
         let setting = 
             [

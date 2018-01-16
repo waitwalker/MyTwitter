@@ -55,6 +55,8 @@ class MTTChatMessageToolBar: UIView
         setupEvent()
         setupNotification()
         self.original_y = frame.origin.y
+        let recorder = try! AVAudioRecorder(url: URL(string: shardInstance.getDocumentPath())!, settings: shardInstance.setupSettings())
+        recorder.prepareToRecord()
     }
     
     override func layoutSubviews() {

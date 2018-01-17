@@ -14,6 +14,21 @@ class MTTNavigationController: UINavigationController {
     {
         super.viewDidLoad()
         
+        // 设置导航栏样式
+        navigationBar.barTintColor = UIColor.white
+        
+        // 设置标题样式
+        let bar = UINavigationBar.appearance()
+        bar.titleTextAttributes = [
+            NSFontAttributeName:UIFont.systemFont(ofSize: 20)
+        ]
+        
+        // 设置返回按钮样式
+        navigationBar.tintColor = kMainBlueColor()
+        
+        let barItem = UIBarButtonItem.appearance()
+        barItem.setTitleTextAttributes([NSForegroundColorAttributeName:kMainBlueColor()], for: UIControlState.normal)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,14 +37,5 @@ class MTTNavigationController: UINavigationController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

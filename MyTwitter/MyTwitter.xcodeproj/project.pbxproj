@@ -32,6 +32,9 @@
 		1A3254C7200647FD006C6700 /* MTTUserStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3254C6200647FD006C6700 /* MTTUserStatisticsModel.m */; };
 		1A3254CA20064990006C6700 /* MTTRealmConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3254C920064990006C6700 /* MTTRealmConfiguration.m */; };
 		1A3254CD20064F33006C6700 /* MTTRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3254CC20064F33006C6700 /* MTTRealm.m */; };
+		1A40EF622014897900700F10 /* MTTAvoidCrashManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A40EF612014897900700F10 /* MTTAvoidCrashManager.m */; };
+		1A40EF66201493AE00700F10 /* MTTAvoidCrashManager+Cagetory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A40EF65201493AE00700F10 /* MTTAvoidCrashManager+Cagetory.m */; };
+		1A40EF692014949B00700F10 /* NSObject+AvoidCrashCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A40EF682014949B00700F10 /* NSObject+AvoidCrashCategory.m */; };
 		1A45ED241FDA06260080D29C /* MTTChatMessageData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A45ED231FDA06260080D29C /* MTTChatMessageData.json */; };
 		1A4B71DB1FB08C1500AAED83 /* MTTAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B71DA1FB08C1500AAED83 /* MTTAlertController.swift */; };
 		1A4B71DD1FB09D5600AAED83 /* MTTAlertViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B71DC1FB09D5600AAED83 /* MTTAlertViewDelegate.swift */; };
@@ -210,6 +213,12 @@
 		1A3254C920064990006C6700 /* MTTRealmConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTRealmConfiguration.m; sourceTree = "<group>"; };
 		1A3254CB20064F33006C6700 /* MTTRealm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTRealm.h; sourceTree = "<group>"; };
 		1A3254CC20064F33006C6700 /* MTTRealm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTRealm.m; sourceTree = "<group>"; };
+		1A40EF602014897900700F10 /* MTTAvoidCrashManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTAvoidCrashManager.h; sourceTree = "<group>"; };
+		1A40EF612014897900700F10 /* MTTAvoidCrashManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTAvoidCrashManager.m; sourceTree = "<group>"; };
+		1A40EF64201493AE00700F10 /* MTTAvoidCrashManager+Cagetory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MTTAvoidCrashManager+Cagetory.h"; sourceTree = "<group>"; };
+		1A40EF65201493AE00700F10 /* MTTAvoidCrashManager+Cagetory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MTTAvoidCrashManager+Cagetory.m"; sourceTree = "<group>"; };
+		1A40EF672014949B00700F10 /* NSObject+AvoidCrashCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+AvoidCrashCategory.h"; sourceTree = "<group>"; };
+		1A40EF682014949B00700F10 /* NSObject+AvoidCrashCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AvoidCrashCategory.m"; sourceTree = "<group>"; };
 		1A45ED231FDA06260080D29C /* MTTChatMessageData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MTTChatMessageData.json; sourceTree = "<group>"; };
 		1A4B71DA1FB08C1500AAED83 /* MTTAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAlertController.swift; sourceTree = "<group>"; };
 		1A4B71DC1FB09D5600AAED83 /* MTTAlertViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAlertViewDelegate.swift; sourceTree = "<group>"; };
@@ -590,6 +599,27 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1A40EF5F2014895800700F10 /* AvoidCrashManager */ = {
+			isa = PBXGroup;
+			children = (
+				1A40EF632014937F00700F10 /* Category */,
+				1A40EF602014897900700F10 /* MTTAvoidCrashManager.h */,
+				1A40EF612014897900700F10 /* MTTAvoidCrashManager.m */,
+			);
+			path = AvoidCrashManager;
+			sourceTree = "<group>";
+		};
+		1A40EF632014937F00700F10 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				1A40EF64201493AE00700F10 /* MTTAvoidCrashManager+Cagetory.h */,
+				1A40EF65201493AE00700F10 /* MTTAvoidCrashManager+Cagetory.m */,
+				1A40EF672014949B00700F10 /* NSObject+AvoidCrashCategory.h */,
+				1A40EF682014949B00700F10 /* NSObject+AvoidCrashCategory.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		1A50B2C31FB1EC6500F3F1CF /* UserDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,6 +662,7 @@
 		1A7DAEDE201430A000A498D3 /* CrashManager */ = {
 			isa = PBXGroup;
 			children = (
+				1A40EF5F2014895800700F10 /* AvoidCrashManager */,
 				1A7DAEDA20142A8C00A498D3 /* SignalHandlerManager */,
 			);
 			path = CrashManager;
@@ -1666,6 +1697,7 @@
 				CA572B131F8E022300E9D7F6 /* MTTPhotoLibraryViewController.swift in Sources */,
 				1A304C501F6D6B4800F366B9 /* MTTHomeViewController.swift in Sources */,
 				CA36DE2A1F7367E20077B44F /* MTTAboutViewModel.swift in Sources */,
+				1A40EF66201493AE00700F10 /* MTTAvoidCrashManager+Cagetory.m in Sources */,
 				CA36DE261F73612D0077B44F /* MTTAboutSwitchCell.swift in Sources */,
 				CA66B4F91F90C6E8001CD140 /* MTTSearchSelectedViewController.swift in Sources */,
 				CA572B111F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift in Sources */,
@@ -1677,7 +1709,9 @@
 				CADECBFC1F5FC9280027E15F /* MTTRegisterNameViewController.swift in Sources */,
 				CA6147071FA077A10005FD29 /* MTTPersonalViewModel.swift in Sources */,
 				CAE674291F7F904400C1093E /* MTTURLExtension.swift in Sources */,
+				1A40EF622014897900700F10 /* MTTAvoidCrashManager.m in Sources */,
 				1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */,
+				1A40EF692014949B00700F10 /* NSObject+AvoidCrashCategory.m in Sources */,
 				1A8F5BD21F729EB1006D6CA0 /* MTTAboutTwitterViewController.swift in Sources */,
 				1A596C651F90F1BC00F14123 /* MTTSearchPopularArticleViewController.swift in Sources */,
 				CAC5AE8B1F7F4BC400B50C98 /* MTTStringExtension.swift in Sources */,

@@ -87,6 +87,7 @@
     newModel.lastLoginDate = [NSDate date];
     newModel.lastLoginPlace = @"北京";
     
+    
     RLMRealm *relam = [MTTRealm defaultRealmObject];
     
     [relam transactionWithBlock:^{

@@ -15,5 +15,6 @@
 @interface MTTSignalHandlerManager : NSObject
 
 + (MTTSignalHandlerManager *)signalHandlerManager;
+- (void)startExceptionSignalHandler;
 
 @end

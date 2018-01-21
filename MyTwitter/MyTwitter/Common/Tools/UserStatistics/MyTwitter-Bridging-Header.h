@@ -4,5 +4,5 @@
 
 #import "MTTUserStatisticsBase.h"
 #import "UIViewController+UserStatistics.h"
-
+#import "MTTSignalHandlerManager.h"
 

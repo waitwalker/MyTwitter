@@ -10,6 +10,8 @@
 #import <libkern/OSAtomic.h>
 #import <execinfo.h>
 #import <stdatomic.h>
+#import <UIKit/UIKit.h>
+#import "MyTwitter-Swift.h"
 
 // 未知异常错误
 static NSString * const kUncaughtExceptionHandlerSignalExceptionName = @"UncaughtExceptionHandlerSignalExceptionName";
@@ -30,12 +32,18 @@ void SignalCatchHandler(int signal);
 // 处理当前异常
 void HandleCurrentException(NSException *exception);
 
+@interface MTTSignalHandlerManager()
+
+@property (nonatomic, assign) BOOL isQuit;
+
+@end
+
 
 @implementation MTTSignalHandlerManager
 
 + (MTTSignalHandlerManager *)signalHandlerManager
 {
-    static MTTSignalHandlerManager *manager;
+    static MTTSignalHandlerManager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[MTTSignalHandlerManager alloc]init];
@@ -149,8 +157,51 @@ void HandleCurrentException(NSException *exception);
     
 }
 
+#pragma mark 处理异常
 - (void)handleException:(NSException *)exception
 {
+    //将异常写入日志系统
+    
+    //异常提示
+    [self handlerAlertWithMessage:@""];
+    
+    //用户选择了继续运行 程序继续处理事件 开启运行循环
+    CFRunLoopRef runLoop = CFRunLoopGetCurrent();
+    CFArrayRef allModes = CFRunLoopCopyAllModes(runLoop);
+    
+    //用户选择继续运行程序
+    while (self.isQuit == false)
+    {
+        for (NSString *mode in (__bridge NSArray *)allModes) {
+            
+            //切换runLoop监听事件的mode
+            CFRunLoopRunInMode((CFStringRef)mode, 0.001, false);
+            
+        }
+    }
+    
+    //用户选择退出 终止循环 程序崩溃
+    CFRelease(allModes);
+    
+    //终止异常捕获处理
+    NSSetUncaughtExceptionHandler(NULL);
+    
+    //终止捕获的信号的类型
+    
+    signal(SIGABRT, SIG_DFL);
+    signal(SIGILL, SIG_DFL);
+    signal(SIGSEGV, SIG_DFL);
+    signal(SIGFPE, SIG_DFL);
+    signal(SIGBUS, SIG_DFL);
+    signal(SIGPIPE, SIG_DFL);
+    
+    if ([[exception name] isEqualToString:kUncaughtExceptionHandlerSignalExceptionName])
+    {
+        kill(getpid(), [[[exception userInfo]objectForKey:kUncaughtExceptionHandlerSignalKey]intValue]);
+    } else
+    {
+        [exception raise];
+    }
     
 }
 
@@ -178,6 +229,26 @@ void HandleCurrentException(NSException *exception);
     }
     free(strs);
     return backTrack;
+}
+
+#pragma mark 异常提示
+- (void)handlerAlertWithMessage:(NSString *)message
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"程序遇到异常即将退出,是否退出?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *quitAction = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.isQuit = true;
+    }];
+    
+    UIAlertAction *continueAction = [UIAlertAction actionWithTitle:@"继续" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.isQuit = false;
+    }];
+    
+    [alertController addAction:quitAction];
+    [alertController addAction:continueAction];
+    
+    [[[MTTSingletonManager sharedInstance]getRootViewController] presentViewController:alertController animated:true completion:^{
+        
+    }];
 }
 
 @end

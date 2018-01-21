@@ -66,7 +66,7 @@ class MTTPushTwitterViewController: MTTViewController,UITextViewDelegate ,UIColl
         setupSubview()
         layoutSubview()
         setupEvent()
-        addGesture()
+        addGesture()        
     }
     
     // MARK: - 从相机获取照片

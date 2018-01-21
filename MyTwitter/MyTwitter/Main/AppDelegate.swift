@@ -26,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let _ = MTTFPSDisplay.shareInstance
         
+        let _ = MTTSignalHandlerManager().startExceptionSignalHandler()
+        
+        
         return true
     }
 

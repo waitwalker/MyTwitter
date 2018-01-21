@@ -50,6 +50,7 @@
 		1A6814641FC39E0900BC0341 /* MTTUserDetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6814631FC39E0900BC0341 /* MTTUserDetailTopView.swift */; };
 		1A7A0A411F9EADAF002F8C9A /* MTTPushTwitterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A0A401F9EADAF002F8C9A /* MTTPushTwitterViewModel.swift */; };
 		1A7A0A431F9EB0B4002F8C9A /* MTTPushTwitterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A0A421F9EB0B4002F8C9A /* MTTPushTwitterDelegate.swift */; };
+		1A7DAEDD20142AB500A498D3 /* MTTSignalHandlerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7DAEDC20142AB400A498D3 /* MTTSignalHandlerManager.m */; };
 		1A82AEAA1F8FA4E60015EAC4 /* MTTSearchLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A82AEA91F8FA4E60015EAC4 /* MTTSearchLabelCell.swift */; };
 		1A82AEAC1F8FA4FD0015EAC4 /* MTTSearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A82AEAB1F8FA4FD0015EAC4 /* MTTSearchHeaderView.swift */; };
 		1A82AEAE1F8FA9120015EAC4 /* MTTSearchShowMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A82AEAD1F8FA9120015EAC4 /* MTTSearchShowMoreCell.swift */; };
@@ -227,6 +228,8 @@
 		1A6814631FC39E0900BC0341 /* MTTUserDetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTUserDetailTopView.swift; sourceTree = "<group>"; };
 		1A7A0A401F9EADAF002F8C9A /* MTTPushTwitterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPushTwitterViewModel.swift; sourceTree = "<group>"; };
 		1A7A0A421F9EB0B4002F8C9A /* MTTPushTwitterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPushTwitterDelegate.swift; sourceTree = "<group>"; };
+		1A7DAEDB20142AB400A498D3 /* MTTSignalHandlerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTSignalHandlerManager.h; sourceTree = "<group>"; };
+		1A7DAEDC20142AB400A498D3 /* MTTSignalHandlerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTSignalHandlerManager.m; sourceTree = "<group>"; };
 		1A82AEA91F8FA4E60015EAC4 /* MTTSearchLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchLabelCell.swift; sourceTree = "<group>"; };
 		1A82AEAB1F8FA4FD0015EAC4 /* MTTSearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchHeaderView.swift; sourceTree = "<group>"; };
 		1A82AEAD1F8FA9120015EAC4 /* MTTSearchShowMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchShowMoreCell.swift; sourceTree = "<group>"; };
@@ -617,6 +620,23 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		1A7DAEDA20142A8C00A498D3 /* SignalHandlerManager */ = {
+			isa = PBXGroup;
+			children = (
+				1A7DAEDB20142AB400A498D3 /* MTTSignalHandlerManager.h */,
+				1A7DAEDC20142AB400A498D3 /* MTTSignalHandlerManager.m */,
+			);
+			path = SignalHandlerManager;
+			sourceTree = "<group>";
+		};
+		1A7DAEDE201430A000A498D3 /* CrashManager */ = {
+			isa = PBXGroup;
+			children = (
+				1A7DAEDA20142A8C00A498D3 /* SignalHandlerManager */,
+			);
+			path = CrashManager;
+			sourceTree = "<group>";
+		};
 		1A82AEA71F8FA4970015EAC4 /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,6 +718,7 @@
 		1AFE6FDB1F6376F000006381 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				1A7DAEDE201430A000A498D3 /* CrashManager */,
 				1ACC9AD0200399C6000A3F5E /* UserStatistics */,
 				CAE674231F7F83E400C1093E /* Logger */,
 				1A0C10F31F66C44C00B6AD18 /* MTTRegularMatchManager.swift */,
@@ -1648,6 +1669,7 @@
 				CA36DE261F73612D0077B44F /* MTTAboutSwitchCell.swift in Sources */,
 				CA66B4F91F90C6E8001CD140 /* MTTSearchSelectedViewController.swift in Sources */,
 				CA572B111F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift in Sources */,
+				1A7DAEDD20142AB500A498D3 /* MTTSignalHandlerManager.m in Sources */,
 				CAC789F21FB6CC05001A5A7D /* MTTUserDetailHeaderCell.swift in Sources */,
 				CADECBD11F5E500D0027E15F /* MTTViewController.swift in Sources */,
 				CAE6742F1F7F98D100C1093E /* MTTLogger.swift in Sources */,

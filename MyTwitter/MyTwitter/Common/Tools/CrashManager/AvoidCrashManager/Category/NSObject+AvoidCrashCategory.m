@@ -20,6 +20,8 @@
         [MTTAvoidCrashManager swizzledInClass:[self class] originalSelector:@selector(setValue:forKeyPath:) swizzledSelector:@selector(avoidCrashSetValue:forkeyPath:)];
         
         [MTTAvoidCrashManager swizzledInClass:[self class] originalSelector:@selector(setValue:forUndefinedKey:) swizzledSelector:@selector(avoidCrashSetValue:forUndefinedKey:)];
+        
+        [MTTAvoidCrashManager swizzledInClass:[self class] originalSelector:@selector(setValuesForKeysWithDictionary:) swizzledSelector:@selector(avoidCrashSetValuesForKeysWithDictionary:)];
     });
 }
 
@@ -66,6 +68,18 @@
     }
     @finally {
         
+    }
+}
+
+- (void)avoidCrashSetValuesForKeysWithDictionary:(NSDictionary<NSString *,id> *)keyedValues
+{
+    @try{
+        [self avoidCrashSetValuesForKeysWithDictionary:keyedValues];
+    }
+    @catch (NSException *exception)
+    {
+        NSString *defaultToDo = AvoidCrashDefaultIgnore;
+        [MTTAvoidCrashManager noteErrorWithException:exception defaultToDo:defaultToDo];
     }
 }
 

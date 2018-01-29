@@ -8,6 +8,10 @@
 
 #import "NSObject+AvoidCrashCategory.h"
 #import "MTTAvoidCrashManager.h"
+#import "MTTAvoidCrashStubProxy.h"
+
+static NSMutableArray *noneSelClassStrings;
+static NSMutableArray *noneSelClassStringPrefixs;
 
 @implementation NSObject (AvoidCrashCategory)
 
@@ -22,6 +26,14 @@
         [MTTAvoidCrashManager swizzledInClass:[self class] originalSelector:@selector(setValue:forUndefinedKey:) swizzledSelector:@selector(avoidCrashSetValue:forUndefinedKey:)];
         
         [MTTAvoidCrashManager swizzledInClass:[self class] originalSelector:@selector(setValuesForKeysWithDictionary:) swizzledSelector:@selector(avoidCrashSetValuesForKeysWithDictionary:)];
+        
+        if (isRecognized)
+        {
+            [MTTAvoidCrashManager swizzledInClass:[self class] originalSelector:@selector(methodSignatureForSelector:) swizzledSelector:@selector(avoidCrashMethodSignatureForSelector:)];
+            
+            [MTTAvoidCrashManager swizzledInClass:[self class] originalSelector:@selector(forwardInvocation:) swizzledSelector:@selector(avoidCrashForwardInvocation:)];
+        }
+        
     });
 }
 
@@ -80,6 +92,48 @@
     {
         NSString *defaultToDo = AvoidCrashDefaultIgnore;
         [MTTAvoidCrashManager noteErrorWithException:exception defaultToDo:defaultToDo];
+    }
+}
+
+- (NSMethodSignature *)avoidCrashMethodSignatureForSelector:(SEL)selector
+{
+    NSMethodSignature *ms = [self avoidCrashMethodSignatureForSelector:selector];
+    
+    BOOL flag = NO;
+    if (ms == nil)
+    {
+        for (NSString *classStr in noneSelClassStrings) {
+            if ([self isKindOfClass:NSClassFromString(classStr)]) {
+                ms = [MTTAvoidCrashStubProxy instanceMethodSignatureForSelector:@selector(proxyMethod)];
+                flag = true;
+                break;
+            }
+        }
+    } else
+    {
+        NSString *selfClass = NSStringFromClass([self class]);
+        for (NSString *classStrPrefix in noneSelClassStringPrefixs) {
+            if ([selfClass hasPrefix:classStrPrefix])
+            {
+                ms = [MTTAvoidCrashStubProxy instanceMethodSignatureForSelector:@selector(proxyMethod)];
+                
+            }
+        }
+    }
+    return ms;
+}
+
+- (void)avoidCrashForwardInvocation:(NSInvocation *)invocation
+{
+    @try{
+        [self avoidCrashForwardInvocation:invocation];
+    }
+    @catch (NSException *exception){
+        NSString *defaultToDo = AvoidCrashDefaultIgnore;
+        [MTTAvoidCrashManager noteErrorWithException:exception defaultToDo:defaultToDo];
+    }
+    @finally {
+        
     }
 }
 

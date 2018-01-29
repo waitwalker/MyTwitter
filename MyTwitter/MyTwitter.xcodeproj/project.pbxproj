@@ -32,6 +32,7 @@
 		1A3254C7200647FD006C6700 /* MTTUserStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3254C6200647FD006C6700 /* MTTUserStatisticsModel.m */; };
 		1A3254CA20064990006C6700 /* MTTRealmConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3254C920064990006C6700 /* MTTRealmConfiguration.m */; };
 		1A3254CD20064F33006C6700 /* MTTRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3254CC20064F33006C6700 /* MTTRealm.m */; };
+		1A33A251201F56EA00428A6E /* MTTAvoidCrashStubProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A33A250201F56EA00428A6E /* MTTAvoidCrashStubProxy.m */; };
 		1A40EF622014897900700F10 /* MTTAvoidCrashManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A40EF612014897900700F10 /* MTTAvoidCrashManager.m */; };
 		1A40EF66201493AE00700F10 /* MTTAvoidCrashManager+Cagetory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A40EF65201493AE00700F10 /* MTTAvoidCrashManager+Cagetory.m */; };
 		1A40EF692014949B00700F10 /* NSObject+AvoidCrashCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A40EF682014949B00700F10 /* NSObject+AvoidCrashCategory.m */; };
@@ -213,6 +214,8 @@
 		1A3254C920064990006C6700 /* MTTRealmConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTRealmConfiguration.m; sourceTree = "<group>"; };
 		1A3254CB20064F33006C6700 /* MTTRealm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTRealm.h; sourceTree = "<group>"; };
 		1A3254CC20064F33006C6700 /* MTTRealm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTRealm.m; sourceTree = "<group>"; };
+		1A33A24F201F56EA00428A6E /* MTTAvoidCrashStubProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTAvoidCrashStubProxy.h; sourceTree = "<group>"; };
+		1A33A250201F56EA00428A6E /* MTTAvoidCrashStubProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTAvoidCrashStubProxy.m; sourceTree = "<group>"; };
 		1A40EF602014897900700F10 /* MTTAvoidCrashManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTAvoidCrashManager.h; sourceTree = "<group>"; };
 		1A40EF612014897900700F10 /* MTTAvoidCrashManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTAvoidCrashManager.m; sourceTree = "<group>"; };
 		1A40EF64201493AE00700F10 /* MTTAvoidCrashManager+Cagetory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MTTAvoidCrashManager+Cagetory.h"; sourceTree = "<group>"; };
@@ -616,6 +619,8 @@
 				1A40EF65201493AE00700F10 /* MTTAvoidCrashManager+Cagetory.m */,
 				1A40EF672014949B00700F10 /* NSObject+AvoidCrashCategory.h */,
 				1A40EF682014949B00700F10 /* NSObject+AvoidCrashCategory.m */,
+				1A33A24F201F56EA00428A6E /* MTTAvoidCrashStubProxy.h */,
+				1A33A250201F56EA00428A6E /* MTTAvoidCrashStubProxy.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1672,6 +1677,7 @@
 				CA908CB61F9F05BB00E4AFB9 /* MTTPersonalViewController.swift in Sources */,
 				CAE674271F7F8F0A00C1093E /* MTTFileManagerExtension.swift in Sources */,
 				CADECBF61F5F83450027E15F /* MTTRegitserViewModel.swift in Sources */,
+				1A33A251201F56EA00428A6E /* MTTAvoidCrashStubProxy.m in Sources */,
 				1AA6E4BE1F9B18520025FB7B /* MTTMessageViewModel.swift in Sources */,
 				CA36DE2C1F7368090077B44F /* MTTAboutModel.swift in Sources */,
 				1A869C211FCD945C00FFFF38 /* MTTChatMessageViewController.swift in Sources */,

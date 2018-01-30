@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <objc/runtime.h>
+#import <UIKit/UIKit.h>
 
 #define AvoidCrashNotification @"AvoidCrashNotification"
 #define AvoidCrashIsiOS(version) ([[UIDevice currentDevice].systemVersion floatValue] >= version)

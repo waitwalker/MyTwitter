@@ -45,6 +45,13 @@
     }
 }
 
++ (void)swizzledClassMethodInClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector
+{
+    Method originalMethod = class_getClassMethod(cls, originalSelector);
+    Method swizzledMethod = class_getClassMethod(cls, swizzledSelector);
+    method_exchangeImplementations(originalMethod, swizzledMethod);
+}
+
 + (void)noteErrorWithException:(NSException *)exception defaultToDo:(NSString *)defaultToDo
 {
     //堆栈数据

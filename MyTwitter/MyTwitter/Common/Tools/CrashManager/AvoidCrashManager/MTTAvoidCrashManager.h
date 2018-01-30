@@ -35,6 +35,8 @@
 
 + (void)swizzledInClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector;
 
++ (void)swizzledClassMethodInClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector;
+
 + (void)noteErrorWithException:(NSException *)exception defaultToDo:(NSString *)defaultToDo;
 
 @end

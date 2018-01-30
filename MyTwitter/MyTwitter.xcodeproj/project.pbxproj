@@ -70,6 +70,7 @@
 		1A9AC7092020AC1B000F4C3A /* NSMutableArray+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AC7082020AC1B000F4C3A /* NSMutableArray+AvoidCrash.m */; };
 		1A9AC70C2020AD5A000F4C3A /* NSDictionary+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AC70B2020AD5A000F4C3A /* NSDictionary+AvoidCrash.m */; };
 		1A9AC70F2020ADF4000F4C3A /* NSMutableDictionary+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AC70E2020ADF4000F4C3A /* NSMutableDictionary+AvoidCrash.m */; };
+		1A9AC7122020AECA000F4C3A /* NSString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AC7112020AECA000F4C3A /* NSString+AvoidCrash.m */; };
 		1AA6E4BE1F9B18520025FB7B /* MTTMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA6E4BD1F9B18520025FB7B /* MTTMessageViewModel.swift */; };
 		1AA6E4C01F9B19710025FB7B /* MTTMessageMailBoxData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6E4BF1F9B19710025FB7B /* MTTMessageMailBoxData.json */; };
 		1AA6E4C21F9B19870025FB7B /* MTTMessageRequestData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6E4C11F9B19870025FB7B /* MTTMessageRequestData.json */; };
@@ -266,6 +267,8 @@
 		1A9AC70B2020AD5A000F4C3A /* NSDictionary+AvoidCrash.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
 		1A9AC70D2020ADF4000F4C3A /* NSMutableDictionary+AvoidCrash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+AvoidCrash.h"; sourceTree = "<group>"; };
 		1A9AC70E2020ADF4000F4C3A /* NSMutableDictionary+AvoidCrash.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
+		1A9AC7102020AECA000F4C3A /* NSString+AvoidCrash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+AvoidCrash.h"; sourceTree = "<group>"; };
+		1A9AC7112020AECA000F4C3A /* NSString+AvoidCrash.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+AvoidCrash.m"; sourceTree = "<group>"; };
 		1AA6E4BD1F9B18520025FB7B /* MTTMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTMessageViewModel.swift; sourceTree = "<group>"; };
 		1AA6E4BF1F9B19710025FB7B /* MTTMessageMailBoxData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MTTMessageMailBoxData.json; sourceTree = "<group>"; };
 		1AA6E4C11F9B19870025FB7B /* MTTMessageRequestData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MTTMessageRequestData.json; sourceTree = "<group>"; };
@@ -643,6 +646,8 @@
 				1A9AC70B2020AD5A000F4C3A /* NSDictionary+AvoidCrash.m */,
 				1A9AC70D2020ADF4000F4C3A /* NSMutableDictionary+AvoidCrash.h */,
 				1A9AC70E2020ADF4000F4C3A /* NSMutableDictionary+AvoidCrash.m */,
+				1A9AC7102020AECA000F4C3A /* NSString+AvoidCrash.h */,
+				1A9AC7112020AECA000F4C3A /* NSString+AvoidCrash.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1724,6 +1729,7 @@
 				1A304C561F6D6B7400F366B9 /* MTTSearchViewController.swift in Sources */,
 				1AA6E4C51F9B1C250025FB7B /* MTTMessageHeader.swift in Sources */,
 				1A561D7A1F6FF58F001C82FA /* MTTLoginViewController.swift in Sources */,
+				1A9AC7122020AECA000F4C3A /* NSString+AvoidCrash.m in Sources */,
 				1A33A255201F5EC100428A6E /* NSArray+AvoidCrash.m in Sources */,
 				CA572B131F8E022300E9D7F6 /* MTTPhotoLibraryViewController.swift in Sources */,
 				1A304C501F6D6B4800F366B9 /* MTTHomeViewController.swift in Sources */,

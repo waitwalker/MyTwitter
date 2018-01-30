@@ -68,6 +68,7 @@
 		1A8F5BD51F72A915006D6CA0 /* MTTTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F5BD41F72A915006D6CA0 /* MTTTableViewCell.swift */; };
 		1A8F5BD71F72A98F006D6CA0 /* MTTAboutNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F5BD61F72A98F006D6CA0 /* MTTAboutNormalCell.swift */; };
 		1A9AC7092020AC1B000F4C3A /* NSMutableArray+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AC7082020AC1B000F4C3A /* NSMutableArray+AvoidCrash.m */; };
+		1A9AC70C2020AD5A000F4C3A /* NSDictionary+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AC70B2020AD5A000F4C3A /* NSDictionary+AvoidCrash.m */; };
 		1AA6E4BE1F9B18520025FB7B /* MTTMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA6E4BD1F9B18520025FB7B /* MTTMessageViewModel.swift */; };
 		1AA6E4C01F9B19710025FB7B /* MTTMessageMailBoxData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6E4BF1F9B19710025FB7B /* MTTMessageMailBoxData.json */; };
 		1AA6E4C21F9B19870025FB7B /* MTTMessageRequestData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6E4C11F9B19870025FB7B /* MTTMessageRequestData.json */; };
@@ -260,6 +261,8 @@
 		1A8F5BD61F72A98F006D6CA0 /* MTTAboutNormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutNormalCell.swift; sourceTree = "<group>"; };
 		1A9AC7072020AC1B000F4C3A /* NSMutableArray+AvoidCrash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AvoidCrash.h"; sourceTree = "<group>"; };
 		1A9AC7082020AC1B000F4C3A /* NSMutableArray+AvoidCrash.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+AvoidCrash.m"; sourceTree = "<group>"; };
+		1A9AC70A2020AD5A000F4C3A /* NSDictionary+AvoidCrash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+AvoidCrash.h"; sourceTree = "<group>"; };
+		1A9AC70B2020AD5A000F4C3A /* NSDictionary+AvoidCrash.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
 		1AA6E4BD1F9B18520025FB7B /* MTTMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTMessageViewModel.swift; sourceTree = "<group>"; };
 		1AA6E4BF1F9B19710025FB7B /* MTTMessageMailBoxData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MTTMessageMailBoxData.json; sourceTree = "<group>"; };
 		1AA6E4C11F9B19870025FB7B /* MTTMessageRequestData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MTTMessageRequestData.json; sourceTree = "<group>"; };
@@ -633,6 +636,8 @@
 				1A33A254201F5EC100428A6E /* NSArray+AvoidCrash.m */,
 				1A9AC7072020AC1B000F4C3A /* NSMutableArray+AvoidCrash.h */,
 				1A9AC7082020AC1B000F4C3A /* NSMutableArray+AvoidCrash.m */,
+				1A9AC70A2020AD5A000F4C3A /* NSDictionary+AvoidCrash.h */,
+				1A9AC70B2020AD5A000F4C3A /* NSDictionary+AvoidCrash.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1657,6 +1662,7 @@
 				1ABFD4BC1F84BE48004DF174 /* MTTCollectionViewCell.swift in Sources */,
 				1A09A54A1F9B090E007BC41C /* MTTMessageModel.swift in Sources */,
 				1A3254C7200647FD006C6700 /* MTTUserStatisticsModel.m in Sources */,
+				1A9AC70C2020AD5A000F4C3A /* NSDictionary+AvoidCrash.m in Sources */,
 				1A304C541F6D6B6800F366B9 /* MTTPrivateMessageViewController.swift in Sources */,
 				1A011D3D1F9C7D6800485766 /* MTTLanuchAnimation.swift in Sources */,
 				CAB5EF0F1F6F6F9C0003049B /* MTTSingletonManager.swift in Sources */,

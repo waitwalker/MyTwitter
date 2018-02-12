@@ -162,6 +162,8 @@ class MTTSmallVideoView: MTTView {
             make.centerY.equalTo(self.videoBottomContainerView)
         }
         
+        print(self.videoRecordView.frame)
+        
     }
     
     // MARK: - 监听相关事件 
@@ -260,7 +262,15 @@ extension MTTSmallVideoView
             self.captureSession.addOutput(self.captureAudioDataOutput)
         }
         
+        // 4. 设置视频预览层
+        self.captureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
+        self.captureVideoPreviewLayer.frame = CGRect(x: 0, y: 20, width: kScreenWidth, height: 260)
+        self.captureVideoPreviewLayer.position = CGPoint(x: kScreenWidth / 2, y: 130)
+        self.captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        self.videoRecordView.layer.addSublayer(self.captureVideoPreviewLayer)
         
+        // 5. 开始采集
+        self.captureSession.startRunning()
     }
     
     // 获取设备 

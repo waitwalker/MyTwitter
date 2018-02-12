@@ -128,6 +128,12 @@ UICollectionViewDelegateFlowLayout
         self.delegate?.selectMicroRecorderAction(with: self)
     }
     
+    // MARK: - 处理选中视频cell delegate 
+    func handleSelectVideo() -> Void 
+    {
+        self.delegate?.selectVideoAction(with: self)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         return CGSize(width: kScreenWidth, height: 44)

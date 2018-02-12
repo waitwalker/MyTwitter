@@ -45,4 +45,8 @@ protocol MTTVideosViewDelegate
 {
     // 选中录音 
     func selectMicroRecorderAction(with view:MTTVideosView) -> Void
+    
+    // 选中视频 
+    func selectVideoAction(with view:MTTVideosView) -> Void 
+    
 }

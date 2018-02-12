@@ -45,6 +45,7 @@ class MTTChatMessageView: MTTView {
         chatMessageTableView.backgroundColor = UIColor.white
         chatMessageTableView.delegate        = self
         chatMessageTableView.dataSource      = self
+        chatMessageTableView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.onDrag
         chatMessageTableView.register(UITableViewCell.self, forCellReuseIdentifier: reusedChatMessageNoneCellId)
         chatMessageTableView.register(MTTChatMessageCell.self, forCellReuseIdentifier: reusedChatMessageCellId)
         chatMessageTableView.separatorStyle  = UITableViewCellSeparatorStyle.none

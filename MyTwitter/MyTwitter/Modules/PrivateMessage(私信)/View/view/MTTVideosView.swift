@@ -114,6 +114,7 @@ UICollectionViewDelegateFlowLayout
             handleSelectMicroRecorder()
             break
         case 1:
+            handleSelectVideo()
             break
         case 2:
             break

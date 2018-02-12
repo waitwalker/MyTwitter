@@ -330,6 +330,7 @@ extension MTTChatMessageViewController
 extension MTTChatMessageViewController:
 MTTVideosViewDelegate
 {
+    // MARK: - 选中录音cell delegate回调
     func selectMicroRecorderAction(with view: MTTVideosView) 
     {
         self.videosView.isHidden = true
@@ -340,6 +341,18 @@ MTTVideosViewDelegate
         self.addButtonIsSelected = false
         self.sharedInstance.showTabbar()
     }
+    
+    // MARK: - 选中视频cell delegate回调 
+    func selectVideoAction(with view: MTTVideosView) 
+    {
+        self.videosView.isHidden = true
+        self.chatMessageToolbar.frame = CGRect(x: 0, y: kScreenHeight - 50 - 44 - 5, width: kScreenWidth, height: 50)
+        self.chatMessageToolbar.addButton.isSelected = false
+        self.chatMessageToolbar.addButton.setImage(UIImage.imageNamed(name: "twitter_add_normal"), for: UIControlState.normal)
+        self.addButtonIsSelected = false
+        self.sharedInstance.showTabbar()
+    }
+    
     
     
 }

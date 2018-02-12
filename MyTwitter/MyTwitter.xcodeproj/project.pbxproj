@@ -161,6 +161,7 @@
 		CADECC071F60E1BE0027E15F /* evt_phone_area_code_en.txt in Resources */ = {isa = PBXBuildFile; fileRef = CADECC051F60E1BE0027E15F /* evt_phone_area_code_en.txt */; };
 		CADECC081F60E1BE0027E15F /* evt_phone_area_code_zh.txt in Resources */ = {isa = PBXBuildFile; fileRef = CADECC061F60E1BE0027E15F /* evt_phone_area_code_zh.txt */; };
 		CADECC4D1F6222D10027E15F /* MTTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECC4C1F6222D10027E15F /* MTTView.swift */; };
+		CAE045A720316166002F548A /* MTTToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE045A620316166002F548A /* MTTToolManager.swift */; };
 		CAE159E920312443000BE2E5 /* MTTSmallVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE159E820312443000BE2E5 /* MTTSmallVideoView.swift */; };
 		CAE3F0E31F7498B700788455 /* MTTHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3F0E21F7498B700788455 /* MTTHomeCell.swift */; };
 		CAE674251F7F848200C1093E /* MTTRollingFileLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE674241F7F848200C1093E /* MTTRollingFileLogger.swift */; };
@@ -380,6 +381,7 @@
 		CADECC051F60E1BE0027E15F /* evt_phone_area_code_en.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = evt_phone_area_code_en.txt; sourceTree = "<group>"; };
 		CADECC061F60E1BE0027E15F /* evt_phone_area_code_zh.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = evt_phone_area_code_zh.txt; sourceTree = "<group>"; };
 		CADECC4C1F6222D10027E15F /* MTTView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTView.swift; sourceTree = "<group>"; };
+		CAE045A620316166002F548A /* MTTToolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTToolManager.swift; sourceTree = "<group>"; };
 		CAE159E820312443000BE2E5 /* MTTSmallVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSmallVideoView.swift; sourceTree = "<group>"; };
 		CAE3F0E21F7498B700788455 /* MTTHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeCell.swift; sourceTree = "<group>"; };
 		CAE674241F7F848200C1093E /* MTTRollingFileLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTRollingFileLogger.swift; sourceTree = "<group>"; };
@@ -799,6 +801,7 @@
 		1AFE6FDB1F6376F000006381 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				CAE045A52031614B002F548A /* ToolManager */,
 				1A7DAEDE201430A000A498D3 /* CrashManager */,
 				1ACC9AD0200399C6000A3F5E /* UserStatistics */,
 				CAE674231F7F83E400C1093E /* Logger */,
@@ -1222,6 +1225,14 @@
 				1A304C0F1F6D66C700F366B9 /* MTTPhoneAreaCodeSectionHeaderView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CAE045A52031614B002F548A /* ToolManager */ = {
+			isa = PBXGroup;
+			children = (
+				CAE045A620316166002F548A /* MTTToolManager.swift */,
+			);
+			path = ToolManager;
 			sourceTree = "<group>";
 		};
 		CAE3F0DD1F74948D00788455 /* View */ = {
@@ -1777,6 +1788,7 @@
 				1AFC05A71F5EE3B2006EAC9F /* AppDelegate.swift in Sources */,
 				1A82AEAC1F8FA4FD0015EAC4 /* MTTSearchHeaderView.swift in Sources */,
 				CAF065421F9606E3002F28F8 /* MTTSearchTwitterCell.swift in Sources */,
+				CAE045A720316166002F548A /* MTTToolManager.swift in Sources */,
 				1A7A0A431F9EB0B4002F8C9A /* MTTPushTwitterDelegate.swift in Sources */,
 				1AFC96AC1FE163B300B36FD8 /* MTTPhotosView.swift in Sources */,
 				CA3058C91F78D2AA00742237 /* MTTHeaderHelper.swift in Sources */,

@@ -360,11 +360,42 @@ MTTVideosViewDelegate
 // MARK: - 小视频视图
 extension MTTChatMessageViewController
 {
+    // 初始录制视图 
     func setupSmallVideoView() -> Void 
     {
+        if !self.getRecordAuthorizationStatus() 
+        {
+            print("目前不能录制")
+            return
+        }
+        
         let smallVideoView = MTTSmallVideoView(frame: CGRect(x: 0, y: 20, width: kScreenWidth, height: kScreenHeight - 20))
         self.sharedInstance.getKeyWindow().addSubview(smallVideoView)
         
+    }
+    
+    // 获取相关权限 
+    func getRecordAuthorizationStatus() -> Bool 
+    {
+        if self.sharedInstance.isSimulator 
+        {
+            print("模拟器不允许录制")
+            return false
+        }
+        
+        if !self.sharedInstance.getCameraAuthorizationStatus() 
+        {
+            print("相机还没有授权")
+            return false
+        }
+        
+        if !self.sharedInstance.getAudioAuthrizationStatus() 
+        {
+            print("录音还没有授权")
+            return false
+        }
+        
+        return true
     }
 }
 

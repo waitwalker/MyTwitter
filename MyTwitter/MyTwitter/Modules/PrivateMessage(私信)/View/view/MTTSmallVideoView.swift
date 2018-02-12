@@ -154,13 +154,6 @@ class MTTSmallVideoView: MTTView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
 
 }
 
@@ -169,10 +162,11 @@ extension MTTSmallVideoView
     // 移除按钮相关事件回调 
     func videoRemoveButtonAction() -> Void 
     {
-        UIView.animate(withDuration: 0.5, animations: { 
-            
+        UIView.animate(withDuration: 0.3, animations: { 
+            self.videoContainerView.y = kScreenHeight
+            self.containerView.backgroundColor = UIColor.gray.withAlphaComponent(0)
         }) { completed in
-            
+            self.removeFromSuperview()
         }
     }
 }

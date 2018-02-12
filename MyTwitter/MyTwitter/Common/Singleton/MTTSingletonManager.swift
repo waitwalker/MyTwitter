@@ -20,7 +20,9 @@ class MTTSingletonManager: NSObject
     var phone_num:String     = ""
     var password:String      = ""
     var tappedImageIndex:Int = 0
-    
+    var isSimulator          = MTTPlatform.isSimulator
+
+
     // 录音相关 
     var recorder:AVAudioRecorder!
     var currentRecorderPath:String!
@@ -482,4 +484,31 @@ AVAudioPlayerDelegate
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: kRecorderPlayFinishNotificationString), object: nil)
         }
     }
+}
+
+// MARK: - 判断是否是模拟器 
+struct MTTPlatform 
+{
+    static let isSimulator:Bool = {
+        var isSim = false
+        #if arch(i386) || arch(x86_64)
+            isSim = true
+        #endif 
+        return isSim
+    }()
+}
+
+// MARK: - 获取录音授权状态 
+extension MTTSingletonManager
+{
+    func getAudioAuthrizationStatus() -> Bool 
+    {
+        let authStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeAudio)
+        if authStatus == AVAuthorizationStatus.restricted || authStatus == AVAuthorizationStatus.denied 
+        {
+            return false
+        }
+        return true
+    }
+    
 }

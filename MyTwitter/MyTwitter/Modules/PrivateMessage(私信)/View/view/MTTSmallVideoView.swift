@@ -13,6 +13,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import AVFoundation
 
 class MTTSmallVideoView: MTTView {
 
@@ -38,6 +39,29 @@ class MTTSmallVideoView: MTTView {
     var videoListButton:UIButton!
     var videoRecordButton:UIButton!
     var videoRemoveButton:UIButton!
+    
+    // 录制相关 
+    var captureSession:AVCaptureSession! //捕获会话 
+    var captureVideoPreviewLayer:AVCaptureVideoPreviewLayer!
+    var captureVideoDevice:AVCaptureDevice!
+    
+    var captureVideoDataOutput:AVCaptureVideoDataOutput!
+    var captureAudioDataOutput:AVCaptureAudioDataOutput!
+    
+    var assetWriter:AVAssetWriter!
+    var assetWriterInputPixelBufferAdaptor:AVAssetWriterInputPixelBufferAdaptor!
+    var assetWriterVideoInput:AVAssetWriterInput!
+    var assetWriterAudioInput:AVAssetWriterInput!
+    
+    var videoQueue:DispatchQueue!
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -168,5 +192,104 @@ extension MTTSmallVideoView
         }) { completed in
             self.removeFromSuperview()
         }
+    }
+}
+
+extension MTTSmallVideoView
+{
+    func setupVideoRecordCapture() -> Void 
+    {
+        // 视频录制队列 
+        self.videoQueue = DispatchQueue(label: "video_queue", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.never, target: nil)
+        
+        // 1.创建捕捉会话 
+        self.captureSession = AVCaptureSession()
+        // 1.1 设置分辨率 
+        if self.captureSession.canSetSessionPreset(AVCaptureSessionPreset1280x720) 
+        {
+            self.captureSession.sessionPreset = AVCaptureSessionPreset1280x720
+        }
+        
+        // 2.视频的输入 
+        self.captureVideoDevice = self.getCameraDeviceWithPosition(position: AVCaptureDevicePosition.back)
+        
+        // 2.1视频HDR(高动态范围图像)
+        self.captureVideoDevice.isVideoHDREnabled = true
+        
+        // 2.2 视频最大,最小帧速率 
+        self.captureVideoDevice.activeVideoMinFrameDuration = CMTime(value: 1, timescale: 60)
+        
+        // 2.3 视频输入源 
+        let captureVideoDeviceInput = try! AVCaptureDeviceInput(device: self.captureVideoDevice)
+        
+        // 2.4 将视频输入源添加到会话 
+        if self.captureSession.canAddInput(captureVideoDeviceInput) 
+        {
+            self.captureSession.addInput(captureVideoDeviceInput)
+        }
+        
+        // 2.5 视频输出
+        self.captureVideoDataOutput = AVCaptureVideoDataOutput()
+        
+        // 2.6 立即丢弃旧帧,节省内存 
+        self.captureVideoDataOutput.alwaysDiscardsLateVideoFrames = true
+        self.captureVideoDataOutput.setSampleBufferDelegate(self, queue: self.videoQueue)
+        if self.captureSession.canAddOutput(self.captureVideoDataOutput) 
+        {
+            self.captureSession.addOutput(self.captureVideoDataOutput)
+        }
+        
+        
+        // 3.获取音频设备 
+        let captureAudioDevice = AVCaptureDeviceDiscoverySession(deviceTypes: [AVCaptureDeviceType.builtInMicrophone], mediaType: AVMediaTypeAudio, position: AVCaptureDevicePosition.back).devices.first
+        
+        // 3.1 创建音频输入源
+        let captureAudioDeviceInput = try! AVCaptureDeviceInput(device: captureAudioDevice)
+        
+        // 3.2 将音频输入源添加到会话 
+        if self.captureSession.canAddInput(captureAudioDeviceInput)
+        {
+            self.captureSession.addInput(captureAudioDeviceInput)
+        }
+        
+        // 3.3 设置音频的输出 
+        self.captureAudioDataOutput = AVCaptureAudioDataOutput()
+        self.captureAudioDataOutput.setSampleBufferDelegate(self, queue: self.videoQueue)
+        if self.captureSession.canAddOutput(self.captureAudioDataOutput) 
+        {
+            self.captureSession.addOutput(self.captureAudioDataOutput)
+        }
+        
+        
+    }
+    
+    // 获取设备 
+    func getCameraDeviceWithPosition(position:AVCaptureDevicePosition) -> AVCaptureDevice 
+    {
+        let captureDeviceDiscoverySession = AVCaptureDeviceDiscoverySession(deviceTypes: [AVCaptureDeviceType.builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: position)
+        
+        let deviceArray = captureDeviceDiscoverySession?.devices
+        for device in deviceArray! {
+            if device.position == position
+            {
+                return device
+            }
+        }
+        return (deviceArray?.first)!
+    }
+}
+
+extension MTTSmallVideoView:AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptureAudioDataOutputSampleBufferDelegate
+{
+    // AVCaptureVideoDataOutputSampleBufferDelegate
+    func captureOutput(_ output: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) 
+    {
+        
+    }
+    
+    // AVCaptureVideoDataOutputSampleBufferDelegate  AVCaptureAudioDataOutputSampleBufferDelegate
+    func captureOutput(_ output: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) 
+    {
+        // 判断AVCaptureOutput 
     }
 }

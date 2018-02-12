@@ -75,17 +75,17 @@ class MTTSmallVideoView: MTTView {
     override func setupSubview() 
     {
         // 背景大容器
-        containerView = UIView()
+        containerView = UIView(frame: self.bounds)
         containerView.backgroundColor = UIColor.gray.withAlphaComponent(0.7)
         self.addSubview(containerView)
         
         // 视频相关容器 
-        videoContainerView = UIView()
+        videoContainerView = UIView(frame: CGRect(x: 0, y: 260, width: kScreenWidth, height: kScreenHeight - 260))
         videoContainerView.backgroundColor = UIColor.black
         containerView.addSubview(videoContainerView)
         
         // 录制视频上部bar
-        videoTopBarView = UIView()
+        videoTopBarView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: 20))
         videoTopBarView.backgroundColor = UIColor.orange
         videoContainerView.addSubview(videoTopBarView)
         
@@ -103,21 +103,24 @@ class MTTSmallVideoView: MTTView {
         videoTopBarView.addSubview(videoRecordingHintImageView)
         
         // 视频录制视图
-        videoRecordView = UIView()
+        videoRecordView = UIView(frame: CGRect(x: 0, y: 20, width: kScreenWidth, height: 260))
         videoRecordView.backgroundColor = kMainBlueColor()
         videoContainerView.addSubview(videoRecordView)
         
         // 下部视图 
-        videoBottomContainerView = UIView()
+        videoBottomContainerView = UIView(frame: CGRect(x: 0, y: self.videoRecordView.frame.maxY, width: kScreenWidth, height: videoContainerView.height - 20 - 260))
         videoBottomContainerView.backgroundColor = UIColor.green
         videoContainerView.addSubview(videoBottomContainerView)
         
-        videoRemoveButton = UIButton()
+        videoRemoveButton = UIButton(frame: CGRect(x: kScreenWidth - 30 - 24, y: (videoBottomContainerView.height - 24) / 2, width: 24, height: 24))
         videoRemoveButton.setImage(UIImage.imageNamed(name: "small_video_remove"), for: UIControlState.normal)
         videoBottomContainerView.addSubview(videoRemoveButton)
+        
+        // 设置视频录制
+        self.setupVideoRecordCapture()
     }
     
-    override func layoutSubview() 
+    func layoutSubviewss()
     {
         containerView.snp.makeConstraints { make in
             make.top.left.bottom.right.equalTo(self)
@@ -162,7 +165,7 @@ class MTTSmallVideoView: MTTView {
             make.centerY.equalTo(self.videoBottomContainerView)
         }
         
-        print(self.videoRecordView.frame)
+        
         
     }
     
@@ -207,19 +210,19 @@ extension MTTSmallVideoView
         // 1.创建捕捉会话 
         self.captureSession = AVCaptureSession()
         // 1.1 设置分辨率 
-        if self.captureSession.canSetSessionPreset(AVCaptureSessionPreset1280x720) 
+        if self.captureSession.canSetSessionPreset(AVCaptureSessionPreset640x480)
         {
-            self.captureSession.sessionPreset = AVCaptureSessionPreset1280x720
+            self.captureSession.sessionPreset = AVCaptureSessionPreset640x480
         }
         
         // 2.视频的输入 
         self.captureVideoDevice = self.getCameraDeviceWithPosition(position: AVCaptureDevicePosition.back)
         
         // 2.1视频HDR(高动态范围图像)
-        self.captureVideoDevice.isVideoHDREnabled = true
+        //self.captureVideoDevice.isVideoHDREnabled = true
         
         // 2.2 视频最大,最小帧速率 
-        self.captureVideoDevice.activeVideoMinFrameDuration = CMTime(value: 1, timescale: 60)
+        //self.captureVideoDevice.activeVideoMinFrameDuration = CMTime(value: 1, timescale: 60)
         
         // 2.3 视频输入源 
         let captureVideoDeviceInput = try! AVCaptureDeviceInput(device: self.captureVideoDevice)
@@ -243,7 +246,8 @@ extension MTTSmallVideoView
         
         
         // 3.获取音频设备 
-        let captureAudioDevice = AVCaptureDeviceDiscoverySession(deviceTypes: [AVCaptureDeviceType.builtInMicrophone], mediaType: AVMediaTypeAudio, position: AVCaptureDevicePosition.back).devices.first
+        let captureAudioDevice = AVCaptureDeviceDiscoverySession(deviceTypes: [AVCaptureDeviceType.builtInMicrophone], mediaType: AVMediaTypeAudio, position: AVCaptureDevicePosition.unspecified).devices.first
+        
         
         // 3.1 创建音频输入源
         let captureAudioDeviceInput = try! AVCaptureDeviceInput(device: captureAudioDevice)
@@ -264,7 +268,7 @@ extension MTTSmallVideoView
         
         // 4. 设置视频预览层
         self.captureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-        self.captureVideoPreviewLayer.frame = CGRect(x: 0, y: 20, width: kScreenWidth, height: 260)
+        self.captureVideoPreviewLayer.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 260)
         self.captureVideoPreviewLayer.position = CGPoint(x: kScreenWidth / 2, y: 130)
         self.captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         self.videoRecordView.layer.addSublayer(self.captureVideoPreviewLayer)

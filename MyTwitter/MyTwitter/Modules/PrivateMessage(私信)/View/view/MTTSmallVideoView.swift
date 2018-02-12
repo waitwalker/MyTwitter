@@ -14,7 +14,14 @@ import UIKit
 
 class MTTSmallVideoView: MTTView {
 
+    // 灰色背景容器 
     var containerView:UIView!
+    
+    // 视频相关容器 
+    var videoContainerView:UIView!
+    
+    // 视频顶部bar
+    var videoTopBarView:UIView!
     
     
     
@@ -26,14 +33,23 @@ class MTTSmallVideoView: MTTView {
     override func setupSubview() 
     {
         containerView = UIView()
-        containerView.backgroundColor = kMainGrayColor().withAlphaComponent(0.3)
+        containerView.backgroundColor = UIColor.gray.withAlphaComponent(0.7)
         self.addSubview(containerView)
+        
+        videoContainerView = UIView()
+        videoContainerView.backgroundColor = UIColor.black
+        containerView.addSubview(videoContainerView)
     }
     
     override func layoutSubview() 
     {
         containerView.snp.makeConstraints { make in
             make.top.left.bottom.right.equalTo(self)
+        }
+        
+        videoContainerView.snp.makeConstraints { make in
+            make.left.right.bottom.equalTo(self)
+            make.top.equalTo(self).offset(260)
         }
     }
     

@@ -351,6 +351,7 @@ MTTVideosViewDelegate
         self.chatMessageToolbar.addButton.setImage(UIImage.imageNamed(name: "twitter_add_normal"), for: UIControlState.normal)
         self.addButtonIsSelected = false
         self.sharedInstance.showTabbar()
+        self.setupSmallVideoView()
     }
     
     
@@ -361,8 +362,8 @@ extension MTTChatMessageViewController
 {
     func setupSmallVideoView() -> Void 
     {
-        let smallVideoView = MTTSmallVideoView(frame: self.view.bounds)
-        self.view.addSubview(smallVideoView)
+        let smallVideoView = MTTSmallVideoView(frame: CGRect(x: 0, y: 20, width: kScreenWidth, height: kScreenHeight - 20))
+        self.sharedInstance.getKeyWindow().addSubview(smallVideoView)
         
     }
 }

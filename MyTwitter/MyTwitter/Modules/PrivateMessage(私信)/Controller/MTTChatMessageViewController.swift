@@ -354,6 +354,16 @@ MTTVideosViewDelegate
     }
     
     
-    
+}
+
+// MARK: - 小视频视图
+extension MTTChatMessageViewController
+{
+    func setupSmallVideoView() -> Void 
+    {
+        let smallVideoView = MTTSmallVideoView(frame: self.view.bounds)
+        self.view.addSubview(smallVideoView)
+        
+    }
 }
 

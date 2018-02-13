@@ -40,6 +40,9 @@ class MTTSmallVideoView: MTTView {
     var videoRecordButton:UIButton!
     var videoRemoveButton:UIButton!
     
+    var eyeView:MTTEyeView!
+    
+    
     // 录制相关 
     var captureSession:AVCaptureSession! //捕获会话 
     var captureVideoPreviewLayer:AVCaptureVideoPreviewLayer!
@@ -74,9 +77,14 @@ class MTTSmallVideoView: MTTView {
         self.addSubview(containerView)
         
         // 视频相关容器 
-        videoContainerView = UIView(frame: CGRect(x: 0, y: 260, width: kScreenWidth, height: kScreenHeight - 260))
+        videoContainerView = UIView(frame: CGRect(x: 0, y: kScreenHeight, width: kScreenWidth, height: kScreenHeight - 260))
         videoContainerView.backgroundColor = UIColor.black
         containerView.addSubview(videoContainerView)
+        
+        // 视频录制视图
+        videoRecordView = UIView(frame: CGRect(x: 0, y: 20, width: kScreenWidth, height: 260))
+        videoRecordView.backgroundColor = kMainBlueColor()
+        videoContainerView.addSubview(videoRecordView)
         
         // 录制视频上部bar
         videoTopBarView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: 20))
@@ -96,10 +104,6 @@ class MTTSmallVideoView: MTTView {
         videoRecordingHintImageView.isHidden = true
         videoTopBarView.addSubview(videoRecordingHintImageView)
         
-        // 视频录制视图
-        videoRecordView = UIView(frame: CGRect(x: 0, y: 20, width: kScreenWidth, height: 260))
-        videoRecordView.backgroundColor = kMainBlueColor()
-        videoContainerView.addSubview(videoRecordView)
         
         // 下部视图 
         videoBottomContainerView = UIView(frame: CGRect(x: 0, y: self.videoRecordView.frame.maxY, width: kScreenWidth, height: videoContainerView.height - 20 - 260))
@@ -112,6 +116,65 @@ class MTTSmallVideoView: MTTView {
         
         // 设置视频录制
         self.setupVideoRecordCapture()
+        
+        videoContainerView.sendSubview(toBack: videoTopBarView)
+        
+        
+        // 眼睛视图
+        eyeView = MTTEyeView(frame:self.videoRecordView.bounds)
+        self.videoRecordView.addSubview(eyeView)
+        
+        print(eyeView)
+        
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { 
+            self.videoContainerView.y = 260
+        }) { completed in
+            self.setupEyeAnimationView()
+        }
+
+        
+        let timeInterval:TimeInterval = 2.0
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval) { 
+            
+        }
+    }
+    
+    // MARK: - 设置睁眼动画 
+    func setupEyeAnimationView() -> Void 
+    {
+        let eyeCopyView = eyeView.snapshotView(afterScreenUpdates: false)
+        
+        let eyeCopyViewWidth:CGFloat = self.videoRecordView.width
+        let eyeCopyViewHeight:CGFloat = self.videoRecordView.height
+        
+        eyeView.alpha = 0.0
+        
+        let topView = eyeCopyView?.resizableSnapshotView(from: CGRect(x: 0, y: 0, width: eyeCopyViewWidth, height: eyeCopyViewHeight / 2.0), afterScreenUpdates: false, withCapInsets: UIEdgeInsets.zero)
+        
+        let bottomFrame = CGRect(x: 0, y: 130, width: eyeCopyViewWidth, height: eyeCopyViewHeight / 2.0)
+        
+        
+        let bottomView = eyeCopyView?.resizableSnapshotView(from: bottomFrame, afterScreenUpdates: false, withCapInsets: UIEdgeInsets.zero)
+        bottomView?.frame = bottomFrame
+        print(topView as Any,"\n",bottomView as Any)
+        self.videoRecordView.addSubview(topView!)
+        self.videoRecordView.addSubview(bottomView!)
+        
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { 
+            topView?.transform = CGAffineTransform(translationX: 0.0, y: -20)
+            bottomView?.transform = CGAffineTransform(translationX: 0.0, y: 260)
+            topView?.alpha = 0.3
+            bottomView?.alpha = 0.3
+        }) { completed in
+            topView?.removeFromSuperview()
+            bottomView?.removeFromSuperview()
+            self.eyeView.removeFromSuperview()
+            self.eyeView = nil
+        }
+        
+        
+        
+        
     }
     
     func layoutSubviewss()
@@ -238,7 +301,6 @@ extension MTTSmallVideoView
             self.captureSession.addOutput(self.captureVideoDataOutput)
         }
         
-        
         // 3.获取音频设备 
         let captureAudioDevice = AVCaptureDeviceDiscoverySession(deviceTypes: [AVCaptureDeviceType.builtInMicrophone], mediaType: AVMediaTypeAudio, position: AVCaptureDevicePosition.unspecified).devices.first
         
@@ -269,6 +331,7 @@ extension MTTSmallVideoView
         
         // 5. 开始采集
         self.captureSession.startRunning()
+        
     }
     
     // 获取设备 
@@ -316,23 +379,30 @@ class MTTEyeView: MTTView
     
     override func setupSubview() -> Void 
     {
+        self.backgroundColor = UIColor(red: (21.0 / 255.0), green: (21.0 / 255.0), blue: (21.0 / 255.0), alpha: 1.0)
+        let eyeImageView = UIImageView(frame: CGRect(x: (self.bounds.size.width - 100) / 2.0, y: (self.bounds.size.height - 70) / 2.0, width: 100, height: 70))
+        eyeImageView.image = UIImage.imageNamed(name: "small_video_eye")
+        self.addSubview(eyeImageView)
+        
+        
         // 容器 
         let containerView = UIView(frame: self.bounds)
         containerView.backgroundColor = UIColor.clear
-        self.addSubview(containerView)
+        //self.addSubview(containerView)
         
         // 绘制path
-        let selfCenter = CGPoint(x: self.width / 2, y: self.height / 2)
+        let selfCenter = CGPoint(x: self.bounds.size.width / 2.0, y: self.bounds.size.height / 2.0)
         let eyeWidth:CGFloat = 64.0
         let eyeHeight:CGFloat = 40.0
         let curveCtrlHeitht:CGFloat = 44.0
         
         let transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         let strokePath = CGMutablePath()
-        strokePath.move(to: CGPoint(x:selfCenter.x - eyeWidth / 2,y:selfCenter.y), transform: transform)
-        strokePath.addQuadCurve(to: CGPoint(x:selfCenter.x,y:selfCenter.y - curveCtrlHeitht), control: CGPoint(x:selfCenter.x + eyeWidth / 2,y:selfCenter.y), transform: transform)
-        strokePath.addQuadCurve(to: CGPoint(x:selfCenter.x,y:selfCenter.y + curveCtrlHeitht), control: CGPoint(x:selfCenter.x - eyeWidth / 2,y:selfCenter.y), transform: transform)
-        let arcRadius = eyeHeight / 2 - 1.0;
+        strokePath.move(to: CGPoint(x:selfCenter.x - eyeWidth / 2.0,y:selfCenter.y), transform: transform)
+        
+        strokePath.addQuadCurve(to: CGPoint(x:selfCenter.x,y:selfCenter.y - curveCtrlHeitht), control: CGPoint(x:selfCenter.x + eyeWidth / 2.0,y:selfCenter.y), transform: transform)
+        strokePath.addQuadCurve(to: CGPoint(x:selfCenter.x,y:selfCenter.y + curveCtrlHeitht), control: CGPoint(x:selfCenter.x - eyeWidth / 2.0,y:selfCenter.y), transform: transform)
+        let arcRadius:CGFloat = eyeHeight / 2.0 - 1.0;
         
         strokePath.move(to: CGPoint(x:selfCenter.x + arcRadius,y:selfCenter.y), transform: transform)
         strokePath.addArc(center: CGPoint(x:selfCenter.x, y:selfCenter.y), radius: arcRadius, startAngle: 0, endAngle: CGFloat(CGFloat(Double.pi) * 2.0), clockwise: false, transform: transform)
@@ -349,7 +419,7 @@ class MTTEyeView: MTTView
         
         let fillPath_two = createPath(with: selfCenter, startAngle: changeAngleToRadius(with: angle_two), endAngle: changeAngleToRadius(with: angle_three), bigRadius: arcRadius_two, smallRadius: arcRadius_three, transform: transform)
         
-        fillPath.addPath(fillPath_two)
+        fillPath.addPath(fillPath_two, transform: transform)
         
         // 创建图层 
         let color = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
@@ -385,6 +455,7 @@ class MTTEyeView: MTTView
         
         let path = CGMutablePath()
         
+        
         path.move(to: CGPoint(x:center.x + bigRadius * cos(startAngle), y: center.y - bigRadius * sin(startAngle)), transform: transform)
         
         path.addArc(center: center, radius: bigRadius, startAngle: arcStartAngle, endAngle: arcEndAngle, clockwise: true)
@@ -401,7 +472,9 @@ class MTTEyeView: MTTView
     // 角度转换 
     func changeAngleToRadius(with angle:CGFloat) -> CGFloat 
     {
-        return angle / 180.0 * CGFloat(Double.pi)
+        let tmp:CGFloat = angle / 180.0 * CGFloat(Double.pi)
+        print(tmp)
+        return tmp
     }
 }
 

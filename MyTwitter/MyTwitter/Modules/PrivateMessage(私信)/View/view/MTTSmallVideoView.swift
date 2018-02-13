@@ -59,12 +59,6 @@ class MTTSmallVideoView: MTTView {
     
     
     
-    
-    
-    
-    
-    
-    
     override init(frame: CGRect) 
     {
         super.init(frame: frame)
@@ -89,12 +83,12 @@ class MTTSmallVideoView: MTTView {
         videoTopBarView.backgroundColor = UIColor.orange
         videoContainerView.addSubview(videoTopBarView)
         
-        videoBarImageView = UIImageView()
+        videoBarImageView = UIImageView(frame: CGRect(x: (videoTopBarView.width - 20)/2, y: 2, width: 20, height: 16))
         videoBarImageView.isUserInteractionEnabled = true
         videoBarImageView.image = UIImage.imageNamed(name: "small_video_bar")
         videoTopBarView.addSubview(videoBarImageView)
         
-        videoRecordingHintImageView = UIImageView()
+        videoRecordingHintImageView = UIImageView(frame: CGRect(x: (videoTopBarView.width - 10)/2, y: 5, width: 10, height: 10))
         videoRecordingHintImageView.layer.cornerRadius = 5.0
         videoRecordingHintImageView.clipsToBounds = true
         videoRecordingHintImageView.image = UIImage.imageNamed(name: "small_video_dot")
@@ -307,3 +301,88 @@ extension MTTSmallVideoView:AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptu
         // 判断AVCaptureOutput 
     }
 }
+
+// MARK: - 眼睛视图 
+class MTTEyeView: MTTView 
+{
+    override init(frame: CGRect) 
+    {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func setupSubview() -> Void 
+    {
+        // 容器 
+        let containerView = UIView(frame: self.bounds)
+        containerView.backgroundColor = UIColor.clear
+        self.addSubview(containerView)
+        
+        // 绘制path
+        let selfCenter = CGPoint(x: self.width / 2, y: self.height / 2)
+        let eyeWidth:CGFloat = 64.0
+        let eyeHeight:CGFloat = 40.0
+        let curveCtrlHeitht:CGFloat = 44.0
+        
+        let transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        let strokePath = CGMutablePath()
+        strokePath.move(to: CGPoint(x:selfCenter.x - eyeWidth / 2,y:selfCenter.y), transform: transform)
+        strokePath.addQuadCurve(to: CGPoint(x:selfCenter.x,y:selfCenter.y - curveCtrlHeitht), control: CGPoint(x:selfCenter.x + eyeWidth / 2,y:selfCenter.y), transform: transform)
+        strokePath.addQuadCurve(to: CGPoint(x:selfCenter.x,y:selfCenter.y + curveCtrlHeitht), control: CGPoint(x:selfCenter.x - eyeWidth / 2,y:selfCenter.y), transform: transform)
+        let arcRadius = eyeHeight / 2 - 1.0;
+        
+        strokePath.move(to: CGPoint(x:selfCenter.x + arcRadius,y:selfCenter.y), transform: transform)
+        strokePath.addArc(center: CGPoint(x:selfCenter.x, y:selfCenter.y), radius: arcRadius, startAngle: 0, endAngle: CGFloat(CGFloat(Double.pi) * 2.0), clockwise: false, transform: transform)
+        
+        let startAngle:CGFloat = 110.0
+        let angle_one:CGFloat = startAngle + 30.0
+        let angle_two:CGFloat = angle_one + 20.0
+        let angle_three:CGFloat = angle_two + 10.0
+        
+        let arcRadius_two:CGFloat = arcRadius - 4.0
+        let arcRadius_three:CGFloat = arcRadius_two - 7.0
+        
+        let fillPath = createPath(with: selfCenter, startAngle: changeAngleToRadius(with: startAngle), endAngle: changeAngleToRadius(with: angle_one), bigRadius: arcRadius_two, smallRadius: arcRadius_three, transform: transform)
+        
+        let fillPath_two = createPath(with: selfCenter, startAngle: changeAngleToRadius(with: angle_two), endAngle: changeAngleToRadius(with: angle_three), bigRadius: arcRadius_two, smallRadius: arcRadius_three, transform: transform)
+        
+        fillPath.addPath(fillPath_two)
+        
+        // 创建图层 
+        
+        
+        
+        
+    }
+    
+    // 创建所需路径 
+    func createPath(with center:CGPoint, startAngle:CGFloat,endAngle:CGFloat,bigRadius:CGFloat,smallRadius:CGFloat,transform:CGAffineTransform) -> CGMutablePath 
+    {
+        let arcStartAngle:CGFloat = CGFloat(Double.pi) * 2.0 - startAngle
+        let arcEndAngle:CGFloat = CGFloat(Double.pi) * 2.0 - endAngle
+        
+        let path = CGMutablePath()
+        
+        path.move(to: CGPoint(x:center.x + bigRadius * cos(startAngle), y: center.y - bigRadius * sin(startAngle)), transform: transform)
+        
+        path.addArc(center: center, radius: bigRadius, startAngle: arcStartAngle, endAngle: arcEndAngle, clockwise: true)
+        
+        path.addLine(to: CGPoint(x: center.x + smallRadius * cos(endAngle), y: center.y - smallRadius * sin(endAngle)), transform: transform)
+        
+        path.addArc(center: center, radius: smallRadius, startAngle: arcEndAngle, endAngle: arcStartAngle, clockwise: false)
+        
+        path.addLine(to: CGPoint(x: center.x + bigRadius * cos(startAngle), y: center.y - bigRadius * sin(startAngle)), transform: transform)
+        
+        return path
+    }
+    
+    // 角度转换 
+    func changeAngleToRadius(with angle:CGFloat) -> CGFloat 
+    {
+        return angle / 180.0 * CGFloat(Double.pi)
+    }
+}
+

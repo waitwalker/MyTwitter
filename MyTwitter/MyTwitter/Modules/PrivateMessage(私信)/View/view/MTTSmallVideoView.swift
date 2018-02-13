@@ -352,9 +352,28 @@ class MTTEyeView: MTTView
         fillPath.addPath(fillPath_two)
         
         // 创建图层 
+        let color = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
         
         
+        let shape_one = CAShapeLayer()
+        shape_one.frame = self.bounds
+        shape_one.strokeColor = color.cgColor
+        shape_one.fillColor = UIColor.clear.cgColor
+        shape_one.opacity = 1.0
+        shape_one.lineCap = kCALineCapRound
+        shape_one.lineWidth = 1.0
+        shape_one.path = strokePath
+        containerView.layer.addSublayer(shape_one)
         
+        let shape_two = CAShapeLayer()
+        shape_two.frame = self.bounds
+        shape_two.strokeColor = color.cgColor
+        shape_two.fillColor = color.cgColor
+        shape_two.opacity = 1.0
+        shape_two.lineCap = kCALineCapRound
+        shape_two.lineWidth = 1.0
+        shape_two.path = fillPath
+        containerView.layer.addSublayer(shape_two)
         
     }
     

@@ -41,6 +41,12 @@ class MTTSmallVideoView: MTTView {
     var eyeView:MTTEyeView!
     var focusView:MTTFocusView!
     
+    // 上滑取消 
+    var moveUpCancelLabel:UILabel!
+    
+    // 松手取消 
+    var loseCancelLabel:UILabel!
+    
     
     
     // 录制相关 
@@ -58,6 +64,7 @@ class MTTSmallVideoView: MTTView {
     
     var videoQueue:DispatchQueue!
     
+    var recordSECTimer:Timer!
     
     
     
@@ -111,12 +118,10 @@ class MTTSmallVideoView: MTTView {
         videoBottomContainerView.delegate = self
         videoContainerView.addSubview(videoBottomContainerView)
         
-        
         // 设置视频录制
         self.setupVideoRecordCapture()
         
         videoContainerView.sendSubview(toBack: videoTopBarView)
-        
         
         // 眼睛视图
         eyeView = MTTEyeView(frame:self.videoRecordView.bounds)
@@ -145,6 +150,27 @@ class MTTSmallVideoView: MTTView {
         
         // 设置手势 
         setupGesture()
+        
+        // 上滑取消 
+        moveUpCancelLabel = UILabel()
+        moveUpCancelLabel.frame = CGRect(x: 0, y: self.videoRecordView.height - 20 - 5, width: self.videoRecordView.width, height: 20)
+        moveUpCancelLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        moveUpCancelLabel.text = "↑上移取消"
+        moveUpCancelLabel.textAlignment = NSTextAlignment.center
+        moveUpCancelLabel.textColor = kMainBlueColor()
+        moveUpCancelLabel.isHidden = true
+        self.videoRecordView.addSubview(moveUpCancelLabel)
+        
+        // 松手取消 
+        loseCancelLabel = UILabel()
+        loseCancelLabel.frame = CGRect(x: 0, y: (self.videoRecordView.height - 20) / 2.0, width: self.videoRecordView.width, height: 20)
+        loseCancelLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        loseCancelLabel.text = "松手取消"
+        loseCancelLabel.textAlignment = NSTextAlignment.center
+        loseCancelLabel.textColor = kMainBlueColor()
+        loseCancelLabel.isHidden = true
+        self.videoRecordView.addSubview(loseCancelLabel)
+        
     }
     
     // MARK: - 设置相关手势 
@@ -300,46 +326,45 @@ class MTTSmallVideoView: MTTView {
         }
     }
     
-    func layoutSubviewss()
+    // MARK: - 设置录制SEC红色提示
+    func setupRecordHintSECView() -> Void 
     {
-        containerView.snp.makeConstraints { make in
-            make.top.left.bottom.right.equalTo(self)
+        self.videoRecordingHintImageView.isHidden = false
+        self.videoBarImageView.isHidden = true
+        if recordSECTimer == nil 
+        {
+            recordSECTimer = Timer(
+                timeInterval: 0.5, 
+                target: self, 
+                selector: #selector(setupSECAction), 
+                userInfo: nil, 
+                repeats: true)
         }
-        
-        videoContainerView.snp.makeConstraints { make in
-            make.left.right.bottom.equalTo(self)
-            make.top.equalTo(self).offset(260)
+    }
+    
+    @objc private func setupSECAction() -> Void 
+    {
+        if self.videoRecordingHintImageView.isHidden 
+        {
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: { 
+                self.videoRecordingHintImageView.isHidden = false
+            }, completion: { completed in
+                self.videoRecordingHintImageView.isHidden = true
+            })
+        } else
+        {
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: { 
+                self.videoRecordingHintImageView.isHidden = true
+            }, completion: { completed in
+                self.videoRecordingHintImageView.isHidden = false
+            })
         }
-        
-        videoTopBarView.snp.makeConstraints { make in
-            make.left.top.right.equalTo(self.videoContainerView)
-            make.height.equalTo(20)
-        }
-        
-        videoBarImageView.snp.makeConstraints { make in
-            make.height.equalTo(16)
-            make.width.equalTo(20)
-            make.center.equalTo(self.videoTopBarView)
-        }
-        
-        videoRecordingHintImageView.snp.makeConstraints { make in
-            make.height.width.equalTo(10)
-            make.center.equalTo(self.videoTopBarView)
-        }
-        
-        videoRecordView.snp.makeConstraints { make in
-            make.top.equalTo(self.videoTopBarView.snp.bottom).offset(0)
-            make.width.left.equalTo(self.videoContainerView)
-            make.height.equalTo(260)
-        }
-        
-        videoBottomContainerView.snp.makeConstraints { make in
-            make.left.right.bottom.equalTo(self.videoContainerView)
-            make.top.equalTo(self.videoRecordView.snp.bottom).offset(0)
-        }
-        
-        
-        
+    }
+    
+    func stopRecordHintSECView() -> Void 
+    {
+        self.videoRecordingHintImageView.isHidden = true
+        self.videoBarImageView.isHidden = false
     }
     
     // MARK: - 监听相关事件 
@@ -370,6 +395,7 @@ extension MTTSmallVideoView:MTTSmallVideoBottomViewDelegate
     func recordCircleViewDidStartRecord(bottomView: MTTSmallVideoBottomView) 
     {
         // 录制 上 中 相关控件状态做好准备 
+        self.setupRecordHintSECView()
     }
     
     // 视频录制上滑即将取消录制delegate 回调 

@@ -357,13 +357,21 @@ class MTTSmallVideoView: MTTView {
 }
 
 // MARK: - ************************ extension ***********************
-// MARK: - 底部视图移除关闭按钮delegate 回调  
+// MARK: - 底部视图delegate 回调  
 extension MTTSmallVideoView:MTTSmallVideoBottomViewDelegate
 {
+    // 底部视图移除关闭按钮delegate 回调 
     func tappedRemoveButton(bottomView: MTTSmallVideoBottomView) 
     {
         self.videoRemoveButtonAction()
     }
+    
+    // 视频开始录制delegate 回调 
+    func recordCircleViewDidStartRecord(bottom: MTTSmallVideoBottomView) 
+    {
+        // 录制 上 中 相关控件状态做好准备 
+    }
+    
 }
 
 // MARK: - ************************ extension ***********************
@@ -674,10 +682,14 @@ class MTTSmallVideoBottomView: MTTView
     var delegate:MTTSmallVideoBottomViewDelegate!
     
     var recordCircleView:UIView!
-    
     var videoListButton:UIButton!
-    var videoRecordButton:UIButton!
     var videoRemoveButton:UIButton!
+    var recordProgressView:UIView!
+    
+    
+    
+    var longPressGesture:UILongPressGestureRecognizer!
+    
     
     override init(frame: CGRect) 
     {
@@ -688,17 +700,25 @@ class MTTSmallVideoBottomView: MTTView
     
     override func setupSubview() 
     {
-        
+        // 右边移除按钮  
         videoRemoveButton = UIButton(frame: CGRect(x: kScreenWidth - 30 - 24, y: (self.height - 24) / 2, width: 24, height: 24))
         videoRemoveButton.setImage(UIImage.imageNamed(name: "small_video_remove"), for: UIControlState.normal)
         self.addSubview(videoRemoveButton)
         
+        // 中间圆圈录制控件
         self.setupRecordCircleView()
+        
+        // 录制进度条 
+        recordProgressView = UIView(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: 4))
+        recordProgressView.backgroundColor = kMainBlueColor()
+        recordProgressView.isHidden = false
+        self.addSubview(recordProgressView)
     }
     
     private func setupRecordCircleView() -> Void
     {
-        recordCircleView = UIView(frame: CGRect(x: (self.bounds.width - 80) / 2.0, y: (self.bounds.height - 80) / 2.0, width: 80, height: 80))
+        // 录制视图控件 中间那个圆圈 
+        recordCircleView = UIView(frame: CGRect(x: (self.bounds.width - 80) / 2.0, y: (self.bounds.height - 80) / 2.0 - 10, width: 80, height: 80))
         recordCircleView.backgroundColor = UIColor.clear
         self.addSubview(recordCircleView)
         
@@ -722,9 +742,48 @@ class MTTSmallVideoBottomView: MTTView
         recordCircleView.layer.addSublayer(gradientLayer)
         gradientLayer.mask = trackLayer
         
+        // 长按手势 
+        longPressGesture = UILongPressGestureRecognizer(
+            target: self, action: #selector(longPressAction(gesture:)))
+        longPressGesture.minimumPressDuration = 0.01
+        longPressGesture.delegate = self
+        recordCircleView.addGestureRecognizer(longPressGesture)
+    }
+    
+    // MARK: - 长按录制视频事件回调 
+    @objc private func longPressAction(gesture:UILongPressGestureRecognizer) -> Void 
+    {
+        let touchPoint = gesture.location(in: recordCircleView)
+        let isTouchInsided = touchPoint.y >= 0
+        print("录制长按是否在圆圈内:\(isTouchInsided)")
+        
+        switch gesture.state {
+        case UIGestureRecognizerState.began:
+            self.longPressBeganAction()
+        default: break
+            
+        }
         
         
     }
+    
+    // 开始长按回调 
+    private func longPressBeganAction() -> Void 
+    {
+        recordCircleView.alpha = 1.0
+        
+        let oTransform = CGAffineTransform.identity
+        UIView.animate(withDuration: 0.5, animations: { 
+            self.recordCircleView.alpha = 0.0
+            self.recordCircleView.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+        }) { completed in
+            self.recordCircleView.transform = oTransform
+        }
+        
+        
+    }
+    
+    
     
     // MARK: - 监听相关事件 
     func setupEvent() -> Void 
@@ -740,4 +799,15 @@ class MTTSmallVideoBottomView: MTTView
     }
     
     
+}
+
+// MARK: - ************************ extension ***********************
+// MARK: - 长按手势delegate 回调
+extension MTTSmallVideoBottomView:UIGestureRecognizerDelegate
+{
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool 
+    {
+        
+        return true
+    }
 }

@@ -151,20 +151,26 @@ class MTTSmallVideoView: MTTView {
     // MARK: - 设置相关手势 
     func setupGesture() -> Void 
     {
-        let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(focusAction(point:)))
+        let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(focusAction(gesture:)))
         singleTapGesture.delaysTouchesBegan = true
         self.videoRecordView.addGestureRecognizer(singleTapGesture)
         
         
     }
     
-    func focusAction(point:CGPoint) -> Void 
+    func focusAction(gesture:UITapGestureRecognizer) -> Void 
     {
         let date = Date(timeIntervalSinceNow: 0)
+        print("录制单击聚焦\(self),时间:\(date)")
         
+        let tPoint = gesture.location(in: self.videoRecordView)
         
-        print("录制单击\(self),时间:\(date)")
+        self.focusInPoint(point: tPoint)
         
+    }
+    
+    func focusInPoint(point:CGPoint) -> Void 
+    {
         let cameraPoint = captureVideoPreviewLayer.captureDevicePointOfInterest(for: point)
         
         focusView.center = point
@@ -172,10 +178,8 @@ class MTTSmallVideoView: MTTView {
         self.videoRecordView.bringSubview(toFront: focusView)
         focusView.focusing()
         
-        let isLock = try! captureVideoDevice.lockForConfiguration()
-        
-        if (isLock != nil) 
-        {
+        if (try? captureVideoDevice.lockForConfiguration()) != nil {
+            
             if captureVideoDevice.isFocusPointOfInterestSupported
             {
                 captureVideoDevice.focusPointOfInterest = cameraPoint
@@ -199,9 +203,14 @@ class MTTSmallVideoView: MTTView {
                 captureVideoDevice.whiteBalanceMode = AVCaptureWhiteBalanceMode.autoWhiteBalance
             }
             
-            
+            captureVideoDevice.unlockForConfiguration()
         }
         
+        
+        let timeInterval:TimeInterval = 2.0
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: { 
+            self.focusView.removeFromSuperview()
+        })
     }
     
     // MARK: - 设置睁眼动画 
@@ -235,10 +244,10 @@ class MTTSmallVideoView: MTTView {
             bottomView?.removeFromSuperview()
             self.eyeView.removeFromSuperview()
             self.eyeView = nil
-            self.setupDoubleTapLabel()
+            self.focusInPoint(point: self.videoRecordView.center)
         }
         
-        
+        self.setupDoubleTapLabel()
         
     }
     
@@ -261,7 +270,7 @@ class MTTSmallVideoView: MTTView {
         self.videoRecordView.addSubview(doubleTapLabel)
         self.videoRecordView.bringSubview(toFront: doubleTapLabel)
         
-        let timeInterval:TimeInterval = 1.0
+        let timeInterval:TimeInterval = 1.5
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval) { 
             doubleTapLabel.removeFromSuperview()

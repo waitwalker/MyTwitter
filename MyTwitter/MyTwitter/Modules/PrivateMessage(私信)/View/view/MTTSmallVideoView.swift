@@ -170,11 +170,37 @@ class MTTSmallVideoView: MTTView {
             bottomView?.removeFromSuperview()
             self.eyeView.removeFromSuperview()
             self.eyeView = nil
+            self.setupDoubleTapLabel()
         }
         
         
         
+    }
+    
+    // MARK: - 设置聚焦 
+    func setupFocousPoint() -> Void 
+    {
         
+    }
+    
+    // MARK: - 设置双击放大 label 
+    func setupDoubleTapLabel() -> Void 
+    {
+        let doubleTapLabel = UILabel()
+        doubleTapLabel.text = "双击当大"
+        doubleTapLabel.font = UIFont.systemFont(ofSize: 14)
+        doubleTapLabel.frame = CGRect(x: 0, y: 0, width: 200, height: 20)
+        doubleTapLabel.center = CGPoint(x: self.videoRecordView.center.x, y: self.videoRecordView.frame.maxY - 50)
+        doubleTapLabel.textColor = UIColor.white
+        doubleTapLabel.textAlignment = NSTextAlignment.center  //int 类型的枚举 
+        self.videoRecordView.addSubview(doubleTapLabel)
+        self.videoRecordView.bringSubview(toFront: doubleTapLabel)
+        
+        let timeInterval:TimeInterval = 1.0
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval) { 
+            doubleTapLabel.removeFromSuperview()
+        }
     }
     
     func layoutSubviewss()

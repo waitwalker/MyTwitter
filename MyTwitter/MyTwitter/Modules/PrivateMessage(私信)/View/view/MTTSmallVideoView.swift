@@ -128,11 +128,15 @@ class MTTSmallVideoView: MTTView {
         self.videoRecordView.addSubview(eyeView)
         print(eyeView)
         
+        // 聚焦视图  
         focusView = MTTFocusView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
         focusView.backgroundColor = UIColor.clear
         
         
-        UIView.animate(withDuration: 0.3, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { 
+        UIView.animate(withDuration: 0.3, 
+                       delay: 0.0, 
+                       options: UIViewAnimationOptions.curveEaseIn, 
+                       animations: { 
             self.videoContainerView.y = 260
         }) { completed in
             self.setupEyeAnimationView()
@@ -151,14 +155,25 @@ class MTTSmallVideoView: MTTView {
     // MARK: - 设置相关手势 
     func setupGesture() -> Void 
     {
-        let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(focusAction(gesture:)))
+        let singleTapGesture = UITapGestureRecognizer(
+            target: self, 
+            action: #selector(focusAction(gesture:)))
         singleTapGesture.delaysTouchesBegan = true
         self.videoRecordView.addGestureRecognizer(singleTapGesture)
         
+        let doubleTapGesture = UITapGestureRecognizer(
+            target: self, 
+            action: #selector(zoomAction(gesture:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        doubleTapGesture.numberOfTouchesRequired = 1
+        doubleTapGesture.delaysTouchesBegan = true
+        self.videoRecordView.addGestureRecognizer(doubleTapGesture)
+        // 双击失败了才会触发单击 
+        singleTapGesture.require(toFail: doubleTapGesture)
         
     }
-    
-    func focusAction(gesture:UITapGestureRecognizer) -> Void 
+    // 单击聚焦事件 
+    @objc private func focusAction(gesture:UITapGestureRecognizer) -> Void 
     {
         let date = Date(timeIntervalSinceNow: 0)
         print("录制单击聚焦\(self),时间:\(date)")
@@ -169,7 +184,7 @@ class MTTSmallVideoView: MTTView {
         
     }
     
-    func focusInPoint(point:CGPoint) -> Void 
+    private func focusInPoint(point:CGPoint) -> Void 
     {
         let cameraPoint = captureVideoPreviewLayer.captureDevicePointOfInterest(for: point)
         
@@ -208,9 +223,23 @@ class MTTSmallVideoView: MTTView {
         
         
         let timeInterval:TimeInterval = 2.0
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: { 
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + timeInterval, 
+            execute: { 
             self.focusView.removeFromSuperview()
         })
+    }
+    
+    // 双击缩放事件 
+    @objc private func zoomAction(gesture:UITapGestureRecognizer) -> Void 
+    {
+        if ((try? captureVideoDevice.lockForConfiguration()) != nil) 
+        {
+            let zoomFactor:CGFloat = captureVideoDevice.videoZoomFactor == 2.0 ? 1.0:2.0
+            captureVideoDevice.videoZoomFactor = zoomFactor
+            captureVideoDevice.unlockForConfiguration()
+            
+        }
     }
     
     // MARK: - 设置睁眼动画 
@@ -234,11 +263,15 @@ class MTTSmallVideoView: MTTView {
         self.videoRecordView.addSubview(topView!)
         self.videoRecordView.addSubview(bottomView!)
         
-        UIView.animate(withDuration: 0.3, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { 
-            topView?.transform = CGAffineTransform(translationX: 0.0, y: -20)
-            bottomView?.transform = CGAffineTransform(translationX: 0.0, y: 260)
-            topView?.alpha = 0.3
-            bottomView?.alpha = 0.3
+        UIView.animate(
+            withDuration: 0.3, 
+            delay: 0.0, 
+            options: UIViewAnimationOptions.curveEaseIn, 
+            animations: { 
+                topView?.transform = CGAffineTransform(translationX: 0.0, y: -20)
+                bottomView?.transform = CGAffineTransform(translationX: 0.0, y: 260)
+                topView?.alpha = 0.3
+                bottomView?.alpha = 0.3
         }) { completed in
             topView?.removeFromSuperview()
             bottomView?.removeFromSuperview()
@@ -247,13 +280,8 @@ class MTTSmallVideoView: MTTView {
             self.focusInPoint(point: self.videoRecordView.center)
         }
         
+        // 双击放大label 
         self.setupDoubleTapLabel()
-        
-    }
-    
-    // MARK: - 设置聚焦 
-    func setupFocusPoint() -> Void 
-    {
         
     }
     
@@ -343,6 +371,8 @@ class MTTSmallVideoView: MTTView {
 
 }
 
+// MARK: - ************************ extension ***********************
+// MARK: - 按钮的相关事件 
 extension MTTSmallVideoView
 {
     // 移除按钮相关事件回调 
@@ -357,6 +387,8 @@ extension MTTSmallVideoView
     }
 }
 
+// MARK: - ************************ extension ***********************
+// MARK: - 拓展小视频相关录制方法 
 extension MTTSmallVideoView
 {
     func setupVideoRecordCapture() -> Void 
@@ -450,6 +482,8 @@ extension MTTSmallVideoView
     }
 }
 
+// MARK: - ************************ extension ***********************
+// MARK: - AVCaptureVideoDataOutputSampleBufferDelegate协议方法
 extension MTTSmallVideoView:AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptureAudioDataOutputSampleBufferDelegate
 {
     // AVCaptureVideoDataOutputSampleBufferDelegate
@@ -465,6 +499,7 @@ extension MTTSmallVideoView:AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptu
     }
 }
 
+// MARK: - ************************ class ***********************
 // MARK: - 眼睛视图 
 class MTTEyeView: MTTView 
 {
@@ -524,7 +559,6 @@ class MTTEyeView: MTTView
         // 创建图层 
         let color = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
         
-        
         let shape_one = CAShapeLayer()
         shape_one.frame = self.bounds
         shape_one.strokeColor = color.cgColor
@@ -578,6 +612,7 @@ class MTTEyeView: MTTView
     }
 }
 
+// MARK: - ************************ class ***********************
 // MARK: - 聚焦视图 
 class MTTFocusView: MTTView {
     

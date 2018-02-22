@@ -16,5 +16,8 @@ protocol MTTSmallVideoBottomViewDelegate
     
     // 录制相关 
     // 开始录制 
-    func recordCircleViewDidStartRecord(bottom:MTTSmallVideoBottomView) -> Void
+    func recordCircleViewDidStartRecord(bottomView:MTTSmallVideoBottomView) -> Void
+    
+    // 录制上移即将取消录制 
+    func recordCircleViewMoveUpWillCancel(bottomView:MTTSmallVideoBottomView) -> Void
 }

@@ -367,9 +367,15 @@ extension MTTSmallVideoView:MTTSmallVideoBottomViewDelegate
     }
     
     // 视频开始录制delegate 回调 
-    func recordCircleViewDidStartRecord(bottom: MTTSmallVideoBottomView) 
+    func recordCircleViewDidStartRecord(bottomView: MTTSmallVideoBottomView) 
     {
         // 录制 上 中 相关控件状态做好准备 
+    }
+    
+    // 视频录制上滑即将取消录制delegate 回调 
+    func recordCircleViewMoveUpWillCancel(bottomView: MTTSmallVideoBottomView) 
+    {
+        
     }
     
 }
@@ -687,8 +693,12 @@ class MTTSmallVideoBottomView: MTTView
     var recordProgressView:UIView!
     
     
+    let recordTotalTime:Int = 5
+    var recordSurplusTime:Int!
+    
     
     var longPressGesture:UILongPressGestureRecognizer!
+    var recordTimer:Timer!
     
     
     override init(frame: CGRect) 
@@ -709,9 +719,9 @@ class MTTSmallVideoBottomView: MTTView
         self.setupRecordCircleView()
         
         // 录制进度条 
-        recordProgressView = UIView(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: 4))
+        recordProgressView = UIView(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: 2))
         recordProgressView.backgroundColor = kMainBlueColor()
-        recordProgressView.isHidden = false
+        recordProgressView.isHidden = true
         self.addSubview(recordProgressView)
     }
     
@@ -760,6 +770,19 @@ class MTTSmallVideoBottomView: MTTView
         switch gesture.state {
         case UIGestureRecognizerState.began:
             self.longPressBeganAction()
+        
+        case UIGestureRecognizerState.changed:
+            
+            if isTouchInsided
+            {
+                self.recordProgressView.backgroundColor = kMainBlueColor()
+            } else
+            {
+                self.recordProgressView.backgroundColor = kMainRedColor()
+                self.delegate.recordCircleViewMoveUpWillCancel(bottomView: self)
+            }
+            
+            
         default: break
             
         }
@@ -772,6 +795,24 @@ class MTTSmallVideoBottomView: MTTView
     {
         recordCircleView.alpha = 1.0
         
+        recordProgressView.frame = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: 2)
+        recordProgressView.isHidden = false
+        
+        recordSurplusTime = recordTotalTime
+        
+        if recordTimer == nil 
+        {
+            recordTimer = Timer(
+                timeInterval: 1.0, 
+                target: self, 
+                selector: #selector(recordProgressTimerAction), 
+                userInfo: nil, 
+                repeats: true)
+            RunLoop.current.add(recordTimer, forMode: RunLoopMode.defaultRunLoopMode)
+        }
+        recordTimer.fire()
+        
+        
         let oTransform = CGAffineTransform.identity
         UIView.animate(withDuration: 0.5, animations: { 
             self.recordCircleView.alpha = 0.0
@@ -783,6 +824,39 @@ class MTTSmallVideoBottomView: MTTView
         
     }
     
+    // 录制初始数据
+    private func setupRecordOriginalData() -> Void 
+    {
+        self.recordProgressView.isHidden = true
+        self.recordTimer.invalidate()
+        self.recordTimer = nil
+        
+        self.recordCircleView.alpha = 1.0
+    }
+    
+    // 录制进度回调 
+    @objc private func recordProgressTimerAction() -> Void 
+    {
+        let reduceLength:CGFloat = self.bounds.size.width / CGFloat(recordSurplusTime)
+        let oldProgressViewLength = self.recordProgressView.width
+        let oldProgressViewFrame = self.recordProgressView.frame
+        
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: { 
+            self.recordProgressView.frame = CGRect(x: oldProgressViewFrame.origin.x, y: oldProgressViewFrame.origin.y, width: oldProgressViewLength - reduceLength, height: oldProgressViewFrame.size.height)
+            self.recordProgressView.center = CGPoint(x: self.bounds.size.width / 2.0, y: self.recordProgressView.bounds.size.height / 2.0)
+        }) { completed in
+            self.recordSurplusTime = self.recordSurplusTime - 1
+            print("录制剩余时间:\(self.recordSurplusTime)")
+            if self.recordSurplusTime == 1
+            {
+                print("录制剩余时间:\(self.recordSurplusTime)")
+                self.setupRecordOriginalData()
+            }
+        }
+        
+        
+        
+    }
     
     
     // MARK: - 监听相关事件 

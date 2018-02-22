@@ -40,7 +40,10 @@ class MTTSmallVideoView: MTTView {
     var videoRecordButton:UIButton!
     var videoRemoveButton:UIButton!
     
+    // 眼睛视图 
     var eyeView:MTTEyeView!
+    var focusView:MTTFocusView!
+    
     
     
     // 录制相关 
@@ -123,8 +126,11 @@ class MTTSmallVideoView: MTTView {
         // 眼睛视图
         eyeView = MTTEyeView(frame:self.videoRecordView.bounds)
         self.videoRecordView.addSubview(eyeView)
-        
         print(eyeView)
+        
+        focusView = MTTFocusView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        focusView.backgroundColor = UIColor.clear
+        
         
         UIView.animate(withDuration: 0.3, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { 
             self.videoContainerView.y = 260
@@ -137,6 +143,65 @@ class MTTSmallVideoView: MTTView {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval) { 
             
         }
+        
+        // 设置手势 
+        setupGesture()
+    }
+    
+    // MARK: - 设置相关手势 
+    func setupGesture() -> Void 
+    {
+        let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(focusAction(point:)))
+        singleTapGesture.delaysTouchesBegan = true
+        self.videoRecordView.addGestureRecognizer(singleTapGesture)
+        
+        
+    }
+    
+    func focusAction(point:CGPoint) -> Void 
+    {
+        let date = Date(timeIntervalSinceNow: 0)
+        
+        
+        print("录制单击\(self),时间:\(date)")
+        
+        let cameraPoint = captureVideoPreviewLayer.captureDevicePointOfInterest(for: point)
+        
+        focusView.center = point
+        self.videoRecordView.addSubview(focusView)
+        self.videoRecordView.bringSubview(toFront: focusView)
+        focusView.focusing()
+        
+        let isLock = try! captureVideoDevice.lockForConfiguration()
+        
+        if (isLock != nil) 
+        {
+            if captureVideoDevice.isFocusPointOfInterestSupported
+            {
+                captureVideoDevice.focusPointOfInterest = cameraPoint
+            }
+            
+            // 自动聚焦
+            if captureVideoDevice.isFocusModeSupported(AVCaptureFocusMode.autoFocus)
+            {
+                captureVideoDevice.focusMode = AVCaptureFocusMode.autoFocus
+            }
+            
+            // 自动调节曝光 
+            if captureVideoDevice.isExposureModeSupported(AVCaptureExposureMode.autoExpose)
+            {
+                captureVideoDevice.exposureMode = AVCaptureExposureMode.autoExpose
+            }
+            
+            // 白平衡 
+            if captureVideoDevice.isWhiteBalanceModeSupported(AVCaptureWhiteBalanceMode.autoWhiteBalance)
+            {
+                captureVideoDevice.whiteBalanceMode = AVCaptureWhiteBalanceMode.autoWhiteBalance
+            }
+            
+            
+        }
+        
     }
     
     // MARK: - 设置睁眼动画 

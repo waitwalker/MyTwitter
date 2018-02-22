@@ -178,7 +178,7 @@ class MTTSmallVideoView: MTTView {
     }
     
     // MARK: - 设置聚焦 
-    func setupFocousPoint() -> Void 
+    func setupFocusPoint() -> Void 
     {
         
     }
@@ -504,3 +504,61 @@ class MTTEyeView: MTTView
     }
 }
 
+// MARK: - 聚焦视图 
+class MTTFocusView: MTTView {
+    
+    var originalWidthHeight:CGFloat!
+    
+    
+    override init(frame: CGRect) 
+    {
+        super.init(frame: frame)
+        originalWidthHeight = frame.size.height
+    }
+    
+    override func draw(_ rect: CGRect) 
+    {
+        super.draw(rect)
+        
+        // 画一个矩形 
+        let context = UIGraphicsGetCurrentContext()
+        context?.setStrokeColor(kMainBlueColor().cgColor)
+        context?.setLineWidth(1.0)
+        
+        let len:CGFloat = 4.0
+        context?.move(to: CGPoint(x: 0, y: 0))
+        context?.addRect(self.bounds)
+        
+        context?.move(to: CGPoint(x: 0, y: originalWidthHeight / 2.0))
+        context?.addLine(to: CGPoint(x: len, y: originalWidthHeight / 2.0))
+        context?.move(to: CGPoint(x: originalWidthHeight / 2.0, y: originalWidthHeight))
+        context?.addLine(to: CGPoint(x: originalWidthHeight / 2.0, y: originalWidthHeight - len))
+        
+        context?.move(to: CGPoint(x: originalWidthHeight, y: originalWidthHeight / 2.0))
+        context?.addLine(to: CGPoint(x: originalWidthHeight - len, y: originalWidthHeight / 2.0))
+        context?.move(to: CGPoint(x: originalWidthHeight / 2.0, y: 0))
+        context?.addLine(to: CGPoint(x: originalWidthHeight / 2.0, y: len))
+        context?.drawPath(using: CGPathDrawingMode.stroke)
+        
+        
+    }
+    
+    // 聚焦 
+    func focusing() -> Void 
+    {
+        let oTransform = CGAffineTransform.identity
+        
+        UIView.animate(withDuration: 0.5, animations: { 
+            self.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            
+        }) { completed in
+            self.transform = oTransform
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+}

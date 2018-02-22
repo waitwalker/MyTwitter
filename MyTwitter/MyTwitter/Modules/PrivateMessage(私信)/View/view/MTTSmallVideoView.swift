@@ -396,12 +396,27 @@ extension MTTSmallVideoView:MTTSmallVideoBottomViewDelegate
     {
         // 录制 上 中 相关控件状态做好准备 
         self.setupRecordHintSECView()
+        
+        self.moveUpCancelLabel.isHidden = false
+        
+        let timeInterval:TimeInterval = 0.5
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval) { 
+            
+            self.moveUpCancelLabel.isHidden = true
+        }
     }
     
     // 视频录制上滑即将取消录制delegate 回调 
     func recordCircleViewMoveUpWillCancel(bottomView: MTTSmallVideoBottomView) 
     {
+        self.loseCancelLabel.isHidden = false
+        let timeInterval:TimeInterval = 0.5
         
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval) { 
+            
+            self.loseCancelLabel.isHidden = true
+        }
     }
     
 }
@@ -796,6 +811,7 @@ class MTTSmallVideoBottomView: MTTView
         switch gesture.state {
         case UIGestureRecognizerState.began:
             self.longPressBeganAction()
+            self.delegate.recordCircleViewDidStartRecord(bottomView: self)
         
         case UIGestureRecognizerState.changed:
             

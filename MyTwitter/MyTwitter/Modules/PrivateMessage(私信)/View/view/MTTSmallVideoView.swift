@@ -385,6 +385,7 @@ class MTTSmallVideoView: MTTView {
 // MARK: - 底部视图delegate 回调  
 extension MTTSmallVideoView:MTTSmallVideoBottomViewDelegate
 {
+    
     // 底部视图移除关闭按钮delegate 回调 
     func tappedRemoveButton(bottomView: MTTSmallVideoBottomView) 
     {
@@ -417,6 +418,18 @@ extension MTTSmallVideoView:MTTSmallVideoBottomViewDelegate
             
             self.loseCancelLabel.isHidden = true
         }
+    }
+    
+    // 视频录制正常结束delegate 回调 
+    func recordCircleViewDidEnd(bottomView: MTTSmallVideoBottomView) 
+    {
+        
+    }
+    
+    // 视频录制因为某种原因结束delegate 回调 
+    func recordCircleViewDidEndWithType(bottomView: MTTSmallVideoBottomView, type: MTTSmallVideoDidEndType) 
+    {
+        
     }
     
 }
@@ -734,7 +747,7 @@ class MTTSmallVideoBottomView: MTTView
     var recordProgressView:UIView!
     
     
-    let recordTotalTime:Int = 5
+    let kRecordTotalTime:Int = 5
     var recordSurplusTime:Int!
     
     
@@ -824,6 +837,21 @@ class MTTSmallVideoBottomView: MTTView
                 self.delegate.recordCircleViewMoveUpWillCancel(bottomView: self)
             }
             
+        case UIGestureRecognizerState.ended:
+            self.setupRecordOriginalData()
+            if !isTouchInsided || kRecordTotalTime - recordSurplusTime <= 1
+            {
+                var reason:MTTSmallVideoDidEndType = MTTSmallVideoDidEndType.MTTSmallVideoDidEndTypeShortTime
+                
+                if !isTouchInsided
+                {
+                    reason = MTTSmallVideoDidEndType.MTTSmallVideoDidEndTypeDefault
+                }
+                self.delegate.recordCircleViewDidEndWithType(bottomView: self, type: reason)
+            } else
+            {
+                self.delegate.recordCircleViewDidEnd(bottomView: self)
+            }
             
         default: break
             
@@ -840,7 +868,7 @@ class MTTSmallVideoBottomView: MTTView
         recordProgressView.frame = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: 2)
         recordProgressView.isHidden = false
         
-        recordSurplusTime = recordTotalTime
+        recordSurplusTime = kRecordTotalTime
         
         if recordTimer == nil 
         {

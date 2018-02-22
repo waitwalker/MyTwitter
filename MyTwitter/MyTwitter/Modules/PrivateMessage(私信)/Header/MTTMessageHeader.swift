@@ -28,3 +28,9 @@ enum MTTChatMessageFromType:Int {
     case My     = 0//自己发的
     case Others = 1//别人发的
 }
+
+// MARK: - 视频录制终止类型 
+enum MTTSmallVideoDidEndType:Int {
+    case MTTSmallVideoDidEndTypeShortTime = 0
+    case MTTSmallVideoDidEndTypeDefault   = 1
+}

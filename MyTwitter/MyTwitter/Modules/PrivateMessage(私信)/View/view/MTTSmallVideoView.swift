@@ -673,6 +673,7 @@ class MTTSmallVideoBottomView: MTTView
     let disposeBag = DisposeBag()
     var delegate:MTTSmallVideoBottomViewDelegate!
     
+    var recordCircleView:UIView!
     
     var videoListButton:UIButton!
     var videoRecordButton:UIButton!
@@ -691,6 +692,38 @@ class MTTSmallVideoBottomView: MTTView
         videoRemoveButton = UIButton(frame: CGRect(x: kScreenWidth - 30 - 24, y: (self.height - 24) / 2, width: 24, height: 24))
         videoRemoveButton.setImage(UIImage.imageNamed(name: "small_video_remove"), for: UIControlState.normal)
         self.addSubview(videoRemoveButton)
+        
+        self.setupRecordCircleView()
+    }
+    
+    private func setupRecordCircleView() -> Void
+    {
+        recordCircleView = UIView(frame: CGRect(x: (self.bounds.width - 80) / 2.0, y: (self.bounds.height - 80) / 2.0, width: 80, height: 80))
+        recordCircleView.backgroundColor = UIColor.clear
+        self.addSubview(recordCircleView)
+        
+        let path = UIBezierPath(roundedRect: recordCircleView.bounds, cornerRadius: 40)
+        let trackLayer = CAShapeLayer()
+        trackLayer.frame = recordCircleView.bounds
+        trackLayer.strokeColor = kMainBlueColor().cgColor
+        trackLayer.fillColor = UIColor.clear.cgColor
+        trackLayer.opacity = 1.0
+        trackLayer.lineCap = kCALineCapRound
+        trackLayer.lineWidth = 2.0
+        trackLayer.path = path.cgPath
+        recordCircleView.layer.addSublayer(trackLayer)
+        recordCircleView.layer.cornerRadius = 40
+        recordCircleView.layer.masksToBounds = true
+        
+        // 设置渐变色 
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = recordCircleView.bounds
+        gradientLayer.colors = [kMainBlueColor().cgColor,UIColor.purple.cgColor]
+        recordCircleView.layer.addSublayer(gradientLayer)
+        gradientLayer.mask = trackLayer
+        
+        
+        
     }
     
     // MARK: - 监听相关事件 

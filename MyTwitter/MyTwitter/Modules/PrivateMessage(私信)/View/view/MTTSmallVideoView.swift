@@ -35,10 +35,7 @@ class MTTSmallVideoView: MTTView {
     var videoRecordView:UIView!
     
     // 下部容器
-    var videoBottomContainerView:UIView!
-    var videoListButton:UIButton!
-    var videoRecordButton:UIButton!
-    var videoRemoveButton:UIButton!
+    var videoBottomContainerView:MTTSmallVideoBottomView!
     
     // 眼睛视图 
     var eyeView:MTTEyeView!
@@ -109,13 +106,11 @@ class MTTSmallVideoView: MTTView {
         
         
         // 下部视图 
-        videoBottomContainerView = UIView(frame: CGRect(x: 0, y: self.videoRecordView.frame.maxY, width: kScreenWidth, height: videoContainerView.height - 20 - 260))
+        videoBottomContainerView = MTTSmallVideoBottomView(frame: CGRect(x: 0, y: self.videoRecordView.frame.maxY, width: kScreenWidth, height: videoContainerView.height - 20 - 260))
         videoBottomContainerView.backgroundColor = UIColor.green
+        videoBottomContainerView.delegate = self
         videoContainerView.addSubview(videoBottomContainerView)
         
-        videoRemoveButton = UIButton(frame: CGRect(x: kScreenWidth - 30 - 24, y: (videoBottomContainerView.height - 24) / 2, width: 24, height: 24))
-        videoRemoveButton.setImage(UIImage.imageNamed(name: "small_video_remove"), for: UIControlState.normal)
-        videoBottomContainerView.addSubview(videoRemoveButton)
         
         // 设置视频录制
         self.setupVideoRecordCapture()
@@ -343,13 +338,6 @@ class MTTSmallVideoView: MTTView {
             make.top.equalTo(self.videoRecordView.snp.bottom).offset(0)
         }
         
-        videoRemoveButton.snp.makeConstraints { make in
-            make.right.equalTo(self.videoBottomContainerView.snp.right).offset(-30)
-            make.height.equalTo(24)
-            make.width.equalTo(24)
-            make.centerY.equalTo(self.videoBottomContainerView)
-        }
-        
         
         
     }
@@ -357,10 +345,7 @@ class MTTSmallVideoView: MTTView {
     // MARK: - 监听相关事件 
     func setupEvent() -> Void 
     {
-        videoRemoveButton.rx.tap
-            .subscribe(onNext:{ _ in
-                self.videoRemoveButtonAction()
-            }).disposed(by: disposeBag)
+        
     }
     
     
@@ -369,6 +354,16 @@ class MTTSmallVideoView: MTTView {
     }
     
 
+}
+
+// MARK: - ************************ extension ***********************
+// MARK: - 底部视图移除关闭按钮delegate 回调  
+extension MTTSmallVideoView:MTTSmallVideoBottomViewDelegate
+{
+    func tappedRemoveButton(bottomView: MTTSmallVideoBottomView) 
+    {
+        self.videoRemoveButtonAction()
+    }
 }
 
 // MARK: - ************************ extension ***********************
@@ -663,6 +658,48 @@ class MTTFocusView: MTTView {
         }) { completed in
             self.transform = oTransform
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+// MARK: - ************************ class ***********************
+// MARK: - 小视频底部容器视图
+class MTTSmallVideoBottomView: MTTView 
+{
+    let disposeBag = DisposeBag()
+    var delegate:MTTSmallVideoBottomViewDelegate!
+    
+    
+    var videoListButton:UIButton!
+    var videoRecordButton:UIButton!
+    var videoRemoveButton:UIButton!
+    
+    override init(frame: CGRect) 
+    {
+        super.init(frame: frame)
+        
+        setupEvent()
+    }
+    
+    override func setupSubview() 
+    {
+        
+        videoRemoveButton = UIButton(frame: CGRect(x: kScreenWidth - 30 - 24, y: (self.height - 24) / 2, width: 24, height: 24))
+        videoRemoveButton.setImage(UIImage.imageNamed(name: "small_video_remove"), for: UIControlState.normal)
+        self.addSubview(videoRemoveButton)
+    }
+    
+    // MARK: - 监听相关事件 
+    func setupEvent() -> Void 
+    {
+        videoRemoveButton.rx.tap
+            .subscribe(onNext:{ _ in
+                self.delegate.tappedRemoveButton(bottomView: self)
+            }).disposed(by: disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {

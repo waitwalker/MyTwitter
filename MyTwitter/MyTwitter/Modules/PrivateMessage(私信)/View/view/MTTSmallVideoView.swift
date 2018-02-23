@@ -64,6 +64,10 @@ class MTTSmallVideoView: MTTView {
     var assetWriterVideoInput:AVAssetWriterInput!
     var assetWriterAudioInput:AVAssetWriterInput!
     
+    var currentSampleTime:CMTime!
+    
+    
+    
     var videoQueue:DispatchQueue!
     
     var recordSECTimer:Timer!
@@ -647,6 +651,40 @@ extension MTTSmallVideoView:AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptu
     // 输出 AVCaptureVideoDataOutputSampleBufferDelegate
     func captureOutput(_ output: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) 
     {
+        if !self.isRecording 
+        {
+            return
+        }
+        
+        autoreleasepool { () -> () in
+            
+            currentSampleTime = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer)
+            if assetWriter.status != AVAssetWriterStatus.writing
+            {
+                assetWriter.startWriting()
+                assetWriter.startSession(atSourceTime: currentSampleTime)
+            }
+            
+            if output == captureVideoDataOutput
+            {
+                if assetWriterInputPixelBufferAdaptor.assetWriterInput.isReadyForMoreMediaData
+                {
+                    let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
+                    let isSuccess = assetWriterInputPixelBufferAdaptor.append(pixelBuffer!, withPresentationTime: currentSampleTime)
+                    if !isSuccess
+                    {
+                        print("Pixel Buffer 没有 append 成功 ")
+                    }
+                    
+                }
+            }
+            
+            if output == captureAudioDataOutput
+            {
+                assetWriterAudioInput.append(sampleBuffer)
+            }
+            
+        }
         
     }
     

@@ -651,7 +651,7 @@ extension MTTSmallVideoView:AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptu
     // 输出 AVCaptureVideoDataOutputSampleBufferDelegate
     func captureOutput(_ output: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) 
     {
-        if !self.isRecording 
+        if self.isRecording != nil && !self.isRecording 
         {
             return
         }
@@ -659,15 +659,18 @@ extension MTTSmallVideoView:AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptu
         autoreleasepool { () -> () in
             
             currentSampleTime = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer)
-            if assetWriter.status != AVAssetWriterStatus.writing
+            
+            if assetWriter != nil && assetWriter.status != AVAssetWriterStatus.writing
             {
                 assetWriter.startWriting()
                 assetWriter.startSession(atSourceTime: currentSampleTime)
             }
             
+            print("当前output:\(output)")
+            
             if output == captureVideoDataOutput
             {
-                if assetWriterInputPixelBufferAdaptor.assetWriterInput.isReadyForMoreMediaData
+                if assetWriterInputPixelBufferAdaptor != nil && assetWriterInputPixelBufferAdaptor.assetWriterInput.isReadyForMoreMediaData
                 {
                     let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
                     let isSuccess = assetWriterInputPixelBufferAdaptor.append(pixelBuffer!, withPresentationTime: currentSampleTime)
@@ -681,6 +684,10 @@ extension MTTSmallVideoView:AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptu
             
             if output == captureAudioDataOutput
             {
+                if assetWriterAudioInput == nil
+                {
+                    return
+                }
                 assetWriterAudioInput.append(sampleBuffer)
             }
             

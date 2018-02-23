@@ -47,6 +47,8 @@ class MTTSmallVideoView: MTTView {
     // 松手取消 
     var loseCancelLabel:UILabel!
     
+    // 是否正在录制 
+    var isRecording:Bool!
     
     
     // 录制相关 
@@ -334,37 +336,53 @@ class MTTSmallVideoView: MTTView {
         if recordSECTimer == nil 
         {
             recordSECTimer = Timer(
-                timeInterval: 0.5, 
+                timeInterval: 0.3, 
                 target: self, 
                 selector: #selector(setupSECAction), 
                 userInfo: nil, 
                 repeats: true)
+            RunLoop.current.add(recordSECTimer, forMode: RunLoopMode.defaultRunLoopMode)
         }
+        recordSECTimer.fire()
+        
     }
     
     @objc private func setupSECAction() -> Void 
     {
+        let timeInterval:TimeInterval = 0.3
         if self.videoRecordingHintImageView.isHidden 
         {
-            UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: { 
-                self.videoRecordingHintImageView.isHidden = false
-            }, completion: { completed in
-                self.videoRecordingHintImageView.isHidden = true
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: { 
+                
+                if self.isRecording
+                {
+                    self.videoRecordingHintImageView.isHidden = false
+                } else
+                {
+                    self.stopRecordHintSECView()
+                }
+                
             })
+            
         } else
         {
-            UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: { 
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: { 
                 self.videoRecordingHintImageView.isHidden = true
-            }, completion: { completed in
-                self.videoRecordingHintImageView.isHidden = false
             })
         }
+        
+        
     }
     
     func stopRecordHintSECView() -> Void 
     {
         self.videoRecordingHintImageView.isHidden = true
         self.videoBarImageView.isHidden = false
+        if recordSECTimer != nil 
+        {
+            recordSECTimer.invalidate()
+            recordSECTimer = nil
+        }
     }
     
     // MARK: - 监听相关事件 
@@ -396,6 +414,8 @@ extension MTTSmallVideoView:MTTSmallVideoBottomViewDelegate
     func recordCircleViewDidStartRecord(bottomView: MTTSmallVideoBottomView) 
     {
         // 录制 上 中 相关控件状态做好准备 
+        self.isRecording = true
+        
         self.setupRecordHintSECView()
         
         self.moveUpCancelLabel.isHidden = false
@@ -423,13 +443,19 @@ extension MTTSmallVideoView:MTTSmallVideoBottomViewDelegate
     // 视频录制正常结束delegate 回调 
     func recordCircleViewDidEnd(bottomView: MTTSmallVideoBottomView) 
     {
+        self.isRecording = false
+        
         print("视频录制正常结束delegate")
+        self.stopRecordHintSECView()
     }
     
     // 视频录制因为某种原因结束delegate 回调 
     func recordCircleViewDidEndWithType(bottomView: MTTSmallVideoBottomView, type: MTTSmallVideoDidEndType) 
     {
+        self.isRecording = false
+        
         print("视频录制因为某种原因结束delegate:\(type)")
+        self.stopRecordHintSECView()
     }
     
 }

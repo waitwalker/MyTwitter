@@ -18,6 +18,7 @@ let kScreenHeight = UIScreen.main.bounds.size.height
 
 // MARK: - 单例
 let shardInstance = MTTSingletonManager.sharedInstance
+let videoSharedInstance = MTTVideoSingletonManager.videoSharedManager
 
 
 // MARK: - RGB颜色

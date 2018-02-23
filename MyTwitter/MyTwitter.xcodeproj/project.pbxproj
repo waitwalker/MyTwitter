@@ -148,6 +148,7 @@
 		CAC789F21FB6CC05001A5A7D /* MTTUserDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC789F11FB6CC05001A5A7D /* MTTUserDetailHeaderCell.swift */; };
 		CAC990651F690E67002255FA /* MTTRegisterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */; };
 		CAC990A71F6BB62F002255FA /* MTTConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC990A61F6BB62F002255FA /* MTTConst.swift */; };
+		CAC9ED58203FF40C001F6507 /* MTTVideoSingletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9ED57203FF40C001F6507 /* MTTVideoSingletonManager.swift */; };
 		CADECBAD1F5E4E3A0027E15F /* MyTwitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBAC1F5E4E3A0027E15F /* MyTwitterTests.swift */; };
 		CADECBB81F5E4E3A0027E15F /* MyTwitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBB71F5E4E3A0027E15F /* MyTwitterUITests.swift */; };
 		CADECBC91F5E4F0A0027E15F /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADECBC81F5E4F0A0027E15F /* Macro.swift */; };
@@ -364,6 +365,7 @@
 		CAC789F11FB6CC05001A5A7D /* MTTUserDetailHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTUserDetailHeaderCell.swift; sourceTree = "<group>"; };
 		CAC990641F690E67002255FA /* MTTRegisterPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTRegisterPasswordViewController.swift; sourceTree = "<group>"; };
 		CAC990A61F6BB62F002255FA /* MTTConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTTConst.swift; sourceTree = "<group>"; };
+		CAC9ED57203FF40C001F6507 /* MTTVideoSingletonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTVideoSingletonManager.swift; sourceTree = "<group>"; };
 		CADECB941F5E4E3A0027E15F /* MyTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADECBA81F5E4E3A0027E15F /* MyTwitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyTwitterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADECBAC1F5E4E3A0027E15F /* MyTwitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTwitterTests.swift; sourceTree = "<group>"; };
@@ -974,6 +976,7 @@
 			isa = PBXGroup;
 			children = (
 				CAB5EF0E1F6F6F9C0003049B /* MTTSingletonManager.swift */,
+				CAC9ED57203FF40C001F6507 /* MTTVideoSingletonManager.swift */,
 			);
 			name = "Singleton(单例)";
 			path = Singleton;
@@ -1679,6 +1682,7 @@
 				1A6814641FC39E0900BC0341 /* MTTUserDetailTopView.swift in Sources */,
 				1ABFD4BE1F84BE84004DF174 /* MTTPushBottomCell.swift in Sources */,
 				CAE674251F7F848200C1093E /* MTTRollingFileLogger.swift in Sources */,
+				CAC9ED58203FF40C001F6507 /* MTTVideoSingletonManager.swift in Sources */,
 				CA908CB21F9DDA7700E4AFB9 /* MTTLoginViewModelDelegate.swift in Sources */,
 				CA36DE321F7391830077B44F /* MTTAboutHeaderView.swift in Sources */,
 				1A234B581F8BB00E00D6C731 /* MTTLocationViewController.swift in Sources */,

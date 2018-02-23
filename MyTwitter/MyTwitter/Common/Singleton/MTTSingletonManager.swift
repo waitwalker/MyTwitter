@@ -27,6 +27,7 @@ class MTTSingletonManager: NSObject
     var recorder:AVAudioRecorder!
     var currentRecorderPath:String!
     var currentRecorderFileName:String!
+    
     var recorderTimer:Timer!
     var recorderContainerView:UIView!
     var recordingAnimationImageView:UIImageView!
@@ -40,11 +41,6 @@ class MTTSingletonManager: NSObject
     // 播放相关 
     var player:AVAudioPlayer!
     var autoStopPlaying:Bool = true
-    
-    
-    
-    
-    
     
     
 

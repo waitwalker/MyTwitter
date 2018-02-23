@@ -20,7 +20,7 @@ class MTTSmallVideoView: MTTView {
     let disposeBag = DisposeBag()
     
     
-    // 灰色背景容器 
+    // 灰色背景容器
     var containerView:UIView!
     
     // 视频相关容器 
@@ -426,6 +426,8 @@ extension MTTSmallVideoView:MTTSmallVideoBottomViewDelegate
             
             self.moveUpCancelLabel.isHidden = true
         }
+        
+        self.setupVideoAssetWritter()
     }
     
     // 视频录制上滑即将取消录制delegate 回调 
@@ -569,19 +571,86 @@ extension MTTSmallVideoView
         }
         return (deviceArray?.first)!
     }
+    
+    // 视频输出相关参数设置 
+    func setupVideoAssetWritter() -> Void 
+    {
+        // 视频文件名称
+        videoSharedInstance.currentVideoFileName = String(format: "/video-%.0f.MOV", Date().timeIntervalSince1970)
+        
+        // 视频缩略图名称 
+        videoSharedInstance.currentVideoThumbnailFileName = String(format: "/video-picture-%.0f.JPG", Date().timeIntervalSince1970)
+        
+        // 组合视频文件路径
+        videoSharedInstance.currentVideoPath = videoSharedInstance.getRecorderFilePath() + videoSharedInstance.currentVideoFileName
+        
+        // 组合视频缩略图路径 
+        videoSharedInstance.currentVideoThumbnailPath = videoSharedInstance.getRecorderFilePath() + videoSharedInstance.currentVideoThumbnailFileName
+        
+        print("文件输出路径和名称:\(videoSharedInstance.currentVideoFileName),\(videoSharedInstance.currentVideoPath)")
+        
+        // 输入视频路径URL
+        let outputURL = URL(fileURLWithPath: videoSharedInstance.currentVideoPath)
+        
+        assetWriter = try! AVAssetWriter(url: outputURL, fileType: AVFileTypeQuickTimeMovie)
+        let outputSettings:[String:Any] = [AVVideoCodecKey:AVVideoCodecH264,
+                              AVVideoWidthKey:kScreenWidth,
+                              AVVideoHeightKey:260,
+                              AVVideoScalingModeKey:AVVideoScalingModeResizeAspectFill
+        ]
+        assetWriterVideoInput = AVAssetWriterInput(mediaType: AVMediaTypeVideo, outputSettings: outputSettings)
+        assetWriterVideoInput.expectsMediaDataInRealTime = true
+        assetWriterVideoInput.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 2.0))
+        
+        let audioOutputSettings:[String:Any] = [
+            AVFormatIDKey:kAudioFormatMPEG4AAC,
+            AVEncoderBitRateKey:6400,
+            AVSampleRateKey:44100,
+            AVNumberOfChannelsKey:1
+        ]
+        
+        assetWriterAudioInput = AVAssetWriterInput(mediaType: AVMediaTypeAudio, outputSettings: audioOutputSettings)
+        assetWriterAudioInput.expectsMediaDataInRealTime = true
+        
+        let SPBDict:[String:Any] = [
+            kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA,
+            kCVPixelBufferWidthKey as String:kScreenWidth,
+            kCVPixelBufferHeightKey as String:260,
+            kCVPixelFormatOpenGLESCompatibility as String:kCFBooleanTrue
+        ]
+        
+        assetWriterInputPixelBufferAdaptor = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: assetWriterVideoInput, sourcePixelBufferAttributes: SPBDict)
+        
+        if assetWriter.canAdd(assetWriterVideoInput) 
+        {
+            assetWriter.add(assetWriterVideoInput)
+        } else
+        {
+            print("不能添加视频writer的input \(assetWriterVideoInput)")
+        }
+        
+        if assetWriter.canAdd(assetWriterAudioInput) 
+        {
+            assetWriter.add(assetWriterAudioInput)
+        } else
+        {
+            print("不能添加音频writer的input \(assetWriterAudioInput)")
+        }
+        
+    }
 }
 
 // MARK: - ************************ extension ***********************
 // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate协议方法
 extension MTTSmallVideoView:AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptureAudioDataOutputSampleBufferDelegate
 {
-    // AVCaptureVideoDataOutputSampleBufferDelegate
+    // 输出 AVCaptureVideoDataOutputSampleBufferDelegate
     func captureOutput(_ output: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) 
     {
         
     }
     
-    // AVCaptureVideoDataOutputSampleBufferDelegate  AVCaptureAudioDataOutputSampleBufferDelegate
+    // 丢弃 AVCaptureVideoDataOutputSampleBufferDelegate  AVCaptureAudioDataOutputSampleBufferDelegate
     func captureOutput(_ output: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) 
     {
         // 判断AVCaptureOutput 

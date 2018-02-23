@@ -423,13 +423,13 @@ extension MTTSmallVideoView:MTTSmallVideoBottomViewDelegate
     // 视频录制正常结束delegate 回调 
     func recordCircleViewDidEnd(bottomView: MTTSmallVideoBottomView) 
     {
-        
+        print("视频录制正常结束delegate")
     }
     
     // 视频录制因为某种原因结束delegate 回调 
     func recordCircleViewDidEndWithType(bottomView: MTTSmallVideoBottomView, type: MTTSmallVideoDidEndType) 
     {
-        
+        print("视频录制因为某种原因结束delegate:\(type)")
     }
     
 }
@@ -898,8 +898,12 @@ class MTTSmallVideoBottomView: MTTView
     private func setupRecordOriginalData() -> Void 
     {
         self.recordProgressView.isHidden = true
-        self.recordTimer.invalidate()
-        self.recordTimer = nil
+        
+        if self.recordTimer != nil 
+        {
+            self.recordTimer.invalidate()
+            self.recordTimer = nil
+        }
         
         self.recordCircleView.alpha = 1.0
     }

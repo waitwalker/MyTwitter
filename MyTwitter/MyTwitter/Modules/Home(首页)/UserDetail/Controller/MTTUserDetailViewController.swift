@@ -36,6 +36,7 @@ class MTTUserDetailViewController: MTTViewController
     
     var userTopView:MTTUserDetailTopView!
     var userDetailContentView:MTTUserDetailContentView!
+    var bottomContainerView:MTTUserDetailBottomContainerView!
     
     
     
@@ -172,7 +173,10 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
         
         cell?.textLabel?.text = "第\(indexPath.item)行"
         cell?.contentView.backgroundColor = kMainBlueColor()
-        
+        bottomContainerView = MTTUserDetailBottomContainerView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
+        bottomContainerView.backgroundColor = UIColor.purple
+        bottomContainerView.tabConfig = [1,2,3,4]
+        cell?.contentView.addSubview(bottomContainerView)
         return cell!
     }
     

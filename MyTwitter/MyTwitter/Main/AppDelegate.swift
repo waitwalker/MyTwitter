@@ -17,12 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 //        IQKeyboardManager.sharedManager().enable = true
-        let registerLoginVC = MTTTabBarController()//MTTRegisterStartViewController() //MTTTabBarController()
+        let registerLoginVC = MTTUserDetailViewController()//MTTTabBarController()//MTTRegisterStartViewController() //MTTTabBarController()
+        
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.rootViewController = registerLoginVC
         self.window?.makeKeyAndVisible()
-        self.window?.backgroundColor = UIColor(red: 76 / 255.0, green: 159 / 255.0, blue: 236 / 255.0, alpha: 1.0)
-        MTTLanuchAnimation.launchAppWithSuperView(superView: (self.window?.rootViewController?.view)!)
+        
+        // 启动动画先去掉
+        //self.window?.backgroundColor = UIColor(red: 76 / 255.0, green: 159 / 255.0, blue: 236 / 255.0, alpha: 1.0)
+        //MTTLanuchAnimation.launchAppWithSuperView(superView: (self.window?.rootViewController?.view)!)
         
         let _ = MTTFPSDisplay.shareInstance
         

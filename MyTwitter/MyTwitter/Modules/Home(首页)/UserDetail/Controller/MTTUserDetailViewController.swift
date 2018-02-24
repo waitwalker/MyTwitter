@@ -39,11 +39,7 @@ class MTTUserDetailViewController: MTTViewController
     
     
     
-    
-    
-    let reusedUserHeaderId:String = "reusedUserHeaderId"
-    
-    let reusedUserDetailId:String = "reusedUserDetailId"
+    let reusedUserDetailCellID:String = "reusedUserDetailCellID"
     
     
     override func viewWillAppear(_ animated: Bool) 
@@ -69,15 +65,6 @@ class MTTUserDetailViewController: MTTViewController
         
         setupEvent()
         
-        userTopView                    = MTTUserDetailTopView()
-        userTopView.frame              = CGRect(x: 0, y: 250, width: kScreenWidth, height: 50)
-        userTopView.delegate           = self
-        self.view.addSubview(userTopView)
-
-        userDetailContentView          = MTTUserDetailContentView(frame: CGRect(x: 0, y: 300, width: kScreenWidth, height: kScreenHeight - 64))
-        userDetailContentView.delegate = self
-        self.view.addSubview(userDetailContentView)
-        
         setupNotification()
     }
     
@@ -91,13 +78,12 @@ class MTTUserDetailViewController: MTTViewController
         userDetailTableView.delegate                       = self
         userDetailTableView.dataSource                     = self
         userDetailTableView.frame                          = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
-        userDetailTableView.register(UITableViewCell.self, forCellReuseIdentifier: reusedUserDetailId)
-        userDetailTableView.register(MTTUserDetailHeaderCell.self, forCellReuseIdentifier: reusedUserHeaderId)
+        userDetailTableView.register(MTTUserDetailContainerCell.self, forCellReuseIdentifier: reusedUserDetailCellID)
         userDetailTableView.separatorStyle                 = UITableViewCellSeparatorStyle.none
         userDetailTableView.backgroundColor                = kMainBlueColor()
         userDetailTableView.contentInset                   = UIEdgeInsetsMake(kHeaderBackgroundImageViewHeight + kHeaderContainerViewHeight, 0, 0, 0)
         self.automaticallyAdjustsScrollViewInsets          = false
-//        self.view.addSubview(userDetailTableView)
+        self.view.addSubview(userDetailTableView)
 
         headerBackgroundImageView                          = UIImageView()
         headerBackgroundImageView.frame                    = CGRect(x: 0, y: 0, width: kScreenWidth, height: kHeaderBackgroundImageViewHeight)
@@ -173,25 +159,26 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 20
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        var cell = tableView.dequeueReusableCell(withIdentifier: reusedUserDetailId)
-        if cell == nil
+        var cell = tableView.dequeueReusableCell(withIdentifier: reusedUserDetailCellID) as? MTTUserDetailContainerCell
+        if cell == nil 
         {
-            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: reusedUserDetailId)
+            cell = MTTUserDetailContainerCell(style: UITableViewCellStyle.default, reuseIdentifier: reusedUserDetailCellID)
         }
         
         cell?.textLabel?.text = "第\(indexPath.item)行"
+        cell?.contentView.backgroundColor = kMainBlueColor()
         
         return cell!
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat 
     {
-        return 44
+        return kScreenHeight
     }
     
     
@@ -296,19 +283,4 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
     }
 }
 
-extension MTTUserDetailViewController:
-    MTTUserDetailContentViewDelegate,
-    MTTUserDetailTopViewDelegate
-{
-    func userDetailTopViewTappedButtonIndex(index: Int)
-    {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUserDetailTopButtonTappedIndexNotification), object: ["index":index])
-    }
-    
-    func userDetailContentScrollToPage(page: Int)
-    {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUserDetailContentScrollToPageNotification), object: ["page":page])
-    }
-    
-    
-}
+

@@ -131,7 +131,6 @@ class MTTUserDetailBottomContainerView: MTTView
             
             let tabView:MTTTabBaseView = className.init()
             tabView.frame = CGRect(x: bottomScrollView.width * CGFloat(index), y: 0, width: bottomScrollView.width, height: bottomScrollView.height)
-            tabView.backgroundColor = kMainRandomColor()
             bottomScrollView.addSubview(tabView)
             print(tabView)
             

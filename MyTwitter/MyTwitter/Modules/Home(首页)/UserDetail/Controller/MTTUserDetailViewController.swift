@@ -145,6 +145,25 @@ class MTTUserDetailViewController: MTTViewController
     }
     
     
+    
+    func setupNotification() -> Void
+    {
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(handleOuterTableViewCanScrollNotification), 
+                                               name: NSNotification.Name(rawValue: kUserDetailOuterTableViewCanScrollNotification), 
+                                               object: nil)
+    }
+    
+    @objc func handleOuterTableViewCanScrollNotification() -> Void 
+    {
+        userDetailTableView.isScrollEnabled = true
+    }
+    
+    deinit 
+    {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
 }
 
 extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSource ,UIScrollViewDelegate
@@ -201,6 +220,8 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
             {
                 self.userDetailTableView.isScrollEnabled = false
                 self.userDetailTableView.contentOffset = CGPoint(x: 0, y: -64)
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUserDetailInnerTableViewCanScrollNotification), object: nil)
             }
             
             // 设置背景头像下面的头容器 
@@ -269,12 +290,6 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
         }
         
     }
-    
-    func setupNotification() -> Void
-    {
-        
-    }
-    
     
     
 }

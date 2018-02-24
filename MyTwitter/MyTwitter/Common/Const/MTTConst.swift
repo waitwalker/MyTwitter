@@ -59,5 +59,12 @@ let kUserDetailTopButtonTappedIndexNotification:String = "kUserDetailTopButtonTa
 // 个人详情tableView滚动的y偏移量
 let kUserDetailTableViewContentOffsetYNotification:String = "kUserDetailTableViewContentOffsetYNotification"
 
+// 个人详情 内部tableView 可以滚动通知 
+let kUserDetailInnerTableViewCanScrollNotification:String = "kUserDetailInnerTableViewCanScrollNotification"
+
+// 个人详情 外部tableView 可以滚动通知 
+let kUserDetailOuterTableViewCanScrollNotification:String = "kUserDetailOuterTableViewCanScrollNotification"
+
+
 
 		

@@ -34,11 +34,7 @@ class MTTUserDetailViewController: MTTViewController
     var avatarContainerView:UIView!
     var avatarImageView:UIImageView!
     
-    var userTopView:MTTUserDetailTopView!
-    var userDetailContentView:MTTUserDetailContentView!
     var bottomContainerView:MTTUserDetailBottomContainerView!
-    
-    
     
     let reusedUserDetailCellID:String = "reusedUserDetailCellID"
     
@@ -199,6 +195,14 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
             
             print("偏移量:\(offSetY)")
             
+            print("真实偏移量:\(scrollView.contentOffset.y)")
+            
+            if scrollView.contentOffset.y >= -64.0
+            {
+                self.userDetailTableView.isScrollEnabled = false
+                self.userDetailTableView.contentOffset = CGPoint(x: 0, y: -64)
+            }
+            
             // 设置背景头像下面的头容器 
             self.headerBackgroundImageView.y = -offSetY - kHeaderBackgroundImageViewHeight
             
@@ -268,23 +272,11 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
     
     func setupNotification() -> Void
     {
-        NotificationCenter.default.addObserver(self, 
-                                               selector: #selector(userDetailTableViewContentOffset(notify:)), 
-                                               name: NSNotification.Name(rawValue: kUserDetailTableViewContentOffsetYNotification), 
-                                               object: nil)
+        
     }
     
     
-    @objc func userDetailTableViewContentOffset(notify:Notification) -> Void
-    {
-        let userInfo                            = notify.object as! NSDictionary
-
-        let offsetY                             = userInfo.object(forKey: "contentOffsetY") as! CGFloat
-        userTopView.frame.origin.y              = 250 - offsetY;
-        userDetailContentView.frame.origin.y    = 300 - offsetY;
-
-        userDetailContentView.frame.size.height = kScreenHeight - 300 + offsetY;
-    }
+    
 }
 
 

@@ -11,6 +11,8 @@ import UIKit
 class MTTUserDetailBottomContainerView: MTTView 
 {
     var buttonsArray:[UIButton] = []
+    var topContainerView:UIView!
+    
     var buttonBottomLineView:UIView!
     var topScrollView:UIScrollView!
     
@@ -41,17 +43,20 @@ class MTTUserDetailBottomContainerView: MTTView
     
     func setupTopScrollView() -> Void 
     {
+        topContainerView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: 50))
+        self.addSubview(topContainerView)
+        
         topScrollView                        = UIScrollView()
         topScrollView.frame                  = CGRect(x: 0, y: 0, width: kScreenWidth, height: 50)
         topScrollView.contentSize            = CGSize(width: kScreenWidth, height: 0)
         topScrollView.backgroundColor        = UIColor.orange
         topScrollView.isPagingEnabled        = true
         topScrollView.isScrollEnabled        = true
-        self.addSubview(topScrollView)
+        topContainerView.addSubview(topScrollView)
         
-        buttonBottomLineView                 = UIView()
+        buttonBottomLineView                 = UIView(frame: CGRect(x: 0, y: 50 - 2, width: kScreenWidth / 4, height: 2))
         buttonBottomLineView.backgroundColor = kMainBlueColor()
-        self.addSubview(buttonBottomLineView)
+        topContainerView.addSubview(buttonBottomLineView)
         
         
         for (index,value) in titlesArray.enumerated() {
@@ -95,6 +100,10 @@ class MTTUserDetailBottomContainerView: MTTView
         rect.size.width            = button.frame.size.width
         buttonBottomLineView.frame = rect
         
+        let view = bottomScrollView.subviews[button.tag]
+        bottomScrollView.contentOffset = CGPoint(x: view.x, y: view.y)
+        
+        
         for (_,btn) in buttonsArray.enumerated() {
             if btn.tag != button.tag
             {
@@ -121,7 +130,8 @@ class MTTUserDetailBottomContainerView: MTTView
             print(className)
             
             let tabView:MTTTabBaseView = className.init()
-            tabView.frame = bottomScrollView.bounds
+            tabView.frame = CGRect(x: bottomScrollView.width * CGFloat(index), y: 0, width: bottomScrollView.width, height: bottomScrollView.height)
+            tabView.backgroundColor = kMainRandomColor()
             bottomScrollView.addSubview(tabView)
             print(tabView)
             
@@ -188,6 +198,10 @@ class MTTUserDetailBottomContainerView: MTTView
 
 extension MTTUserDetailBottomContainerView:UIScrollViewDelegate
 {
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) 
+    {
+        let pageIndex = Int(scrollView.contentOffset.x / scrollView.width + 0.5)
+        scrollToPage(page: pageIndex)
+    }
 }
 

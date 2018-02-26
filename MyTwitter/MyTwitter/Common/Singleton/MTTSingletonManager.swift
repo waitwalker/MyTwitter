@@ -67,6 +67,12 @@ class MTTSingletonManager: NSObject
         return getKeyWindow().rootViewController!
     }
     
+    func setupClearNavigationBar(controller:MTTViewController) -> Void 
+    {
+        controller.navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
+        controller.navigationController?.navigationBar.shadowImage = nil
+    }
+    
     // MARK: - 隐藏 显示 tabBar
     func hideTabbar() -> Void
     {
@@ -324,7 +330,6 @@ class MTTSingletonManager: NSObject
         {
             return getDocumentPath()
         }
-        
     }
     
     
@@ -425,7 +430,6 @@ class MTTSingletonManager: NSObject
             player.delegate = nil
             player = nil
         }
-        
     }
     
     @objc func proximityMonitoringAction() -> Void 

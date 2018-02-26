@@ -256,6 +256,10 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) 
     {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let shakeVC = MTTShakeViewController()
+        self.navigationController?.pushViewController(shakeVC, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat 

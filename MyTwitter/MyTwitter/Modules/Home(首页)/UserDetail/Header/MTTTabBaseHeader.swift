@@ -17,9 +17,9 @@ import UIKit
 /// - MTTTabLikeType: 喜欢 
 enum MTTTabBaseType:Int 
 {
-    case MTTTabTweetType = 0
+    case MTTTabTweetType         = 0
     case MTTTabTweetAndReplyType = 1
-    case MTTTabMediaType = 2
-    case MTTTabLikeType = 3
-    
+    case MTTTabMediaType         = 2
+    case MTTTabLikeType          = 3
+
 }

@@ -131,6 +131,8 @@ class MTTUserDetailBottomContainerView: MTTView
             
             tabView.frame = CGRect(x: bottomScrollView.width * CGFloat(index), y: 0, width: bottomScrollView.width, height: bottomScrollView.height)
             bottomScrollView.addSubview(tabView)
+            
+            tabView.loadData()
             //let className = NSClassFromString("MyTwitter.MTTTabBaseView") as! MTTTabBaseView.Type
             
            // print(className)

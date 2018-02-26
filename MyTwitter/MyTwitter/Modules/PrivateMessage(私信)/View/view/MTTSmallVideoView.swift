@@ -101,7 +101,7 @@ class MTTSmallVideoView: MTTView {
         
         // 录制视频上部bar
         videoTopBarView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: 20))
-        videoTopBarView.backgroundColor = UIColor.orange
+        videoTopBarView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
         videoContainerView.addSubview(videoTopBarView)
         
         videoBarImageView = UIImageView(frame: CGRect(x: (videoTopBarView.width - 20)/2, y: 2, width: 20, height: 16))
@@ -120,7 +120,7 @@ class MTTSmallVideoView: MTTView {
         
         // 下部视图 
         videoBottomContainerView = MTTSmallVideoBottomView(frame: CGRect(x: 0, y: self.videoRecordView.frame.maxY, width: kScreenWidth, height: videoContainerView.height - 20 - 260))
-        videoBottomContainerView.backgroundColor = UIColor.green
+        videoBottomContainerView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
         videoBottomContainerView.delegate = self
         videoContainerView.addSubview(videoBottomContainerView)
         
@@ -905,7 +905,7 @@ class MTTSmallVideoBottomView: MTTView
     override func setupSubview() 
     {
         // 右边移除按钮  
-        videoRemoveButton = UIButton(frame: CGRect(x: kScreenWidth - 30 - 24, y: (self.height - 24) / 2, width: 24, height: 24))
+        videoRemoveButton = UIButton(frame: CGRect(x: kScreenWidth - 30 - 24, y: (self.height - 24) / 2 - 10, width: 24, height: 24))
         videoRemoveButton.setImage(UIImage.imageNamed(name: "small_video_remove"), for: UIControlState.normal)
         self.addSubview(videoRemoveButton)
         
@@ -917,6 +917,11 @@ class MTTSmallVideoBottomView: MTTView
         recordProgressView.backgroundColor = kMainBlueColor()
         recordProgressView.isHidden = true
         self.addSubview(recordProgressView)
+        
+        // 视频列表按钮 
+        videoListButton = UIButton(frame: CGRect(x: 20, y: (self.height - 45) / 2 - 10, width: 60, height: 45))
+        videoListButton.setImage(UIImage.imageNamed(name: "samll_video_list"), for: UIControlState.normal)
+        self.addSubview(videoListButton)
     }
     
     private func setupRecordCircleView() -> Void
@@ -1080,6 +1085,12 @@ class MTTSmallVideoBottomView: MTTView
             .subscribe(onNext:{ _ in
                 self.delegate.tappedRemoveButton(bottomView: self)
             }).disposed(by: disposeBag)
+        
+        videoListButton.rx.tap
+            .subscribe(onNext:{ element in
+                print("视频列表事件触发")
+            })
+            .disposed(by: disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {

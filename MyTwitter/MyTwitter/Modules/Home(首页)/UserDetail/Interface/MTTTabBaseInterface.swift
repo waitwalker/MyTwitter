@@ -12,5 +12,8 @@ import UIKit
 protocol MTTTabBaseInterface:NSObjectProtocol 
 {
     // 类 构造方法 
-    static func setupTabView(tabType:MTTTabBaseType) -> MTTTabBaseView 
+    static func setupTabView(tabType:MTTTabBaseType) -> MTTTabBaseView
+    
+    // instance method 加载数据 
+    func loadData() -> Void 
 }

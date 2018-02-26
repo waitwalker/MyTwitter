@@ -61,14 +61,6 @@ class MTTTabBaseView: MTTView {
         NotificationCenter.default.removeObserver(self)
     }
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }
 
 extension MTTTabBaseView:UITableViewDelegate,UITableViewDataSource
@@ -129,6 +121,12 @@ extension MTTTabBaseView:MTTTabBaseInterface
             let likeView = MTTTabLikeView(frame: frame)
             return likeView
         }
+        
+    }
+    
+    // MARK: - 加载数据 
+    func loadData() 
+    {
         
     }
 }

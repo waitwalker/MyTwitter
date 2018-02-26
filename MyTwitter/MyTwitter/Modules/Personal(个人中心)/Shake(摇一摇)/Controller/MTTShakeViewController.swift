@@ -16,6 +16,7 @@ class MTTShakeViewController: MTTViewController {
     override func viewWillAppear(_ animated: Bool) 
     {
         super.viewWillAppear(animated)
+        sharedInstance.setupClearNavigationBar(controller: self)
     }
     
     override func viewDidLoad() 

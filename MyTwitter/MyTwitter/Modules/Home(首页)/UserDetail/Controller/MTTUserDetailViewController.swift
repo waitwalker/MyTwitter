@@ -72,6 +72,7 @@ class MTTUserDetailViewController: MTTViewController
         isFirstTime                                        = true
 
         userDetailTableView                                = UITableView()
+        userDetailTableView.showsVerticalScrollIndicator   = false
         userDetailTableView.delegate                       = self
         userDetailTableView.dataSource                     = self
         userDetailTableView.frame                          = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)

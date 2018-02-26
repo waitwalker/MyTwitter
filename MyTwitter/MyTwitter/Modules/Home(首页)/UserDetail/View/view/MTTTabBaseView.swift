@@ -109,3 +109,26 @@ extension MTTTabBaseView:UIScrollViewDelegate
         }
     }
 }
+
+extension MTTTabBaseView:MTTTabBaseInterface
+{
+    static func setupTabView(tabType: MTTTabBaseType) -> MTTTabBaseView 
+    {
+        let frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
+        switch tabType {
+        case MTTTabBaseType.MTTTabTweetType:
+            let tweetView = MTTTabTweetView(frame: frame)
+            return tweetView
+        case MTTTabBaseType.MTTTabTweetAndReplyType:
+            let tweetAndReplyView = MTTTabTweetAndReplyView(frame: frame)
+            return tweetAndReplyView
+        case MTTTabBaseType.MTTTabMediaType:
+            let mediaView = MTTTabMediaView(frame: frame)
+            return mediaView
+        case MTTTabBaseType.MTTTabLikeType:
+            let likeView = MTTTabLikeView(frame: frame)
+            return likeView
+        }
+        
+    }
+}

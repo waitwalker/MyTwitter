@@ -125,13 +125,19 @@ class MTTUserDetailBottomContainerView: MTTView
         for (index,value) in (tabConfig?.enumerated())! {
             print(index,value)
             
-            let className = NSClassFromString("MyTwitter.MTTTabBaseView") as! MTTTabBaseView.Type
+            let tabTypes = [MTTTabBaseType.MTTTabTweetType,MTTTabBaseType.MTTTabTweetAndReplyType,MTTTabBaseType.MTTTabMediaType,MTTTabBaseType.MTTTabLikeType]
             
-            print(className)
+            let tabView = MTTTabBaseView.setupTabView(tabType: tabTypes[index])
             
-            let tabView:MTTTabBaseView = className.init()
             tabView.frame = CGRect(x: bottomScrollView.width * CGFloat(index), y: 0, width: bottomScrollView.width, height: bottomScrollView.height)
             bottomScrollView.addSubview(tabView)
+            //let className = NSClassFromString("MyTwitter.MTTTabBaseView") as! MTTTabBaseView.Type
+            
+           // print(className)
+            
+            //let tabView:MTTTabBaseView = className.init()
+            //tabView.frame = CGRect(x: bottomScrollView.width * CGFloat(index), y: 0, width: bottomScrollView.width, height: bottomScrollView.height)
+            //bottomScrollView.addSubview(tabView)
             print(tabView)
             
         }

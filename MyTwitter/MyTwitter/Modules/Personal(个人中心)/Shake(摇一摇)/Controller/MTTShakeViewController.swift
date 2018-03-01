@@ -33,7 +33,7 @@ class MTTShakeViewController: MTTViewController {
         
         setupSubview()
         
-        layoutSubview()
+        //layoutSubview()
     }
     
     func setupSubview() -> Void 
@@ -42,22 +42,27 @@ class MTTShakeViewController: MTTViewController {
         
         backgroundImageView = UIImageView()
         backgroundImageView.image = UIImage.imageNamed(name: "shake_back_ground")
+        backgroundImageView.frame = CGRect(x: 0, y: kScreenHeight / 4, width: kScreenWidth, height: kScreenHeight / 2)
         self.view.addSubview(backgroundImageView)
         
         topContainerView = UIView()
         topContainerView.backgroundColor = UIColor.blue
+        topContainerView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight / 2)
         self.view.addSubview(topContainerView)
         
         bottomContainerView = UIView()
+        bottomContainerView.frame = CGRect(x: 0, y: kScreenHeight / 2, width: kScreenWidth, height: kScreenHeight / 2)
         bottomContainerView.backgroundColor = UIColor.orange
         self.view.addSubview(bottomContainerView)
         
         topImageView = UIImageView()
         topImageView.image = UIImage.imageNamed(name: "shake_top")
+        topImageView.frame = CGRect(x: (kScreenWidth - 70) / 2, y: (kScreenHeight / 2 - 50), width: 70, height: 50)
         topContainerView.addSubview(topImageView)
         
         bottomImageView = UIImageView()
         bottomImageView.image = UIImage.imageNamed(name: "shake_bottom")
+        bottomImageView.frame = CGRect(x: (kScreenWidth - 70) / 2, y: 0, width: 70, height: 50)
         bottomContainerView.addSubview(bottomImageView)
     }
     
@@ -97,6 +102,33 @@ class MTTShakeViewController: MTTViewController {
     func setupNavigationBar() -> Void 
     {
         
+    }
+    
+    // MARK: - 加速剂事件
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) 
+    {
+        UIView.animate(withDuration: 1.0, animations: { 
+            self.topContainerView.frame = CGRect(x: 0, y: -(kScreenHeight / 4), width: kScreenWidth, height: kScreenHeight / 2)
+            self.bottomContainerView.frame = CGRect(x: 0, y: (kScreenHeight / 4 + kScreenHeight / 2), width: kScreenWidth, height: kScreenHeight / 2)
+        }) { completed in
+            
+            UIView.animate(withDuration: 1.0, animations: { 
+                
+                self.topContainerView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight / 2)
+                self.bottomContainerView.frame = CGRect(x: 0, y: kScreenHeight / 2, width: kScreenWidth, height: kScreenHeight / 2)
+            })
+            
+        }
+    }
+    
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) 
+    {
+        print("摇一摇结束")
+    }
+    
+    override func motionCancelled(_ motion: UIEventSubtype, with event: UIEvent?) 
+    {
+        print("摇一摇被打断取消")
     }
 
     override func didReceiveMemoryWarning() 

@@ -69,6 +69,12 @@ class MTTSingletonManager: NSObject
     
     func setupClearNavigationBar(controller:MTTViewController) -> Void 
     {
+        controller.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        controller.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    func removeClearNavigationBarSetting(controller:MTTViewController) -> Void 
+    {
         controller.navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
         controller.navigationController?.navigationBar.shadowImage = nil
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MTTShakeViewController: MTTViewController {
     
@@ -18,6 +19,8 @@ class MTTShakeViewController: MTTViewController {
     var topImageView:UIImageView!
     var bottomImageView:UIImageView!
     
+    var audioPlayer:AVAudioPlayer!
+    
     
     
     
@@ -25,6 +28,18 @@ class MTTShakeViewController: MTTViewController {
     {
         super.viewWillAppear(animated)
         sharedInstance.setupClearNavigationBar(controller: self)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        sharedInstance.removeClearNavigationBarSetting(controller: self)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+    }
+    
+    override func viewDidAppear(_ animated: Bool) 
+    {
+        super.viewDidAppear(animated)
     }
     
     override func viewDidLoad() 
@@ -46,23 +61,23 @@ class MTTShakeViewController: MTTViewController {
         self.view.addSubview(backgroundImageView)
         
         topContainerView = UIView()
-        topContainerView.backgroundColor = UIColor.blue
+        topContainerView.backgroundColor = UIColor.black
         topContainerView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight / 2)
         self.view.addSubview(topContainerView)
         
         bottomContainerView = UIView()
         bottomContainerView.frame = CGRect(x: 0, y: kScreenHeight / 2, width: kScreenWidth, height: kScreenHeight / 2)
-        bottomContainerView.backgroundColor = UIColor.orange
+        bottomContainerView.backgroundColor = UIColor.black
         self.view.addSubview(bottomContainerView)
         
         topImageView = UIImageView()
         topImageView.image = UIImage.imageNamed(name: "shake_top")
-        topImageView.frame = CGRect(x: (kScreenWidth - 70) / 2, y: (kScreenHeight / 2 - 50), width: 70, height: 50)
+        topImageView.frame = CGRect(x: (kScreenWidth - 80) / 2, y: (kScreenHeight / 2 - 50), width: 80, height: 50)
         topContainerView.addSubview(topImageView)
         
         bottomImageView = UIImageView()
         bottomImageView.image = UIImage.imageNamed(name: "shake_bottom")
-        bottomImageView.frame = CGRect(x: (kScreenWidth - 70) / 2, y: 0, width: 70, height: 50)
+        bottomImageView.frame = CGRect(x: (kScreenWidth - 80) / 2, y: 0, width: 80, height: 50)
         bottomContainerView.addSubview(bottomImageView)
     }
     
@@ -107,6 +122,8 @@ class MTTShakeViewController: MTTViewController {
     // MARK: - 加速剂事件
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) 
     {
+        self.palyMusic()
+        
         UIView.animate(withDuration: 1.0, animations: { 
             self.topContainerView.frame = CGRect(x: 0, y: -(kScreenHeight / 4), width: kScreenWidth, height: kScreenHeight / 2)
             self.bottomContainerView.frame = CGRect(x: 0, y: (kScreenHeight / 4 + kScreenHeight / 2), width: kScreenWidth, height: kScreenHeight / 2)
@@ -124,11 +141,13 @@ class MTTShakeViewController: MTTViewController {
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) 
     {
         print("摇一摇结束")
+        self.deallocAudioPlayer()
     }
     
     override func motionCancelled(_ motion: UIEventSubtype, with event: UIEvent?) 
     {
         print("摇一摇被打断取消")
+        self.deallocAudioPlayer()
     }
 
     override func didReceiveMemoryWarning() 
@@ -138,6 +157,28 @@ class MTTShakeViewController: MTTViewController {
     }
     
 
+    func palyMusic() -> Void 
+    {
+        
+        audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "shake_music.mp3", ofType: nil)!))
+        
+        if audioPlayer.isPlaying 
+        {
+            audioPlayer.stop()
+        }
+        
+        audioPlayer.play()
+        
+    }
+    
+    func deallocAudioPlayer() -> Void 
+    {
+        if audioPlayer.isPlaying 
+        {
+            audioPlayer.stop()
+        }
+        audioPlayer = nil
+    }
     
 
 }

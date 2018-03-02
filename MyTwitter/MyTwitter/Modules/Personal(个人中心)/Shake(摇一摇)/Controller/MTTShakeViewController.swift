@@ -22,8 +22,6 @@ class MTTShakeViewController: MTTViewController {
     var audioPlayer:AVAudioPlayer!
     
     
-    
-    
     override func viewWillAppear(_ animated: Bool) 
     {
         super.viewWillAppear(animated)
@@ -122,7 +120,7 @@ class MTTShakeViewController: MTTViewController {
     // MARK: - 加速剂事件
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) 
     {
-        self.palyMusic()
+        self.playMusic()
         
         UIView.animate(withDuration: 1.0, animations: { 
             self.topContainerView.frame = CGRect(x: 0, y: -(kScreenHeight / 4), width: kScreenWidth, height: kScreenHeight / 2)
@@ -157,7 +155,7 @@ class MTTShakeViewController: MTTViewController {
     }
     
 
-    func palyMusic() -> Void 
+    func playMusic() -> Void 
     {
         
         audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "shake_music.mp3", ofType: nil)!))

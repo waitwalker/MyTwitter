@@ -67,6 +67,24 @@ class MTTSingletonManager: NSObject
         return getKeyWindow().rootViewController!
     }
     
+    // MARK: - 全局设置状态栏 导航栏背景色透明 
+    /*
+     全局设置状态栏颜色:我在这里提供几种方法，大家可以根据需求使用（如有不正确的地方，请留言）
+     1.全工程的颜色都是白色（从app启动就是白色）。
+     第一步：在Info.plist中设置UIViewControllerBasedStatusBarAppearance 为NO
+     第二步：在info.plist中添加：
+     <key>UIStatusBarStyle</key>
+     <string>UIStatusBarStyleLightContent</string>
+     这样就可以把默认的黑色改为白色，注意从启动的时候就是白色。
+     2.全工程的颜色都是白色（启动的时候是默认的颜色黑色）
+     第一步：在Info.plist中设置UIViewControllerBasedStatusBarAppearance 为NO
+     第二步：在viewWillAppear中添加代码
+     oc：[[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];//状态栏内容颜色
+     swift：UIApplication.shared.statusBarStyle = .lightContent
+     这样就可以把默认的黑色改为白色，注意启动的时候是默认的颜色黑色。
+     3.只是部分控制器需要修改状态栏文字的颜色
+     只需要把上面第二步的白色改成黑色，即lightContent或UIStatusBarStyleLightContent改成.default或UIStatusBarStyleDefault
+     */
     func setupClearNavigationBar(controller:MTTViewController) -> Void 
     {
         controller.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)

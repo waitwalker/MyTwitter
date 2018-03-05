@@ -117,6 +117,9 @@
 		CA36DE2E1F736C9F0077B44F /* AboutTwitterData.json in Resources */ = {isa = PBXBuildFile; fileRef = CA36DE2D1F736C9F0077B44F /* AboutTwitterData.json */; };
 		CA36DE321F7391830077B44F /* MTTAboutHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE311F7391830077B44F /* MTTAboutHeaderView.swift */; };
 		CA36DE341F7396D10077B44F /* MTTAboutFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36DE331F7396D10077B44F /* MTTAboutFooterView.swift */; };
+		CA45B8C5204CD7A10062743B /* MTTBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45B8C4204CD7A10062743B /* MTTBaseService.swift */; };
+		CA45B8C8204CDD410062743B /* MTTUserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45B8C7204CDD410062743B /* MTTUserDetailViewModel.swift */; };
+		CA45B8CB204CDDBC0062743B /* MTTTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45B8CA204CDDBC0062743B /* MTTTools.swift */; };
 		CA4D18E32048D4CB0020FFAC /* shake_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA4D18E22048D4CB0020FFAC /* shake_music.mp3 */; };
 		CA572B111F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA572B101F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift */; };
 		CA572B131F8E022300E9D7F6 /* MTTPhotoLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA572B121F8E022300E9D7F6 /* MTTPhotoLibraryViewController.swift */; };
@@ -344,6 +347,9 @@
 		CA36DE2D1F736C9F0077B44F /* AboutTwitterData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AboutTwitterData.json; sourceTree = "<group>"; };
 		CA36DE311F7391830077B44F /* MTTAboutHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutHeaderView.swift; sourceTree = "<group>"; };
 		CA36DE331F7396D10077B44F /* MTTAboutFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAboutFooterView.swift; sourceTree = "<group>"; };
+		CA45B8C4204CD7A10062743B /* MTTBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTBaseService.swift; sourceTree = "<group>"; };
+		CA45B8C7204CDD410062743B /* MTTUserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTUserDetailViewModel.swift; sourceTree = "<group>"; };
+		CA45B8CA204CDDBC0062743B /* MTTTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTools.swift; sourceTree = "<group>"; };
 		CA4D18E22048D4CB0020FFAC /* shake_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shake_music.mp3; sourceTree = "<group>"; };
 		CA572B101F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLocationSearchCell.swift; sourceTree = "<group>"; };
 		CA572B121F8E022300E9D7F6 /* MTTPhotoLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPhotoLibraryViewController.swift; sourceTree = "<group>"; };
@@ -700,6 +706,9 @@
 		1A50B2C31FB1EC6500F3F1CF /* UserDetail */ = {
 			isa = PBXGroup;
 			children = (
+				CA45B8C9204CDDAD0062743B /* Tools */,
+				CA45B8C6204CDD230062743B /* ViewModel */,
+				CA45B8C3204CD74E0062743B /* Service */,
 				CAD4C94A2043919100B65BC0 /* Header */,
 				CAD4C947204390EC00B65BC0 /* Interface */,
 				CAC789EF1FB6CBD8001A5A7D /* View */,
@@ -906,6 +915,30 @@
 				CA36DE331F7396D10077B44F /* MTTAboutFooterView.swift */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		CA45B8C3204CD74E0062743B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CA45B8C4204CD7A10062743B /* MTTBaseService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CA45B8C6204CDD230062743B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CA45B8C7204CDD410062743B /* MTTUserDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CA45B8C9204CDDAD0062743B /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				CA45B8CA204CDDBC0062743B /* MTTTools.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		CA4D18E12048D4AE0020FFAC /* Resource */ = {
@@ -1761,6 +1794,7 @@
 				1A234B581F8BB00E00D6C731 /* MTTLocationViewController.swift in Sources */,
 				1A9AC70F2020ADF4000F4C3A /* NSMutableDictionary+AvoidCrash.m in Sources */,
 				1A09A5501F9B1669007BC41C /* MTTMessageButtonCell.swift in Sources */,
+				CA45B8CB204CDDBC0062743B /* MTTTools.swift in Sources */,
 				1A82AEAE1F8FA9120015EAC4 /* MTTSearchShowMoreCell.swift in Sources */,
 				1A596C5F1F90EE3900F14123 /* MTTSearchLabelViewController.swift in Sources */,
 				1AB7E00F1FE7EAEF0068B5D4 /* MTTPhotosViewController.swift in Sources */,
@@ -1858,6 +1892,7 @@
 				CA572B111F8C9A7300E9D7F6 /* MTTLocationSearchCell.swift in Sources */,
 				1A9AC7092020AC1B000F4C3A /* NSMutableArray+AvoidCrash.m in Sources */,
 				1A7DAEDD20142AB500A498D3 /* MTTSignalHandlerManager.m in Sources */,
+				CA45B8C5204CD7A10062743B /* MTTBaseService.swift in Sources */,
 				CADECBD11F5E500D0027E15F /* MTTViewController.swift in Sources */,
 				CAE6742F1F7F98D100C1093E /* MTTLogger.swift in Sources */,
 				1ADE78241F8505C4009D8CB9 /* MTTPushImageViewDelegate.swift in Sources */,
@@ -1885,6 +1920,7 @@
 				CAF065561F986F67002F28F8 /* MTTNotificationFollowCell.swift in Sources */,
 				CA66B4F71F90C1BD001CD140 /* MTTSearchHeader.swift in Sources */,
 				CA6ADD571F98833B00A25646 /* MTTNotificationButtonCell.swift in Sources */,
+				CA45B8C8204CDD410062743B /* MTTUserDetailViewModel.swift in Sources */,
 				1A8F5BD51F72A915006D6CA0 /* MTTTableViewCell.swift in Sources */,
 				1A20C53A1FC461B800EAA0B6 /* MTTUserDetailContentView.swift in Sources */,
 				CAE3F0E31F7498B700788455 /* MTTHomeCell.swift in Sources */,

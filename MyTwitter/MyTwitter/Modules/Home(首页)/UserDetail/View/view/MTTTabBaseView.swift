@@ -30,6 +30,7 @@ class MTTTabBaseView: MTTView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isScrollEnabled = false
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0)
         self.addSubview(tableView)
     }
     

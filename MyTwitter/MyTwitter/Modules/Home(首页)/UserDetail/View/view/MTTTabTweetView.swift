@@ -53,14 +53,12 @@ class MTTTabTweetView: MTTTabBaseView {
             .asObservable()
             .subscribe(onNext:{element in 
                 
-                print(element)
                 self.homeModels = element
                 DispatchQueue.main.async(execute: { 
                     self.tableView.reloadData()
                 })
                 
             }).disposed(by: disposeBag)
-        
         
     }
     

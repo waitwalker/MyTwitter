@@ -12,9 +12,17 @@
 
 import UIKit
 import SnapKit
+import RxCocoa
+import RxSwift
+import SafariServices
+
+
 
 class MTTUserDetailTopIntroductionView: MTTView 
 {
+ 
+    let disposeBag = DisposeBag()
+    
     
     var titleLabel:UILabel!
     var subtitleLabel:UILabel!
@@ -34,6 +42,8 @@ class MTTUserDetailTopIntroductionView: MTTView
     override init(frame: CGRect) 
     {
         super.init(frame: frame)
+        
+        setupEvent()
     }
     
     override func setupSubview() 
@@ -78,6 +88,22 @@ class MTTUserDetailTopIntroductionView: MTTView
         hyperlinkButton.setAttributedTitle(self.setupRichText(imageName: "user_detail_link", behindString: "  https://waitwalker.cn", behindStringColor: kMainBlueColor()), for: UIControlState.normal)
         hyperlinkButton.setAttributedTitle(self.setupRichText(imageName: "user_detail_link", behindString: "  https://waitwalker.cn", behindStringColor: kMainGrayColor()), for: UIControlState.normal)
         self.addSubview(hyperlinkButton)
+        
+        followingLabel = UILabel()
+        followingLabel.backgroundColor = kMainRandomColor()
+        followingLabel.textColor = kMainGrayColor()
+        followingLabel.font = UIFont.systemFont(ofSize: 15)
+        followingLabel.textAlignment = NSTextAlignment.left
+        followingLabel.attributedText = self.setupStringRichText(forwordString: "402 ", forwordColor: UIColor.black, behindString: "正在关注", behindColor: kMainGrayColor())
+        self.addSubview(followingLabel)
+        
+        followerLabel = UILabel()
+        followerLabel.backgroundColor = kMainRandomColor()
+        followerLabel.textColor = kMainGrayColor()
+        followerLabel.font = UIFont.systemFont(ofSize: 15)
+        followerLabel.textAlignment = NSTextAlignment.left
+        followerLabel.attributedText = self.setupStringRichText(forwordString: "28011 ", forwordColor: UIColor.black, behindString: "关注者", behindColor: kMainGrayColor())
+        self.addSubview(followerLabel)
     }
     
     override func layoutSubview() 
@@ -115,8 +141,41 @@ class MTTUserDetailTopIntroductionView: MTTView
             make.height.top.equalTo(localLabel)
             make.width.equalTo(200)
         }
+        
+        followingLabel.snp.makeConstraints { make in
+            make.left.equalTo(titleLabel)
+            make.height.equalTo(15)
+            make.top.equalTo(localLabel.snp.bottom).offset(5)
+            make.width.equalTo(100)
+        }
+        
+        followerLabel.snp.makeConstraints { make in
+            make.left.equalTo(followingLabel.snp.right).offset(10)
+            make.height.equalTo(15)
+            make.top.equalTo(localLabel.snp.bottom).offset(5)
+            make.width.equalTo(100)
+        }
     }
     
+    func setupEvent() -> Void 
+    {
+        hyperlinkButton.rx.tap
+            .subscribe(onNext:{ _ in 
+                self.setupSafariController()
+            }).disposed(by: disposeBag)
+    }
+    
+    func setupSafariController() -> Void 
+    {
+        let url = URL(string: "https://waitwalker.cn")
+        
+        let safariController = SFSafariViewController(url: url!)
+        
+        shardInstance.getRootViewController().present(safariController, animated: true) { 
+            
+        }
+        
+    }
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -138,6 +197,18 @@ class MTTUserDetailTopIntroductionView: MTTView
         
         let behindMutableAttStr = NSMutableAttributedString(string: behindString)
         behindMutableAttStr.setAttributes([NSForegroundColorAttributeName:behindStringColor], range: NSMakeRange(0, behindMutableAttStr.length))
+        
+        mutableAttStr.append(behindMutableAttStr)
+        return mutableAttStr
+    }
+    
+    func setupStringRichText(forwordString:String,forwordColor:UIColor,behindString:String,behindColor:UIColor) -> NSMutableAttributedString 
+    {
+        let mutableAttStr = NSMutableAttributedString(string: forwordString)
+        mutableAttStr.setAttributes([NSForegroundColorAttributeName:UIColor.black], range: NSMakeRange(0, mutableAttStr.length))
+        
+        let behindMutableAttStr = NSMutableAttributedString(string: behindString)
+        behindMutableAttStr.setAttributes([NSForegroundColorAttributeName:kMainGrayColor()], range: NSMakeRange(0, behindMutableAttStr.length))
         
         mutableAttStr.append(behindMutableAttStr)
         return mutableAttStr

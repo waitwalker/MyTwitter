@@ -70,12 +70,13 @@ class MTTUserDetailTopIntroductionView: MTTView
         localLabel.textColor = kMainGrayColor()
         localLabel.font = UIFont.systemFont(ofSize: 15)
         localLabel.textAlignment = NSTextAlignment.left
-        localLabel.attributedText = self.setupRichText(imageName: "twitter_location_normal", behindString: "北京", behindStringColor: kMainGrayColor())
+        localLabel.attributedText = self.setupRichText(imageName: "twitter_location_normal", behindString: "  北京", behindStringColor: kMainGrayColor())
         self.addSubview(localLabel)
         
         hyperlinkButton = UIButton()
         hyperlinkButton.backgroundColor = kMainRandomColor()
-        hyperlinkButton.setAttributedTitle(self.setupRichText(imageName: "user_detail_link", behindString: "    https://waitwalker.cn", behindStringColor: kMainBlueColor()), for: UIControlState.normal)
+        hyperlinkButton.setAttributedTitle(self.setupRichText(imageName: "user_detail_link", behindString: "  https://waitwalker.cn", behindStringColor: kMainBlueColor()), for: UIControlState.normal)
+        hyperlinkButton.setAttributedTitle(self.setupRichText(imageName: "user_detail_link", behindString: "  https://waitwalker.cn", behindStringColor: kMainGrayColor()), for: UIControlState.normal)
         self.addSubview(hyperlinkButton)
     }
     
@@ -112,7 +113,7 @@ class MTTUserDetailTopIntroductionView: MTTView
         hyperlinkButton.snp.makeConstraints { make in
             make.left.equalTo(localLabel.snp.right).offset(5)
             make.height.top.equalTo(localLabel)
-            make.width.equalTo(180)
+            make.width.equalTo(200)
         }
     }
     

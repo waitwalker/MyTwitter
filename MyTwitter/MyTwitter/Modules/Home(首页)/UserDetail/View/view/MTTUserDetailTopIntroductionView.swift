@@ -70,11 +70,13 @@ class MTTUserDetailTopIntroductionView: MTTView
         localLabel.textColor = kMainGrayColor()
         localLabel.font = UIFont.systemFont(ofSize: 15)
         localLabel.textAlignment = NSTextAlignment.left
+        localLabel.attributedText = self.setupRichText(imageName: "twitter_location_normal", behindString: "北京", behindStringColor: kMainGrayColor())
         self.addSubview(localLabel)
         
-        self.richText()
-        
-        
+        hyperlinkButton = UIButton()
+        hyperlinkButton.backgroundColor = kMainRandomColor()
+        hyperlinkButton.setAttributedTitle(self.setupRichText(imageName: "user_detail_link", behindString: "    https://waitwalker.cn", behindStringColor: kMainBlueColor()), for: UIControlState.normal)
+        self.addSubview(hyperlinkButton)
     }
     
     override func layoutSubview() 
@@ -103,8 +105,14 @@ class MTTUserDetailTopIntroductionView: MTTView
         localLabel.snp.makeConstraints { make in
             make.left.equalTo(titleLabel)
             make.height.equalTo(20)
-            make.width.equalTo(80)
+            make.width.equalTo(60)
             make.top.equalTo(introductionLabel.snp.bottom).offset(0)
+        }
+        
+        hyperlinkButton.snp.makeConstraints { make in
+            make.left.equalTo(localLabel.snp.right).offset(5)
+            make.height.top.equalTo(localLabel)
+            make.width.equalTo(180)
         }
     }
     
@@ -114,24 +122,24 @@ class MTTUserDetailTopIntroductionView: MTTView
         fatalError("init(coder:) has not been implemented")
     }
     
-    func richText() -> Void 
+    // MARK: - 设置富文本 
+    func setupRichText(imageName:String,behindString:String,behindStringColor:UIColor) -> NSMutableAttributedString 
     {
-        let localImage = UIImage.imageNamed(name: "twitter_location_normal")
-        let textAttachment = NSTextAttachment()
-        textAttachment.image = localImage
-        textAttachment.bounds = CGRect(x: 0, y: -3, width: 20, height: 20)
-        let textAttchmentAttributedString = NSAttributedString(attachment: textAttachment)
-        let mutableAttributedString = NSMutableAttributedString(attributedString: textAttchmentAttributedString)
+        let image = UIImage.imageNamed(name: imageName)
         
-        let localTextMutableAttributedString = NSMutableAttributedString(string: "北京")
-        localTextMutableAttributedString.setAttributes([NSForegroundColorAttributeName:kMainGrayColor()], range: NSMakeRange(0, localTextMutableAttributedString.length))
-        mutableAttributedString.append(localTextMutableAttributedString)
+        // 设置图片附件
+        let textAttachmet = NSTextAttachment()
+        textAttachmet.image = image
+        textAttachmet.bounds = CGRect(x: 0, y: -3, width: 20, height: 20)
         
-        localLabel.attributedText = mutableAttributedString
+        let attchmentAttStr = NSAttributedString(attachment: textAttachmet)
+        let mutableAttStr = NSMutableAttributedString(attributedString: attchmentAttStr)
         
+        let behindMutableAttStr = NSMutableAttributedString(string: behindString)
+        behindMutableAttStr.setAttributes([NSForegroundColorAttributeName:behindStringColor], range: NSMakeRange(0, behindMutableAttStr.length))
         
-        
-        
+        mutableAttStr.append(behindMutableAttStr)
+        return mutableAttStr
     }
     
 

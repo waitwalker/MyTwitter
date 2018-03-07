@@ -131,6 +131,7 @@
 		CA66B4F21F90C118001CD140 /* MTTSearchData.json in Resources */ = {isa = PBXBuildFile; fileRef = CA66B4F11F90C118001CD140 /* MTTSearchData.json */; };
 		CA66B4F71F90C1BD001CD140 /* MTTSearchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66B4F61F90C1BD001CD140 /* MTTSearchHeader.swift */; };
 		CA66B4F91F90C6E8001CD140 /* MTTSearchSelectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66B4F81F90C6E8001CD140 /* MTTSearchSelectedViewController.swift */; };
+		CA6815E3204F6ECC00E5B42E /* MTTUserDetailTopIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6815E2204F6ECC00E5B42E /* MTTUserDetailTopIntroductionView.swift */; };
 		CA6ADD551F98793A00A25646 /* MTTNotificationMultiTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6ADD541F98793A00A25646 /* MTTNotificationMultiTypeCell.swift */; };
 		CA6ADD571F98833B00A25646 /* MTTNotificationButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6ADD561F98833B00A25646 /* MTTNotificationButtonCell.swift */; };
 		CA6ADD591F98903200A25646 /* MTTAvatarImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6ADD581F98903200A25646 /* MTTAvatarImagesView.swift */; };
@@ -361,6 +362,7 @@
 		CA66B4F11F90C118001CD140 /* MTTSearchData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MTTSearchData.json; sourceTree = "<group>"; };
 		CA66B4F61F90C1BD001CD140 /* MTTSearchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchHeader.swift; sourceTree = "<group>"; };
 		CA66B4F81F90C6E8001CD140 /* MTTSearchSelectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchSelectedViewController.swift; sourceTree = "<group>"; };
+		CA6815E2204F6ECC00E5B42E /* MTTUserDetailTopIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTUserDetailTopIntroductionView.swift; sourceTree = "<group>"; };
 		CA6ADD541F98793A00A25646 /* MTTNotificationMultiTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTNotificationMultiTypeCell.swift; sourceTree = "<group>"; };
 		CA6ADD561F98833B00A25646 /* MTTNotificationButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTNotificationButtonCell.swift; sourceTree = "<group>"; };
 		CA6ADD581F98903200A25646 /* MTTAvatarImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTAvatarImagesView.swift; sourceTree = "<group>"; };
@@ -740,6 +742,7 @@
 				CAD3FC6220412EC100227F19 /* MTTTabTweetAndReplyView.swift */,
 				CAD3FC6420412ED500227F19 /* MTTTabMediaView.swift */,
 				CAD3FC6620412EE400227F19 /* MTTTabLikeView.swift */,
+				CA6815E2204F6ECC00E5B42E /* MTTUserDetailTopIntroductionView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1868,6 +1871,7 @@
 				1ADE78221F84E83F009D8CB9 /* MTTPushImageView.swift in Sources */,
 				1ACC9AD220039BBC000A3F5E /* MTTUserStatisticsManager.swift in Sources */,
 				CADECC4D1F6222D10027E15F /* MTTView.swift in Sources */,
+				CA6815E3204F6ECC00E5B42E /* MTTUserDetailTopIntroductionView.swift in Sources */,
 				CA36DE281F73631B0077B44F /* MTTAboutSendErrorDelegate.swift in Sources */,
 				1A8B5D901F981BE300A6D6D0 /* MTTNotificationViewModel.swift in Sources */,
 				CA846724203E786E005F7640 /* MTTSmallVideoBottomViewDelegate.swift in Sources */,

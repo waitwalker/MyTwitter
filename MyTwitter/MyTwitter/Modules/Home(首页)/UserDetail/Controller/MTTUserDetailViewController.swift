@@ -39,6 +39,10 @@ class MTTUserDetailViewController: MTTViewController
     let reusedUserDetailCellID:String = "reusedUserDetailCellID"
     
     
+    var userDetailTopIntroductionView:MTTUserDetailTopIntroductionView!
+    
+    
+    
     override func viewWillAppear(_ animated: Bool) 
     {
         super.viewWillAppear(animated)
@@ -90,7 +94,7 @@ class MTTUserDetailViewController: MTTViewController
         self.view.addSubview(headerBackgroundImageView)
 
         headerContainerView                                = UIView()
-        headerContainerView.backgroundColor                = kMainRandomColor()
+        headerContainerView.backgroundColor                = kMainBlueColor()//kMainRandomColor()
         headerContainerView.frame                          = CGRect(x: 0, y: kHeaderBackgroundImageViewHeight, width: kScreenWidth, height: kHeaderContainerViewHeight)
         self.view.addSubview(headerContainerView)
 
@@ -109,6 +113,9 @@ class MTTUserDetailViewController: MTTViewController
         avatarImageView.clipsToBounds                      = true
         headerContainerView.addSubview(avatarImageView)
         
+        userDetailTopIntroductionView = MTTUserDetailTopIntroductionView(frame: CGRect(x: 0, y: 55, width: kScreenWidth, height: 165))
+        userDetailTopIntroductionView.backgroundColor = kMainRedColor()
+        headerContainerView.addSubview(userDetailTopIntroductionView)
         
     }
     

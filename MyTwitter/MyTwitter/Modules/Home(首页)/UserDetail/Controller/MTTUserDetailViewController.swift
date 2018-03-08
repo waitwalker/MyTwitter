@@ -39,6 +39,7 @@ class MTTUserDetailViewController: MTTViewController
     let reusedUserDetailCellID:String = "reusedUserDetailCellID"
     
     
+    
     var userDetailTopIntroductionView:MTTUserDetailTopIntroductionView!
     
     
@@ -82,7 +83,6 @@ class MTTUserDetailViewController: MTTViewController
         userDetailTableView.frame                          = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
         userDetailTableView.register(MTTUserDetailContainerCell.self, forCellReuseIdentifier: reusedUserDetailCellID)
         userDetailTableView.separatorStyle                 = UITableViewCellSeparatorStyle.none
-        userDetailTableView.backgroundColor                = kMainBlueColor()
         userDetailTableView.contentInset                   = UIEdgeInsetsMake(kHeaderBackgroundImageViewHeight + kHeaderContainerViewHeight, 0, 0, 0)
         self.automaticallyAdjustsScrollViewInsets          = false
         self.view.addSubview(userDetailTableView)
@@ -94,7 +94,7 @@ class MTTUserDetailViewController: MTTViewController
         self.view.addSubview(headerBackgroundImageView)
 
         headerContainerView                                = UIView()
-        headerContainerView.backgroundColor                = kMainBlueColor()//kMainRandomColor()
+        headerContainerView.backgroundColor                = UIColor.white
         headerContainerView.frame                          = CGRect(x: 0, y: kHeaderBackgroundImageViewHeight, width: kScreenWidth, height: kHeaderContainerViewHeight)
         self.view.addSubview(headerContainerView)
 
@@ -114,7 +114,6 @@ class MTTUserDetailViewController: MTTViewController
         headerContainerView.addSubview(avatarImageView)
         
         userDetailTopIntroductionView = MTTUserDetailTopIntroductionView(frame: CGRect(x: 0, y: 55, width: kScreenWidth, height: 165))
-        userDetailTopIntroductionView.backgroundColor = kMainRedColor()
         headerContainerView.addSubview(userDetailTopIntroductionView)
         
     }
@@ -195,9 +194,7 @@ extension MTTUserDetailViewController :UITableViewDelegate, UITableViewDataSourc
         }
         
         cell?.textLabel?.text = "第\(indexPath.item)行"
-        cell?.contentView.backgroundColor = kMainBlueColor()
         bottomContainerView = MTTUserDetailBottomContainerView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
-        bottomContainerView.backgroundColor = UIColor.purple
         bottomContainerView.tabConfig = [1,2,3,4]
         cell?.contentView.addSubview(bottomContainerView)
         return cell!

@@ -38,7 +38,6 @@ class MTTUserDetailContentView: MTTView
         userDetailContentScrollView.isPagingEnabled = true
         userDetailContentScrollView.delegate        = self
         userDetailContentScrollView.contentSize     = CGSize(width: 4 * kScreenWidth, height: 0)
-        userDetailContentScrollView.backgroundColor = kMainRandomColor()
         self.addSubview(userDetailContentScrollView)
         
         for index in 0...3 {

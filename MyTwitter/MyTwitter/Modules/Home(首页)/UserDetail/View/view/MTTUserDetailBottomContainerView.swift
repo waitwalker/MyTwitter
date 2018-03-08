@@ -6,6 +6,10 @@
 //  Copyright © 2018年 waitWalker. All rights reserved.
 //
 
+/*********
+ 底部左右滚动容器 
+ *********/
+
 import UIKit
 
 class MTTUserDetailBottomContainerView: MTTView 
@@ -24,7 +28,6 @@ class MTTUserDetailBottomContainerView: MTTView
     var tabConfig:Array<Any>?
     {
         didSet{
-            print("重写属性:\(tabConfig?.count)")
             setupViews()
         }
     }
@@ -39,6 +42,8 @@ class MTTUserDetailBottomContainerView: MTTView
     {
         setupTopScrollView()
         setupBottomScrollView()
+        
+        buttonsArray[0].sendActions(for: UIControlEvents.allEvents)
     }
     
     func setupTopScrollView() -> Void 
@@ -49,7 +54,6 @@ class MTTUserDetailBottomContainerView: MTTView
         topScrollView                        = UIScrollView()
         topScrollView.frame                  = CGRect(x: 0, y: 0, width: kScreenWidth, height: 50)
         topScrollView.contentSize            = CGSize(width: kScreenWidth, height: 0)
-        topScrollView.backgroundColor        = UIColor.orange
         topScrollView.isPagingEnabled        = true
         topScrollView.isScrollEnabled        = true
         topContainerView.addSubview(topScrollView)

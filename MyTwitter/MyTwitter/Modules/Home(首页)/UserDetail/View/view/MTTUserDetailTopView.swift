@@ -41,7 +41,6 @@ class MTTUserDetailTopView: MTTView
         topScrollView                        = UIScrollView()
         topScrollView.frame                  = CGRect(x: 0, y: 0, width: kScreenWidth, height: 50)
         topScrollView.contentSize            = CGSize(width: kScreenWidth, height: 0)
-        topScrollView.backgroundColor        = UIColor.orange
         topScrollView.isPagingEnabled        = true
         topScrollView.isScrollEnabled        = true
         self.addSubview(topScrollView)

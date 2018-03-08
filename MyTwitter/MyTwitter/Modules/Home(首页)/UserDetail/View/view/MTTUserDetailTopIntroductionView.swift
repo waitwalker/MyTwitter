@@ -52,7 +52,6 @@ class MTTUserDetailTopIntroductionView: MTTView
         
         titleLabel               = UILabel()
         titleLabel.text = "爱学"
-        titleLabel.backgroundColor = kMainRandomColor()
         titleLabel.textColor     = UIColor.black
         titleLabel.textAlignment = NSTextAlignment.left
         titleLabel.font          = UIFont.boldSystemFont(ofSize: 18)
@@ -60,7 +59,6 @@ class MTTUserDetailTopIntroductionView: MTTView
         
         subtitleLabel = UILabel()
         subtitleLabel.text = "@etiantian"
-        subtitleLabel.backgroundColor = kMainRandomColor()
         subtitleLabel.textColor = kMainGrayColor()
         subtitleLabel.font = UIFont.systemFont(ofSize: 15)
         subtitleLabel.textAlignment = NSTextAlignment.left
@@ -69,14 +67,12 @@ class MTTUserDetailTopIntroductionView: MTTView
         introductionLabel               = UILabel()
         introductionLabel.numberOfLines = 0
         introductionLabel.text = "爱学客户端集教学辅助、校园社交、即时通讯及家校通于一身，正式开启一站式校园服务系统时代。师生在线教学功能与校园教学实时同步，随时随地进行教学。学习版的“微信”，拉近师生间距离，共同学习与成长。丰富的网校项目，掌中的移动网校，让课余学习更丰富多彩。家校通连接教师、家长与孩子，见证孩子成长每一步。"
-        introductionLabel.backgroundColor = kMainRandomColor()
         introductionLabel.textColor     = UIColor.black
         introductionLabel.textAlignment = NSTextAlignment.left
         introductionLabel.font          = UIFont.systemFont(ofSize: 14)
         self.addSubview(introductionLabel)
         
         localLabel = UILabel()
-        localLabel.backgroundColor = kMainRandomColor()
         localLabel.textColor = kMainGrayColor()
         localLabel.font = UIFont.systemFont(ofSize: 15)
         localLabel.textAlignment = NSTextAlignment.left
@@ -84,13 +80,14 @@ class MTTUserDetailTopIntroductionView: MTTView
         self.addSubview(localLabel)
         
         hyperlinkButton = UIButton()
-        hyperlinkButton.backgroundColor = kMainRandomColor()
+        hyperlinkButton.layer.cornerRadius = 2
+        hyperlinkButton.clipsToBounds = true
+        hyperlinkButton.backgroundColor = kMainLightGrayColor().withAlphaComponent(0.2)
         hyperlinkButton.setAttributedTitle(self.setupRichText(imageName: "user_detail_link", behindString: "  https://waitwalker.cn", behindStringColor: kMainBlueColor()), for: UIControlState.normal)
         hyperlinkButton.setAttributedTitle(self.setupRichText(imageName: "user_detail_link", behindString: "  https://waitwalker.cn", behindStringColor: kMainGrayColor()), for: UIControlState.normal)
         self.addSubview(hyperlinkButton)
         
         followingLabel = UILabel()
-        followingLabel.backgroundColor = kMainRandomColor()
         followingLabel.textColor = kMainGrayColor()
         followingLabel.font = UIFont.systemFont(ofSize: 15)
         followingLabel.textAlignment = NSTextAlignment.left
@@ -98,7 +95,6 @@ class MTTUserDetailTopIntroductionView: MTTView
         self.addSubview(followingLabel)
         
         followerLabel = UILabel()
-        followerLabel.backgroundColor = kMainRandomColor()
         followerLabel.textColor = kMainGrayColor()
         followerLabel.font = UIFont.systemFont(ofSize: 15)
         followerLabel.textAlignment = NSTextAlignment.left
@@ -190,7 +186,7 @@ class MTTUserDetailTopIntroductionView: MTTView
         // 设置图片附件
         let textAttachmet = NSTextAttachment()
         textAttachmet.image = image
-        textAttachmet.bounds = CGRect(x: 0, y: -3, width: 20, height: 20)
+        textAttachmet.bounds = CGRect(x: 0, y: -3, width: 18, height: 18)
         
         let attchmentAttStr = NSAttributedString(attachment: textAttachmet)
         let mutableAttStr = NSMutableAttributedString(attributedString: attchmentAttStr)

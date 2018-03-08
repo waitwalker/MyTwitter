@@ -103,6 +103,10 @@
 		44E9E8C13750B588F23552C8 /* Pods_MyTwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */; };
 		CA0994BB1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0994BA1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift */; };
 		CA0994BD1F8F459D00D79775 /* MTTPhotoLibraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0994BC1F8F459D00D79775 /* MTTPhotoLibraryModel.swift */; };
+		CA200BAC2050DAB600F076D2 /* MTTTabMediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA200BAB2050DAB600F076D2 /* MTTTabMediaViewModel.swift */; };
+		CA200BAE2050DB0100F076D2 /* MTTTabMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA200BAD2050DB0100F076D2 /* MTTTabMediaModel.swift */; };
+		CA200BB02050DB1400F076D2 /* MTTTabMediaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA200BAF2050DB1400F076D2 /* MTTTabMediaService.swift */; };
+		CA200BB32050DC2800F076D2 /* MTTTabMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA200BB22050DC2800F076D2 /* MTTTabMediaCell.swift */; };
 		CA3058C21F78B6B300742237 /* MTTFPSDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3058C11F78B6B300742237 /* MTTFPSDisplay.swift */; };
 		CA3058C41F78CAE500742237 /* MTTHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3058C31F78CAE500742237 /* MTTHomeViewModel.swift */; };
 		CA3058C61F78CAF100742237 /* MTTHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3058C51F78CAF100742237 /* MTTHomeModel.swift */; };
@@ -334,6 +338,10 @@
 		C8B46619503CC4D8F2F2F494 /* Pods_MyTwitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA0994BA1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPhotoLibraryIconCell.swift; sourceTree = "<group>"; };
 		CA0994BC1F8F459D00D79775 /* MTTPhotoLibraryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPhotoLibraryModel.swift; sourceTree = "<group>"; };
+		CA200BAB2050DAB600F076D2 /* MTTTabMediaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTabMediaViewModel.swift; sourceTree = "<group>"; };
+		CA200BAD2050DB0100F076D2 /* MTTTabMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTabMediaModel.swift; sourceTree = "<group>"; };
+		CA200BAF2050DB1400F076D2 /* MTTTabMediaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTabMediaService.swift; sourceTree = "<group>"; };
+		CA200BB22050DC2800F076D2 /* MTTTabMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTabMediaCell.swift; sourceTree = "<group>"; };
 		CA3058C11F78B6B300742237 /* MTTFPSDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTFPSDisplay.swift; sourceTree = "<group>"; };
 		CA3058C31F78CAE500742237 /* MTTHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeViewModel.swift; sourceTree = "<group>"; };
 		CA3058C51F78CAF100742237 /* MTTHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTHomeModel.swift; sourceTree = "<group>"; };
@@ -504,6 +512,7 @@
 		1A304C3B1F6D6B2400F366B9 /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				CA200BA72050DA2600F076D2 /* TabMedia(媒体栏) */,
 				1A50B2C31FB1EC6500F3F1CF /* UserDetail */,
 				CA3058CE1F79FCC400742237 /* Delegate */,
 				CA3058C71F78D29300742237 /* HeaderHelper */,
@@ -881,6 +890,49 @@
 				98509265A2B073ADF5AA88F8 /* Pods-MyTwitterUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		CA200BA72050DA2600F076D2 /* TabMedia(媒体栏) */ = {
+			isa = PBXGroup;
+			children = (
+				CA200BB12050DBE800F076D2 /* Cell */,
+				CA200BAA2050DA6400F076D2 /* Service */,
+				CA200BA92050DA5700F076D2 /* ViewModel */,
+				CA200BA82050DA4D00F076D2 /* Model */,
+			);
+			path = "TabMedia(媒体栏)";
+			sourceTree = "<group>";
+		};
+		CA200BA82050DA4D00F076D2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA200BAD2050DB0100F076D2 /* MTTTabMediaModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA200BA92050DA5700F076D2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CA200BAB2050DAB600F076D2 /* MTTTabMediaViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CA200BAA2050DA6400F076D2 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CA200BAF2050DB1400F076D2 /* MTTTabMediaService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CA200BB12050DBE800F076D2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CA200BB22050DC2800F076D2 /* MTTTabMediaCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		CA3058C71F78D29300742237 /* HeaderHelper */ = {
@@ -1833,6 +1885,7 @@
 				1A596C631F90F1A100F14123 /* MTTSearchTwitterViewController.swift in Sources */,
 				1A596C611F90F17800F14123 /* MTTSearchShowMoreViewController.swift in Sources */,
 				CADECBCF1F5E4FFD0027E15F /* MTTTabBarController.swift in Sources */,
+				CA200BAC2050DAB600F076D2 /* MTTTabMediaViewModel.swift in Sources */,
 				CAC5AE8D1F7F4BE500B50C98 /* MTTViewExtension.swift in Sources */,
 				1A4B71DB1FB08C1500AAED83 /* MTTAlertController.swift in Sources */,
 				1A304C081F6D539900F366B9 /* MTTRegisterViewModelDelegate.swift in Sources */,
@@ -1857,6 +1910,7 @@
 				CAE674271F7F8F0A00C1093E /* MTTFileManagerExtension.swift in Sources */,
 				CADECBF61F5F83450027E15F /* MTTRegitserViewModel.swift in Sources */,
 				1A33A251201F56EA00428A6E /* MTTAvoidCrashStubProxy.m in Sources */,
+				CA200BB02050DB1400F076D2 /* MTTTabMediaService.swift in Sources */,
 				1AA6E4BE1F9B18520025FB7B /* MTTMessageViewModel.swift in Sources */,
 				CA36DE2C1F7368090077B44F /* MTTAboutModel.swift in Sources */,
 				1A9AC7182020AFBD000F4C3A /* NSAttributedString+AvoidCrash.m in Sources */,
@@ -1906,6 +1960,7 @@
 				CAE159E920312443000BE2E5 /* MTTSmallVideoView.swift in Sources */,
 				1A40EF622014897900700F10 /* MTTAvoidCrashManager.m in Sources */,
 				1AFC059D1F5ED2B7006EAC9F /* Service.swift in Sources */,
+				CA200BB32050DC2800F076D2 /* MTTTabMediaCell.swift in Sources */,
 				1A40EF692014949B00700F10 /* NSObject+AvoidCrashCategory.m in Sources */,
 				1A8F5BD21F729EB1006D6CA0 /* MTTAboutTwitterViewController.swift in Sources */,
 				1A596C651F90F1BC00F14123 /* MTTSearchPopularArticleViewController.swift in Sources */,
@@ -1931,6 +1986,7 @@
 				1AB9D1561FCCD4A000CA0DA0 /* MTTChatMessageToolBar.swift in Sources */,
 				CA3058D01F79FCED00742237 /* MTTHomeProtocol.swift in Sources */,
 				1A20C53C1FC465A300EAA0B6 /* MTTTwitterTextViewController.swift in Sources */,
+				CA200BAE2050DB0100F076D2 /* MTTTabMediaModel.swift in Sources */,
 				CAD3FC5D20410DC800227F19 /* MTTUserDetailBottomContainerView.swift in Sources */,
 				1A234B5A1F8BB40D00D6C731 /* MTTLocationCell.swift in Sources */,
 				1A9AC7152020AFA4000F4C3A /* NSMutableString+AvoidCrash.m in Sources */,

@@ -39,6 +39,12 @@ class MTTUserDetailViewController: MTTViewController
     let reusedUserDetailCellID:String = "reusedUserDetailCellID"
     
     
+    // 简介相关视图 
+    var followingButton:UIButton!
+    var noticeButton:UIButton!
+    var settingButton:UIButton!
+    
+    
     
     var userDetailTopIntroductionView:MTTUserDetailTopIntroductionView!
     
@@ -116,6 +122,32 @@ class MTTUserDetailViewController: MTTViewController
         userDetailTopIntroductionView = MTTUserDetailTopIntroductionView(frame: CGRect(x: 0, y: 55, width: kScreenWidth, height: 165))
         headerContainerView.addSubview(userDetailTopIntroductionView)
         
+        followingButton = UIButton()
+        followingButton.backgroundColor = kMainBlueColor()
+        followingButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        followingButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        followingButton.setTitleColor(kMainGrayColor(), for: UIControlState.highlighted)
+        followingButton.setTitle("正在关注", for: UIControlState.normal)
+        followingButton.layer.cornerRadius = 15
+        followingButton.clipsToBounds = true
+        headerContainerView.addSubview(followingButton)
+        
+        noticeButton = UIButton()
+        noticeButton.layer.borderColor = kMainBlueColor().cgColor
+        noticeButton.layer.borderWidth = 1.0
+        noticeButton.setImage(UIImage.imageNamed(name: "user_detail_notice"), for: UIControlState.normal)
+        noticeButton.layer.cornerRadius = 15
+        noticeButton.clipsToBounds = true
+        headerContainerView.addSubview(noticeButton)
+        
+        settingButton = UIButton()
+        settingButton.layer.borderColor = kMainBlueColor().cgColor
+        settingButton.layer.borderWidth = 1.0
+        settingButton.setImage(UIImage.imageNamed(name: "user_detail_setting"), for: UIControlState.normal)
+        settingButton.layer.cornerRadius = 15
+        settingButton.clipsToBounds = true
+        headerContainerView.addSubview(settingButton)
+        
     }
     
     private func setupNavigationBar() -> Void 
@@ -140,7 +172,23 @@ class MTTUserDetailViewController: MTTViewController
     
     func layoutSubview() -> Void
     {
+        followingButton.snp.makeConstraints { make in
+            make.top.equalTo(headerContainerView).offset(5)
+            make.right.equalTo(headerContainerView).offset(-15)
+            make.height.equalTo(30)
+            make.width.equalTo(80)
+        }
         
+        noticeButton.snp.makeConstraints { make in
+            make.top.height.equalTo(followingButton)
+            make.right.equalTo(followingButton.snp.left).offset(-10)
+            make.width.equalTo(30)
+        }
+        
+        settingButton.snp.makeConstraints { make in
+            make.top.height.width.equalTo(followingButton)
+            make.right.equalTo(noticeButton.snp.left).offset(-10)
+        }
     }
     
     func setupEvent() -> Void

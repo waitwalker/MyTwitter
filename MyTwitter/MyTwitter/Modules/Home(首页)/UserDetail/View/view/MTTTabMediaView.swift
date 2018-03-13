@@ -72,8 +72,11 @@ class MTTTabMediaView: MTTTabBaseView {
         {
             cell = MTTTabMediaCell(style: UITableViewCellStyle.default, reuseIdentifier: reusedMediaId)
         }
+        if tabMediaModels != nil
+        {
+            cell?.mediaModel = tabMediaModels[indexPath.item]
+        }
         
-        cell?.mediaModel = tabMediaModels[indexPath.item]
         return cell!
         
     }

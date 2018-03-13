@@ -41,6 +41,4 @@ class MTTHomeModel: NSObject
     var isLike:Bool?
     var isRetwitter:Bool?
     
-    
-    
 }

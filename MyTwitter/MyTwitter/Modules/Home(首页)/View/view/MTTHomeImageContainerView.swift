@@ -46,6 +46,7 @@ class MTTHomeImageContainerView: MTTView,UIScrollViewDelegate
             
             let imageView                      = UIImageView()
             imageView.isUserInteractionEnabled = true
+            imageView.layer.shouldRasterize    = true
             imageView.image                    = UIImage(named: String(format: "%@.JPG", (self.homeImagesArray?.first)!))
             self.addSubview(imageView)
             imageView.frame                    = CGRect(x: 0, y: 0, width: imageViewWidth * 2 + 5, height: 150)
@@ -60,6 +61,7 @@ class MTTHomeImageContainerView: MTTView,UIScrollViewDelegate
             {
                 let imageView                      = UIImageView()
                 imageView.isUserInteractionEnabled = true
+                imageView.layer.shouldRasterize    = true
                 imageView.tag                      = i
                 imageView.image                    = UIImage(named: String(format: "%@.JPG", (self.homeImagesArray![i])))
                 self.addSubview(imageView)
@@ -75,6 +77,7 @@ class MTTHomeImageContainerView: MTTView,UIScrollViewDelegate
             {
                 let imageView                      = UIImageView()
                 imageView.isUserInteractionEnabled = true
+                imageView.layer.shouldRasterize    = true
                 imageView.tag                      = i
                 imageView.image                    = UIImage(named: String(format: "%@.JPG", (self.homeImagesArray![i])))
                 self.addSubview(imageView)
@@ -99,6 +102,7 @@ class MTTHomeImageContainerView: MTTView,UIScrollViewDelegate
             {
                 let imageView                      = UIImageView()
                 imageView.isUserInteractionEnabled = true
+                imageView.layer.shouldRasterize    = true
                 imageView.tag                      = i
                 imageView.image                    = UIImage(named: String(format: "%@.JPG", (self.homeImagesArray![i])))
                 self.addSubview(imageView)

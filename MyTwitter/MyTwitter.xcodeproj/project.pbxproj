@@ -190,6 +190,7 @@
 		CAE6742B1F7F926900C1093E /* MTTArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE6742A1F7F926900C1093E /* MTTArrayExtension.swift */; };
 		CAE6742D1F7F932000C1093E /* MTTFountions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE6742C1F7F932000C1093E /* MTTFountions.swift */; };
 		CAE6742F1F7F98D100C1093E /* MTTLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE6742E1F7F98D100C1093E /* MTTLogger.swift */; };
+		CAEA216A205B58190018E145 /* MTTTabMediaHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEA2169205B58190018E145 /* MTTTabMediaHeader.swift */; };
 		CAF065421F9606E3002F28F8 /* MTTSearchTwitterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF065411F9606E3002F28F8 /* MTTSearchTwitterCell.swift */; };
 		CAF065521F985628002F28F8 /* MTTNotificationReplyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF065511F985628002F28F8 /* MTTNotificationReplyCell.swift */; };
 		CAF065541F986DB7002F28F8 /* MTTNotificationMentionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF065531F986DB7002F28F8 /* MTTNotificationMentionCell.swift */; };
@@ -430,6 +431,7 @@
 		CAE6742A1F7F926900C1093E /* MTTArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTArrayExtension.swift; sourceTree = "<group>"; };
 		CAE6742C1F7F932000C1093E /* MTTFountions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTFountions.swift; sourceTree = "<group>"; };
 		CAE6742E1F7F98D100C1093E /* MTTLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTLogger.swift; sourceTree = "<group>"; };
+		CAEA2169205B58190018E145 /* MTTTabMediaHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTTabMediaHeader.swift; sourceTree = "<group>"; };
 		CAF065411F9606E3002F28F8 /* MTTSearchTwitterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTSearchTwitterCell.swift; sourceTree = "<group>"; };
 		CAF065511F985628002F28F8 /* MTTNotificationReplyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTNotificationReplyCell.swift; sourceTree = "<group>"; };
 		CAF065531F986DB7002F28F8 /* MTTNotificationMentionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTNotificationMentionCell.swift; sourceTree = "<group>"; };
@@ -895,6 +897,7 @@
 		CA200BA72050DA2600F076D2 /* TabMedia(媒体栏) */ = {
 			isa = PBXGroup;
 			children = (
+				CAEA2168205B57F80018E145 /* header */,
 				CA200BB12050DBE800F076D2 /* Cell */,
 				CA200BAA2050DA6400F076D2 /* Service */,
 				CA200BA92050DA5700F076D2 /* ViewModel */,
@@ -1458,6 +1461,14 @@
 			path = Logger;
 			sourceTree = "<group>";
 		};
+		CAEA2168205B57F80018E145 /* header */ = {
+			isa = PBXGroup;
+			children = (
+				CAEA2169205B58190018E145 /* MTTTabMediaHeader.swift */,
+			);
+			path = header;
+			sourceTree = "<group>";
+		};
 		CAF0654E1F9855B7002F28F8 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1981,6 +1992,7 @@
 				CA6ADD571F98833B00A25646 /* MTTNotificationButtonCell.swift in Sources */,
 				CA45B8C8204CDD410062743B /* MTTUserDetailViewModel.swift in Sources */,
 				1A8F5BD51F72A915006D6CA0 /* MTTTableViewCell.swift in Sources */,
+				CAEA216A205B58190018E145 /* MTTTabMediaHeader.swift in Sources */,
 				1A20C53A1FC461B800EAA0B6 /* MTTUserDetailContentView.swift in Sources */,
 				CAE3F0E31F7498B700788455 /* MTTHomeCell.swift in Sources */,
 				1AB9D1561FCCD4A000CA0DA0 /* MTTChatMessageToolBar.swift in Sources */,

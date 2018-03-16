@@ -29,6 +29,7 @@ class MTTTabMediaView: MTTTabBaseView {
             return Disposables.create()
         })
     }
+
     override func loadData() {
         viewModel = MTTTabMediaViewModel()
         viewModel.getMediaData(parameter: parameterJust(["name":"etiantian"]))
@@ -37,7 +38,17 @@ class MTTTabMediaView: MTTTabBaseView {
         viewModel.mediaModels
             .asObservable()
             .subscribe(onNext: { elements in
-            self.tabMediaModels = elements
+                
+            }, onError: { error in
+                
+            }, onCompleted: { 
+                
+            }).disposed(by: disposeBag)
+        viewModel.mediaModels
+            .asObservable()
+            .subscribe(onNext: { elements in
+                self.tabMediaModels = elements
+                self.tableView.reloadData()
         }, onError: { error in
             
         }, onCompleted: { 
@@ -62,7 +73,7 @@ class MTTTabMediaView: MTTTabBaseView {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return self.tabMediaModels != nil ? tabMediaModels.count : 0 
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

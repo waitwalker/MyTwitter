@@ -8,6 +8,10 @@
 
 import UIKit
 
-class MTTTabMediaModel: NSObject {
-
+class MTTTabMediaModel: NSObject 
+{
+    var backgroundImageString:String!
+    var mediaType:MTTMediaType!
+    var videoTime:String!
+    
 }

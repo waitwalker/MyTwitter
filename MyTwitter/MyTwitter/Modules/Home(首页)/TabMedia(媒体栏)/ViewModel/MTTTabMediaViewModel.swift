@@ -14,6 +14,10 @@ class MTTTabMediaViewModel: NSObject
 {
     var mediaModels:Driver<[MTTTabMediaModel]> = Variable<[MTTTabMediaModel]>([]).asDriver()
     
+    init(parameter:Observable<[String:Any]>) {
+        
+    }
+    
     func getMediaData(parameter:Observable<[String:Any]>) -> Void
     {
         mediaModels = parameter

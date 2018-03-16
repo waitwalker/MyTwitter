@@ -19,12 +19,22 @@ class MTTTabMediaService: NSObject {
     
     func networkRequest(parameter:[String:Any]) -> Observable<[MTTTabMediaModel]> {
         
-        let model = MTTTabMediaModel()
-        
-        var arr:[MTTTabMediaModel] = []
-        arr.append(model)
-        
-        return Observable.just(arr).observeOn(MainScheduler.instance)
+        return Observable.just(self.getModels()).observeOn(MainScheduler.instance)
     }
+    
+    func getModels() -> [MTTTabMediaModel] 
+    {
+        var models:[MTTTabMediaModel] = []
+        for _ in 0...30 {
+            let model = MTTTabMediaModel()
+            model.backgroundImageString = String(format: "media%d", String.getRandomValue(peakValue: 10))
+            model.mediaType = String.getRandomValue(peakValue: 1) == 1 ? MTTMediaType.MTTMediaPicture: MTTMediaType.MTTMediaVideo
+            model.videoTime = String(format: "%d%d:%d%d", String.getRandomValue(peakValue: 5),String.getRandomValue(peakValue: 9),String.getRandomValue(peakValue: 5),String.getRandomValue(peakValue: 9))
+            models.append(model)
+        }
+        return models
+    }
+    
+    
     
 }

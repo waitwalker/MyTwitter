@@ -310,6 +310,11 @@ extension String
         return dateStr
     }
     
+    
+    /// 获取随机数
+    ///
+    /// - Parameter peakValue: 最大随机数
+    /// - Returns: 随机数 
     static func getRandomValue(peakValue:Int) -> Int
     {
         return Int(arc4random_uniform(UInt32(peakValue)))

@@ -12,20 +12,15 @@ import RxSwift
 
 class MTTTabMediaViewModel: NSObject 
 {
-    var mediaModels:Driver<[MTTTabMediaModel]> = Variable<[MTTTabMediaModel]>([]).asDriver()
+    var mediaModels:Driver<[MTTTabMediaModel]>
     
     init(parameter:Observable<[String:Any]>) {
-        
-    }
-    
-    func getMediaData(parameter:Observable<[String:Any]>) -> Void
-    {
         mediaModels = parameter
             .observeOn(ConcurrentDispatchQueueScheduler(qos: DispatchQoS.background))
-            .flatMap{para in 
-                
-                return MTTTabMediaService.sharedMediaService.networkRequest(parameter: para)
-        }.asDriver(onErrorJustReturn: [])
+            .flatMap{ element in 
+                return MTTTabMediaService.sharedMediaService.networkRequest(parameter: element)
+            }.asDriver(onErrorJustReturn: [])
     }
+    
     
 }

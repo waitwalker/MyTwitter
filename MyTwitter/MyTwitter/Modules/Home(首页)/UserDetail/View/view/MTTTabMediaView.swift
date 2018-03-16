@@ -31,29 +31,20 @@ class MTTTabMediaView: MTTTabBaseView {
     }
 
     override func loadData() {
-        viewModel = MTTTabMediaViewModel()
-        viewModel.getMediaData(parameter: parameterJust(["name":"etiantian"]))
-        
-        // outputs
+        viewModel = MTTTabMediaViewModel(parameter: parameterJust(["name":"etiantian"]))
         viewModel.mediaModels
             .asObservable()
             .subscribe(onNext: { elements in
+                
+                print("当前线程:\(Thread.current)")
+                self.tabMediaModels = elements
+                self.tableView.reloadData()
                 
             }, onError: { error in
                 
             }, onCompleted: { 
                 
             }).disposed(by: disposeBag)
-        viewModel.mediaModels
-            .asObservable()
-            .subscribe(onNext: { elements in
-                self.tabMediaModels = elements
-                self.tableView.reloadData()
-        }, onError: { error in
-            
-        }, onCompleted: { 
-            
-        }).disposed(by: DisposeBag())
     }
     
     override init(frame: CGRect) 
@@ -94,7 +85,7 @@ class MTTTabMediaView: MTTTabBaseView {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat 
     {
-        return 150
+        return 250
     }
 
 }

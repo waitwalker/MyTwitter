@@ -64,5 +64,67 @@ extension UIImage
         let scaledSize = CGSize(width: self.size.width * scale, height: self.size.height * scale)
         return resetImageSize(exceptSize: scaledSize)
     }
+    
+    
+    /// 图片按照指定宽度缩放
+    ///
+    /// - Parameters:
+    ///   - expectWidth: 指定宽度 
+    ///   - sourceImage: 原图 
+    /// - Returns: 缩放后的图片 
+    func scaleImageWithWidth(expectWidth:CGFloat,sourceImage:UIImage) -> UIImage 
+    {
+        let imageSize = sourceImage.size
+        let width = imageSize.width
+        let height = imageSize.height
+        let targetWidth:CGFloat = expectWidth
+        let targetHeight = height / (width / targetWidth)
+        let size = CGSize(width: targetWidth, height: targetHeight)
+        
+        var scaleFactor:CGFloat = 0.0
+        var scaleWidth = targetWidth
+        var scaleHeight = targetHeight
+        var thumbnailPoint = CGPoint(x: 0, y: 0)
+        
+        if __CGSizeEqualToSize(imageSize, size) == false 
+        {
+            let widthFactor = targetWidth / width
+            let heightFactor = targetHeight / height
+            if widthFactor > heightFactor
+            {
+                scaleFactor = widthFactor
+            } else 
+            {
+                scaleFactor = heightFactor
+            }
+            scaleWidth = width * scaleFactor
+            scaleHeight = height * scaleFactor
+            
+            if widthFactor > heightFactor
+            {
+                thumbnailPoint.y = (targetHeight - scaleHeight) * 0.5
+            } else if (widthFactor < heightFactor)
+            {
+                thumbnailPoint.x = (targetWidth - scaleWidth) * 0.5
+            }
+            
+        }
+        
+        UIGraphicsBeginImageContext(size)
+        var thumbnailRect = CGRect.zero
+        thumbnailRect.origin = thumbnailPoint
+        thumbnailRect.size.width = scaleWidth
+        thumbnailRect.size.height = scaleHeight
+        sourceImage.draw(in: thumbnailRect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        if newImage == nil 
+        {
+            print("scale image failed")
+        }
+        UIGraphicsEndImageContext()
+        return newImage!
+        
+    }
 }
 

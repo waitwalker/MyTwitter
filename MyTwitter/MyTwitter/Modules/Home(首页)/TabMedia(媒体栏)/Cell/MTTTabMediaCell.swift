@@ -22,6 +22,18 @@ class MTTTabMediaCell: UITableViewCell {
     var mediaModel:MTTTabMediaModel?
     {
         didSet{
+            let image = UIImage.imageNamed(name: (mediaModel?.backgroundImageString)!)
+            backgroundImageView.image = image.scaleImageWithWidth(expectWidth: kScreenWidth, sourceImage: image)
+            if mediaModel?.mediaType == MTTMediaType.MTTMediaPicture 
+            {
+                playButton.isHidden = true
+                timeLabel.isHidden = true
+            } else
+            {
+                playButton.isHidden = false
+                timeLabel.isHidden = false
+                timeLabel.text = mediaModel?.videoTime
+            }
             
         }
     }
@@ -50,7 +62,6 @@ class MTTTabMediaCell: UITableViewCell {
     func setupSubview() -> Void 
     {
         backgroundImageView = UIImageView()
-        backgroundImageView.image = UIImage.imageNamed(name: "1")
         self.contentView.addSubview(backgroundImageView)
         
         playButton = UIButton()

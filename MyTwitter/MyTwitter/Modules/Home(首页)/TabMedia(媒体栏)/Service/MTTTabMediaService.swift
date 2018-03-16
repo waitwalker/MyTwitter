@@ -27,9 +27,9 @@ class MTTTabMediaService: NSObject {
         var models:[MTTTabMediaModel] = []
         for _ in 0...30 {
             let model = MTTTabMediaModel()
-            model.backgroundImageString = String(format: "media%d", String.getRandomValue(peakValue: 10))
-            model.mediaType = String.getRandomValue(peakValue: 1) == 1 ? MTTMediaType.MTTMediaPicture: MTTMediaType.MTTMediaVideo
-            model.videoTime = String(format: "%d%d:%d%d", String.getRandomValue(peakValue: 5),String.getRandomValue(peakValue: 9),String.getRandomValue(peakValue: 5),String.getRandomValue(peakValue: 9))
+            model.backgroundImageString = String(format: "media%d", String.getRandomValue(peakValue: 11))
+            model.mediaType = String.getRandomValue(peakValue: 2) == 1 ? MTTMediaType.MTTMediaPicture: MTTMediaType.MTTMediaVideo
+            model.videoTime = String(format: "%d%d: %d%d", String.getRandomValue(peakValue: 5),String.getRandomValue(peakValue: 9),String.getRandomValue(peakValue: 5),String.getRandomValue(peakValue: 9))
             models.append(model)
         }
         return models

@@ -141,7 +141,7 @@ extension String
         let raw: NSString = self as NSString
         let allowedEscapes = CharacterSet(charactersIn: ":/?&=;+!@#$()',*")
         let str = raw.addingPercentEncoding(withAllowedCharacters: allowedEscapes)
-        return str as String!
+        return (str as String?)!
     }
     
     func unescape() -> String {

@@ -257,8 +257,15 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
     {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let shakeVC = MTTShakeViewController()
-        self.navigationController?.pushViewController(shakeVC, animated: true)
+        //let shakeVC = MTTShakeViewController()
+        //self.navigationController?.pushViewController(shakeVC, animated: true)
+        
+        
+        let photoBrowser = MTTPhotoBrowserView(dataSource: ["abc"])
+        
+        MTTSingletonManager.sharedInstance.getKeyWindow().addSubview(photoBrowser)
+        
+        
         
     }
     

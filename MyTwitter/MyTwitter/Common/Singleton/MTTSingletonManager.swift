@@ -257,7 +257,7 @@ class MTTSingletonManager: NSObject
         try! session.setActive(true)
         
         // 文件名称
-        currentRecorderFileName = String(format: "/voice-%.0f.aac", Date().timeIntervalSince1970)
+        currentRecorderFileName = String(format: "/voice-%.0f.m4a", Date().timeIntervalSince1970)
         
         //组合录音文件路径
         currentRecorderPath = getRecorderFilePath() + currentRecorderFileName
@@ -328,9 +328,9 @@ class MTTSingletonManager: NSObject
         let setting = 
             [
                 AVFormatIDKey: NSNumber(value: kAudioFormatMPEG4AAC),
-                AVNumberOfChannelsKey: 2, //录音的声道数，立体声为双声道
+                AVNumberOfChannelsKey: 1, //录音的声道数，立体声为双声道
                 AVEncoderAudioQualityKey : AVAudioQuality.max.rawValue,
-                AVEncoderBitRateKey : 320000,
+                //AVEncoderBitRateKey : 320000,
                 AVSampleRateKey : 44100.0 //录音器每秒采集的录音样本数
             ] as [String : Any]
         
@@ -341,6 +341,16 @@ class MTTSingletonManager: NSObject
     // 录音缓存路径 
     func getRecorderFilePath() -> String 
     {
+        /*
+         let docDir = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+         let fileURL = docDir.appendingPathComponent("Audio").appendingPathExtension("m4a")
+         do {
+         audioRecorder = try AVAudioRecorder(url: fileURL, settings: recordSetting)
+         } catch {
+         print(error)
+         }
+         */
+        
         let filePath = getDocumentPath() + "/recorderFile"
         if FileManager.default.fileExists(atPath: filePath)
         {

@@ -57,10 +57,10 @@ class MTTRegisterAccountViewController: MTTViewController,UITextViewDelegate
     // MARK: - 键盘通知回调
     @objc func handlerKeyBoardFrame(notification:NSNotification) -> Void
     {
-        let beginValue = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as! NSValue!
+        let beginValue = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as! NSValue?
         let beginFrame = beginValue?.cgRectValue
 
-        let endValue   = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue!
+        let endValue   = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue?
         let endFrame   = endValue?.cgRectValue
 
         let deltaY     = (endFrame?.origin.y)! - (beginFrame?.origin.y)!

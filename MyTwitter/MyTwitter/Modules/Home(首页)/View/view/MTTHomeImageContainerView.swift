@@ -15,6 +15,7 @@ class MTTHomeImageContainerView: MTTView,UIScrollViewDelegate
     var imageBackgroundView:UIView?
     var imageScrollView:UIScrollView?
     var imagePreview:UIImageView?
+
     
     
     var homeImagesArray: [String]?
@@ -148,6 +149,7 @@ class MTTHomeImageContainerView: MTTView,UIScrollViewDelegate
 
         imageScrollView                                = UIScrollView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
         imageScrollView?.maximumZoomScale              = 2
+        imageScrollView?.minimumZoomScale              = 0.5
         imageScrollView?.delegate                      = self
         imageScrollView?.isUserInteractionEnabled      = true
         imageScrollView?.contentSize                   = CGSize(width: kScreenWidth * CGFloat((homeImagesArray?.count)!), height: 0)
@@ -198,10 +200,20 @@ class MTTHomeImageContainerView: MTTView,UIScrollViewDelegate
         }else
         {
             let touchPoint   = doubleTap.location(in: imagePreview)
+            
+            let w = (imageScrollView?.bounds.size.width)! / 2
+            let h = (imageScrollView?.bounds.size.height)! / 2
+            let x = touchPoint.x - (w / 2.0)
+            let y = touchPoint.y - (h / 2.0)
+            
             let newZoomScale = imageScrollView?.maximumZoomScale
             let xsize        = kScreenWidth / newZoomScale!
             let ysize        = kScreenHeight / newZoomScale!
-            imageScrollView?.zoom(to: CGRect.init(x:touchPoint.x - xsize / 2, y:touchPoint.y - ysize / 2, width:xsize, height:ysize), animated: true)
+            
+            
+            imageScrollView?.zoom(to: CGRect(x: x, y: y, width: w, height: h), animated: true)
+            
+            //imageScrollView?.zoom(to: CGRect.init(x:touchPoint.x - xsize / 2, y:touchPoint.y - ysize / 2, width:xsize, height:ysize), animated: true)
         }
     }
     

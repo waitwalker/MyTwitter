@@ -101,6 +101,7 @@
 		1AFC05AB1F5EE3B2006EAC9F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A61F5EE3B2006EAC9F /* Info.plist */; };
 		1AFC96AC1FE163B300B36FD8 /* MTTPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC96AB1FE163B300B36FD8 /* MTTPhotosView.swift */; };
 		44E9E8C13750B588F23552C8 /* Pods_MyTwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */; };
+		B3B0B387209749E500616416 /* MTTPhotoBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B0B386209749E500616416 /* MTTPhotoBrowserView.swift */; };
 		CA0994BB1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0994BA1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift */; };
 		CA0994BD1F8F459D00D79775 /* MTTPhotoLibraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0994BC1F8F459D00D79775 /* MTTPhotoLibraryModel.swift */; };
 		CA200BAC2050DAB600F076D2 /* MTTTabMediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA200BAB2050DAB600F076D2 /* MTTTabMediaViewModel.swift */; };
@@ -334,6 +335,7 @@
 		3BC01DD32B63AD348DFCD919 /* Pods_MyTwitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F24A29CF39DDC29B1234D51 /* Pods-MyTwitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitter/Pods-MyTwitter.debug.xcconfig"; sourceTree = "<group>"; };
 		98509265A2B073ADF5AA88F8 /* Pods-MyTwitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterUITests/Pods-MyTwitterUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B3B0B386209749E500616416 /* MTTPhotoBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPhotoBrowserView.swift; sourceTree = "<group>"; };
 		BBD28B095E0F89AA1960F0FC /* Pods-MyTwitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterTests/Pods-MyTwitterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BDE3DAC010179F784B5E286A /* Pods-MyTwitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterUITests/Pods-MyTwitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C8B46619503CC4D8F2F2F494 /* Pods_MyTwitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -871,6 +873,14 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		B3B0B385209749CD00616416 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				B3B0B386209749E500616416 /* MTTPhotoBrowserView.swift */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 		B5F2CF796C26C761BC553566 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1193,6 +1203,7 @@
 		CADECB961F5E4E3A0027E15F /* MyTwitter */ = {
 			isa = PBXGroup;
 			children = (
+				B3B0B385209749CD00616416 /* Tool */,
 				CADECC031F60E17A0027E15F /* Resource(资源) */,
 				1AFC059F1F5EE3B2006EAC9F /* Main */,
 				CADECBCA1F5E4F270027E15F /* Modules */,
@@ -1999,6 +2010,7 @@
 				CA3058D01F79FCED00742237 /* MTTHomeProtocol.swift in Sources */,
 				1A20C53C1FC465A300EAA0B6 /* MTTTwitterTextViewController.swift in Sources */,
 				CA200BAE2050DB0100F076D2 /* MTTTabMediaModel.swift in Sources */,
+				B3B0B387209749E500616416 /* MTTPhotoBrowserView.swift in Sources */,
 				CAD3FC5D20410DC800227F19 /* MTTUserDetailBottomContainerView.swift in Sources */,
 				1A234B5A1F8BB40D00D6C731 /* MTTLocationCell.swift in Sources */,
 				1A9AC7152020AFA4000F4C3A /* NSMutableString+AvoidCrash.m in Sources */,

@@ -23,6 +23,9 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
     var dayNightButton:UIButton?
     var QRCodeButton:UIButton?
     
+    var photoBrowserView:MTTPhotoBrowserView!
+    
+    
     
     
     var dataSourceArray:[MTTPersonalModel]?
@@ -261,9 +264,10 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
         //self.navigationController?.pushViewController(shakeVC, animated: true)
         
         
-        let photoBrowser = MTTPhotoBrowserView(dataSource: ["abc"])
+        photoBrowserView = MTTPhotoBrowserView(dataSource: ["1","2","3"])
+        photoBrowserView.delegate = self
         
-        MTTSingletonManager.sharedInstance.getKeyWindow().addSubview(photoBrowser)
+        self.view.addSubview(photoBrowserView)
         
         
         
@@ -294,4 +298,32 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
         }
     }
 
+}
+
+extension MTTPersonalViewController:MTTPhotoBrowserViewDelegate
+{
+    func DBrowserViewLongPressAction(image: UIImage?) {
+        
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        let saveImageAction = UIAlertAction(title: "保存图片", style: .default) { (_) in
+            print("保存图片：\(image)")
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        
+        actionSheet.addAction(saveImageAction)
+        actionSheet.addAction(cancelAction)
+        self.present(actionSheet, animated: true, completion: nil)
+        
+        print("长按可以保存图片")
+        
+    }
+    
+    func DBrowserViewSingleTapAction() {
+        
+        if photoBrowserView != nil {
+            photoBrowserView.removeFromSuperview()
+            photoBrowserView = nil
+        }
+        
+    }
 }

@@ -19,6 +19,7 @@ target 'MyTwitter' do
   pod 'DateTools', '~> 2.0.0'
   pod 'RealmSwift', '~> 3.0.1'
   pod 'MBProgressHUD', '~> 1.0.0'
+  pod 'Kingfisher', '~> 4.6.4'
 
 
   target 'MyTwitterTests' do

@@ -7,26 +7,39 @@
 //
 
 import UIKit
+import Kingfisher
 
+
+// MARK: - 图片浏览器delegate
+protocol MTTPhotoBrowserViewDelegate:class {
+    
+    func DBrowserViewSingleTapAction() -> Void
+    
+    func DBrowserViewLongPressAction(image:UIImage?) -> Void
+    
+}
+
+// MARK: - 图片浏览器视图 
 class MTTPhotoBrowserView: UIView {
+    
+    weak var delegate:MTTPhotoBrowserViewDelegate?
     
     let reusedPhotoBrowserId:String = "reusedPhotoBrowserId"
     
     var pageControl:UIPageControl!
     
     
-    /// 容器layout
-    private lazy var flowLayout: MTTPhotoBrowserLayout = {
-        return MTTPhotoBrowserLayout()
-    }()
-    
     var collectionView:UICollectionView!
     
-    init(dataSource:[String]) {
+    var dataSources:[String]!
+    
+    
+    init(dataSource:[String]?, currentItem:Int?) {
         super.init(frame: UIScreen.main.bounds)
         self.frame = UIScreen.main.bounds
         self.backgroundColor = UIColor.white
-        VSetupSubview()
+        dataSources = dataSource
+        VSetupSubview(dataSource: dataSource,currentItem: currentItem)
     }
     
     
@@ -34,7 +47,7 @@ class MTTPhotoBrowserView: UIView {
         super.init(frame: frame)
     }
     
-    func VSetupSubview() -> Void
+    func VSetupSubview(dataSource:[String]?, currentItem:Int?) -> Void
     {
         let photoFlowLayout                         = UICollectionViewFlowLayout()
         photoFlowLayout.scrollDirection             = UICollectionViewScrollDirection.horizontal
@@ -55,7 +68,8 @@ class MTTPhotoBrowserView: UIView {
         pageControl = UIPageControl(frame: CGRect(x: (kScreenWidth - 180) / 2, y: kScreenHeight - 80, width: 180, height: 50))
         pageControl.pageIndicatorTintColor = UIColor.white
         pageControl.currentPageIndicatorTintColor = kMainBlueColor()
-        pageControl.numberOfPages = 20
+        pageControl.numberOfPages = (dataSource?.count)!
+        pageControl.currentPage = currentItem!
         self.addSubview(pageControl)
         self.bringSubview(toFront: pageControl)
         
@@ -65,13 +79,9 @@ class MTTPhotoBrowserView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /*
-     // Only override draw() if you perform custom drawing.
-     // An empty implementation adversely affects performance during animation.
-     override func draw(_ rect: CGRect) {
-     // Drawing code
-     }
-     */
+    deinit {
+        print("图片浏览器被移除")
+    }
     
 }
 
@@ -92,17 +102,32 @@ extension MTTPhotoBrowserView:UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return self.dataSources.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusedPhotoBrowserId, for: indexPath) as! MTTPhotoBrowserCell
-        
+        cell.delegate = self
         return cell
     }
     
 }
 
+extension MTTPhotoBrowserView: MTTPhotoBrowserCellDelegate
+{
+    func DLongPressActionCallBack(image: UIImage?) {
+        delegate?.DBrowserViewLongPressAction(image: image)
+    }
+    
+    func DSingleTapActionCallBack() {
+        
+        delegate?.DBrowserViewSingleTapAction()
+        
+    }
+    
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
 extension MTTPhotoBrowserView:UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
@@ -112,6 +137,7 @@ extension MTTPhotoBrowserView:UICollectionViewDelegateFlowLayout
     
 }
 
+// MARK: - UICollectionViewDelegate
 extension MTTPhotoBrowserView:UICollectionViewDelegate
 {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -119,71 +145,65 @@ extension MTTPhotoBrowserView:UICollectionViewDelegate
     }
 }
 
-
-class MTTPhotoBrowserLayout: UICollectionViewFlowLayout {
-    
-    /// 一页宽度，算上空隙
-    private var pageWidth: CGFloat {
-        return self.itemSize.width + self.minimumLineSpacing
-    }
-    
-    /// 上次页码
-    private lazy var lastPage: CGFloat = {
-        guard let offsetX = self.collectionView?.contentOffset.x else {
-            return 0
-        }
-        return round(offsetX / self.pageWidth)
-    }()
-    
-    /// 最小页码
-    private let minPage: CGFloat = 0
-    
-    /// 最大页码
-    private lazy var maxPage: CGFloat = {
-        guard var contentWidth = self.collectionView?.contentSize.width else {
-            return 0
-        }
-        contentWidth += self.minimumLineSpacing
-        return contentWidth / self.pageWidth - 1
-    }()
-    
-    override init() {
-        super.init()
-        scrollDirection = .horizontal
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    /// 调整scroll停下来的位置
-    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        // 页码
-        var page = round(proposedContentOffset.x / pageWidth)
-        // 处理轻微滑动
-        if velocity.x > 0.2 {
-            page += 1
-        } else if velocity.x < -0.2 {
-            page -= 1
-        }
-        
-        // 一次滑动不允许超过一页
-        if page > lastPage + 1 {
-            page = lastPage + 1
-        } else if page < lastPage - 1 {
-            page = lastPage - 1
-        }
-        if page > maxPage {
-            page = maxPage
-        } else if page < minPage {
-            page = minPage
-        }
-        lastPage = page
-        return CGPoint(x: page * pageWidth, y: 0)
-    }
-}
-
+// MARK: - MTTPhotoBrowserCell
 class MTTPhotoBrowserCell: UICollectionViewCell {
+    
+    weak var delegate:MTTPhotoBrowserCellDelegate?
+    
+    var imageURLString:String?{
+        didSet{
+            
+            let placeImage = UIImage.imageNamed(name: "1.JPG")
+            imageView.kf.setImage(with: URL(string: imageURLString!),
+                                  placeholder: placeImage,
+                                  options: [KingfisherOptionsInfoItem.backgroundDecode],
+                                  progressBlock: { (receivedSize, totalSize) in
+                                    
+                                    print("当前图片下载进度:\(receivedSize)")
+                                    
+            }) { (image, error, cacheType, url) in
+                
+                if let theImage = image
+                {
+                    let scaleImage = theImage.scaleImageWithWidth(expectWidth: kScreenWidth, sourceImage: theImage)
+                    
+                    self.imageView.frame = CGRect(x: (self.containerScrollView.width - scaleImage.size.width) / 2, y: (self.containerScrollView.height - scaleImage.size.height) / 2, width: scaleImage.size.width, height: scaleImage.size.height)
+                    
+                    self.imageView.image = scaleImage
+                    
+                    print("imageView frame:\(self.imageView.frame)")
+                }
+            }
+        }
+    }
+    
+    
+    /// 取图片适屏frame
+    private var fitFrame: CGRect {
+        let size = fitSize
+        let y = (containerScrollView.bounds.height - size.height) > 0 ? (containerScrollView.bounds.height - size.height) * 0.5 : 0
+        return CGRect(x: 0, y: y, width: size.width, height: size.height)
+    }
+    
+    /// 计算contentSize应处于的中心位置
+    var centerOfContentSize: CGPoint {
+        let deltaWidth = bounds.width - containerScrollView.contentSize.width
+        let offsetX = deltaWidth > 0 ? deltaWidth * 0.5 : 0
+        let deltaHeight = bounds.height - containerScrollView.contentSize.height
+        let offsetY = deltaHeight > 0 ? deltaHeight * 0.5 : 0
+        return CGPoint(x: containerScrollView.contentSize.width * 0.5 + offsetX,
+                       y: containerScrollView.contentSize.height * 0.5 + offsetY)
+    }
+    
+    /// 取图片适屏size
+    private var fitSize: CGSize {
+        guard let image = imageView.image else {
+            return CGSize.zero
+        }
+        let width = containerScrollView.bounds.width
+        let scale = image.size.height / image.size.width
+        return CGSize(width: width, height: scale * width)
+    }
     
     var imageView:UIImageView!
     var containerScrollView:UIScrollView!
@@ -194,29 +214,54 @@ class MTTPhotoBrowserCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
-        self.contentView.backgroundColor = kMainRandomColor()
+        //self.contentView.backgroundColor = kMainRandomColor()
         
-        //VSetupSubview()
+        VSetupSubview()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        VLayoutSubview()
+    }
+    
+    
+    private func VLayoutSubview() -> Void
+    {
+        print("contentView.bounds:\(contentView.bounds)")
+        
+        containerScrollView.frame = contentView.bounds
+        containerScrollView.setZoomScale(1.0, animated: false)
+        
+        
+        
+        //imageView.frame = containerScrollView.bounds//CGRect(x: (containerScrollView.width - image.size.width) / 2, y: (containerScrollView.height - image.size.height) / 2, width: image.size.width, height: image.size.height)
+        
     }
     
     private func VSetupSubview() -> Void
     {
         containerScrollView = UIScrollView()
         containerScrollView.maximumZoomScale = 2.0
-        containerScrollView.minimumZoomScale = 0.5
-        containerScrollView.frame = contentView.frame
+        containerScrollView.minimumZoomScale = 1.0
+        containerScrollView.delegate = self
+        containerScrollView.backgroundColor = kMainRedColor()
+        containerScrollView.showsVerticalScrollIndicator = false
+        containerScrollView.showsHorizontalScrollIndicator = false
+        
         contentView.addSubview(containerScrollView)
         
-        let image = UIImage.imageNamed(name: String(format: "%d", Int(arc4random_uniform(10))))
         
         
         imageView = UIImageView()
-        imageView.image = image
-        imageView.frame = containerScrollView.bounds//CGRect(x: (containerScrollView.width - image.size.width) / 2, y: (containerScrollView.height - image.size.height) / 2, width: image.size.width, height: image.size.height)
+        imageView.isUserInteractionEnabled = true
+        //imageView.backgroundColor = kMainRandomColor()
+        //imageView.image = image
+        //imageView.frame = containerScrollView.bounds//CGRect(x: (containerScrollView.width - image.size.width) / 2, y: (containerScrollView.height - image.size.height) / 2, width: image.size.width, height: image.size.height)
         containerScrollView.addSubview(imageView)
         
         // 长按手势
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(_:)))
+        longPress.minimumPressDuration = 1.0
         contentView.addGestureRecognizer(longPress)
         
         // 双击手势
@@ -230,16 +275,15 @@ class MTTPhotoBrowserCell: UICollectionViewCell {
         singleTap.require(toFail: doubleTap)
         
         // 拖动手势
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
+        //let pan = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
         //pan.delegate = self
-        containerScrollView.addGestureRecognizer(pan)
+        //containerScrollView.addGestureRecognizer(pan)
     }
     
     /// 响应单击
     @objc func onSingleTap() {
-//        if let dlg = photoBrowserCellDelegate {
-//            dlg.photoBrowserCell(self, didSingleTap: imageView.image)
-//        }
+        
+        delegate?.DSingleTapActionCallBack()
         
     }
     
@@ -335,18 +379,35 @@ class MTTPhotoBrowserCell: UICollectionViewCell {
     
     /// 响应长按
     @objc func onLongPress(_ press: UILongPressGestureRecognizer) {
-//        if press.state == .began, let dlg = photoBrowserCellDelegate, let image = imageView.image {
-//            dlg.photoBrowserCell(self, didLongPressWith: image)
-//        }
+        
+        if press.state == UIGestureRecognizerState.began
+        {
+            delegate?.DLongPressActionCallBack(image: imageView.image)
+        }
     }
     
-    private func VLayoutSubview() -> Void
-    {
-        
-    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+extension MTTPhotoBrowserCell:UIScrollViewDelegate
+{
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        imageView.center = centerOfContentSize
+    }
+}
+
+// MARK: - cell delegate
+protocol MTTPhotoBrowserCellDelegate:class {
+    
+    func DSingleTapActionCallBack() -> Void
+    
+    func DLongPressActionCallBack(image:UIImage?) -> Void
 }
 

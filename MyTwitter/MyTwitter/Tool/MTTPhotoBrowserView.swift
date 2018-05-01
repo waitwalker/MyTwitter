@@ -171,6 +171,7 @@ class MTTPhotoBrowserCell: UICollectionViewCell {
                     let scaleImage = theImage.scaleImageWithWidth(expectWidth: kScreenWidth, sourceImage: theImage)
                     
                     self.imageView.frame = CGRect(x: (self.containerScrollView.width - scaleImage.size.width) / 2, y: (self.containerScrollView.height - scaleImage.size.height) / 2, width: scaleImage.size.width, height: scaleImage.size.height)
+                    self.imageView.center = self.contentView.center
                     
                     self.imageView.image = scaleImage
                     

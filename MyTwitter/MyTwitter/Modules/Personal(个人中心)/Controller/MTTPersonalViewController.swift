@@ -260,8 +260,8 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
     {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        //let shakeVC = MTTShakeViewController()
-        //self.navigationController?.pushViewController(shakeVC, animated: true)
+        let shakeVC = MTTShakeViewController()
+        self.navigationController?.pushViewController(shakeVC, animated: true)
         
         
         let randomNum_one = Int(arc4random_uniform(964))
@@ -275,14 +275,33 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
         let imageString_four = String(format: "http://7xr4g8.com1.z0.glb.clouddn.com/%d", randomNum_four)
         let imageString_five = String(format: "http://7xr4g8.com1.z0.glb.clouddn.com/%d", randomNum_five)
         
-        let dataS:[String] = [imageString_one,imageString_two,imageString_three,imageString_four,imageString_five]
+        let dataS:[String] = [imageString_one,imageString_two,imageString_three,imageString_four,imageString_five,imageString_one,imageString_two,imageString_three,imageString_four,imageString_five]
         
         
         photoBrowserView = MTTPhotoBrowserView(dataSource: dataS, currentItem: 2)
         photoBrowserView.delegate = self
         
-        self.view.addSubview(photoBrowserView)
+       // self.view.addSubview(photoBrowserView)
         
+        let photoDisplyView = MTTPhotoDisplayView(frame: CGRect(x: 0, y: 200, width: 440, height: 120))
+        
+        if dataS.count % 3 == 0
+        {
+            let rowCount:Int = dataS.count / 3
+            
+            photoDisplyView.height = CGFloat((20 + 120) * rowCount + 20)
+        } else
+        {
+            let rowCount:Int = dataS.count / 3 + 1
+            
+            photoDisplyView.height = CGFloat((20 + 120) * rowCount + 20)
+        }
+        photoDisplyView.backgroundColor = kMainRandomColor()
+        photoDisplyView.imageStrings = dataS
+        
+        photoDisplyView.delegate = self
+        
+        self.view.addSubview(photoDisplyView)
         
         
     }
@@ -339,5 +358,14 @@ extension MTTPersonalViewController:MTTPhotoBrowserViewDelegate
             photoBrowserView = nil
         }
         
+    }
+}
+
+extension MTTPersonalViewController:MTTPhotoDisplayViewDelegate
+{
+    func DDidSelectIndexPathAction(dataSource: [String]?, currentItem: Int?) {
+        photoBrowserView = MTTPhotoBrowserView(dataSource: dataSource, currentItem: currentItem)
+        photoBrowserView.delegate = self
+        MTTSingletonManager.sharedInstance.getKeyWindow().addSubview(photoBrowserView)
     }
 }

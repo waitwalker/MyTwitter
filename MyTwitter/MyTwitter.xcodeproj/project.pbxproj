@@ -101,6 +101,7 @@
 		1AFC05AB1F5EE3B2006EAC9F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC05A61F5EE3B2006EAC9F /* Info.plist */; };
 		1AFC96AC1FE163B300B36FD8 /* MTTPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC96AB1FE163B300B36FD8 /* MTTPhotosView.swift */; };
 		44E9E8C13750B588F23552C8 /* Pods_MyTwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0154BB38FA20AEAE9F9E62B /* Pods_MyTwitterUITests.framework */; };
+		B33A8A4F2098697D00DE681C /* MTTPhotoDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33A8A4E2098697D00DE681C /* MTTPhotoDisplayView.swift */; };
 		B3B0B387209749E500616416 /* MTTPhotoBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B0B386209749E500616416 /* MTTPhotoBrowserView.swift */; };
 		CA0994BB1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0994BA1F8F41D600D79775 /* MTTPhotoLibraryIconCell.swift */; };
 		CA0994BD1F8F459D00D79775 /* MTTPhotoLibraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0994BC1F8F459D00D79775 /* MTTPhotoLibraryModel.swift */; };
@@ -335,6 +336,7 @@
 		3BC01DD32B63AD348DFCD919 /* Pods_MyTwitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTwitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F24A29CF39DDC29B1234D51 /* Pods-MyTwitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitter/Pods-MyTwitter.debug.xcconfig"; sourceTree = "<group>"; };
 		98509265A2B073ADF5AA88F8 /* Pods-MyTwitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterUITests/Pods-MyTwitterUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B33A8A4E2098697D00DE681C /* MTTPhotoDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPhotoDisplayView.swift; sourceTree = "<group>"; };
 		B3B0B386209749E500616416 /* MTTPhotoBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTTPhotoBrowserView.swift; sourceTree = "<group>"; };
 		BBD28B095E0F89AA1960F0FC /* Pods-MyTwitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterTests/Pods-MyTwitterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BDE3DAC010179F784B5E286A /* Pods-MyTwitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTwitterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTwitterUITests/Pods-MyTwitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -877,6 +879,7 @@
 			isa = PBXGroup;
 			children = (
 				B3B0B386209749E500616416 /* MTTPhotoBrowserView.swift */,
+				B33A8A4E2098697D00DE681C /* MTTPhotoDisplayView.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -2004,6 +2007,7 @@
 				CA3058E41F7A156900742237 /* MTTLargeImagePreviewManager.swift in Sources */,
 				CAF065561F986F67002F28F8 /* MTTNotificationFollowCell.swift in Sources */,
 				CA66B4F71F90C1BD001CD140 /* MTTSearchHeader.swift in Sources */,
+				B33A8A4F2098697D00DE681C /* MTTPhotoDisplayView.swift in Sources */,
 				CA6ADD571F98833B00A25646 /* MTTNotificationButtonCell.swift in Sources */,
 				CA45B8C8204CDD410062743B /* MTTUserDetailViewModel.swift in Sources */,
 				1A8F5BD51F72A915006D6CA0 /* MTTTableViewCell.swift in Sources */,

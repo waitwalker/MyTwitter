@@ -73,6 +73,8 @@ class MTTPhotoBrowserView: UIView {
         self.addSubview(pageControl)
         self.bringSubview(toFront: pageControl)
         
+        collectionView.scrollToItem(at: IndexPath(item: currentItem!, section: 0), at: UICollectionViewScrollPosition.right, animated: true)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -108,6 +110,7 @@ extension MTTPhotoBrowserView:UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusedPhotoBrowserId, for: indexPath) as! MTTPhotoBrowserCell
         cell.delegate = self
+        cell.imageURLString = self.dataSources[indexPath.item]
         return cell
     }
     
@@ -227,15 +230,8 @@ class MTTPhotoBrowserCell: UICollectionViewCell {
     
     private func VLayoutSubview() -> Void
     {
-        print("contentView.bounds:\(contentView.bounds)")
-        
         containerScrollView.frame = contentView.bounds
         containerScrollView.setZoomScale(1.0, animated: false)
-        
-        
-        
-        //imageView.frame = containerScrollView.bounds//CGRect(x: (containerScrollView.width - image.size.width) / 2, y: (containerScrollView.height - image.size.height) / 2, width: image.size.width, height: image.size.height)
-        
     }
     
     private func VSetupSubview() -> Void
@@ -254,9 +250,6 @@ class MTTPhotoBrowserCell: UICollectionViewCell {
         
         imageView = UIImageView()
         imageView.isUserInteractionEnabled = true
-        //imageView.backgroundColor = kMainRandomColor()
-        //imageView.image = image
-        //imageView.frame = containerScrollView.bounds//CGRect(x: (containerScrollView.width - image.size.width) / 2, y: (containerScrollView.height - image.size.height) / 2, width: image.size.width, height: image.size.height)
         containerScrollView.addSubview(imageView)
         
         // 长按手势

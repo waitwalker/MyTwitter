@@ -264,7 +264,21 @@ class MTTPersonalViewController: MTTViewController ,UITableViewDelegate,UITableV
         //self.navigationController?.pushViewController(shakeVC, animated: true)
         
         
-        photoBrowserView = MTTPhotoBrowserView(dataSource: ["1","2","3"])
+        let randomNum_one = Int(arc4random_uniform(964))
+        let randomNum_two = Int(arc4random_uniform(964))
+        let randomNum_three = Int(arc4random_uniform(964))
+        let randomNum_four = Int(arc4random_uniform(964))
+        let randomNum_five = Int(arc4random_uniform(964))
+        let imageString_one = String(format: "http://7xr4g8.com1.z0.glb.clouddn.com/%d", randomNum_one)
+        let imageString_two = String(format: "http://7xr4g8.com1.z0.glb.clouddn.com/%d", randomNum_two)
+        let imageString_three = String(format: "http://7xr4g8.com1.z0.glb.clouddn.com/%d", randomNum_three)
+        let imageString_four = String(format: "http://7xr4g8.com1.z0.glb.clouddn.com/%d", randomNum_four)
+        let imageString_five = String(format: "http://7xr4g8.com1.z0.glb.clouddn.com/%d", randomNum_five)
+        
+        let dataS:[String] = [imageString_one,imageString_two,imageString_three,imageString_four,imageString_five]
+        
+        
+        photoBrowserView = MTTPhotoBrowserView(dataSource: dataS, currentItem: 2)
         photoBrowserView.delegate = self
         
         self.view.addSubview(photoBrowserView)

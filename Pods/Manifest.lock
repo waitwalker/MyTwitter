@@ -1,0 +1,63 @@
+PODS:
+  - Alamofire (4.4.0)
+  - DateTools (2.0.0)
+  - IQKeyboardManagerSwift (4.0.10)
+  - Kingfisher (4.6.4)
+  - MBProgressHUD (1.0.0)
+  - MJRefresh (3.1.12)
+  - ObjcExceptionBridging (1.0.1):
+    - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
+  - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - Realm (3.0.1):
+    - Realm/Headers (= 3.0.1)
+  - Realm/Headers (3.0.1)
+  - RealmSwift (3.0.1):
+    - Realm (= 3.0.1)
+  - RxCocoa (4.0.0):
+    - RxSwift (~> 4.0)
+  - RxGesture (1.2.1):
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxSwift (4.0.0)
+  - SnapKit (3.2.0)
+  - SwiftyJSON (3.1.4)
+  - XCGLogger (5.0.1):
+    - XCGLogger/Core (= 5.0.1)
+  - XCGLogger/Core (5.0.1):
+    - ObjcExceptionBridging
+
+DEPENDENCIES:
+  - Alamofire (~> 4.4.0)
+  - DateTools (~> 2.0.0)
+  - IQKeyboardManagerSwift (~> 4.0.10)
+  - Kingfisher (~> 4.6.4)
+  - MBProgressHUD (~> 1.0.0)
+  - MJRefresh (~> 3.1.12)
+  - RealmSwift (~> 3.0.1)
+  - RxCocoa (~> 4.0.0)
+  - RxGesture (~> 1.2.1)
+  - RxSwift (~> 4.0.0)
+  - SnapKit (~> 3.2.0)
+  - SwiftyJSON (~> 3.1.4)
+  - XCGLogger (~> 5.0.1)
+
+SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
+  IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
+  Kingfisher: 68498a706e46c2a050b0c9572f100e5db407f6e0
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  Realm: ba6144c74f835f7497791f6599d63a7755377b83
+  RealmSwift: 7d13b1ac4b6022a13f841e3143e7789c9e40ad0d
+  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
+  RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
+  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
+
+PODFILE CHECKSUM: bbb202fb20d393d1ced0fdadb2355bd0b0eff296
+
+COCOAPODS: 1.4.0

@@ -29,19 +29,6 @@ UIView hierarchy category.
 */
 public extension UIView {
     
-    ///------------------------------
-    /// MARK: canBecomeFirstResponder
-    ///------------------------------
-    
-    /**
-    Returns YES if IQKeyboardManager asking for `canBecomeFirstResponder. Useful when doing custom work in `textFieldShouldBeginEditing:` delegate.
-    */
-    @available(*,deprecated, message: "isAskingCanBecomeFirstResponder property was come to existence as a workaround to handle `textFieldShouldBeginEditing:` multiple call issue, but we removed `canBecomeFirstResponder` method call from library, now this property make no sense and will be removed in future releases. From now this property will always return false because of not calling `canBecomeFirstResponder` method. Please update your code/logic in `textFieldShouldBeginEditing:` method.")
-    public var isAskingCanBecomeFirstResponder: Bool {
-        
-        return false
-    }
-
     ///----------------------
     /// MARK: viewControllers
     ///----------------------
@@ -120,13 +107,17 @@ public extension UIView {
                     
                     let classNameString = NSStringFromClass(type(of:unwrappedSuperView.self))
 
-                    //UITableViewCellScrollView, UITableViewWrapperView, _UIQueuingScrollView
-                    if ((classNameString.hasPrefix("UITableView") && (classNameString.hasSuffix("CellScrollView") || classNameString.hasSuffix("WrapperView"))) || classNameString.hasPrefix("_") == true) == false {
-                        return superView;
+                    //  If it's not UITableViewWrapperView class, this is internal class which is actually manage in UITableview. The speciality of this class is that it's superview is UITableView.
+                    //  If it's not UITableViewCellScrollView class, this is internal class which is actually manage in UITableviewCell. The speciality of this class is that it's superview is UITableViewCell.
+                    //If it's not _UIQueuingScrollView class, actually we validate for _ prefix which usually used by Apple internal classes
+                    if unwrappedSuperView.superview?.isKind(of: UITableView.self) == false &&
+                        unwrappedSuperView.superview?.isKind(of: UITableViewCell.self) == false &&
+                        classNameString.hasPrefix("_") == false {
+                        return superView
                     }
                 }
                 else {
-                    return superView;
+                    return superView
                 }
             }
             

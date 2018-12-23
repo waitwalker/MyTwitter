@@ -67,6 +67,7 @@ open class IQTextView : UITextView {
                     unwrappedPlaceholderLabel.lineBreakMode = .byWordWrapping
                     unwrappedPlaceholderLabel.numberOfLines = 0
                     unwrappedPlaceholderLabel.font = self.font
+                    unwrappedPlaceholderLabel.textAlignment = self.textAlignment
                     unwrappedPlaceholderLabel.backgroundColor = UIColor.clear
                     unwrappedPlaceholderLabel.textColor = UIColor(white: 0.7, alpha: 1.0)
                     unwrappedPlaceholderLabel.alpha = 0
@@ -83,14 +84,21 @@ open class IQTextView : UITextView {
         super.layoutSubviews()
         
         if let unwrappedPlaceholderLabel = placeholderLabel {
-            unwrappedPlaceholderLabel.sizeToFit()
-            unwrappedPlaceholderLabel.frame = CGRect(x: 4, y: 8, width: self.frame.width-16, height: unwrappedPlaceholderLabel.frame.height)
+            
+            let offsetLeft = textContainerInset.left + textContainer.lineFragmentPadding
+            let offsetRight = textContainerInset.right + textContainer.lineFragmentPadding
+            let offsetTop = textContainerInset.top
+            let offsetBottom = textContainerInset.top
+
+            let expectedSize = unwrappedPlaceholderLabel.sizeThatFits(CGSize(width: self.frame.width-offsetLeft-offsetRight, height: self.frame.height-offsetTop-offsetBottom))
+
+            unwrappedPlaceholderLabel.frame = CGRect(x: offsetLeft, y: offsetTop, width: expectedSize.width, height: expectedSize.height)
         }
     }
 
     open func refreshPlaceholder() {
         
-        if text.count != 0 {
+        if text.characters.count != 0 {
             placeholderLabel?.alpha = 0
         } else {
             placeholderLabel?.alpha = 1
@@ -115,6 +123,13 @@ open class IQTextView : UITextView {
             } else {
                 placeholderLabel?.font = UIFont.systemFont(ofSize: 12)
             }
+        }
+    }
+    
+    override open var textAlignment: NSTextAlignment
+    {
+        didSet {
+            placeholderLabel?.textAlignment = textAlignment
         }
     }
     

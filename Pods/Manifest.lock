@@ -1,15 +1,10 @@
 PODS:
   - Alamofire (4.4.0)
   - DateTools (2.0.0)
-<<<<<<< HEAD:MyTwitter/Pods/Manifest.lock
   - IQKeyboardManagerSwift (4.0.13)
-  - MJRefresh (3.1.15.7)
-=======
-  - IQKeyboardManagerSwift (4.0.10)
   - Kingfisher (4.6.4)
   - MBProgressHUD (1.0.0)
-  - MJRefresh (3.1.12)
->>>>>>> b490520bd4821b9b360517fdd7f452cac065f2cb:Pods/Manifest.lock
+  - MJRefresh (3.1.15.7)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
@@ -51,6 +46,8 @@ SPEC REPOS:
     - Alamofire
     - DateTools
     - IQKeyboardManagerSwift
+    - Kingfisher
+    - MBProgressHUD
     - MJRefresh
     - ObjcExceptionBridging
     - Realm
@@ -65,15 +62,10 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
-<<<<<<< HEAD:MyTwitter/Pods/Manifest.lock
   IQKeyboardManagerSwift: fb399c4cddcd8d9bbcd2d0c7c81ed290b61c088e
-  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
-=======
-  IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
   Kingfisher: 68498a706e46c2a050b0c9572f100e5db407f6e0
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
->>>>>>> b490520bd4821b9b360517fdd7f452cac065f2cb:Pods/Manifest.lock
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
   RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
@@ -86,8 +78,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: bbb202fb20d393d1ced0fdadb2355bd0b0eff296
 
-<<<<<<< HEAD:MyTwitter/Pods/Manifest.lock
 COCOAPODS: 1.5.3
-=======
-COCOAPODS: 1.4.0
->>>>>>> b490520bd4821b9b360517fdd7f452cac065f2cb:Pods/Manifest.lock

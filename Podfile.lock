@@ -1,18 +1,18 @@
 PODS:
   - Alamofire (4.4.0)
   - DateTools (2.0.0)
-  - IQKeyboardManagerSwift (4.0.10)
+  - IQKeyboardManagerSwift (4.0.13)
   - Kingfisher (4.6.4)
   - MBProgressHUD (1.0.0)
-  - MJRefresh (3.1.12)
+  - MJRefresh (3.1.15.7)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
-  - Realm (3.0.1):
-    - Realm/Headers (= 3.0.1)
-  - Realm/Headers (3.0.1)
-  - RealmSwift (3.0.1):
-    - Realm (= 3.0.1)
+  - Realm (3.0.2):
+    - Realm/Headers (= 3.0.2)
+  - Realm/Headers (3.0.2)
+  - RealmSwift (3.0.2):
+    - Realm (= 3.0.2)
   - RxCocoa (4.0.0):
     - RxSwift (~> 4.0)
   - RxGesture (1.2.1):
@@ -21,9 +21,9 @@ PODS:
   - RxSwift (4.0.0)
   - SnapKit (3.2.0)
   - SwiftyJSON (3.1.4)
-  - XCGLogger (5.0.1):
-    - XCGLogger/Core (= 5.0.1)
-  - XCGLogger/Core (5.0.1):
+  - XCGLogger (5.0.5):
+    - XCGLogger/Core (= 5.0.5)
+  - XCGLogger/Core (5.0.5):
     - ObjcExceptionBridging
 
 DEPENDENCIES:
@@ -41,23 +41,41 @@ DEPENDENCIES:
   - SwiftyJSON (~> 3.1.4)
   - XCGLogger (~> 5.0.1)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - DateTools
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - MBProgressHUD
+    - MJRefresh
+    - ObjcExceptionBridging
+    - Realm
+    - RealmSwift
+    - RxCocoa
+    - RxGesture
+    - RxSwift
+    - SnapKit
+    - SwiftyJSON
+    - XCGLogger
+
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
-  IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
+  IQKeyboardManagerSwift: fb399c4cddcd8d9bbcd2d0c7c81ed290b61c088e
   Kingfisher: 68498a706e46c2a050b0c9572f100e5db407f6e0
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
-  Realm: ba6144c74f835f7497791f6599d63a7755377b83
-  RealmSwift: 7d13b1ac4b6022a13f841e3143e7789c9e40ad0d
+  Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
+  RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
   RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
   RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
   RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
-  XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
+  XCGLogger: 49bceee6dc0c738eae5d6454fdbf800d62256b74
 
 PODFILE CHECKSUM: bbb202fb20d393d1ced0fdadb2355bd0b0eff296
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

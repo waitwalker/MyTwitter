@@ -1,9 +1,5 @@
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/ObjcExceptionBridging
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-<<<<<<< HEAD:MyTwitter/Pods/Target Support Files/ObjcExceptionBridging/ObjcExceptionBridging.xcconfig
-=======
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Public"
->>>>>>> b490520bd4821b9b360517fdd7f452cac065f2cb:Pods/Target Support Files/ObjcExceptionBridging/ObjcExceptionBridging.xcconfig
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_ROOT = ${SRCROOT}

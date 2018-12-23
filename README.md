@@ -8,7 +8,7 @@
 ![图1.1 关于页面(登录页面右上角按钮触发)](https://upload-images.jianshu.io/upload_images/1715253-7e6c4ac7164a1a17.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2 列表的数据源来自MTTAboutViewModel,MTTAboutViewModel通过一个类方法将数据回调给MTTAboutTwitterViewController, MTTAboutTwitterViewController将数据传给cell(view).MTTAboutTwitterViewController不负责数据的请求以及业务处理.
 
-![图1.2 MTTAboutViewModel数据请求处理](https://upload-images.jianshu.io/upload_images/1715253-7e6c4ac7164a1a17.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
+![图1.2 MTTAboutViewModel数据请求处理](https://upload-images.jianshu.io/upload_images/1715253-e26ad030d2ff728e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
 
 1.3 将数据回调给VC:
 ![图1.3  VC获取viewModel回调过来的数据](https://upload-images.jianshu.io/upload_images/1715253-4ba934e05c919217.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
